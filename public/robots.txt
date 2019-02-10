@@ -1,0 +1,3 @@
+# No robot should index the app. We are not ready yet.
+User-agent: *
+Disallow: /

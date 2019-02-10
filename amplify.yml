@@ -1,0 +1,43 @@
+version: 0.2
+backend:
+  phases:
+    preBuild:
+      commands:
+        # Disable building for testing purpose
+        - envCache --set installChrome true
+        - envCache --set installNpmPackages true
+        - envCache --set build true
+        - envCache --set pushToMaster true
+    build:
+      commands:
+        # Get Amplify CLI Cloud-Formation stack info from environment cache
+        - if [[ "$(envCache --get build)" == "true" ]]; then export STACKINFO="$(envCache --get stackInfo)"; fi
+        # Execute Amplify CLI with the helper script
+        - if [[ "$(envCache --get build)" == "true" ]]; then amplifyPush --environment $AWS_BRANCH; fi
+        # Store Amplify CLI Cloud-Formation stack info in environment cache
+        - if [[ "$(envCache --get build)" == "true" ]]; then envCache --set stackInfo "$(amplify env get --json --name $AWS_BRANCH)"; fi
+frontend:
+  phases:
+    preBuild:
+      commands:
+        # This installs Chrome on any RHEL/CentOS/Amazon Linux variant.
+        - if [[ "$(envCache --get installChrome)" == "true" ]]; then curl https://intoli.com/install-google-chrome.sh | bash; fi
+        # Install app
+        - if [[ "$(envCache --get installNpmPackages)" == "true" ]]; then npm ci; fi
+        # Setup custom package.json for CI (headless no-sandbox puppeteer)
+        - if [[ "$(envCache --get build)" == "true" ]]; then npm run ci-setup; fi
+        # Run tests
+        - if [[ "$(envCache --get build)" == "true" ]]; then npm run ci-test; fi
+    build:
+      commands:
+        - if [[ "$(envCache --get build)" == "true" ]]; then npm run build; fi
+        - if [[ "$(envCache --get build)" == "true" ]]; then npm run ci-postbuild; fi
+        # If we are building branch dev, try to push to master
+        - if [[ $AWS_BRANCH == "dev" && "$(envCache --get pushToMaster)" == "true" ]]; then npm run ci-push-to-master; fi
+  artifacts:
+    baseDirectory: build
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - node_modules/**/*

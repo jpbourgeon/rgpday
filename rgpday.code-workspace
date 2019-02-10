@@ -1,0 +1,51 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"eslint.enable": false,
+		"eslint.autoFixOnSave": false,
+		"editor.fontFamily": "Hack, Consolas, 'DejaVu Sans Mono', Consolas, 'Courier New', monospace",
+		"editor.fontSize": 13,
+		"editor.minimap.enabled": false,
+		"editor.rulers": [120],
+		"editor.snippetSuggestions": "top",
+		"editor.tabSize": 2,
+		"editor.wordWrap": "wordWrapColumn",
+		"editor.wordWrapColumn": 120,
+		"files.exclude": {
+			"*.code-workspace": true,
+			"*.vscode": true,
+			"**/node_modules": true,
+			"**/build": true
+		},
+		"javascript.validate.enable": false,
+		"workbench.activityBar.visible": false,
+		"workbench.colorTheme": "Cobalt2",
+		"workbench.iconTheme": "vs-seti",
+		"workbench.editor.labelFormat": "short",
+		"telemetry.enableTelemetry": false,
+		"telemetry.enableCrashReporter": false,
+		"LineCount.showStatusBarItem": false,
+		"LineCount.output": {
+		  "txt": false,
+		  "json": false,
+		  "csv": false,
+		  "md": false,
+		  "outdir": ""
+		},
+		"LineCount.excludes": [
+		  ".vscode/**",
+		  ".git/**",
+		  "node_modules/**",
+		],
+		"LineCount.includes": [
+			"**/*"
+		],
+		"standard.autoFixOnSave": true,
+		"workbench.statusBar.visible": true,
+		"git.ignoreLimitWarning": true,
+	  }
+}
