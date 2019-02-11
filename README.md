@@ -1,1 +1,4 @@
-# app.weighers.club
+# RGPDAY.COM
+
+- [Changelog](./changelog.md)
+- [Licence](./licence.md)

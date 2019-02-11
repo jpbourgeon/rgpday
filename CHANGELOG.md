@@ -7,6 +7,6 @@ List of change types (one of: Added, Changed, Deprecated, Removed, Fixed, Securi
 
 ## [Unreleased]
 
-- Added : project initialisation
+## 0.1.0 - 2019-02-11
 
-## SEMVER - ISO DATE
+- Added : project initialisation

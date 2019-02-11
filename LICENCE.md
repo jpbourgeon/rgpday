@@ -1,0 +1,1 @@
+Copyright (c) 2019 Jean-Philippe Bourgeon <jeanphilippe.bourgeon@gmail.com>

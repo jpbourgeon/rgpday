@@ -12,10 +12,11 @@ exports[`The App component should render correctly 1`] = `
     >
       <button
         aria-label="Open drawer"
-        className="root-129 root-132 colorInherit-133 menuButton-4"
+        className="root-130 root-133 colorInherit-134 menuButton-4"
         disabled={false}
         onBlur={[Function]}
         onClick={[Function]}
+        onContextMenu={[Function]}
         onFocus={[Function]}
         onKeyDown={[Function]}
         onKeyUp={[Function]}
@@ -29,11 +30,11 @@ exports[`The App component should render correctly 1`] = `
         type="button"
       >
         <span
-          className="label-137"
+          className="label-138"
         >
           <svg
             aria-hidden="true"
-            className="root-138"
+            className="root-139"
             focusable="false"
             role="presentation"
             viewBox="0 0 24 24"
@@ -48,13 +49,13 @@ exports[`The App component should render correctly 1`] = `
           </svg>
         </span>
         <span
-          className="root-187"
+          className="root-188"
         />
       </button>
       <h1
         className="root-51 h6-68 colorInherit-80 noWrap-77 title-5"
       >
-        The Weighers Club
+        RGPDay
       </h1>
     </div>
   </header>
@@ -62,19 +63,20 @@ exports[`The App component should render correctly 1`] = `
     className="drawer-6"
   >
     <div
-      className="root-147 docked-148"
+      className="root-148 docked-149"
     >
       <div
-        className="root-20 elevation0-22 paper-149 drawerPaper-7 paperAnchorLeft-150 paperAnchorDockedLeft-154"
+        className="root-20 elevation0-22 paper-150 drawerPaper-7 paperAnchorLeft-151 paperAnchorDockedLeft-155"
       >
         <div
           className="toolbarIcon-2"
         >
           <button
-            className="root-129 root-132"
+            className="root-130 root-133"
             disabled={false}
             onBlur={[Function]}
             onClick={[Function]}
+            onContextMenu={[Function]}
             onFocus={[Function]}
             onKeyDown={[Function]}
             onKeyUp={[Function]}
@@ -88,11 +90,11 @@ exports[`The App component should render correctly 1`] = `
             type="button"
           >
             <span
-              className="label-137"
+              className="label-138"
             >
               <svg
                 aria-hidden="true"
-                className="root-138"
+                className="root-139"
                 focusable="false"
                 role="presentation"
                 viewBox="0 0 24 24"
@@ -107,20 +109,21 @@ exports[`The App component should render correctly 1`] = `
               </svg>
             </span>
             <span
-              className="root-187"
+              className="root-188"
             />
           </button>
         </div>
         <hr
-          className="root-159"
+          className="root-160"
         />
         <ul
-          className="root-164 padding-165"
+          className="root-165 padding-166"
         >
           <div>
             <div
-              className="root-129 root-168 default-171 gutters-176 button-177"
+              className="root-130 root-169 default-172 gutters-177 button-178"
               onBlur={[Function]}
+              onContextMenu={[Function]}
               onFocus={[Function]}
               onKeyDown={[Function]}
               onKeyUp={[Function]}
@@ -134,11 +137,11 @@ exports[`The App component should render correctly 1`] = `
               tabIndex="0"
             >
               <div
-                className="root-180"
+                className="root-181"
               >
                 <svg
                   aria-hidden="true"
-                  className="root-138"
+                  className="root-139"
                   focusable="false"
                   role="presentation"
                   viewBox="0 0 24 24"
@@ -153,21 +156,22 @@ exports[`The App component should render correctly 1`] = `
                 </svg>
               </div>
               <div
-                className="root-181"
+                className="root-182"
               >
                 <span
-                  className="root-51 subtitle1-69 primary-184"
+                  className="root-51 body1-60 primary-185"
                 >
-                  Journal
+                  Menu A
                 </span>
               </div>
               <span
-                className="root-187"
+                className="root-188"
               />
             </div>
             <div
-              className="root-129 root-168 default-171 gutters-176 button-177"
+              className="root-130 root-169 default-172 gutters-177 button-178"
               onBlur={[Function]}
+              onContextMenu={[Function]}
               onFocus={[Function]}
               onKeyDown={[Function]}
               onKeyUp={[Function]}
@@ -181,11 +185,11 @@ exports[`The App component should render correctly 1`] = `
               tabIndex="0"
             >
               <div
-                className="root-180"
+                className="root-181"
               >
                 <svg
                   aria-hidden="true"
-                  className="root-138"
+                  className="root-139"
                   focusable="false"
                   role="presentation"
                   viewBox="0 0 24 24"
@@ -200,30 +204,31 @@ exports[`The App component should render correctly 1`] = `
                 </svg>
               </div>
               <div
-                className="root-181"
+                className="root-182"
               >
                 <span
-                  className="root-51 subtitle1-69 primary-184"
+                  className="root-51 body1-60 primary-185"
                 >
-                  Suivi
+                  Menu B
                 </span>
               </div>
               <span
-                className="root-187"
+                className="root-188"
               />
             </div>
           </div>
         </ul>
         <hr
-          className="root-159"
+          className="root-160"
         />
         <ul
-          className="root-164 padding-165"
+          className="root-165 padding-166"
         >
           <div>
             <div
-              className="root-129 root-168 default-171 gutters-176 button-177"
+              className="root-130 root-169 default-172 gutters-177 button-178"
               onBlur={[Function]}
+              onContextMenu={[Function]}
               onFocus={[Function]}
               onKeyDown={[Function]}
               onKeyUp={[Function]}
@@ -237,11 +242,11 @@ exports[`The App component should render correctly 1`] = `
               tabIndex="0"
             >
               <div
-                className="root-180"
+                className="root-181"
               >
                 <svg
                   aria-hidden="true"
-                  className="root-138"
+                  className="root-139"
                   focusable="false"
                   role="presentation"
                   viewBox="0 0 24 24"
@@ -256,16 +261,16 @@ exports[`The App component should render correctly 1`] = `
                 </svg>
               </div>
               <div
-                className="root-181"
+                className="root-182"
               >
                 <span
-                  className="root-51 subtitle1-69 primary-184"
+                  className="root-51 body1-60 primary-185"
                 >
-                  Profil
+                  Menu C
                 </span>
               </div>
               <span
-                className="root-187"
+                className="root-188"
               />
             </div>
           </div>
@@ -280,7 +285,7 @@ exports[`The App component should render correctly 1`] = `
       className="appBarSpacer-9"
     />
     <div
-      className="root-86"
+      className="root-87"
     >
       <h4
         className="root-51 h4-66 gutterBottom-78"
@@ -293,10 +298,11 @@ exports[`The App component should render correctly 1`] = `
         example project
       </h6>
       <button
-        className="root-129 root-103 contained-114 containedSecondary-116 raised-117 raisedSecondary-119"
+        className="root-130 root-104 contained-115 containedSecondary-117 raised-118 raisedSecondary-120"
         disabled={false}
         onBlur={[Function]}
         onClick={[Function]}
+        onContextMenu={[Function]}
         onFocus={[Function]}
         onKeyDown={[Function]}
         onKeyUp={[Function]}
@@ -310,12 +316,12 @@ exports[`The App component should render correctly 1`] = `
         type="button"
       >
         <span
-          className="label-104"
+          className="label-105"
         >
           Super Secret Password
         </span>
         <span
-          className="root-187"
+          className="root-188"
         />
       </button>
     </div>

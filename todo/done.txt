@@ -1,0 +1,6 @@
+x 2019-02-09 2019-02-09 add git on aws codecommit
+x 2019-02-09 2019-02-09 create-react-app
+x 2019-02-10 2019-02-09 clone weighers-club current app
+x 2019-02-11 2019-02-09 customize theme colors
+x 2019-02-11 2019-02-09 first push
+x 2019-02-11 2019-02-09 add continuous deployment: add and configure amplify console and hosting (dev and master)

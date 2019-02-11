@@ -10,7 +10,7 @@ process.on('unhandledRejection', err => {
   throw err
 })
 
-const debug = require('debug')('app.weighers.club')
+const debug = require('debug')('rgpday.com')
 const git = require('simple-git')(__dirname)
 
 git

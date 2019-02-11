@@ -155,7 +155,7 @@ class Dashboard extends React.Component {
               noWrap
               className={classes.title}
             >
-              The Weighers Club
+              RGPDay
             </Typography>
           </Toolbar>
         </AppBar>

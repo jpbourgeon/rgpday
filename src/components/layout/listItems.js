@@ -12,13 +12,13 @@ export const mainListItems = (
       <ListItemIcon>
         <ViewListIcon />
       </ListItemIcon>
-      <ListItemText primary='Journal' />
+      <ListItemText primary='Menu A' />
     </ListItem>
     <ListItem button>
       <ListItemIcon>
         <MultilineChartIcon />
       </ListItemIcon>
-      <ListItemText primary='Suivi' />
+      <ListItemText primary='Menu B' />
     </ListItem>
   </div>
 )
@@ -29,34 +29,7 @@ export const secondaryListItems = (
       <ListItemIcon>
         <PersonIcon />
       </ListItemIcon>
-      <ListItemText primary='Profil' />
+      <ListItemText primary='Menu C' />
     </ListItem>
   </div>
 )
-
-/*
-Other Icons
-import LayersIcon from '@material-ui/icons/Layers'
-import LocalDiningIcon from '@material-ui/icons/LocalDining'
-import DirectionsRunIcon from '@material-ui/icons/DirectionsRun'
-
-    <ListItem button>
-      <ListItemIcon>
-        <LayersIcon />
-      </ListItemIcon>
-      <ListItemText primary='Poids' />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <LocalDiningIcon />
-      </ListItemIcon>
-      <ListItemText primary='Alimentation' />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <DirectionsRunIcon />
-      </ListItemIcon>
-      <ListItemText primary='Activité' />
-    </ListItem>
-
-*/

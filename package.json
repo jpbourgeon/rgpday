@@ -1,8 +1,8 @@
 {
-  "name": "app.weighers.club",
-  "version": "0.4.1",
+  "name": "rgpday.com",
+  "version": "0.0.0",
   "private": true,
-  "homepage": "https://app.weighers.com",
+  "homepage": "https://rgpday.com",
   "dependencies": {
     "@material-ui/core": "^3.6.2",
     "@material-ui/icons": "^3.0.1",
@@ -23,16 +23,16 @@
     "standard": "^12.0.1"
   },
   "scripts": {
-    "build": "cross-env DEBUG=app.weighers.club react-scripts build",
-    "ci-setup": "cross-env DEBUG=app.weighers.club node scripts/ci-setup.js",
+    "build": "cross-env DEBUG=rgpday.com react-scripts build",
+    "ci-setup": "cross-env DEBUG=rgpday.com node scripts/ci-setup.js",
     "ci-test": "cross-env-shell CI=true \"npm run lint && npm test\"",
     "ci-postbuild": "react-snap",
-    "ci-push-to-master": "cross-env DEBUG=app.weighers.club node scripts/ci-push-to-master.js",
-    "lint": "cross-env DEBUG=app.weighers.club standard",
-    "postversion": "cross-env DEBUG=app.weighers.club node scripts/postversion.js",
-    "preversion": "cross-env DEBUG=app.weighers.club npm run ci-test",
-    "start": "cross-env DEBUG=app.weighers.club react-scripts start",
-    "test": "cross-env DEBUG=app.weighers.club react-scripts test"
+    "ci-push-to-master": "cross-env DEBUG=rgpday.com node scripts/ci-push-to-master.js",
+    "lint": "cross-env DEBUG=rgpday.com standard",
+    "postversion": "cross-env DEBUG=rgpday.com node scripts/postversion.js",
+    "preversion": "cross-env DEBUG=rgpday.com npm run ci-test",
+    "start": "cross-env DEBUG=rgpday.com react-scripts start",
+    "test": "cross-env DEBUG=rgpday.com react-scripts test"
   },
   "browserslist": [
     ">0.2%",

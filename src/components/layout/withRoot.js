@@ -6,8 +6,8 @@ import {
   createMuiTheme,
   jssPreset
 } from '@material-ui/core/styles'
-import blueGrey from '@material-ui/core/colors/blueGrey'
-import red from '@material-ui/core/colors/red'
+import primary from '@material-ui/core/colors/brown'
+import secondary from '@material-ui/core/colors/deepOrange'
 import CssBaseline from '@material-ui/core/CssBaseline'
 
 // replace default name generator (http://cssinjs.org/js-api/?v=v9.5.0#generate-your-own-class-names) with a variation which uses random strings as part of the class name and wrap the app with this HOC.
@@ -22,14 +22,14 @@ const createGenerateClassName = () => {
 const theme = createMuiTheme({
   palette: {
     primary: {
-      light: blueGrey[500],
-      main: blueGrey[900],
-      dark: blueGrey[900]
+      light: primary[300],
+      main: primary[500],
+      dark: primary[700]
     },
     secondary: {
-      light: red[300],
-      main: red[500],
-      dark: red[700]
+      light: secondary['A200'],
+      main: secondary['A400'],
+      dark: secondary['A700']
     }
   },
   typography: {
