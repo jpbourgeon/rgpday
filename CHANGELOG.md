@@ -7,6 +7,10 @@ List of change types (one of: Added, Changed, Deprecated, Removed, Fixed, Securi
 
 ## [Unreleased]
 
+## 0.1.1 - 2019-02-11
+
+- Fixed : added amplify configuration to fix CI/CD 
+
 ## 0.1.0 - 2019-02-11
 
 - Added : project initialisation
