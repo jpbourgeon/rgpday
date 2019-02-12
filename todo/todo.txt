@@ -1,4 +1,6 @@
-(B) 2019-02-09 add app shell 
+(B) 2019-02-11 setup master amplify environment
+(B) 2019-02-09 add app shell
+(B) 2019-02-11 add a router
 (B) 2019-02-09 write the landing page
 (B) 2019-02-09 write the game specs
 (B) 2019-02-09 write the conference specs
