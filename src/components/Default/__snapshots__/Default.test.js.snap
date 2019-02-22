@@ -1,0 +1,90 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The Default component should render correctly 1`] = `
+<div
+  className="layout-1"
+>
+  <div
+    className="root-4"
+  >
+    <header
+      className="root-16 elevation4-22 root-7 positionStatic-11 colorPrimary-14"
+    >
+      <div
+        className="root-43 regular-45 gutters-44"
+      >
+        <h6
+          className="root-47 h6-64 colorInherit-76 grow-5"
+        >
+          <a
+            aria-current="page"
+            className="menuLink-6"
+            href="/"
+            onClick={[Function]}
+          >
+            RGPDay
+          </a>
+        </h6>
+        <a
+          className="menuLink-6"
+          href="/about"
+          onClick={[Function]}
+        >
+          À propos
+        </a>
+        <a
+          className="menuLink-6"
+          href="/contact"
+          onClick={[Function]}
+        >
+          Contact
+        </a>
+        <a
+          className="menuLink-6"
+          href="/login"
+          onClick={[Function]}
+        >
+          Login
+        </a>
+      </div>
+    </header>
+  </div>
+  <main>
+    <div
+      className="root-16 elevation2-20 rounded-17 mainFeaturedPost-2"
+    >
+      <div
+        className="container-83"
+      >
+        <div
+          className="item-84 6-145"
+        >
+          <div
+            className="mainFeaturedPostContent-3"
+          >
+            <h4
+              className="root-47 h4-62 colorInherit-76 gutterBottom-74"
+            >
+              Ce contenu n'existe pas.
+            </h4>
+            <h6
+              className="root-47 subtitle1-65 colorInherit-76 gutterBottom-74"
+            >
+              Essayez depuis la 
+              <a
+                aria-current="page"
+                className="root-47 colorPrimary-77 inline-82 root-180 underlineHover-182"
+                href="/"
+                onClick={[Function]}
+              >
+                page d'accueil
+              </a>
+               du site.
+            </h6>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+`;

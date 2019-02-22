@@ -1,0 +1,194 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The About component should render correctly 1`] = `
+<div
+  className="layout-1"
+>
+  <div
+    className="root-4"
+  >
+    <header
+      className="root-16 elevation4-22 root-7 positionStatic-11 colorPrimary-14"
+    >
+      <div
+        className="root-43 regular-45 gutters-44"
+      >
+        <h6
+          className="root-47 h6-64 colorInherit-76 grow-5"
+        >
+          <a
+            aria-current="page"
+            className="menuLink-6"
+            href="/"
+            onClick={[Function]}
+          >
+            RGPDay
+          </a>
+        </h6>
+        <a
+          className="menuLink-6"
+          href="/about"
+          onClick={[Function]}
+        >
+          À propos
+        </a>
+        <a
+          className="menuLink-6"
+          href="/contact"
+          onClick={[Function]}
+        >
+          Contact
+        </a>
+        <a
+          className="menuLink-6"
+          href="/login"
+          onClick={[Function]}
+        >
+          Login
+        </a>
+      </div>
+    </header>
+  </div>
+  <main>
+    <div
+      className="container-83 40-109"
+    >
+      <div
+        className="item-84 12-123"
+      >
+        <h4
+          className="root-47 h4-62 gutterBottom-74"
+        >
+          <svg
+            aria-hidden="true"
+            className="root-180"
+            focusable="false"
+            role="presentation"
+            style={
+              Object {
+                "fontSize": "2.5rem",
+                "marginBottom": "-0.5rem",
+              }
+            }
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M0 0h24v24H0V0z"
+              fill="none"
+            />
+            <path
+              d="M11 7h2v2h-2zM11 11h2v6h-2z"
+            />
+            <path
+              d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"
+            />
+          </svg>
+           À propos
+        </h4>
+        <hr
+          className="root-189"
+        />
+      </div>
+      <div
+        className="item-84 12-123"
+      >
+        <div
+          className="root-194 avatar-2"
+        >
+          <img
+            alt="Remy Sharp"
+            className="img-196"
+            src="avatar.jpg"
+          />
+        </div>
+        <p
+          className="root-47 body1-56 gutterBottom-74"
+        >
+          En qualité de Responsable du pôle Systèmes d'information, gestion des données et des méthodes au Centre de gestion de la fonction publique territoriale de Saône-et-Loire, 
+          <strong>
+            je développe avec mon équipe
+          </strong>
+          , des solutions pour accompagner les collectivités territoriales du département dans la gestion quotidienne de leurs données. Bien sûr, un des premiers services que nous rendons est 
+          <strong>
+            la mutualisation du Délégué à la Protection des Données
+          </strong>
+           : nous accompagnons nos adhérents dans leur mise en conformité avec le RGPD.
+        </p>
+        <p
+          className="root-47 body1-56 gutterBottom-74"
+        >
+          Cette journée a été conçue pour répondre à un problème 
+          <strong>
+            simple et concret
+          </strong>
+          . Une fois renseigné et formé aux concepts de la protection des données à caractère personnel, 
+          <strong>
+            par où doit-on commencer la mise en conformité
+          </strong>
+           ? Comment cette démarche est-elle liée aux autres outils de gestion de l'information dans l'entreprise ?
+        </p>
+        <p
+          className="root-47 body1-56 gutterBottom-74"
+        >
+          Le 
+          <strong>
+            RGPDay
+          </strong>
+           s'adresse à 
+          <strong>
+            tous les organismes de formation
+          </strong>
+          , initiale ou continue, dans le domaine de la gestion de l'information, qui souhaitent proposer 
+          <strong>
+            une expérience du RGPD pratique et ludique
+          </strong>
+           à leurs étudiants, dans le prolongement de leur formation théorique.
+        </p>
+        <div
+          className="container-83 40-109 column-86 center-91"
+        >
+          <div
+            className="item-84 12-123 6-145"
+          >
+            <div
+              className="root-16 elevation1-19 rounded-17 cta-3"
+            >
+              <h6
+                className="root-47 h6-64"
+              >
+                Si ce format vous intéresse, 
+                <a
+                  className="root-47 colorPrimary-77 inline-82 root-197 underlineHover-199"
+                  href="/contact"
+                  onClick={[Function]}
+                >
+                  contactez-moi
+                </a>
+              </h6>
+              <p
+                className="root-47 body1-56"
+              >
+                pour organiser le RGPDay dans votre établissement !
+              </p>
+            </div>
+          </div>
+        </div>
+        <p
+          className="root-47 body1-56 gutterBottom-74"
+        >
+          --
+          <br />
+          Jean-Philippe Bourgeon
+          <br />
+          <a
+            className="root-47 colorPrimary-77 inline-82 root-197 underlineHover-199"
+            href="https://www.linkedin.com/in/jpbourgeon"
+          >
+            [LinkedIn](https://www.linkedin.com/in/jpbourgeon)
+          </a>
+        </p>
+      </div>
+    </div>
+  </main>
+</div>
+`;

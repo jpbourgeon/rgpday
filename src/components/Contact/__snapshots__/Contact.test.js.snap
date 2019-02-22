@@ -1,0 +1,315 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The Contact component should render correctly 1`] = `
+<div
+  className="layout-1"
+>
+  <div
+    className="root-7"
+  >
+    <header
+      className="root-19 elevation4-25 root-10 positionStatic-14 colorPrimary-17"
+    >
+      <div
+        className="root-46 regular-48 gutters-47"
+      >
+        <h6
+          className="root-50 h6-67 colorInherit-79 grow-8"
+        >
+          <a
+            aria-current="page"
+            className="menuLink-9"
+            href="/"
+            onClick={[Function]}
+          >
+            RGPDay
+          </a>
+        </h6>
+        <a
+          className="menuLink-9"
+          href="/about"
+          onClick={[Function]}
+        >
+          À propos
+        </a>
+        <a
+          className="menuLink-9"
+          href="/contact"
+          onClick={[Function]}
+        >
+          Contact
+        </a>
+        <a
+          className="menuLink-9"
+          href="/login"
+          onClick={[Function]}
+        >
+          Login
+        </a>
+      </div>
+    </header>
+  </div>
+  <main>
+    <div
+      className="root-19 elevation2-23 rounded-20 mainFeaturedPost-3"
+    >
+      <div
+        className="container-86"
+      >
+        <div
+          className="item-87 12-126"
+        >
+          <div
+            className="mainFeaturedPostContent-4"
+          >
+            <h4
+              className="root-50 h4-65 colorInherit-79 gutterBottom-77"
+            >
+              <svg
+                aria-hidden="true"
+                className="root-183"
+                focusable="false"
+                role="presentation"
+                style={
+                  Object {
+                    "fontSize": "2.5rem",
+                    "marginBottom": "-0.5rem",
+                  }
+                }
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M0 0h24v24H0V0z"
+                  fill="none"
+                />
+                <g>
+                  <path
+                    d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6zm-2 0l-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z"
+                  />
+                </g>
+              </svg>
+               Contact
+            </h4>
+            <form
+              autoComplete="off"
+              className="formContainer-2"
+              noValidate={true}
+              onSubmit={[Function]}
+            >
+              <div
+                className="root-192 marginNormal-193 fullWidth-195"
+              >
+                <label
+                  className="root-207 root-196 formControl-201 animated-204 outlined-206"
+                  data-shrink={false}
+                >
+                  Votre email
+                </label>
+                <div
+                  className="root-227 root-214 fullWidth-236 formControl-228"
+                  onClick={[Function]}
+                >
+                  <fieldset
+                    aria-hidden={true}
+                    className="root-244 notchedOutline-221"
+                    style={
+                      Object {
+                        "paddingLeft": 8,
+                      }
+                    }
+                  >
+                    <legend
+                      className="legend-245"
+                      style={
+                        Object {
+                          "width": 0.01,
+                        }
+                      }
+                    >
+                      <span
+                        dangerouslySetInnerHTML={
+                          Object {
+                            "__html": "&#8203;",
+                          }
+                        }
+                      />
+                    </legend>
+                  </fieldset>
+                  <input
+                    aria-invalid={false}
+                    className="input-237 input-222"
+                    disabled={false}
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    required={false}
+                    type="text"
+                    value=""
+                  />
+                </div>
+              </div>
+              <div
+                className="root-192 marginNormal-193 fullWidth-195"
+              >
+                <label
+                  className="root-207 root-196 formControl-201 animated-204 outlined-206"
+                  data-shrink={false}
+                >
+                  Sujet
+                </label>
+                <div
+                  className="root-227 root-214 fullWidth-236 formControl-228"
+                  onClick={[Function]}
+                >
+                  <fieldset
+                    aria-hidden={true}
+                    className="root-244 notchedOutline-221"
+                    style={
+                      Object {
+                        "paddingLeft": 8,
+                      }
+                    }
+                  >
+                    <legend
+                      className="legend-245"
+                      style={
+                        Object {
+                          "width": 0.01,
+                        }
+                      }
+                    >
+                      <span
+                        dangerouslySetInnerHTML={
+                          Object {
+                            "__html": "&#8203;",
+                          }
+                        }
+                      />
+                    </legend>
+                  </fieldset>
+                  <input
+                    aria-invalid={false}
+                    className="input-237 input-222"
+                    disabled={false}
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    required={false}
+                    type="text"
+                    value=""
+                  />
+                </div>
+              </div>
+              <div
+                className="root-192 marginNormal-193 fullWidth-195"
+              >
+                <label
+                  className="root-207 root-196 formControl-201 animated-204 outlined-206"
+                  data-shrink={false}
+                >
+                  Description
+                </label>
+                <div
+                  className="root-227 root-214 fullWidth-236 formControl-228 multiline-235 multiline-220"
+                  onClick={[Function]}
+                >
+                  <fieldset
+                    aria-hidden={true}
+                    className="root-244 notchedOutline-221"
+                    style={
+                      Object {
+                        "paddingLeft": 8,
+                      }
+                    }
+                  >
+                    <legend
+                      className="legend-245"
+                      style={
+                        Object {
+                          "width": 0.01,
+                        }
+                      }
+                    >
+                      <span
+                        dangerouslySetInnerHTML={
+                          Object {
+                            "__html": "&#8203;",
+                          }
+                        }
+                      />
+                    </legend>
+                  </fieldset>
+                  <textarea
+                    aria-invalid={false}
+                    className="input-237 input-222 inputMultiline-239 inputMultiline-224"
+                    disabled={false}
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    required={false}
+                    rows="10"
+                    value=""
+                  />
+                </div>
+              </div>
+              <button
+                className="root-272 root-246 outlined-254 outlinedSecondary-256 button-5"
+                disabled={false}
+                onBlur={[Function]}
+                onContextMenu={[Function]}
+                onFocus={[Function]}
+                onKeyDown={[Function]}
+                onKeyUp={[Function]}
+                onMouseDown={[Function]}
+                onMouseLeave={[Function]}
+                onMouseUp={[Function]}
+                onTouchEnd={[Function]}
+                onTouchMove={[Function]}
+                onTouchStart={[Function]}
+                tabIndex="0"
+                type="submit"
+              >
+                <span
+                  className="label-247"
+                >
+                  Envoyer
+                </span>
+                <span
+                  className="root-282"
+                />
+              </button>
+              <button
+                className="root-272 root-246 outlined-254 button-5"
+                disabled={false}
+                onBlur={[Function]}
+                onClick={[Function]}
+                onContextMenu={[Function]}
+                onFocus={[Function]}
+                onKeyDown={[Function]}
+                onKeyUp={[Function]}
+                onMouseDown={[Function]}
+                onMouseLeave={[Function]}
+                onMouseUp={[Function]}
+                onTouchEnd={[Function]}
+                onTouchMove={[Function]}
+                onTouchStart={[Function]}
+                tabIndex="0"
+                type="button"
+              >
+                <span
+                  className="label-247"
+                >
+                  Annuler
+                </span>
+                <span
+                  className="root-282"
+                />
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+`;

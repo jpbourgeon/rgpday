@@ -1,12 +1,11 @@
-(B) 2019-02-11 setup master amplify environment
-(B) 2019-02-09 add app shell
-(B) 2019-02-11 add a router
-(B) 2019-02-09 write the landing page
+(B) 2019-02-20 [Lambda side ReCaptcha before email](https://developers.google.com/recaptcha/docs/verify) / <https://www.google.com/recaptcha/admin/site/345190045/setup>
+(B) 2019-02-20 [AWS SES Lambda](http://www.wisdomofjim.com/blog/sending-an-email-from-aws-lambda-function-in-nodejs-with-aws-simple-email-service)
+(B) 2019-02-09 add amplify authentication with minimal UI
+(B) 2019-02-22 amplify master env
 (B) 2019-02-09 write the game specs
 (B) 2019-02-09 write the conference specs
-(B) 2019-02-09 add amplify authentication with minimal UI
-(B) 2019-02-09 add [Reach router](https://reach.tech/router)
 (B) 2019-02-09 add amplify graphql backend
-(B) 2019-02-09 insert EU Cookies Law : https://cookieconsent.insites.com/
+(B) 2019-02-09 "mentions legales" / RGPD page + [Cookie Consent](https://cookieconsent.insites.com/)
 (B) 2019-02-09 conditional robots.txt on CD, depending on the published branch
-(B) 2019-02-10 SEO : start promoting the service
+(B) 2019-02-20 Home page : add reviews from CUCDB (Turrel / Aubrier)
+(B) 2019-02-10 SEO : start promoting the service => headers meta

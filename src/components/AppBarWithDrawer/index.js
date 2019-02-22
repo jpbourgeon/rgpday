@@ -15,7 +15,7 @@ import IconButton from '@material-ui/core/IconButton'
 import MenuIcon from '@material-ui/icons/Menu'
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import { mainListItems, secondaryListItems } from './listItems'
-import withRoot from './withRoot'
+import withRoot from '../../withRoot'
 
 const drawerWidth = 240
 

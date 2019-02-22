@@ -7,8 +7,6 @@ import App from './App'
 // Load Roboto typeface
 require('typeface-roboto')
 
-// ReactDOM.render(<App />, document.getElementById('root'))
-
 const rootElement = document.getElementById('root')
 if (rootElement.hasChildNodes()) {
   hydrate(<App />, rootElement)

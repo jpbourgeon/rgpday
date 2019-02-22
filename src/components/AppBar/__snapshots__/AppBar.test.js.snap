@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The AppBar component should render correctly 1`] = `
+<div
+  className="root-1"
+>
+  <header
+    className="root-13 elevation4-19 root-4 positionStatic-8 colorPrimary-11"
+  >
+    <div
+      className="root-40 regular-42 gutters-41"
+    >
+      <h6
+        className="root-44 h6-61 colorInherit-73 grow-2"
+      >
+        <a
+          aria-current="page"
+          className="menuLink-3"
+          href="/"
+          onClick={[Function]}
+        >
+          RGPDay
+        </a>
+      </h6>
+      <a
+        className="menuLink-3"
+        href="/about"
+        onClick={[Function]}
+      >
+        À propos
+      </a>
+      <a
+        className="menuLink-3"
+        href="/contact"
+        onClick={[Function]}
+      >
+        Contact
+      </a>
+      <a
+        className="menuLink-3"
+        href="/login"
+        onClick={[Function]}
+      >
+        Login
+      </a>
+    </div>
+  </header>
+</div>
+`;

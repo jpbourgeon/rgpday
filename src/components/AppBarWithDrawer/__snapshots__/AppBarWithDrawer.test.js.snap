@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`The App component should render correctly 1`] = `
+exports[`The AppBarWithDrawer component should render correctly 1`] = `
 <div
   className="root-0"
 >
@@ -12,7 +12,7 @@ exports[`The App component should render correctly 1`] = `
     >
       <button
         aria-label="Open drawer"
-        className="root-130 root-133 colorInherit-134 menuButton-4"
+        className="root-93 root-87 colorInherit-88 menuButton-4"
         disabled={false}
         onBlur={[Function]}
         onClick={[Function]}
@@ -30,11 +30,11 @@ exports[`The App component should render correctly 1`] = `
         type="button"
       >
         <span
-          className="label-138"
+          className="label-92"
         >
           <svg
             aria-hidden="true"
-            className="root-139"
+            className="root-96"
             focusable="false"
             role="presentation"
             viewBox="0 0 24 24"
@@ -49,7 +49,7 @@ exports[`The App component should render correctly 1`] = `
           </svg>
         </span>
         <span
-          className="root-188"
+          className="root-145"
         />
       </button>
       <h1
@@ -63,16 +63,16 @@ exports[`The App component should render correctly 1`] = `
     className="drawer-6"
   >
     <div
-      className="root-148 docked-149"
+      className="root-105 docked-106"
     >
       <div
-        className="root-20 elevation0-22 paper-150 drawerPaper-7 paperAnchorLeft-151 paperAnchorDockedLeft-155"
+        className="root-20 elevation0-22 paper-107 drawerPaper-7 paperAnchorLeft-108 paperAnchorDockedLeft-112"
       >
         <div
           className="toolbarIcon-2"
         >
           <button
-            className="root-130 root-133"
+            className="root-93 root-87"
             disabled={false}
             onBlur={[Function]}
             onClick={[Function]}
@@ -90,11 +90,11 @@ exports[`The App component should render correctly 1`] = `
             type="button"
           >
             <span
-              className="label-138"
+              className="label-92"
             >
               <svg
                 aria-hidden="true"
-                className="root-139"
+                className="root-96"
                 focusable="false"
                 role="presentation"
                 viewBox="0 0 24 24"
@@ -109,19 +109,19 @@ exports[`The App component should render correctly 1`] = `
               </svg>
             </span>
             <span
-              className="root-188"
+              className="root-145"
             />
           </button>
         </div>
         <hr
-          className="root-160"
+          className="root-117"
         />
         <ul
-          className="root-165 padding-166"
+          className="root-122 padding-123"
         >
           <div>
             <div
-              className="root-130 root-169 default-172 gutters-177 button-178"
+              className="root-93 root-126 default-129 gutters-134 button-135"
               onBlur={[Function]}
               onContextMenu={[Function]}
               onFocus={[Function]}
@@ -137,11 +137,11 @@ exports[`The App component should render correctly 1`] = `
               tabIndex="0"
             >
               <div
-                className="root-181"
+                className="root-138"
               >
                 <svg
                   aria-hidden="true"
-                  className="root-139"
+                  className="root-96"
                   focusable="false"
                   role="presentation"
                   viewBox="0 0 24 24"
@@ -156,20 +156,20 @@ exports[`The App component should render correctly 1`] = `
                 </svg>
               </div>
               <div
-                className="root-182"
+                className="root-139"
               >
                 <span
-                  className="root-51 body1-60 primary-185"
+                  className="root-51 body1-60 primary-142"
                 >
                   Menu A
                 </span>
               </div>
               <span
-                className="root-188"
+                className="root-145"
               />
             </div>
             <div
-              className="root-130 root-169 default-172 gutters-177 button-178"
+              className="root-93 root-126 default-129 gutters-134 button-135"
               onBlur={[Function]}
               onContextMenu={[Function]}
               onFocus={[Function]}
@@ -185,11 +185,11 @@ exports[`The App component should render correctly 1`] = `
               tabIndex="0"
             >
               <div
-                className="root-181"
+                className="root-138"
               >
                 <svg
                   aria-hidden="true"
-                  className="root-139"
+                  className="root-96"
                   focusable="false"
                   role="presentation"
                   viewBox="0 0 24 24"
@@ -204,29 +204,29 @@ exports[`The App component should render correctly 1`] = `
                 </svg>
               </div>
               <div
-                className="root-182"
+                className="root-139"
               >
                 <span
-                  className="root-51 body1-60 primary-185"
+                  className="root-51 body1-60 primary-142"
                 >
                   Menu B
                 </span>
               </div>
               <span
-                className="root-188"
+                className="root-145"
               />
             </div>
           </div>
         </ul>
         <hr
-          className="root-160"
+          className="root-117"
         />
         <ul
-          className="root-165 padding-166"
+          className="root-122 padding-123"
         >
           <div>
             <div
-              className="root-130 root-169 default-172 gutters-177 button-178"
+              className="root-93 root-126 default-129 gutters-134 button-135"
               onBlur={[Function]}
               onContextMenu={[Function]}
               onFocus={[Function]}
@@ -242,11 +242,11 @@ exports[`The App component should render correctly 1`] = `
               tabIndex="0"
             >
               <div
-                className="root-181"
+                className="root-138"
               >
                 <svg
                   aria-hidden="true"
-                  className="root-139"
+                  className="root-96"
                   focusable="false"
                   role="presentation"
                   viewBox="0 0 24 24"
@@ -261,16 +261,16 @@ exports[`The App component should render correctly 1`] = `
                 </svg>
               </div>
               <div
-                className="root-182"
+                className="root-139"
               >
                 <span
-                  className="root-51 body1-60 primary-185"
+                  className="root-51 body1-60 primary-142"
                 >
                   Menu C
                 </span>
               </div>
               <span
-                className="root-188"
+                className="root-145"
               />
             </div>
           </div>
@@ -284,47 +284,6 @@ exports[`The App component should render correctly 1`] = `
     <div
       className="appBarSpacer-9"
     />
-    <div
-      className="root-87"
-    >
-      <h4
-        className="root-51 h4-66 gutterBottom-78"
-      >
-        Material-UI
-      </h4>
-      <h6
-        className="root-51 subtitle1-69 gutterBottom-78"
-      >
-        example project
-      </h6>
-      <button
-        className="root-130 root-104 contained-115 containedSecondary-117 raised-118 raisedSecondary-120"
-        disabled={false}
-        onBlur={[Function]}
-        onClick={[Function]}
-        onContextMenu={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        onKeyUp={[Function]}
-        onMouseDown={[Function]}
-        onMouseLeave={[Function]}
-        onMouseUp={[Function]}
-        onTouchEnd={[Function]}
-        onTouchMove={[Function]}
-        onTouchStart={[Function]}
-        tabIndex="0"
-        type="button"
-      >
-        <span
-          className="label-105"
-        >
-          Super Secret Password
-        </span>
-        <span
-          className="root-188"
-        />
-      </button>
-    </div>
   </main>
 </div>
 `;

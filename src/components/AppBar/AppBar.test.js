@@ -1,14 +1,14 @@
 /* global describe, it, expect */
 import React from 'react'
 import renderer from 'react-test-renderer'
-import App from './App'
-import jssSerializer from '../utils/jssSnapshotSerializer'
+import AppBar from './'
+import jssSerializer from '../../../utils/jssSnapshotSerializer'
 
 expect.addSnapshotSerializer(jssSerializer)
 
-describe('The App component', () => {
+describe('The AppBar component', () => {
   it('should render correctly', () => {
-    const tree = renderer.create(<App />).toJSON()
+    const tree = renderer.create(<AppBar />).toJSON()
     expect(tree).toMatchSnapshot()
   })
 })

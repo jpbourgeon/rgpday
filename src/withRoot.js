@@ -33,7 +33,8 @@ const theme = createMuiTheme({
     }
   },
   typography: {
-    useNextVariants: true
+    useNextVariants: true,
+    htmlFontSize: 20
   }
 })
 
