@@ -72,7 +72,7 @@ const HomeComponent = props => {
               <Grid item xs={12} md={6}>
                 <Paper className={classes.cta} elevation={1}>
                   <Typography variant='h6'>
-                Si ce format vous intéresse, <Link component={LinkToContact}>contactez-moi</Link>
+                Si ce format vous intéresse, <Link component={LinkToContact} color='secondary'>contactez-moi</Link>
                   </Typography>
                   <Typography variant='body1'>
                 pour organiser le RGPDay dans votre établissement !
@@ -81,7 +81,9 @@ const HomeComponent = props => {
               </Grid>
             </Grid>
             <Typography variant='body1' gutterBottom>
-              --<br />Jean-Philippe Bourgeon<br /><Link href='https://www.linkedin.com/in/jpbourgeon'>[LinkedIn](https://www.linkedin.com/in/jpbourgeon)</Link>
+              --<br />
+              Jean-Philippe Bourgeon<br />
+              LinkedIn : <Link href='https://www.linkedin.com/in/jpbourgeon'>https://www.linkedin.com/in/jpbourgeon</Link>
             </Typography>
           </Grid>
         </Grid>
