@@ -158,7 +158,7 @@ exports[`The About component should render correctly 1`] = `
               >
                 Si ce format vous intéresse, 
                 <a
-                  className="root-47 colorPrimary-77 inline-82 root-197 underlineHover-199"
+                  className="root-47 colorSecondary-78 inline-82 root-197 underlineHover-199"
                   href="/contact"
                   onClick={[Function]}
                 >
@@ -180,11 +180,12 @@ exports[`The About component should render correctly 1`] = `
           <br />
           Jean-Philippe Bourgeon
           <br />
+          LinkedIn : 
           <a
             className="root-47 colorPrimary-77 inline-82 root-197 underlineHover-199"
             href="https://www.linkedin.com/in/jpbourgeon"
           >
-            [LinkedIn](https://www.linkedin.com/in/jpbourgeon)
+            https://www.linkedin.com/in/jpbourgeon
           </a>
         </p>
       </div>
