@@ -1,7 +1,6 @@
-(B) 2019-02-20 [Lambda side ReCaptcha before email](https://developers.google.com/recaptcha/docs/verify) / <https://www.google.com/recaptcha/admin/site/345190045/setup>
+(B) 2019-02-20 [Lambda : verify ReCaptcha + send email](https://developers.google.com/recaptcha/docs/verify) / <https://www.google.com/recaptcha/admin/site/345190045/setup>
 (B) 2019-02-20 [AWS SES Lambda](http://www.wisdomofjim.com/blog/sending-an-email-from-aws-lambda-function-in-nodejs-with-aws-simple-email-service)
 (B) 2019-02-09 add amplify authentication with minimal UI
-(B) 2019-02-22 amplify master env
 (B) 2019-02-09 write the game specs
 (B) 2019-02-09 write the conference specs
 (B) 2019-02-09 add amplify graphql backend

@@ -10,6 +10,7 @@
     "debug": "^4.1.0",
     "jss": "^9.8.7",
     "react": "^16.8.2",
+    "react-app-polyfill": "^0.2.1",
     "react-dom": "^16.8.2",
     "react-jss": "^8.6.1",
     "react-scripts": "^2.1.5",
