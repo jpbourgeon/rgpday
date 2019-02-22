@@ -54,10 +54,10 @@ exports[`The Login component should render correctly 1`] = `
       className="root-19 elevation2-23 rounded-20 mainFeaturedPost-3"
     >
       <div
-        className="container-86"
+        className="container-86 column-89 center-98"
       >
         <div
-          className="item-87 12-126"
+          className="item-87 12-126 6-148"
         >
           <div
             className="mainFeaturedPostContent-4"

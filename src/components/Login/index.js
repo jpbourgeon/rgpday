@@ -130,8 +130,8 @@ class Contact extends React.Component {
         <AppBar />
         <main>
           <Paper className={classes.mainFeaturedPost}>
-            <Grid container>
-              <Grid item xs={12}>
+            <Grid container alignContent='center' direction='column'>
+              <Grid item xs={12} md={6}>
                 <div className={classes.mainFeaturedPostContent}>
                   <Typography variant='h4' color='inherit' gutterBottom>
                     <AccountCircle style={{ fontSize: '2.5rem', marginBottom: '-0.5rem' }} />&nbsp;Connexion
