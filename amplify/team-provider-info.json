@@ -9,6 +9,11 @@
             "UnauthRoleName": "rgpdaycom-20190211181814-unauthRole",
             "StackName": "rgpdaycom-20190211181814",
             "StackId": "arn:aws:cloudformation:eu-west-1:919510806644:stack/rgpdaycom-20190211181814/036fd550-2e21-11e9-ba73-02f48c625dae"
+        },
+        "categories": {
+            "auth": {
+                "cognito69e3d447": {}
+            }
         }
     }
 }
