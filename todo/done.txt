@@ -14,3 +14,8 @@ x 2019-02-21 2019-02-09 write the about page
 x 2019-02-21 2019-02-09 write current pages snapshots
 x 2019-02-22 2019-02-22 contact form + client side [recaptcha](https://www.npmjs.com/package/recaptcha-v3-react)
 x 2019-02-22 2019-02-22 contact form validation
+x 2019-02-24 2019-02-09 factor tile
+x 2019-02-24 2019-02-09 factor call to action between home and about page
+x 2019-02-24 2019-02-24 loading component (without appbar)
+x 2019-02-24 2019-02-24 loadable pages in public router <https://reach.tech/router/large-scale> => Top level code splitting
+x 2019-02-24 2019-02-24 loading component (with appbar)

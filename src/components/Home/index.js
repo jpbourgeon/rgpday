@@ -2,13 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
-import Card from '@material-ui/core/Card'
-import CardContent from '@material-ui/core/CardContent'
-import Hidden from '@material-ui/core/Hidden'
-import CardMedia from '@material-ui/core/CardMedia'
 import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
 import AppBar from '../AppBar'
+import CallToAction from '../CallToAction'
+import Tile from '../Tile'
 import BookStore from './images/bookstore.jpg'
 import Coconstruction from './images/coconstruction.jpg'
 import Conference from './images/conference.jpg'
@@ -38,15 +36,6 @@ const styles = theme => {
         paddingRight: 0
       }
     },
-    card: {
-      display: 'flex'
-    },
-    cardDetails: {
-      flex: 1
-    },
-    cardMedia: {
-      width: 160
-    },
     mainGrid: {
       marginTop: theme.spacing.unit * 3
     },
@@ -59,33 +48,6 @@ const styles = theme => {
   }
 }
 
-const Item = props => {
-  const { title, description, image, classes } = { ...props }
-  return (
-    <Grid item xs={12} md={6}>
-      <Card className={classes.card}>
-        <div className={classes.cardDetails}>
-          <CardContent>
-            <Typography variant='h5'>
-              {title}
-            </Typography>
-            <Typography variant='subtitle1' paragraph>
-              {description}
-            </Typography>
-          </CardContent>
-        </div>
-        <Hidden xsDown>
-          <CardMedia
-            className={classes.cardMedia}
-            title={title}
-            image={image}
-          />
-        </Hidden>
-      </Card>
-    </Grid>
-  )
-}
-
 const HomeComponent = props => {
   const { classes } = props
   return (
@@ -93,8 +55,8 @@ const HomeComponent = props => {
       <AppBar />
       <main>
         <Paper className={classes.mainFeaturedPost}>
-          <Grid container>
-            <Grid item md={6}>
+          <Grid container alignItems='center'>
+            <Grid item xs={12} md={6}>
               <div className={classes.mainFeaturedPostContent}>
                 <Typography variant='h4' color='inherit' gutterBottom>
                     Une journée pour expérimenter le RGPD et en comprendre les enjeux
@@ -106,24 +68,27 @@ const HomeComponent = props => {
                 </Typography>
               </div>
             </Grid>
+            <Grid item xs={12} md={6}>
+              <CallToAction xs={10} md={12} />
+            </Grid>
           </Grid>
         </Paper>
 
         <Grid container spacing={40}>
 
-          <Item classes={classes}
+          <Tile
             title='Une conférence'
             description={`Quel bilan pour le RGPD depuis son entrée en vigueur ? Comment l'insérer dans les outils de gestion des documents et des données au sein de l'entreprise ? Cette conférence fait le point sur la mise en oeuvre du RGPD au quotidien.`}
             image={Conference}
           />
 
-          <Item classes={classes}
+          <Tile
             title='Un serious game'
             description={`Pour mettre en pratique de façon ludique les connaissances théoriques et défier les équipes des autres participants !`}
             image={GameBoard}
           />
 
-          <Item classes={classes}
+          <Tile
             title='Une séance de co-constructrion'
             description={`Pour mettre en commun les enseignements de la journée et dégager une vision sur les actions à entreprendre pour tendre vers la conformité.`}
             image={Coconstruction}

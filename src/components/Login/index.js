@@ -10,6 +10,7 @@ import Snackbar from '@material-ui/core/Snackbar'
 import IconButton from '@material-ui/core/IconButton'
 import CloseIcon from '@material-ui/icons/Close'
 import AccountCircle from '@material-ui/icons/AccountCircleOutlined'
+import Collapse from '@material-ui/core/Collapse'
 import isEmpty from 'validator/lib/isEmpty'
 import AppBar from '../AppBar'
 
@@ -29,6 +30,10 @@ const styles = theme => {
       display: 'flex',
       flexWrap: 'wrap'
     },
+    titleIcon: {
+      fontSize: '2.5rem',
+      marginBottom: '-0.5rem'
+    },
     mainFeaturedPost: {
       backgroundSize: `100% 100%`,
       marginBottom: theme.spacing.unit * 4
@@ -37,7 +42,7 @@ const styles = theme => {
       padding: `${theme.spacing.unit * 6}px`
     },
     button: {
-      margin: theme.spacing.unit
+      margin: `${theme.spacing.unit}px ${theme.spacing.unit * 2}px ${theme.spacing.unit}px 0px`
     },
     closeSnackbar: {
       padding: theme.spacing.unit / 2
@@ -47,9 +52,14 @@ const styles = theme => {
 
 const defaultState = {
   form: {
-    isDisabled: false
+    isDisabled: false,
+    showPassword: false
   },
-  sessionid: {
+  userid: {
+    isDirty: false,
+    value: ''
+  },
+  password: {
     isDirty: false,
     value: ''
   },
@@ -62,7 +72,7 @@ const defaultState = {
 class Contact extends React.Component {
   constructor (props) {
     super(props)
-    this.state = { ...defaultState }
+    this.state = defaultState
 
     this.handleChange = this.handleChange.bind(this)
     this.handleBlur = this.handleBlur.bind(this)
@@ -73,10 +83,27 @@ class Contact extends React.Component {
 
   handleChange (event, field) {
     const state = {}
+    state.form = this.state.form
+    if (field === 'userid') {
+      if (event.target.value === 'Admin') {
+        state.form.showPassword = true
+        state.password = {
+          isDirty: false,
+          value: ''
+        }
+      } else {
+        state.form.showPassword = false
+        state.password = {
+          isDirty: true,
+          value: event.target.value
+        }
+      }
+    }
     state[field] = {
       isDirty: this.state[field].isDirty,
       value: event.target.value
     }
+
     this.setState({ ...state })
   }
 
@@ -95,10 +122,10 @@ class Contact extends React.Component {
       open: true,
       message: ''
     }
-    if (!isEmpty(this.state.sessionid.value)) {
+    if (!isEmpty(this.state.userid.value) && !isEmpty(this.state.password.value)) {
       // TODO : Call background AWS Cognito Login
       // Disable form during login
-      // Reset form on success and navigate but not on failure !
+      // Reset form on success and navigate, but not on failure !
       snackbar.message = `Connexion réussie.`
       this.setState({ snackbar })
     } else {
@@ -109,7 +136,9 @@ class Contact extends React.Component {
 
   handleCancel (event) {
     event.preventDefault()
-    this.setState({ ...defaultState })
+    const state = { ...defaultState }
+    state.form.showPassword = false
+    this.setState(state)
   }
 
   handleCloseSnackbar (event, reason) {
@@ -134,7 +163,7 @@ class Contact extends React.Component {
               <Grid item xs={12} md={6}>
                 <div className={classes.mainFeaturedPostContent}>
                   <Typography variant='h4' color='inherit' gutterBottom>
-                    <AccountCircle style={{ fontSize: '2.5rem', marginBottom: '-0.5rem' }} />&nbsp;Connexion
+                    <AccountCircle className={classes.titleIcon} />&nbsp;Connexion
                   </Typography>
 
                   <form
@@ -143,34 +172,54 @@ class Contact extends React.Component {
                     autoComplete='off'
                     onSubmit={this.handleSubmit}
                   >
-                    <TextField
-                      label='Identifiant de session'
-                      fullWidth
-                      margin='normal'
-                      variant='outlined'
-                      onChange={(e) => this.handleChange(e, 'sessionid')}
-                      onBlur={(e) => this.handleBlur(e, 'sessionid')}
-                      value={this.state.sessionid.value}
-                      error={(this.state.sessionid.isDirty && isEmpty(this.state.sessionid.value))}
-                      disabled={this.state.form.isDisabled}
-                    />
-                    <Button
-                      variant='outlined'
-                      color='secondary'
-                      className={classes.button}
-                      type='submit'
-                      disabled={this.state.form.isDisabled}
-                    >
+                    <Grid container>
+                      <Grid item xs={12}>
+                        <TextField
+                          label='Identifiant de session'
+                          fullWidth
+                          margin='normal'
+                          variant='outlined'
+                          onChange={(e) => this.handleChange(e, 'userid')}
+                          onBlur={(e) => this.handleBlur(e, 'userid')}
+                          value={this.state.userid.value}
+                          error={(this.state.userid.isDirty && isEmpty(this.state.userid.value))}
+                          disabled={this.state.form.isDisabled}
+                        />
+                        <Collapse in={this.state.form.showPassword}>
+                          <TextField
+                            label='mot de passe'
+                            fullWidth
+                            margin='normal'
+                            variant='outlined'
+                            type='password'
+                            onChange={(e) => this.handleChange(e, 'password')}
+                            onBlur={(e) => this.handleBlur(e, 'password')}
+                            value={this.state.password.value}
+                            error={(this.state.password.isDirty && isEmpty(this.state.password.value))}
+                            disabled={this.state.form.isDisabled}
+                          />
+                        </Collapse>
+                      </Grid>
+                      <Grid item xs={12}>
+                        <Button
+                          variant='outlined'
+                          color='secondary'
+                          className={classes.button}
+                          type='submit'
+                          disabled={this.state.form.isDisabled}
+                        >
                     Login
-                    </Button>
-                    <Button
-                      variant='outlined'
-                      className={classes.button}
-                      onClick={this.handleCancel}
-                      disabled={this.state.form.isDisabled}
-                    >
+                        </Button>
+                        <Button
+                          variant='outlined'
+                          className={classes.button}
+                          onClick={this.handleCancel}
+                          disabled={this.state.form.isDisabled}
+                        >
                     Annuler
-                    </Button>
+                        </Button>
+                      </Grid>
+                    </Grid>
                   </form>
 
                   <Snackbar

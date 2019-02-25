@@ -32,6 +32,10 @@ const styles = theme => {
         marginRight: 'auto'
       }
     },
+    titleIcon: {
+      fontSize: '2.5rem',
+      marginBottom: '-0.5rem'
+    },
     formContainer: {
       display: 'flex',
       flexWrap: 'wrap'
@@ -165,7 +169,7 @@ class Contact extends React.Component {
               <Grid item xs={12}>
                 <div className={classes.mainFeaturedPostContent}>
                   <Typography variant='h4' color='inherit' gutterBottom>
-                    <Email style={{ fontSize: '2.5rem', marginBottom: '-0.5rem' }} />&nbsp;Contact
+                    <Email className={classes.titleIcon} />&nbsp;Contact
                   </Typography>
 
                   <form

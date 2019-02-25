@@ -5,8 +5,6 @@
 		}
 	],
 	"settings": {
-		"eslint.enable": false,
-		"eslint.autoFixOnSave": false,
 		"editor.fontFamily": "Hack, Consolas, 'DejaVu Sans Mono', Consolas, 'Courier New', monospace",
 		"editor.fontSize": 13,
 		"editor.minimap.enabled": false,

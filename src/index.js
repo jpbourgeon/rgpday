@@ -6,7 +6,7 @@ import * as serviceWorker from './serviceWorker'
 import App from './App'
 
 // Load Roboto typeface
-require('typeface-roboto')
+import('typeface-roboto')
 
 const rootElement = document.getElementById('root')
 if (rootElement.hasChildNodes()) {

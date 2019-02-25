@@ -44,7 +44,7 @@ const AppBarComponent = props => {
             <Hidden smUp><Email /></Hidden>
             <Hidden xsDown>Contact</Hidden>
           </Link>
-          <Link to='/login' className={classes.menuLink}>
+          <Link to='/session' className={classes.menuLink}>
             <Hidden smUp><AccountCircle /></Hidden>
             <Hidden xsDown>Login</Hidden>
           </Link>
