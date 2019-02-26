@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The Tile component should render correctly 1`] = `
+<div
+  className="item-5 12-44 6-66"
+>
+  <div
+    className="root-102 elevation1-105 rounded-103 root-101 card-1"
+  >
+    <div
+      className="cardDetails-2"
+    >
+      <div
+        className="root-129"
+      >
+        <h5
+          className="root-130 h5-146"
+        />
+        <p
+          className="root-130 subtitle1-148 paragraph-158"
+        />
+      </div>
+    </div>
+    <div
+      className="root-166 cardMedia-3"
+    />
+  </div>
+</div>
+`;

@@ -47,10 +47,10 @@ const HomeComponent = props => {
             <Grid item md={6}>
               <div className={classes.mainFeaturedPostContent}>
                 <Typography variant='h4' color='inherit' gutterBottom>
-                    Ce contenu n'existe pas.
+                    Ce contenu est indisponible.
                 </Typography>
                 <Typography variant='subtitle1' color='inherit' gutterBottom>
-                    Essayez depuis la <Link component={LinkToHome}>page d'accueil</Link> du site.
+                    Avez vous consulté la <Link component={LinkToHome} color='secondary'>page d'accueil</Link> du site ?
                 </Typography>
               </div>
             </Grid>

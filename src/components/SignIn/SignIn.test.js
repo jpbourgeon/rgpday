@@ -1,14 +1,14 @@
 /* global describe, it, expect */
 import React from 'react'
 import renderer from 'react-test-renderer'
-import Default from './'
+import SignIn from './'
 import jssSerializer from '../../utils/jssSnapshotSerializer'
 
 expect.addSnapshotSerializer(jssSerializer)
 
-describe('The Default component', () => {
+describe('The SignIn component', () => {
   it('should render correctly', () => {
-    const tree = renderer.create(<Default />).toJSON()
+    const tree = renderer.create(<SignIn />).toJSON()
     expect(tree).toMatchSnapshot()
   })
 })

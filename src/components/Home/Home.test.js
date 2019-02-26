@@ -2,7 +2,7 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
 import Home from './'
-import jssSerializer from '../../../utils/jssSnapshotSerializer'
+import jssSerializer from '../../utils/jssSnapshotSerializer'
 
 expect.addSnapshotSerializer(jssSerializer)
 

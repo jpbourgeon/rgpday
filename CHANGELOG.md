@@ -7,10 +7,24 @@ List of change types (one of: Added, Changed, Deprecated, Removed, Fixed, Securi
 
 ## [Unreleased]
 
+## 0.2.0 - 2019-02-26
+
+- Added: configure code splitting (@loadable/component)
+- Added: minimal dashboard page
+- Changed: amplify library modular imports for better performance
+- Changed: components factorisation (tile, call to action)
+- Fixed: IE 10+ compatibility
+- Added: amplify authentication
+- Changed: Temporarily replace Contact Page by a gravatar popup [Gravatar](https://fr.gravatar.com/jpbourgeon)
+
+## 0.1.2 - 2019-02-11
+
+- Fixed: release to test automatic push from dev to master on CI/CD 
+
 ## 0.1.1 - 2019-02-11
 
-- Fixed : added amplify configuration to fix CI/CD 
+- Fixed: amplify configuration has been updated to fix CI/CD 
 
 ## 0.1.0 - 2019-02-11
 
-- Added : project initialisation
+- Added: project initialisation

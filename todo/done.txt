@@ -19,3 +19,11 @@ x 2019-02-24 2019-02-09 factor call to action between home and about page
 x 2019-02-24 2019-02-24 loading component (without appbar)
 x 2019-02-24 2019-02-24 loadable pages in public router <https://reach.tech/router/large-scale> => Top level code splitting
 x 2019-02-24 2019-02-24 loading component (with appbar)
+x 2019-02-25 2019-02-24 minimal dashboard page
+x 2019-02-25 2019-02-24 add amplify authenticator to the ProtectedRoutes
+x 2019-02-25 2019-02-24 add custom UI to authenticator = SignIn with automatic 1st time Change Password + SignOut
+x 2019-02-26 2019-02-25 AppBar : add SignOut button + change SignIn into Session
+x 2019-02-26 2019-02-25 AppBar : fully functional conditional SignOut button
+x 2019-02-26 2019-02-25 Temporarily replace Contact Page by a popup [Gravatar](https://fr.gravatar.com/jpbourgeon)
+x 2019-02-26 2019-02-26 Security: replace react-loadable by [@loadable/components](https://www.smooth-code.com/open-source/loadable-components/)
+x 2019-02-26 2019-02-25 Code splitting: manage past delay, error and timeout

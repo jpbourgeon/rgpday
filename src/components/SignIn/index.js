@@ -1,18 +1,23 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+
 import { withStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
-import Snackbar from '@material-ui/core/Snackbar'
-import IconButton from '@material-ui/core/IconButton'
-import CloseIcon from '@material-ui/icons/Close'
 import AccountCircle from '@material-ui/icons/AccountCircleOutlined'
 import Collapse from '@material-ui/core/Collapse'
 import isEmpty from 'validator/lib/isEmpty'
 import AppBar from '../AppBar'
+
+import Auth from '@aws-amplify/auth'
+import config from '../../aws-exports'
+
+Auth.configure(config)
+
+const debug = require('debug')('rgpday.com')
 
 const styles = theme => {
   return {
@@ -43,48 +48,59 @@ const styles = theme => {
     },
     button: {
       margin: `${theme.spacing.unit}px ${theme.spacing.unit * 2}px ${theme.spacing.unit}px 0px`
-    },
-    closeSnackbar: {
-      padding: theme.spacing.unit / 2
     }
   }
 }
 
 const defaultState = {
+  loading: false,
   form: {
     isDisabled: false,
     showPassword: false
   },
-  userid: {
+  username: {
     isDirty: false,
     value: ''
   },
   password: {
     isDirty: false,
     value: ''
-  },
-  snackbar: {
-    open: false,
-    message: ''
   }
 }
 
-class Contact extends React.Component {
+class SignIn extends React.Component {
   constructor (props) {
     super(props)
     this.state = defaultState
+
+    this._validAuthStates = ['signIn', 'signedOut']
+    this._isHidden = true
+    this.changeState = this.changeState.bind(this)
+    this.signIn = this.signIn.bind(this)
 
     this.handleChange = this.handleChange.bind(this)
     this.handleBlur = this.handleBlur.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleCancel = this.handleCancel.bind(this)
-    this.handleCloseSnackbar = this.handleCloseSnackbar.bind(this)
   }
 
+  triggerAuthEvent (event) {
+    const state = this.props.authState
+    if (this.props.onAuthEvent) { this.props.onAuthEvent(state, event) }
+  }
+
+  changeState (state, data) {
+    if (this.props.onStateChange) { this.props.onStateChange(state, data) }
+
+    this.triggerAuthEvent({
+      type: 'stateChange',
+      data: state
+    })
+  }
   handleChange (event, field) {
     const state = {}
     state.form = this.state.form
-    if (field === 'userid') {
+    if (field === 'username') {
       if (event.target.value === 'Admin') {
         state.form.showPassword = true
         state.password = {
@@ -118,19 +134,8 @@ class Contact extends React.Component {
 
   handleSubmit (event) {
     event.preventDefault()
-    const snackbar = {
-      open: true,
-      message: ''
-    }
-    if (!isEmpty(this.state.userid.value) && !isEmpty(this.state.password.value)) {
-      // TODO : Call background AWS Cognito Login
-      // Disable form during login
-      // Reset form on success and navigate, but not on failure !
-      snackbar.message = `Connexion réussie.`
-      this.setState({ snackbar })
-    } else {
-      snackbar.message = `Connexion refusée. Saisissez un identifiant de session.`
-      this.setState({ snackbar })
+    if (!isEmpty(this.state.username.value) && !isEmpty(this.state.password.value)) {
+      this.signIn()
     }
   }
 
@@ -141,19 +146,48 @@ class Contact extends React.Component {
     this.setState(state)
   }
 
-  handleCloseSnackbar (event, reason) {
-    if (reason === 'clickaway') {
-      return
+  async signIn () {
+    const { username: { value: username }, password: { value: password } } = this.state
+    if (!Auth || typeof Auth.signIn !== 'function') {
+      throw new Error('No Auth module found, please ensure @aws-amplify/auth is imported')
     }
-    const snackbar = {
-      open: false,
-      message: ''
+    this.setState({ loading: true })
+    try {
+      const user = await Auth.signIn(username, password)
+        .catch(e => debug(e))
+      // debug(user)
+      if (user.challengeName === 'NEW_PASSWORD_REQUIRED') {
+        this.changeState('requireNewPassword', user)
+        Auth.completeNewPassword(
+          user, // the Cognito User Object
+          password // the new password
+        ).catch(e => debug(e))
+      }
+      this.changeState('signedIn', user)
+    } catch (err) {
+      debug(err)
+    } finally {
+      const event = {
+        preventDefault: () => (null)
+      }
+      this.handleCancel(event)
     }
-    this.setState({ snackbar })
   }
 
   render () {
     const { classes } = this.props
+    if (!this._validAuthStates.includes(this.props.authState)) {
+      this._isHidden = true
+      this.inputs = {}
+      return null
+    }
+
+    if (this._isHidden) {
+      this.inputs = {}
+      const { track } = this.props
+      if (track) track()
+    }
+    this._isHidden = false
     return (
       <div className={classes.layout}>
         <AppBar />
@@ -179,11 +213,11 @@ class Contact extends React.Component {
                           fullWidth
                           margin='normal'
                           variant='outlined'
-                          onChange={(e) => this.handleChange(e, 'userid')}
-                          onBlur={(e) => this.handleBlur(e, 'userid')}
-                          value={this.state.userid.value}
-                          error={(this.state.userid.isDirty && isEmpty(this.state.userid.value))}
-                          disabled={this.state.form.isDisabled}
+                          onChange={(e) => this.handleChange(e, 'username')}
+                          onBlur={(e) => this.handleBlur(e, 'username')}
+                          value={this.state.username.value}
+                          error={(this.state.username.isDirty && isEmpty(this.state.username.value))}
+                          disabled={this.state.loading}
                         />
                         <Collapse in={this.state.form.showPassword}>
                           <TextField
@@ -196,7 +230,7 @@ class Contact extends React.Component {
                             onBlur={(e) => this.handleBlur(e, 'password')}
                             value={this.state.password.value}
                             error={(this.state.password.isDirty && isEmpty(this.state.password.value))}
-                            disabled={this.state.form.isDisabled}
+                            disabled={this.state.loading}
                           />
                         </Collapse>
                       </Grid>
@@ -206,7 +240,7 @@ class Contact extends React.Component {
                           color='secondary'
                           className={classes.button}
                           type='submit'
-                          disabled={this.state.form.isDisabled}
+                          disabled={this.state.loading}
                         >
                     Login
                         </Button>
@@ -214,38 +248,13 @@ class Contact extends React.Component {
                           variant='outlined'
                           className={classes.button}
                           onClick={this.handleCancel}
-                          disabled={this.state.form.isDisabled}
+                          disabled={this.state.loading}
                         >
                     Annuler
                         </Button>
                       </Grid>
                     </Grid>
                   </form>
-
-                  <Snackbar
-                    anchorOrigin={{
-                      vertical: 'bottom',
-                      horizontal: 'center'
-                    }}
-                    open={this.state.snackbar.open}
-                    autoHideDuration={5000}
-                    onClose={this.handleClose}
-                    ContentProps={{
-                      'aria-describedby': 'message-id'
-                    }}
-                    message={<span id='message-id'>{this.state.snackbar.message}</span>}
-                    action={[
-                      <IconButton
-                        key='close'
-                        aria-label='Close'
-                        color='inherit'
-                        className={classes.closeSnackbar}
-                        onClick={this.handleCloseSnackbar}
-                      >
-                        <CloseIcon />
-                      </IconButton>
-                    ]}
-                  />
                 </div>
               </Grid>
             </Grid>
@@ -256,8 +265,8 @@ class Contact extends React.Component {
   }
 }
 
-Contact.propTypes = {
+SignIn.propTypes = {
   classes: PropTypes.object.isRequired
 }
 
-export default withStyles(styles)(Contact)
+export default withStyles(styles)(SignIn)

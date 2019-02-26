@@ -5,13 +5,13 @@ exports[`The AppBar component should render correctly 1`] = `
   className="root-1"
 >
   <header
-    className="root-13 elevation4-19 root-4 positionStatic-8 colorPrimary-11"
+    className="root-14 elevation4-20 root-5 positionStatic-9 colorPrimary-12"
   >
     <div
-      className="root-40 regular-42 gutters-41"
+      className="root-41 regular-43 gutters-42"
     >
       <h6
-        className="root-44 h6-61 colorInherit-73 grow-2"
+        className="root-45 h6-62 colorInherit-74 grow-2"
       >
         <a
           aria-current="page"
@@ -31,18 +31,17 @@ exports[`The AppBar component should render correctly 1`] = `
       </a>
       <a
         className="menuLink-3"
-        href="/contact"
+        href="/session"
         onClick={[Function]}
       >
-        Contact
+        Session
       </a>
-      <a
-        className="menuLink-3"
-        href="/login"
+      <div
+        className="menuLink-3 hide-4"
         onClick={[Function]}
       >
-        Login
-      </a>
+        Déconnexion
+      </div>
     </div>
   </header>
 </div>

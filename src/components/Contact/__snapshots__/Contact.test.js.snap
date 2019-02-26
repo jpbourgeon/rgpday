@@ -5,20 +5,20 @@ exports[`The Contact component should render correctly 1`] = `
   className="layout-1"
 >
   <div
-    className="root-7"
+    className="root-8"
   >
     <header
-      className="root-19 elevation4-25 root-10 positionStatic-14 colorPrimary-17"
+      className="root-21 elevation4-27 root-12 positionStatic-16 colorPrimary-19"
     >
       <div
-        className="root-46 regular-48 gutters-47"
+        className="root-48 regular-50 gutters-49"
       >
         <h6
-          className="root-50 h6-67 colorInherit-79 grow-8"
+          className="root-52 h6-69 colorInherit-81 grow-9"
         >
           <a
             aria-current="page"
-            className="menuLink-9"
+            className="menuLink-10"
             href="/"
             onClick={[Function]}
           >
@@ -26,56 +26,49 @@ exports[`The Contact component should render correctly 1`] = `
           </a>
         </h6>
         <a
-          className="menuLink-9"
+          className="menuLink-10"
           href="/about"
           onClick={[Function]}
         >
           À propos
         </a>
         <a
-          className="menuLink-9"
-          href="/contact"
+          className="menuLink-10"
+          href="/session"
           onClick={[Function]}
         >
-          Contact
+          Session
         </a>
-        <a
-          className="menuLink-9"
-          href="/login"
+        <div
+          className="menuLink-10 hide-11"
           onClick={[Function]}
         >
-          Login
-        </a>
+          Déconnexion
+        </div>
       </div>
     </header>
   </div>
   <main>
     <div
-      className="root-19 elevation2-23 rounded-20 mainFeaturedPost-3"
+      className="root-21 elevation2-25 rounded-22 mainFeaturedPost-4"
     >
       <div
-        className="container-86"
+        className="container-88"
       >
         <div
-          className="item-87 12-126"
+          className="item-89 12-128"
         >
           <div
-            className="mainFeaturedPostContent-4"
+            className="mainFeaturedPostContent-5"
           >
             <h4
-              className="root-50 h4-65 colorInherit-79 gutterBottom-77"
+              className="root-52 h4-67 colorInherit-81 gutterBottom-79"
             >
               <svg
                 aria-hidden="true"
-                className="root-183"
+                className="root-185 titleIcon-2"
                 focusable="false"
                 role="presentation"
-                style={
-                  Object {
-                    "fontSize": "2.5rem",
-                    "marginBottom": "-0.5rem",
-                  }
-                }
                 viewBox="0 0 24 24"
               >
                 <path
@@ -92,26 +85,26 @@ exports[`The Contact component should render correctly 1`] = `
             </h4>
             <form
               autoComplete="off"
-              className="formContainer-2"
+              className="formContainer-3"
               noValidate={true}
               onSubmit={[Function]}
             >
               <div
-                className="root-192 marginNormal-193 fullWidth-195"
+                className="root-194 marginNormal-195 fullWidth-197"
               >
                 <label
-                  className="root-207 root-196 formControl-201 animated-204 outlined-206"
+                  className="root-209 root-198 formControl-203 animated-206 outlined-208"
                   data-shrink={false}
                 >
                   Votre email
                 </label>
                 <div
-                  className="root-227 root-214 fullWidth-236 formControl-228"
+                  className="root-229 root-216 fullWidth-238 formControl-230"
                   onClick={[Function]}
                 >
                   <fieldset
                     aria-hidden={true}
-                    className="root-244 notchedOutline-221"
+                    className="root-246 notchedOutline-223"
                     style={
                       Object {
                         "paddingLeft": 8,
@@ -119,7 +112,7 @@ exports[`The Contact component should render correctly 1`] = `
                     }
                   >
                     <legend
-                      className="legend-245"
+                      className="legend-247"
                       style={
                         Object {
                           "width": 0.01,
@@ -137,7 +130,7 @@ exports[`The Contact component should render correctly 1`] = `
                   </fieldset>
                   <input
                     aria-invalid={false}
-                    className="input-237 input-222"
+                    className="input-239 input-224"
                     disabled={false}
                     onBlur={[Function]}
                     onChange={[Function]}
@@ -149,21 +142,21 @@ exports[`The Contact component should render correctly 1`] = `
                 </div>
               </div>
               <div
-                className="root-192 marginNormal-193 fullWidth-195"
+                className="root-194 marginNormal-195 fullWidth-197"
               >
                 <label
-                  className="root-207 root-196 formControl-201 animated-204 outlined-206"
+                  className="root-209 root-198 formControl-203 animated-206 outlined-208"
                   data-shrink={false}
                 >
                   Sujet
                 </label>
                 <div
-                  className="root-227 root-214 fullWidth-236 formControl-228"
+                  className="root-229 root-216 fullWidth-238 formControl-230"
                   onClick={[Function]}
                 >
                   <fieldset
                     aria-hidden={true}
-                    className="root-244 notchedOutline-221"
+                    className="root-246 notchedOutline-223"
                     style={
                       Object {
                         "paddingLeft": 8,
@@ -171,7 +164,7 @@ exports[`The Contact component should render correctly 1`] = `
                     }
                   >
                     <legend
-                      className="legend-245"
+                      className="legend-247"
                       style={
                         Object {
                           "width": 0.01,
@@ -189,7 +182,7 @@ exports[`The Contact component should render correctly 1`] = `
                   </fieldset>
                   <input
                     aria-invalid={false}
-                    className="input-237 input-222"
+                    className="input-239 input-224"
                     disabled={false}
                     onBlur={[Function]}
                     onChange={[Function]}
@@ -201,21 +194,21 @@ exports[`The Contact component should render correctly 1`] = `
                 </div>
               </div>
               <div
-                className="root-192 marginNormal-193 fullWidth-195"
+                className="root-194 marginNormal-195 fullWidth-197"
               >
                 <label
-                  className="root-207 root-196 formControl-201 animated-204 outlined-206"
+                  className="root-209 root-198 formControl-203 animated-206 outlined-208"
                   data-shrink={false}
                 >
                   Description
                 </label>
                 <div
-                  className="root-227 root-214 fullWidth-236 formControl-228 multiline-235 multiline-220"
+                  className="root-229 root-216 fullWidth-238 formControl-230 multiline-237 multiline-222"
                   onClick={[Function]}
                 >
                   <fieldset
                     aria-hidden={true}
-                    className="root-244 notchedOutline-221"
+                    className="root-246 notchedOutline-223"
                     style={
                       Object {
                         "paddingLeft": 8,
@@ -223,7 +216,7 @@ exports[`The Contact component should render correctly 1`] = `
                     }
                   >
                     <legend
-                      className="legend-245"
+                      className="legend-247"
                       style={
                         Object {
                           "width": 0.01,
@@ -241,7 +234,7 @@ exports[`The Contact component should render correctly 1`] = `
                   </fieldset>
                   <textarea
                     aria-invalid={false}
-                    className="input-237 input-222 inputMultiline-239 inputMultiline-224"
+                    className="input-239 input-224 inputMultiline-241 inputMultiline-226"
                     disabled={false}
                     onBlur={[Function]}
                     onChange={[Function]}
@@ -253,7 +246,7 @@ exports[`The Contact component should render correctly 1`] = `
                 </div>
               </div>
               <button
-                className="root-272 root-246 outlined-254 outlinedSecondary-256 button-5"
+                className="root-274 root-248 outlined-256 outlinedSecondary-258 button-6"
                 disabled={false}
                 onBlur={[Function]}
                 onContextMenu={[Function]}
@@ -270,16 +263,16 @@ exports[`The Contact component should render correctly 1`] = `
                 type="submit"
               >
                 <span
-                  className="label-247"
+                  className="label-249"
                 >
                   Envoyer
                 </span>
                 <span
-                  className="root-282"
+                  className="root-284"
                 />
               </button>
               <button
-                className="root-272 root-246 outlined-254 button-5"
+                className="root-274 root-248 outlined-256 button-6"
                 disabled={false}
                 onBlur={[Function]}
                 onClick={[Function]}
@@ -297,12 +290,12 @@ exports[`The Contact component should render correctly 1`] = `
                 type="button"
               >
                 <span
-                  className="label-247"
+                  className="label-249"
                 >
                   Annuler
                 </span>
                 <span
-                  className="root-282"
+                  className="root-284"
                 />
               </button>
             </form>

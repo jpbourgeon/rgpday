@@ -1,14 +1,14 @@
 /* global describe, it, expect */
 import React from 'react'
 import renderer from 'react-test-renderer'
-import Default from './'
+import CallToAction from './'
 import jssSerializer from '../../utils/jssSnapshotSerializer'
 
 expect.addSnapshotSerializer(jssSerializer)
 
-describe('The Default component', () => {
+describe('The CallToAction component', () => {
   it('should render correctly', () => {
-    const tree = renderer.create(<Default />).toJSON()
+    const tree = renderer.create(<CallToAction />).toJSON()
     expect(tree).toMatchSnapshot()
   })
 })

@@ -8,13 +8,13 @@ exports[`The About component should render correctly 1`] = `
     className="root-4"
   >
     <header
-      className="root-16 elevation4-22 root-7 positionStatic-11 colorPrimary-14"
+      className="root-17 elevation4-23 root-8 positionStatic-12 colorPrimary-15"
     >
       <div
-        className="root-43 regular-45 gutters-44"
+        className="root-44 regular-46 gutters-45"
       >
         <h6
-          className="root-47 h6-64 colorInherit-76 grow-5"
+          className="root-48 h6-65 colorInherit-77 grow-5"
         >
           <a
             aria-current="page"
@@ -34,42 +34,35 @@ exports[`The About component should render correctly 1`] = `
         </a>
         <a
           className="menuLink-6"
-          href="/contact"
+          href="/session"
           onClick={[Function]}
         >
-          Contact
+          Session
         </a>
-        <a
-          className="menuLink-6"
-          href="/login"
+        <div
+          className="menuLink-6 hide-7"
           onClick={[Function]}
         >
-          Login
-        </a>
+          Déconnexion
+        </div>
       </div>
     </header>
   </div>
   <main>
     <div
-      className="container-83 40-109"
+      className="container-84 40-110"
     >
       <div
-        className="item-84 12-123"
+        className="item-85 12-124"
       >
         <h4
-          className="root-47 h4-62 gutterBottom-74"
+          className="root-48 h4-63 gutterBottom-75"
         >
           <svg
             aria-hidden="true"
-            className="root-180"
+            className="root-181 titleIcon-2"
             focusable="false"
             role="presentation"
-            style={
-              Object {
-                "fontSize": "2.5rem",
-                "marginBottom": "-0.5rem",
-              }
-            }
             viewBox="0 0 24 24"
           >
             <path
@@ -86,23 +79,23 @@ exports[`The About component should render correctly 1`] = `
            À propos
         </h4>
         <hr
-          className="root-189"
+          className="root-190"
         />
       </div>
       <div
-        className="item-84 12-123"
+        className="item-85 12-124"
       >
         <div
-          className="root-194 avatar-2"
+          className="root-195 avatar-3"
         >
           <img
             alt="Remy Sharp"
-            className="img-196"
+            className="img-197"
             src="avatar.jpg"
           />
         </div>
         <p
-          className="root-47 body1-56 gutterBottom-74"
+          className="root-48 body1-57 gutterBottom-75"
         >
           En qualité de Responsable du pôle Systèmes d'information, gestion des données et des méthodes au Centre de gestion de la fonction publique territoriale de Saône-et-Loire, 
           <strong>
@@ -115,7 +108,7 @@ exports[`The About component should render correctly 1`] = `
            : nous accompagnons nos adhérents dans leur mise en conformité avec le RGPD.
         </p>
         <p
-          className="root-47 body1-56 gutterBottom-74"
+          className="root-48 body1-57 gutterBottom-75"
         >
           Cette journée a été conçue pour répondre à un problème 
           <strong>
@@ -128,7 +121,7 @@ exports[`The About component should render correctly 1`] = `
            ? Comment cette démarche est-elle liée aux autres outils de gestion de l'information dans l'entreprise ?
         </p>
         <p
-          className="root-47 body1-56 gutterBottom-74"
+          className="root-48 body1-57 gutterBottom-75"
         >
           Le 
           <strong>
@@ -145,28 +138,29 @@ exports[`The About component should render correctly 1`] = `
            à leurs étudiants, dans le prolongement de leur formation théorique.
         </p>
         <div
-          className="container-83 40-109 column-86 center-91"
+          className="container-84 40-110 column-87 center-92"
         >
           <div
-            className="item-84 12-123 6-145"
+            className="item-85 12-124 6-146"
           >
             <div
-              className="root-16 elevation1-19 rounded-17 cta-3"
+              className="root-17 elevation1-20 rounded-18 cta-198"
             >
               <h6
-                className="root-47 h6-64"
+                className="root-48 h6-65"
               >
                 Si ce format vous intéresse, 
                 <a
-                  className="root-47 colorSecondary-78 inline-82 root-197 underlineHover-199"
-                  href="/contact"
-                  onClick={[Function]}
+                  className="root-48 colorSecondary-79 inline-83 root-200 underlineHover-202 link-199"
+                  href="https://fr.gravatar.com/jpbourgeon"
+                  rel="noopener"
+                  target="_blank"
                 >
                   contactez-moi
                 </a>
               </h6>
               <p
-                className="root-47 body1-56"
+                className="root-48 body1-57"
               >
                 pour organiser le RGPDay dans votre établissement !
               </p>
@@ -174,7 +168,7 @@ exports[`The About component should render correctly 1`] = `
           </div>
         </div>
         <p
-          className="root-47 body1-56 gutterBottom-74"
+          className="root-48 body1-57 gutterBottom-75"
         >
           --
           <br />
@@ -182,7 +176,7 @@ exports[`The About component should render correctly 1`] = `
           <br />
           LinkedIn : 
           <a
-            className="root-47 colorPrimary-77 inline-82 root-197 underlineHover-199"
+            className="root-48 colorPrimary-78 inline-83 root-200 underlineHover-202"
             href="https://www.linkedin.com/in/jpbourgeon"
           >
             https://www.linkedin.com/in/jpbourgeon

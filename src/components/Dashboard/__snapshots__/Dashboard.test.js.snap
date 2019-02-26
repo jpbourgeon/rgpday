@@ -1,0 +1,220 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The Dashboard component should render correctly 1`] = `
+<div
+  className="layout-1"
+>
+  <div
+    className="root-4"
+  >
+    <header
+      className="root-17 elevation4-23 root-8 positionStatic-12 colorPrimary-15"
+    >
+      <div
+        className="root-44 regular-46 gutters-45"
+      >
+        <h6
+          className="root-48 h6-65 colorInherit-77 grow-5"
+        >
+          <a
+            aria-current="page"
+            className="menuLink-6"
+            href="/"
+            onClick={[Function]}
+          >
+            RGPDay
+          </a>
+        </h6>
+        <a
+          className="menuLink-6"
+          href="/about"
+          onClick={[Function]}
+        >
+          À propos
+        </a>
+        <a
+          className="menuLink-6"
+          href="/session"
+          onClick={[Function]}
+        >
+          Session
+        </a>
+        <div
+          className="menuLink-6 hide-7"
+          onClick={[Function]}
+        >
+          Déconnexion
+        </div>
+      </div>
+    </header>
+  </div>
+  <main>
+    <h4
+      className="root-48 h4-63 colorInherit-77 gutterBottom-75 title-2"
+    >
+      <svg
+        aria-hidden="true"
+        className="root-84 titleIcon-3"
+        focusable="false"
+        role="presentation"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M0 0h24v24H0V0z"
+          fill="none"
+        />
+        <g>
+          <path
+            d="M19 5v2h-4V5h4M9 5v6H5V5h4m10 8v6h-4v-6h4M9 17v2H5v-2h4M21 3h-8v6h8V3zM11 3H3v10h8V3zm10 8h-8v10h8V11zm-10 4H3v6h8v-6z"
+          />
+        </g>
+      </svg>
+       Session
+    </h4>
+    <div
+      className="container-93 40-119"
+    >
+      <div
+        className="item-94 12-133 6-155"
+      >
+        <div
+          className="root-17 elevation1-20 rounded-18 root-193 card-190"
+        >
+          <div
+            className="cardDetails-191"
+          >
+            <div
+              className="root-194"
+            >
+              <h5
+                className="root-48 h5-64"
+              >
+                Administration du site
+              </h5>
+              <p
+                className="root-48 subtitle1-66 paragraph-76"
+              >
+                
+              </p>
+            </div>
+          </div>
+          <div
+            className="root-195 cardMedia-192"
+            style={
+              Object {
+                "backgroundImage": "url(\\"controlpanel.jpg\\")",
+              }
+            }
+            title="Administration du site"
+          />
+        </div>
+      </div>
+      <div
+        className="item-94 12-133 6-155"
+      >
+        <div
+          className="root-17 elevation1-20 rounded-18 root-193 card-190"
+        >
+          <div
+            className="cardDetails-191"
+          >
+            <div
+              className="root-194"
+            >
+              <h5
+                className="root-48 h5-64"
+              >
+                Conférence
+              </h5>
+              <p
+                className="root-48 subtitle1-66 paragraph-76"
+              >
+                
+              </p>
+            </div>
+          </div>
+          <div
+            className="root-195 cardMedia-192"
+            style={
+              Object {
+                "backgroundImage": "url(\\"conference.jpg\\")",
+              }
+            }
+            title="Conférence"
+          />
+        </div>
+      </div>
+      <div
+        className="item-94 12-133 6-155"
+      >
+        <div
+          className="root-17 elevation1-20 rounded-18 root-193 card-190"
+        >
+          <div
+            className="cardDetails-191"
+          >
+            <div
+              className="root-194"
+            >
+              <h5
+                className="root-48 h5-64"
+              >
+                Serious game
+              </h5>
+              <p
+                className="root-48 subtitle1-66 paragraph-76"
+              >
+                
+              </p>
+            </div>
+          </div>
+          <div
+            className="root-195 cardMedia-192"
+            style={
+              Object {
+                "backgroundImage": "url(\\"gameboard.jpg\\")",
+              }
+            }
+            title="Serious game"
+          />
+        </div>
+      </div>
+      <div
+        className="item-94 12-133 6-155"
+      >
+        <div
+          className="root-17 elevation1-20 rounded-18 root-193 card-190"
+        >
+          <div
+            className="cardDetails-191"
+          >
+            <div
+              className="root-194"
+            >
+              <h5
+                className="root-48 h5-64"
+              >
+                Plan d'action
+              </h5>
+              <p
+                className="root-48 subtitle1-66 paragraph-76"
+              >
+                
+              </p>
+            </div>
+          </div>
+          <div
+            className="root-195 cardMedia-192"
+            style={
+              Object {
+                "backgroundImage": "url(\\"coconstruction.jpg\\")",
+              }
+            }
+            title="Plan d'action"
+          />
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+`;

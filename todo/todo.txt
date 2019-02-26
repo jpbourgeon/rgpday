@@ -1,19 +1,13 @@
-2019-02-24 minimal dashboard page
-2019-02-25 AppBar : conditional SignIn / SignOut button
-2019-02-24 add amplify authenticator to the ProtectedRoutes
-2019-02-24 add custom UI to authenticator = SignIn with automatic 1st time Change Password + SignOut
-2019-02-24 loadable admin router
-2019-02-24 loadable dashboard router
-2019-02-24 loadable presentation router
-2019-02-24 loadable serious game router
 2019-02-09 configure Master Branch Env cognito User Pool (admin)
+2019-02-09 add amplify graphql backend
+2019-02-09 write the game specs
+2019-02-09 write the conference specs
+2019-02-25 Restore the Contact page [Gravatar](https://fr.gravatar.com/jpbourgeon)
 2019-02-20 Contact Lambda : add Lambda to API from CI/CD
 2019-02-20 Contact Lambda : [verify ReCaptcha](https://developers.google.com/recaptcha/docs/verify) / <https://www.google.com/recaptcha/admin/site/345190045/setup>
 2019-02-20 Contact Lambda : [Send email with SES](http://www.wisdomofjim.com/blog/sending-an-email-from-aws-lambda-function-in-nodejs-with-aws-simple-email-service)
-2019-02-09 write the game specs
-2019-02-09 write the conference specs
-2019-02-09 add amplify graphql backend
-2019-02-09 "mentions legales" (CopyRight) / RGPD page + [Cookie Consent](https://cookieconsent.insites.com/)
+2019-02-09 "mentions legales" (CopyRight) / RGPD page + [Cookie Consent](https://cookieconsent.insites.com/) <https://www.service-public.fr/professionnels-entreprises/vosdroits/F31228>
 2019-02-09 conditional robots.txt on CD, depending on the published branch
 2019-02-20 Home page : add reviews from CUCDB (Turrel / Aubrier)
-2019-02-10 SEO : start promoting the service => headers meta
+2019-02-26 meta => Title in Default page
+2019-02-10 SEO : start promoting the service => headers meta, sitemap, etc. Lighthouse, <https://varvy.com/>, <https://seositecheckup.com/>

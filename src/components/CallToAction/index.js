@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
-import { Link as RouterLink } from '@reach/router'
+// import { Link as RouterLink } from '@reach/router'
 import Link from '@material-ui/core/Link'
 import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
@@ -15,10 +15,16 @@ const styles = theme => ({
     marginTop: theme.spacing.unit * 4,
     marginBottom: theme.spacing.unit * 4,
     textAlign: 'center'
+  },
+  link: {
+    '&:hover': {
+      cursor: 'pointer',
+      textDecoration: 'underline'
+    }
   }
 })
 
-const LinkToContact = props => <RouterLink to='/contact' {...props} />
+// const LinkToContact = props => <RouterLink to='/contact' {...props} />
 
 const CallToAction = (props) => {
   const { classes, xs, md } = props
@@ -27,7 +33,14 @@ const CallToAction = (props) => {
       <Grid item xs={xs} md={md}>
         <Paper className={classes.cta} elevation={1}>
           <Typography variant='h6'>
-            Si ce format vous intéresse, <Link component={LinkToContact} color='secondary'>contactez-moi</Link>
+            {/* Si ce format vous intéresse, <Link component={LinkToContact} color='secondary'>contactez-moi</Link> */}
+            Si ce format vous intéresse, <Link
+              href='https://fr.gravatar.com/jpbourgeon'
+              color='secondary'
+              target='_blank'
+              rel='noopener'
+              className={classes.link}
+            >contactez-moi</Link>
           </Typography>
           <Typography variant='body1'>
             pour organiser le RGPDay dans votre établissement !

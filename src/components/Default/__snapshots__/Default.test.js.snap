@@ -8,13 +8,13 @@ exports[`The Default component should render correctly 1`] = `
     className="root-4"
   >
     <header
-      className="root-16 elevation4-22 root-7 positionStatic-11 colorPrimary-14"
+      className="root-17 elevation4-23 root-8 positionStatic-12 colorPrimary-15"
     >
       <div
-        className="root-43 regular-45 gutters-44"
+        className="root-44 regular-46 gutters-45"
       >
         <h6
-          className="root-47 h6-64 colorInherit-76 grow-5"
+          className="root-48 h6-65 colorInherit-77 grow-5"
         >
           <a
             aria-current="page"
@@ -34,52 +34,51 @@ exports[`The Default component should render correctly 1`] = `
         </a>
         <a
           className="menuLink-6"
-          href="/contact"
+          href="/session"
           onClick={[Function]}
         >
-          Contact
+          Session
         </a>
-        <a
-          className="menuLink-6"
-          href="/login"
+        <div
+          className="menuLink-6 hide-7"
           onClick={[Function]}
         >
-          Login
-        </a>
+          Déconnexion
+        </div>
       </div>
     </header>
   </div>
   <main>
     <div
-      className="root-16 elevation2-20 rounded-17 mainFeaturedPost-2"
+      className="root-17 elevation2-21 rounded-18 mainFeaturedPost-2"
     >
       <div
-        className="container-83"
+        className="container-84"
       >
         <div
-          className="item-84 6-145"
+          className="item-85 6-146"
         >
           <div
             className="mainFeaturedPostContent-3"
           >
             <h4
-              className="root-47 h4-62 colorInherit-76 gutterBottom-74"
+              className="root-48 h4-63 colorInherit-77 gutterBottom-75"
             >
-              Ce contenu n'existe pas.
+              Ce contenu est indisponible.
             </h4>
             <h6
-              className="root-47 subtitle1-65 colorInherit-76 gutterBottom-74"
+              className="root-48 subtitle1-66 colorInherit-77 gutterBottom-75"
             >
-              Essayez depuis la 
+              Avez vous consulté la 
               <a
                 aria-current="page"
-                className="root-47 colorPrimary-77 inline-82 root-180 underlineHover-182"
+                className="root-48 colorSecondary-79 inline-83 root-181 underlineHover-183"
                 href="/"
                 onClick={[Function]}
               >
                 page d'accueil
               </a>
-               du site.
+               du site ?
             </h6>
           </div>
         </div>
