@@ -1,0 +1,8 @@
+type Session @model {
+  id: ID!
+  name: String!
+  description: String
+  numberOfParticipants: Int
+  startDate: AWSDate
+  endDate: AWSDate
+}

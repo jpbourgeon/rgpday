@@ -35,11 +35,11 @@ const Loadable = (props) => {
   const { component, prefetch } = props
   let AsyncComponent
   if (prefetch) {
-    AsyncComponent = loadable(() => pMinDelay(import(/* webpackPrefetch: true */ `../../${component}`),
-      { fallback: <Loading /> }), 200)
+    AsyncComponent = loadable(() => pMinDelay(import(/* webpackPrefetch: true */ `../../${component}`), 200),
+      { fallback: <Loading /> })
   } else {
-    AsyncComponent = loadable(() => pMinDelay(import(`../../${component}`),
-      { fallback: <Loading /> }), 200)
+    AsyncComponent = loadable(() => pMinDelay(import(`../../${component}`), 200),
+      { fallback: <Loading /> })
   }
   return (
     <ErrorBoundary>

@@ -1,0 +1,124 @@
+type Session {
+  id: ID!
+  name: String!
+  description: String
+  numberOfParticipants: Int
+  startDate: AWSDate
+  endDate: AWSDate
+}
+
+enum ModelSortDirection {
+  ASC
+  DESC
+}
+
+type ModelSessionConnection {
+  items: [Session]
+  nextToken: String
+}
+
+input ModelStringFilterInput {
+  ne: String
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  contains: String
+  notContains: String
+  between: [String]
+  beginsWith: String
+}
+
+input ModelIDFilterInput {
+  ne: ID
+  eq: ID
+  le: ID
+  lt: ID
+  ge: ID
+  gt: ID
+  contains: ID
+  notContains: ID
+  between: [ID]
+  beginsWith: ID
+}
+
+input ModelIntFilterInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  contains: Int
+  notContains: Int
+  between: [Int]
+}
+
+input ModelFloatFilterInput {
+  ne: Float
+  eq: Float
+  le: Float
+  lt: Float
+  ge: Float
+  gt: Float
+  contains: Float
+  notContains: Float
+  between: [Float]
+}
+
+input ModelBooleanFilterInput {
+  ne: Boolean
+  eq: Boolean
+}
+
+input ModelSessionFilterInput {
+  id: ModelIDFilterInput
+  name: ModelStringFilterInput
+  description: ModelStringFilterInput
+  numberOfParticipants: ModelIntFilterInput
+  startDate: ModelStringFilterInput
+  endDate: ModelStringFilterInput
+  and: [ModelSessionFilterInput]
+  or: [ModelSessionFilterInput]
+  not: ModelSessionFilterInput
+}
+
+type Query {
+  getSession(id: ID!): Session
+  listSessions(filter: ModelSessionFilterInput, limit: Int, nextToken: String): ModelSessionConnection
+}
+
+input CreateSessionInput {
+  id: ID
+  name: String!
+  description: String
+  numberOfParticipants: Int
+  startDate: AWSDate
+  endDate: AWSDate
+}
+
+input UpdateSessionInput {
+  id: ID!
+  name: String
+  description: String
+  numberOfParticipants: Int
+  startDate: AWSDate
+  endDate: AWSDate
+}
+
+input DeleteSessionInput {
+  id: ID
+}
+
+type Mutation {
+  createSession(input: CreateSessionInput!): Session
+  updateSession(input: UpdateSessionInput!): Session
+  deleteSession(input: DeleteSessionInput!): Session
+}
+
+type Subscription {
+  onCreateSession: Session @aws_subscribe(mutations: ["createSession"])
+  onUpdateSession: Session @aws_subscribe(mutations: ["updateSession"])
+  onDeleteSession: Session @aws_subscribe(mutations: ["deleteSession"])
+}
