@@ -3,35 +3,28 @@ var ses = new aws.SES({
    region: 'eu-west-1'
 });
 
-// exports.handler = function (event, context) { //eslint-disable-line
-//   console.log(`value1 = ${event.key1}`);
-//   console.log(`value2 = ${event.key2}`);
-//   console.log(`value3 = ${event.key3}`);
-//   context.done(null, 'Hello World'); // SUCCESS with message
-// };
-
 exports.handler = function(event, context) {
   console.log("Incoming: ", event);
 
   var eParams = {
       Destination: {
-          ToAddresses: [`${event.SESVerifiedEmail}`]
+          ToAddresses: [`${event.to}`]
       },
       Message: {
           Body: {
               Text: {
-                  Data: `Message de : ${event.from}
-                  
-                  --- 
+                  Data: `Message de : ${event.sender}
 
-                  ${event.content}`
+---
+
+${event.content}`
               }
           },
           Subject: {
               Data: `${event.subject}`
           }
       },
-      Source: `${event.SESVerifiedEmail}`
+      Source: `${event.from}`
   };
 
   console.log("eParams: ", eParams);

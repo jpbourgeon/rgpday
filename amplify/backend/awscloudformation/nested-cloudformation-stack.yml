@@ -144,10 +144,10 @@
 				}
 			}
 		},
-		"functionrgpdaycom2d93500d": {
+		"functionrgpdaycomSendEmail": {
 			"Type": "AWS::CloudFormation::Stack",
 			"Properties": {
-				"TemplateURL": "https://s3.amazonaws.com/rgpdaycom-20190211181814-deployment/amplify-cfn-templates/function/rgpdaycom2d93500d-cloudformation-template.json",
+				"TemplateURL": "https://s3.amazonaws.com/rgpdaycom-20190211181814-deployment/amplify-cfn-templates/function/rgpdaycomSendEmail-cloudformation-template.json",
 				"Parameters": {
 					"env": "dev"
 				}

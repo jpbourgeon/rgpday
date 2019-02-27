@@ -6,7 +6,7 @@
 		}
 	},
 	"function": {
-		"rgpdaycom2d93500d": {
+		"rgpdaycomSendEmail": {
 			"service": "Lambda",
 			"providerPlugin": "awscloudformation",
 			"build": true,

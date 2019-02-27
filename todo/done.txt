@@ -29,3 +29,4 @@ x 2019-02-26 2019-02-26 Security: replace react-loadable by [@loadable/component
 x 2019-02-26 2019-02-25 Code splitting: manage past delay, error and timeout
 x 2019-02-26 2019-02-27 RELEASE VERSION v0.2.0x 2019-02-27 2019-02-27 create an amplify function called sendEmail (hello world template)
 x 2019-02-27 2019-02-27 create an AWSAppsync GraphQL endpoint API
+x 2019-02-27 2019-02-27 update email sending lambda function name

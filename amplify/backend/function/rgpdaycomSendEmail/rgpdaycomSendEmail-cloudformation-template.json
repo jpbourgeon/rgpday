@@ -28,12 +28,12 @@
 				"FunctionName": {
 					"Fn::If": [
 						"ShouldNotCreateEnvResources",
-						"sendEmail",
+						"rgpdaycomSendEmail",
 						{
 							"Fn::Join": [
 								"",
 								[
-									"sendEmail",
+									"rgpdaycomSendEmail",
 									"-",
 									{
 										"Ref": "env"
@@ -60,7 +60,7 @@
 				"Timeout": "25",
 				"Code": {
 					"S3Bucket": "rgpdaycom-20190211181814-deployment",
-					"S3Key": "amplify-builds/rgpdaycom2d93500d-1551272740-latest-build.zip"
+					"S3Key": "amplify-builds/rgpdaycomSendEmail-1551276054-latest-build.zip"
 				}
 			}
 		},
@@ -70,12 +70,12 @@
 				"RoleName": {
 					"Fn::If": [
 						"ShouldNotCreateEnvResources",
-						"rgpdaycomLambdaRole38354eca",
+						"rgpdaycomLambdaRole0253b185",
 						{
 							"Fn::Join": [
 								"",
 								[
-									"rgpdaycomLambdaRole38354eca",
+									"rgpdaycomLambdaRole0253b185",
 									"-",
 									{
 										"Ref": "env"
