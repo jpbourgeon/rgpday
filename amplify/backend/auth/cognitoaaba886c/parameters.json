@@ -1,6 +1,6 @@
 {
     "identityPoolName": "rgpday_com31047fe9_identitypool_31047fe9",
-    "allowUnauthenticatedIdentities": false,
+    "allowUnauthenticatedIdentities": true,
     "thirdPartyAuth": false,
     "lambdaLogPolicy": "cognitoaaba886c_lambda_log_policy",
     "openIdLambdaRoleName": "cognitoaaba886c_openid_lambda_role",

@@ -6,7 +6,9 @@ export const createSession = `mutation CreateSession($input: CreateSessionInput!
     id
     name
     description
+    contact
     numberOfParticipants
+    RGPDay
     startDate
     endDate
   }
@@ -17,7 +19,9 @@ export const updateSession = `mutation UpdateSession($input: UpdateSessionInput!
     id
     name
     description
+    contact
     numberOfParticipants
+    RGPDay
     startDate
     endDate
   }
@@ -28,9 +32,35 @@ export const deleteSession = `mutation DeleteSession($input: DeleteSessionInput!
     id
     name
     description
+    contact
     numberOfParticipants
+    RGPDay
     startDate
     endDate
+  }
+}
+`;
+export const createConfig = `mutation CreateConfig($input: CreateConfigInput!) {
+  createConfig(input: $input) {
+    id
+    name
+    value
+  }
+}
+`;
+export const updateConfig = `mutation UpdateConfig($input: UpdateConfigInput!) {
+  updateConfig(input: $input) {
+    id
+    name
+    value
+  }
+}
+`;
+export const deleteConfig = `mutation DeleteConfig($input: DeleteConfigInput!) {
+  deleteConfig(input: $input) {
+    id
+    name
+    value
   }
 }
 `;

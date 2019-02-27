@@ -84,7 +84,7 @@
 				"TemplateURL": "https://s3.amazonaws.com/rgpdaycom-20190211181814-deployment/amplify-cfn-templates/auth/cognitoaaba886c-cloudformation-template.yml",
 				"Parameters": {
 					"identityPoolName": "rgpday_com31047fe9_identitypool_31047fe9",
-					"allowUnauthenticatedIdentities": false,
+					"allowUnauthenticatedIdentities": true,
 					"thirdPartyAuth": false,
 					"lambdaLogPolicy": "cognitoaaba886c_lambda_log_policy",
 					"openIdLambdaRoleName": "cognitoaaba886c_openid_lambda_role",
@@ -165,10 +165,10 @@
 							"Outputs.UserPoolId"
 						]
 					},
-					"schemaGraphql": "s3://rgpdaycom-20190211181814-deployment/amplify-appsync-files/schema.graphql.1551272741620",
+					"schemaGraphql": "s3://rgpdaycom-20190211181814-deployment/amplify-appsync-files/schema.graphql.1551291831470",
 					"ResolverBucket": "rgpdaycom-20190211181814-deployment",
 					"ResolverRootKey": "amplify-appsync-files",
-					"DeploymentTimestamp": "1551272741620",
+					"DeploymentTimestamp": "1551291831470",
 					"env": "dev"
 				}
 			}

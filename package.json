@@ -54,10 +54,8 @@
   "standard": {
     "parser": "babel-eslint",
     "ignore": [
-      "amplify/**",
       "build/**",
-      "node_modules/**",
-      "todo/**"
+      "node_modules/**"
     ]
   }
 }

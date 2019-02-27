@@ -2,9 +2,25 @@ type Session {
   id: ID!
   name: String!
   description: String
+  contact: String
   numberOfParticipants: Int
-  startDate: AWSDate
-  endDate: AWSDate
+  RGPDay: AWSDate!
+  startDate: AWSDate!
+  endDate: AWSDate!
+}
+
+type Config {
+  id: ID!
+  name: String!
+  value: String!
+}
+
+type Query {
+  sendEmail(from: String, to: String, sender: String, content: String, subject: String, recaptcha: String): AWSJSON
+  getSession(id: ID!): Session
+  listSessions(filter: ModelSessionFilterInput, limit: Int, nextToken: String): ModelSessionConnection
+  getConfig(id: ID!): Config
+  listConfigs(filter: ModelConfigFilterInput, limit: Int, nextToken: String): ModelConfigConnection
 }
 
 enum ModelSortDirection {
@@ -76,7 +92,9 @@ input ModelSessionFilterInput {
   id: ModelIDFilterInput
   name: ModelStringFilterInput
   description: ModelStringFilterInput
+  contact: ModelStringFilterInput
   numberOfParticipants: ModelIntFilterInput
+  RGPDay: ModelStringFilterInput
   startDate: ModelStringFilterInput
   endDate: ModelStringFilterInput
   and: [ModelSessionFilterInput]
@@ -84,25 +102,24 @@ input ModelSessionFilterInput {
   not: ModelSessionFilterInput
 }
 
-type Query {
-  getSession(id: ID!): Session
-  listSessions(filter: ModelSessionFilterInput, limit: Int, nextToken: String): ModelSessionConnection
-}
-
 input CreateSessionInput {
   id: ID
   name: String!
   description: String
+  contact: String
   numberOfParticipants: Int
-  startDate: AWSDate
-  endDate: AWSDate
+  RGPDay: AWSDate!
+  startDate: AWSDate!
+  endDate: AWSDate!
 }
 
 input UpdateSessionInput {
   id: ID!
   name: String
   description: String
+  contact: String
   numberOfParticipants: Int
+  RGPDay: AWSDate
   startDate: AWSDate
   endDate: AWSDate
 }
@@ -115,10 +132,46 @@ type Mutation {
   createSession(input: CreateSessionInput!): Session
   updateSession(input: UpdateSessionInput!): Session
   deleteSession(input: DeleteSessionInput!): Session
+  createConfig(input: CreateConfigInput!): Config
+  updateConfig(input: UpdateConfigInput!): Config
+  deleteConfig(input: DeleteConfigInput!): Config
 }
 
 type Subscription {
   onCreateSession: Session @aws_subscribe(mutations: ["createSession"])
   onUpdateSession: Session @aws_subscribe(mutations: ["updateSession"])
   onDeleteSession: Session @aws_subscribe(mutations: ["deleteSession"])
+  onCreateConfig: Config @aws_subscribe(mutations: ["createConfig"])
+  onUpdateConfig: Config @aws_subscribe(mutations: ["updateConfig"])
+  onDeleteConfig: Config @aws_subscribe(mutations: ["deleteConfig"])
+}
+
+type ModelConfigConnection {
+  items: [Config]
+  nextToken: String
+}
+
+input ModelConfigFilterInput {
+  id: ModelIDFilterInput
+  name: ModelStringFilterInput
+  value: ModelStringFilterInput
+  and: [ModelConfigFilterInput]
+  or: [ModelConfigFilterInput]
+  not: ModelConfigFilterInput
+}
+
+input CreateConfigInput {
+  id: ID
+  name: String!
+  value: String!
+}
+
+input UpdateConfigInput {
+  id: ID!
+  name: String
+  value: String
+}
+
+input DeleteConfigInput {
+  id: ID
 }

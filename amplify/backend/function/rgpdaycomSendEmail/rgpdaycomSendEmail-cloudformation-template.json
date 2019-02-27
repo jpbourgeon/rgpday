@@ -60,7 +60,7 @@
 				"Timeout": "25",
 				"Code": {
 					"S3Bucket": "rgpdaycom-20190211181814-deployment",
-					"S3Key": "amplify-builds/rgpdaycomSendEmail-1551276054-latest-build.zip"
+					"S3Key": "amplify-builds/rgpdaycomSendEmail-1551287079-latest-build.zip"
 				}
 			}
 		},

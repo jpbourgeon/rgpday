@@ -1,7 +1,8 @@
 {
-    "from": "no-reply@rgpday.com",
-    "to": "jeanphilippe.bourgeon@gmail.com",
-    "sender": "bourgeonjp@cdg71.fr",
-    "content": "Bonjour,\n\nCeci est un test.\n\nCordialement,\n\nJean-Philippe Bourgeon",
-    "subject": "Test d'envoi"
-  }
+  "from": "no-reply@rgpday.com",
+  "to": "jeanphilippe.bourgeon@gmail.com",
+  "sender": "bourgeonjp@cdg71.fr",
+  "content": "Bonjour,\n\nCeci est un test.\n\nCordialement,\n\nJean-Philippe Bourgeon",
+  "subject": "Test d'envoi",
+  "recaptcha": "1234567890"
+}

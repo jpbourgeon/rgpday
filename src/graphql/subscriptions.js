@@ -6,7 +6,9 @@ export const onCreateSession = `subscription OnCreateSession {
     id
     name
     description
+    contact
     numberOfParticipants
+    RGPDay
     startDate
     endDate
   }
@@ -17,7 +19,9 @@ export const onUpdateSession = `subscription OnUpdateSession {
     id
     name
     description
+    contact
     numberOfParticipants
+    RGPDay
     startDate
     endDate
   }
@@ -28,9 +32,35 @@ export const onDeleteSession = `subscription OnDeleteSession {
     id
     name
     description
+    contact
     numberOfParticipants
+    RGPDay
     startDate
     endDate
+  }
+}
+`;
+export const onCreateConfig = `subscription OnCreateConfig {
+  onCreateConfig {
+    id
+    name
+    value
+  }
+}
+`;
+export const onUpdateConfig = `subscription OnUpdateConfig {
+  onUpdateConfig {
+    id
+    name
+    value
+  }
+}
+`;
+export const onDeleteConfig = `subscription OnDeleteConfig {
+  onDeleteConfig {
+    id
+    name
+    value
   }
 }
 `;

@@ -1,4 +1,9 @@
-2019-02-27 add a custom resolver that targets AWS Lambda function
+2019-02-27 Admin page
+2019-02-27 Admin : edit session page
+2019-02-27 Admin : create session page
+2019-02-27 Admin : activate session button
+2019-02-27 Admin : delete session button
+2019-02-27 Send email Lambda function : verify recaptcha
 2019-02-27 call the custom resolver from the Contact page
 2019-02-27 update the lambda function to actually send emails
 2019-02-09 configure Master Branch Env : cognito User Pool (admin), rgpdaycomLambdaRole38354eca-master Role (SendEmail)
