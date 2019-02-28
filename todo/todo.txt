@@ -4,16 +4,11 @@
 2019-02-27 Admin : activate session button
 2019-02-27 Admin : delete session button
 2019-02-27 Send email Lambda function : verify recaptcha
-2019-02-27 call the custom resolver from the Contact page
 2019-02-27 update the lambda function to actually send emails
-2019-02-09 configure Master Branch Env : cognito User Pool (admin), rgpdaycomLambdaRole38354eca-master Role (SendEmail)
+2019-02-09 configure Master Branch Env : cognito User Pool and identity pool auth/unaut roles (admin), rgpdaycomLambdaRole38354eca-master Role (SendEmail), lambda => Recaptcha Secret (environment var)
 2019-02-09 add amplify graphql backend
 2019-02-09 write the game specs
 2019-02-09 write the conference specs
-2019-02-25 Restore the Contact page [Gravatar](https://fr.gravatar.com/jpbourgeon)
-2019-02-20 Contact Lambda : add Lambda to API from CI/CD
-2019-02-20 Contact Lambda : [verify ReCaptcha](https://developers.google.com/recaptcha/docs/verify) / <https://www.google.com/recaptcha/admin/site/345190045/setup>
-2019-02-20 Contact Lambda : [Send email with SES](http://www.wisdomofjim.com/blog/sending-an-email-from-aws-lambda-function-in-nodejs-with-aws-simple-email-service)
 2019-02-09 "mentions legales" (CopyRight) / RGPD page + [Cookie Consent](https://cookieconsent.insites.com/) <https://www.service-public.fr/professionnels-entreprises/vosdroits/F31228>
 2019-02-09 conditional robots.txt on CD, depending on the published branch
 2019-02-20 Home page : add reviews from CUCDB (Turrel / Aubrier)

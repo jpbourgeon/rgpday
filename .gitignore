@@ -5,6 +5,7 @@
 
 # testing
 /coverage
+secret_env.json
 
 # production
 /build

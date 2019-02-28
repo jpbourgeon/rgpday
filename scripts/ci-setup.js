@@ -10,7 +10,7 @@ process.on('unhandledRejection', err => {
   throw err
 })
 
-const debug = require('debug')('rgpday.com')
+const logger = require('../src/logger')
 const fs = require('fs')
 const Path = require('path')
 const ciOptions = {
@@ -22,4 +22,4 @@ const ciOptions = {
 const packageDotJson = { ...require(Path.resolve(process.cwd(), './package.json')), ...ciOptions }
 fs.writeFileSync(Path.resolve(process.cwd(), './package.json'), JSON.stringify(packageDotJson))
 
-debug('ci-setup', 'finished')
+logger.info('ci-setup', 'finished')

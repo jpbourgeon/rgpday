@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import logger from '../../logger'
 import { withStyles } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
 import { Link } from '@reach/router'
@@ -7,18 +8,16 @@ import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import Hidden from '@material-ui/core/Hidden'
 import Info from '@material-ui/icons/Info'
-// import Email from '@material-ui/icons/Email'
+import Email from '@material-ui/icons/Email'
 import Game from '@material-ui/icons/VideogameAsset'
 import SignOut from '@material-ui/icons/PowerSettingsNew'
 import classNames from 'classnames'
 
 import Auth from '@aws-amplify/auth'
 import { Hub } from '@aws-amplify/core'
-import config from '../../aws-exports'
+import config from '../../aws-config'
 
 Auth.configure(config)
-
-const debug = require('debug')('rgpday.com')
 
 const styles = theme => ({
   root: {
@@ -86,7 +85,7 @@ class AppBarComponent extends React.Component {
             stateFromStorage: true
           })
         })
-        .catch(err => debug(err))
+        .catch(err => logger.error('findState', err))
     } else if (this.props.stateFromStorage) {
       this.setState({
         stateFromStorage: true
@@ -119,7 +118,7 @@ class AppBarComponent extends React.Component {
       throw new Error('No Auth module found, please ensure @aws-amplify/auth is imported')
     }
     await Auth.signOut()
-      .catch(err => debug(err))
+      .catch(err => logger.error('signOut', err))
     this.changeState('signedOut')
   }
 
@@ -140,12 +139,12 @@ class AppBarComponent extends React.Component {
               <Hidden xsDown>À propos</Hidden>
 
             </Link>
-            {/*
+
             <Link to='/contact' className={classes.menuLink}>
               <Hidden smUp><Email /></Hidden>
               <Hidden xsDown>Contact</Hidden>
             </Link>
-            */}
+
             <Link to='/session' className={classes.menuLink}>
               <Hidden smUp><Game /></Hidden>
               <Hidden xsDown>Session</Hidden>

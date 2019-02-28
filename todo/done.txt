@@ -27,6 +27,16 @@ x 2019-02-26 2019-02-25 AppBar : fully functional conditional SignOut button
 x 2019-02-26 2019-02-25 Temporarily replace Contact Page by a popup [Gravatar](https://fr.gravatar.com/jpbourgeon)
 x 2019-02-26 2019-02-26 Security: replace react-loadable by [@loadable/components](https://www.smooth-code.com/open-source/loadable-components/)
 x 2019-02-26 2019-02-25 Code splitting: manage past delay, error and timeout
-x 2019-02-26 2019-02-27 RELEASE VERSION v0.2.0x 2019-02-27 2019-02-27 create an amplify function called sendEmail (hello world template)
+x 2019-02-26 2019-02-27 RELEASE VERSION v0.2.0
+x 2019-02-27 2019-02-27 create an amplify function called sendEmail (hello world template)
 x 2019-02-27 2019-02-27 create an AWSAppsync GraphQL endpoint API
-x 2019-02-27 2019-02-27 update email sending lambda function namex 2019-02-27 2019-02-27 SendEmail : Connect AppSync GraphQL API to the Lambda function
+x 2019-02-27 2019-02-27 update email sending lambda function name
+x 2019-02-27 2019-02-27 SendEmail : Connect AppSync GraphQL API to the Lambda function
+x 2019-02-28 2019-02-20 Contact Lambda : [Send email with SES](http://www.wisdomofjim.com/blog/sending-an-email-from-aws-lambda-function-in-nodejs-with-aws-simple-email-service)
+x 2019-02-28 2019-02-28 remove p-min-delay dependency
+x 2019-02-28 2019-02-25 Restore the Contact page
+x 2019-02-28 2019-02-25 Change the logger
+x 2019-02-28 2019-02-25 App : remove references to gravatar
+x 2019-02-28 2019-02-27 Contact page : send email in unauthenticated and athenticated state
+x 2019-02-28 2019-02-20 Contact Lambda : [verify ReCaptcha](https://developers.google.com/recaptcha/docs/verify) / <https://www.google.com/recaptcha/admin/site/345190045/setup>
+x 2019-02-28 2019-02-27 Contact page : displays error message

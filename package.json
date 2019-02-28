@@ -11,9 +11,7 @@
     "aws-amplify": "^1.1.19",
     "aws-amplify-react": "^2.3.0",
     "classnames": "^2.2.6",
-    "debug": "^4.1.0",
     "jss": "^9.8.7",
-    "p-min-delay": "^2.0.0",
     "react": "^16.8.2",
     "react-app-polyfill": "^0.2.1",
     "react-dom": "^16.8.2",
@@ -26,7 +24,6 @@
   },
   "devDependencies": {
     "compare-versions": "^3.4.0",
-    "cross-env": "^5.2.0",
     "react-snap": "^1.22.1",
     "react-test-renderer": "^16.8.2",
     "simple-git": "^1.107.0",
@@ -34,16 +31,16 @@
     "typescript": "^3.3.3333"
   },
   "scripts": {
-    "build": "cross-env DEBUG=rgpday.com react-scripts build",
-    "ci-setup": "cross-env DEBUG=rgpday.com node scripts/ci-setup.js",
+    "build": "react-scripts build",
+    "ci-setup": "node scripts/ci-setup.js",
     "ci-test": "cross-env-shell CI=true \"npm run lint && npm test\"",
     "ci-postbuild": "react-snap",
-    "ci-push-to-master": "cross-env DEBUG=rgpday.com node scripts/ci-push-to-master.js",
-    "lint": "cross-env DEBUG=rgpday.com standard",
-    "postversion": "cross-env DEBUG=rgpday.com node scripts/postversion.js",
-    "preversion": "cross-env DEBUG=rgpday.com npm run ci-test",
-    "start": "cross-env DEBUG=rgpday.com react-scripts start",
-    "test": "cross-env DEBUG=rgpday.com react-scripts test"
+    "ci-push-to-master": "node scripts/ci-push-to-master.js",
+    "lint": "standard",
+    "postversion": "node scripts/postversion.js",
+    "preversion": "npm run ci-test",
+    "start": "react-scripts start",
+    "test": "react-scripts test"
   },
   "browserslist": [
     ">0.2%",

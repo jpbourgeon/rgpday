@@ -1,4 +1,5 @@
 import React from 'react'
+import logger from '../../logger'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
 import { ReCaptcha } from 'recaptcha-v3-react'
@@ -14,6 +15,12 @@ import Email from '@material-ui/icons/EmailOutlined'
 import isEmail from 'validator/lib/isEmail'
 import isEmpty from 'validator/lib/isEmpty'
 import AppBar from '../AppBar'
+
+import API, { graphqlOperation } from '@aws-amplify/api'
+import { sendEmail } from '../../graphql/queries'
+import config from '../../aws-config'
+
+API.configure(config)
 
 const styles = theme => {
   return {
@@ -61,7 +68,7 @@ const defaultState = {
     isDirty: false,
     value: ''
   },
-  from: {
+  sender: {
     isDirty: false,
     value: ''
   },
@@ -85,6 +92,7 @@ class Contact extends React.Component {
   constructor (props) {
     super(props)
     this.state = { ...defaultState }
+    this.recaptcha = React.createRef()
 
     this.handleChange = this.handleChange.bind(this)
     this.handleBlur = this.handleBlur.bind(this)
@@ -112,34 +120,66 @@ class Contact extends React.Component {
     this.setState({ ...state })
   }
 
-  handleSubmit (event) {
+  async handleSubmit (event) {
     event.preventDefault()
-    const snackbar = {
-      open: true,
-      message: ''
-    }
+    let state = this.state
     if (
-      isEmail(this.state.from.value) &&
-      !isEmpty(this.state.from.value) &&
+      !isEmpty(this.state.sender.value) && isEmail(this.state.sender.value) &&
       !isEmpty(this.state.subject.value) &&
       !isEmpty(this.state.content.value) &&
       !isEmpty(this.state.recaptcha.token)
     ) {
-      // TODO : Call SES Lambda and manage response (success if recaptcha verified and email sent, fail otherwise)
-      // Disable form during Lambda call
-      // Reset form on success but not on failure !
-      snackbar.message = `Votre message a été envoyé avec succès.`
-      this.setState({ snackbar })
+      try {
+        const form = {
+          isDisabled: true
+        }
+        this.setState({ form })
+        const result = await API.graphql(
+          graphqlOperation(sendEmail, {
+            'from': 'no-reply@rgpday.com',
+            'to': 'jeanphilippe.bourgeon@gmail.com',
+            'sender': this.state.sender.value,
+            'content': this.state.content.value,
+            'subject': this.state.subject.value,
+            'recaptcha': this.state.recaptcha.token
+          })
+        )
+        logger.info(result)
+        if (!result.errors) {
+          logger.info('handleSubmit', result)
+          state = { ...defaultState }
+          state.snackbar.message = `Votre message a été envoyé avec succès.`
+          state.snackbar.open = true
+        } else {
+          logger.error('handleSubmit', result)
+          state.snackbar.message = `L'envoi de votre message a échoué.`
+          state.snackbar.open = true
+        }
+      } catch (error) {
+        logger.error('handleSubmit', error)
+        state.snackbar.message = `L'envoi de votre message a échoué.`
+        state.snackbar.open = true
+      } finally {
+        logger.info('handleSubmit:finally', state)
+        this.setState({ ...state, form: { isDisabled: false } }, () => {
+          this.getNewRecaptcha()
+        })
+      }
     } else {
-      snackbar.message = `Votre message n'a pas été envoyé. Le formulaire est invalide.`
-      this.setState({ snackbar })
+      state.snackbar.message = `Votre message n'a pas été envoyé. Le formulaire est invalide.`
+      this.setState({ state })
     }
   }
 
-  handleCancel (event) {
+  handleCancel (event = { preventDefault: () => {} }) {
     event.preventDefault()
-    const state = { ...defaultState, recaptcha: this.state.recaptcha }
-    this.setState({ ...state })
+    this.setState({ ...defaultState, form: { isDisabled: false }, snackbar: { open: false, message: '' } }, () => {
+      this.getNewRecaptcha()
+    })
+  }
+
+  getNewRecaptcha () {
+    this.recaptcha.current.execute()
   }
 
   handleCloseSnackbar (event, reason) {
@@ -183,14 +223,14 @@ class Contact extends React.Component {
                       fullWidth
                       margin='normal'
                       variant='outlined'
-                      onChange={(e) => this.handleChange(e, 'from')}
-                      onBlur={(e) => this.handleBlur(e, 'from')}
-                      value={this.state.from.value}
+                      onChange={(e) => this.handleChange(e, 'sender')}
+                      onBlur={(e) => this.handleBlur(e, 'sender')}
+                      value={this.state.sender.value}
                       error={(
-                        this.state.from.isDirty &&
+                        this.state.sender.isDirty &&
                         (
-                          !isEmail(this.state.from.value) ||
-                          isEmpty(this.state.from.value)
+                          !isEmail(this.state.sender.value) ||
+                          isEmpty(this.state.sender.value)
                         )
                       )}
                       disabled={this.state.form.isDisabled}
@@ -245,7 +285,7 @@ class Contact extends React.Component {
                     }}
                     open={this.state.snackbar.open}
                     autoHideDuration={5000}
-                    onClose={this.handleClose}
+                    onClose={this.handleCloseSnackbar}
                     ContentProps={{
                       'aria-describedby': 'message-id'
                     }}
@@ -271,6 +311,7 @@ class Contact extends React.Component {
           action='contact'
           sitekey='6LedLpMUAAAAAG8Ai4M4x9wTcIs4rPmvYV82a7Yh'
           verifyCallback={this.handleReCaptchaToken}
+          ref={this.recaptcha}
         />
       </div>
     )

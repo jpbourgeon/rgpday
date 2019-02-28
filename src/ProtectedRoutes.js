@@ -5,7 +5,7 @@ import Loadable from './components/Loadable'
 
 import Auth from '@aws-amplify/auth'
 import { Authenticator } from 'aws-amplify-react'
-import config from './aws-exports'
+import config from './aws-config'
 
 Auth.configure(config)
 

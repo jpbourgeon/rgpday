@@ -1,10 +1,8 @@
 import React from 'react'
+import logger from '../../logger'
 import loadable from '@loadable/component'
-import pMinDelay from 'p-min-delay'
 import Loading from '../LoadingWithAppBar'
 import Default from '../Default'
-
-const debug = require('debug')('rgpday.com')
 
 class ErrorBoundary extends React.Component {
   constructor (props) {
@@ -19,7 +17,8 @@ class ErrorBoundary extends React.Component {
 
   componentDidCatch (error, info) {
     // You can also log the error to an error reporting service
-    debug(error, info)
+    if (error) logger.error('componentDidCatch', error)
+    if (info) logger.info('componentDidCatch', info)
   }
 
   render () {
@@ -35,10 +34,10 @@ const Loadable = (props) => {
   const { component, prefetch } = props
   let AsyncComponent
   if (prefetch) {
-    AsyncComponent = loadable(() => pMinDelay(import(/* webpackPrefetch: true */ `../../${component}`), 200),
+    AsyncComponent = loadable(() => import(/* webpackPrefetch: true */ `../../${component}`),
       { fallback: <Loading /> })
   } else {
-    AsyncComponent = loadable(() => pMinDelay(import(`../../${component}`), 200),
+    AsyncComponent = loadable(() => import(`../../${component}`),
       { fallback: <Loading /> })
   }
   return (

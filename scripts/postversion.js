@@ -10,21 +10,21 @@ process.on('unhandledRejection', err => {
   throw err
 })
 
-const debug = require('debug')('rgpday.com')
+const logger = require('../src/logger')
 const git = require('simple-git')(__dirname)
 
 git
   .push(['origin', 'dev'], (err) => {
     if (err) {
-      debug('postversion:push', err)
+      logger.error('postversion:push', err)
     } else {
-      debug('postversion:push', 'success')
+      logger.info('postversion:push', 'success')
     }
   })
   .pushTags('origin', (err) => {
     if (err) {
-      debug('postversion:pushTags', err)
+      logger.error('postversion:pushTags', err)
     } else {
-      debug('postversion:pushTags', 'success')
+      logger.info('postversion:pushTags', 'success')
     }
   })

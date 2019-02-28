@@ -1,46 +1,58 @@
-var aws = require('aws-sdk')
-var ses = new aws.SES({
+const fetch = require('node-fetch')
+const aws = require('aws-sdk')
+const ses = new aws.SES({
   region: 'eu-west-1'
 })
 
-exports.handler = function (event, context) {
-  console.log('Incoming: ', context)
-
-  console.log('Incoming: ', event)
-
-  var eParams = {
-    Destination: {
-      ToAddresses: [`${event.to}`]
-    },
-    Message: {
-      Body: {
-        Text: {
-          Data: `Message de : ${event.sender}
-
----
-
-${event.content}`
-        }
+exports.handler = async function (event, context, callback) {
+  // RECAPTCHA VERIFICATION
+  const RECAPTCHA_SECRET = process.env.RECAPTCHA_SECRET || require('./secret_env.json').RECAPTCHA_SECRET
+  if (!RECAPTCHA_SECRET) {
+    callback(JSON.stringify({ success: false, message: 'RECAPTCHA_SECRET is missing' }))
+  } else {
+    const rawResponse = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded'
       },
-      Subject: {
-        Data: `${event.subject}`
+      body: `secret=${RECAPTCHA_SECRET}&response=${event.recaptcha}`
+    })
+    const verification = await rawResponse.json()
+
+    if (verification.success) {
+    // SEND EMAIL
+      const eParams = {
+        Destination: {
+          ToAddresses: ['jeanphilippe.bourgeon@gmail.com']
+        },
+        Message: {
+          Body: {
+            Text: {
+              Data: `Message de : ${event.sender}
+  
+  ---
+  
+  ${event.content}`
+            }
+          },
+          Subject: {
+            Data: `${event.subject}`
+          }
+        },
+        Source: 'no-reply@rgpday.com'
       }
-    },
-    Source: `${event.from}`
-  }
 
-  console.log('eParams: ', eParams)
-
-  console.log('===SENDING EMAIL===')
-  var email = ses.sendEmail(eParams, function (err, data) {
-    if (err) console.log(err)
-    else {
-      console.log('===EMAIL SENT===')
-      console.log(data)
-
-      console.log('EMAIL CODE END')
-      console.log('EMAIL: ', email)
-      context.succeed(event)
+      ses.sendEmail(eParams, (err) => {
+        if (err) {
+          callback(JSON.stringify({ success: false, message: 'Email not sent', error: err }))
+        } else {
+          callback(null, JSON.stringify({ success: true, message: 'Email sent' }))
+        }
+      })
+    } else {
+      // RECAPTCHA verification failed
+      callback(JSON.stringify({ success: false, message: 'Verification error', error: verification }))
     }
-  })
+  }
 }

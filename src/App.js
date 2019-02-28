@@ -9,7 +9,7 @@ import Loadable from './components/Loadable'
 const Default = () => (<Loadable component='components/Default' />)
 const Home = () => (<Loadable component='components/Home' />)
 const About = () => (<Loadable component='components/About' />)
-// const Contact = () => (<Loadable component='../Contact' />)
+const Contact = () => (<Loadable component='components/Contact' />)
 const ProtectedRoutes = () => (<Loadable component='ProtectedRoutes' />)
 
 const styles = () => ({
@@ -38,7 +38,7 @@ class App extends React.Component {
           <Default default />
           <Home path='/' />
           <About path='about' />
-          {/* <Contact path='/contact' /> */}
+          <Contact path='/contact' />
           <ProtectedRoutes path='/session' />
         </Router>
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-
+import logger from '../../logger'
 import { withStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
@@ -13,11 +13,9 @@ import isEmpty from 'validator/lib/isEmpty'
 import AppBar from '../AppBar'
 
 import Auth from '@aws-amplify/auth'
-import config from '../../aws-exports'
+import config from '../../aws-config'
 
 Auth.configure(config)
-
-const debug = require('debug')('rgpday.com')
 
 const styles = theme => {
   return {
@@ -154,18 +152,17 @@ class SignIn extends React.Component {
     this.setState({ loading: true })
     try {
       const user = await Auth.signIn(username, password)
-        .catch(e => debug(e))
-      // debug(user)
+        .catch(e => logger.error('signIn', e))
       if (user.challengeName === 'NEW_PASSWORD_REQUIRED') {
         this.changeState('requireNewPassword', user)
         Auth.completeNewPassword(
           user, // the Cognito User Object
           password // the new password
-        ).catch(e => debug(e))
+        ).catch(e => logger.error('signIn', e))
       }
       this.changeState('signedIn', user)
     } catch (err) {
-      debug(err)
+      logger.error('signIn', err)
     } finally {
       const event = {
         preventDefault: () => (null)

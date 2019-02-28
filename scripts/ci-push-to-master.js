@@ -10,7 +10,7 @@ process.on('unhandledRejection', err => {
   throw err
 })
 
-const debug = require('debug')('rgd')
+const logger = require('../src/logger')
 const git = require('simple-git')(__dirname)
 const comp = require('compare-versions')
 
@@ -25,25 +25,25 @@ git
   .raw(['describe', '--tags', 'origin/master'], (err, tag) => {
     if (!err) {
       config.latestTagOnMaster = tag.trim()
-      debug('ci-push-to-master: ', `Latest tag on master: ${config.latestTagOnMaster}`)
+      logger.info('ci-push-to-master', `Latest tag on master: ${config.latestTagOnMaster}`)
     }
   })
   .tags((err, tags) => {
     if (!err) {
       config.latestTag = tags.latest.trim()
-      debug('ci-push-to-master: ', `Latest tag: ${config.latestTag}`)
+      logger.info('ci-push-to-master', `Latest tag: ${config.latestTag}`)
     }
   })
   .revparse(['HEAD'], (err, commit) => {
     if (!err) {
       config.currentCommit = commit.trim()
-      debug('ci-push-to-master: ', `Current commit: ${config.currentCommit}`)
+      logger.info('ci-push-to-master', `Current commit: ${config.currentCommit}`)
     }
   })
   .tag(['-l', '--points-at', 'HEAD'], (err, commit) => {
     if (!err) {
       config.currentCommitTag = commit.trim()
-      debug('ci-push-to-master: ', `Current commit tag: ${config.currentCommitTag}`)
+      logger.info('ci-push-to-master', `Current commit tag: ${config.currentCommitTag}`)
     }
     // if there is a tag associated to the current commit
     if (config.currentCommitTag) {
@@ -52,16 +52,16 @@ git
         // and if this is the first tag pushed to master or the tag is newer than the last tag pushed to master
         if (!config.latestTagOnMaster || comp(config.currentCommitTag, config.latestTagOnMaster) > 0) {
           // then push the current commit tag to master
-          debug('ci-push-to-master: ', `Pushing current commit tag to master (${config.currentCommitTag})`)
+          logger.info('ci-push-to-master', `Pushing current commit tag to master (${config.currentCommitTag})`)
           git
             .push(['origin', `+${config.currentCommitTag}~0:master`])
         } else {
-          debug('ci-push-to-master: ', `Master is already up to date with the latest tag (${config.latestTagOnMaster})`)
+          logger.info('ci-push-to-master', `Master is already up to date with the latest tag (${config.latestTagOnMaster})`)
         }
       } else {
-        debug('ci-push-to-master: ', 'The current commit tag is not the latest tag')
+        logger.info('ci-push-to-master', 'The current commit tag is not the latest tag')
       }
     } else {
-      debug('ci-push-to-master: ', 'There is no tag associated with the current commit')
+      logger.info('ci-push-to-master', 'There is no tag associated with the current commit')
     }
   })
