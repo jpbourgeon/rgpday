@@ -34,6 +34,13 @@ exports[`The About component should render correctly 1`] = `
         </a>
         <a
           className="menuLink-6"
+          href="/contact"
+          onClick={[Function]}
+        >
+          Contact
+        </a>
+        <a
+          className="menuLink-6"
           href="/session"
           onClick={[Function]}
         >
@@ -151,10 +158,9 @@ exports[`The About component should render correctly 1`] = `
               >
                 Si ce format vous intéresse, 
                 <a
-                  className="root-48 colorSecondary-79 inline-83 root-200 underlineHover-202 link-199"
-                  href="https://fr.gravatar.com/jpbourgeon"
-                  rel="noopener"
-                  target="_blank"
+                  className="root-48 colorSecondary-79 inline-83 root-200 underlineHover-202"
+                  href="/contact"
+                  onClick={[Function]}
                 >
                   contactez-moi
                 </a>

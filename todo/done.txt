@@ -40,3 +40,4 @@ x 2019-02-28 2019-02-25 App : remove references to gravatar
 x 2019-02-28 2019-02-27 Contact page : send email in unauthenticated and athenticated state
 x 2019-02-28 2019-02-20 Contact Lambda : [verify ReCaptcha](https://developers.google.com/recaptcha/docs/verify) / <https://www.google.com/recaptcha/admin/site/345190045/setup>
 x 2019-02-28 2019-02-27 Contact page : displays error message
+x 2019-02-28 2019-02-28 Fixed: isomorphic logger

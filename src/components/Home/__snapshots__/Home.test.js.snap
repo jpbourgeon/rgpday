@@ -34,6 +34,13 @@ exports[`The Home component should render correctly 1`] = `
         </a>
         <a
           className="menuLink-8"
+          href="/contact"
+          onClick={[Function]}
+        >
+          Contact
+        </a>
+        <a
+          className="menuLink-8"
           href="/session"
           onClick={[Function]}
         >
@@ -92,10 +99,9 @@ exports[`The Home component should render correctly 1`] = `
                 >
                   Si ce format vous intéresse, 
                   <a
-                    className="root-50 colorSecondary-81 inline-85 root-185 underlineHover-187 link-184"
-                    href="https://fr.gravatar.com/jpbourgeon"
-                    rel="noopener"
-                    target="_blank"
+                    className="root-50 colorSecondary-81 inline-85 root-185 underlineHover-187"
+                    href="/contact"
+                    onClick={[Function]}
                   >
                     contactez-moi
                   </a>

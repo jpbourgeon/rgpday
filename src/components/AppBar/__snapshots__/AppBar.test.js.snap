@@ -31,6 +31,13 @@ exports[`The AppBar component should render correctly 1`] = `
       </a>
       <a
         className="menuLink-3"
+        href="/contact"
+        onClick={[Function]}
+      >
+        Contact
+      </a>
+      <a
+        className="menuLink-3"
         href="/session"
         onClick={[Function]}
       >

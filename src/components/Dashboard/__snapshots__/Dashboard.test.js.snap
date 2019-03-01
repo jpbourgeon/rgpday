@@ -34,6 +34,13 @@ exports[`The Dashboard component should render correctly 1`] = `
         </a>
         <a
           className="menuLink-6"
+          href="/contact"
+          onClick={[Function]}
+        >
+          Contact
+        </a>
+        <a
+          className="menuLink-6"
           href="/session"
           onClick={[Function]}
         >
