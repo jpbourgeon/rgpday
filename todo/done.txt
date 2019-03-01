@@ -42,3 +42,6 @@ x 2019-02-28 2019-02-20 Contact Lambda : [verify ReCaptcha](https://developers.g
 x 2019-02-28 2019-02-27 Contact page : displays error message
 x 2019-02-28 2019-02-28 Fixed: isomorphic logger
 x 2019-03-01 2019-03-01 Delete the broken amplify project and create a new one
+x 2019-03-01 2019-03-01 Init amplify project
+x 2019-03-01 2019-03-01 Create and push amplify environments dev and master
+x 2019-03-01 2019-03-01 rgpdayAuth: Create, push, configure and document the backend for both environments

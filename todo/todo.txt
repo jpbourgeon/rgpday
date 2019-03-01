@@ -1,18 +1,11 @@
-2019-03-01 The cloud backends should be created first
-2019-03-01 Provision the resources on the dev backend
-2019-03-01 Apply manual modifications to the resources on the dev backend
-2019-03-01 Provision the resources on the master backend
-2019-03-01 Apply manual modifications to the resources on the master backend
-2019-03-01 Push the backends
+2019-03-01 rgpdaySendMailFunction lambda : Create, push, configure and document the backend for both environments
+2019-03-01 rgpdayAPI: Create, push, configure and document the backend for both environments
 2019-03-01 Connect the branches to the amplify console and build them
 2019-02-27 Admin page
 2019-02-27 Admin : edit session page
 2019-02-27 Admin : create session page
 2019-02-27 Admin : activate session button
 2019-02-27 Admin : delete session button
-2019-02-27 Send email Lambda function : verify recaptcha
-2019-02-27 update the lambda function to actually send emails
-2019-02-09 add amplify graphql backend
 2019-02-09 write the game specs
 2019-02-09 write the conference specs
 2019-02-09 "mentions legales" (CopyRight) / RGPD page + [Cookie Consent](https://cookieconsent.insites.com/) <https://www.service-public.fr/professionnels-entreprises/vosdroits/F31228>
@@ -20,3 +13,4 @@
 2019-02-20 Home page : add reviews from CUCDB (Turrel / Aubrier)
 2019-02-26 meta => Title in Default page
 2019-02-10 SEO : start promoting the service => headers meta, sitemap, etc. Lighthouse, <https://varvy.com/>, <https://seositecheckup.com/>
+2019-03-01 Add analytics

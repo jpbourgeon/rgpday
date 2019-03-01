@@ -1,0 +1,8 @@
+{
+	"auth": {
+		"rgpday": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation"
+		}
+	}
+}
