@@ -1,3 +1,10 @@
+2019-03-01 The cloud backends should be created first
+2019-03-01 Provision the resources on the dev backend
+2019-03-01 Apply manual modifications to the resources on the dev backend
+2019-03-01 Provision the resources on the master backend
+2019-03-01 Apply manual modifications to the resources on the master backend
+2019-03-01 Push the backends
+2019-03-01 Connect the branches to the amplify console and build them
 2019-02-27 Admin page
 2019-02-27 Admin : edit session page
 2019-02-27 Admin : create session page
@@ -5,7 +12,6 @@
 2019-02-27 Admin : delete session button
 2019-02-27 Send email Lambda function : verify recaptcha
 2019-02-27 update the lambda function to actually send emails
-2019-02-09 configure Master Branch Env : cognito User Pool and identity pool auth/unaut roles (admin), rgpdaycomLambdaRole38354eca-master Role (SendEmail), lambda => Recaptcha Secret (environment var)
 2019-02-09 add amplify graphql backend
 2019-02-09 write the game specs
 2019-02-09 write the conference specs

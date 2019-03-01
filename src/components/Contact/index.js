@@ -17,7 +17,7 @@ import isEmpty from 'validator/lib/isEmpty'
 import AppBar from '../AppBar'
 
 import API, { graphqlOperation } from '@aws-amplify/api'
-import { sendEmail } from '../../graphql/queries'
+import { sendMail } from '../../graphql/queries'
 import config from '../../aws-config'
 
 API.configure(config)
@@ -135,7 +135,7 @@ class Contact extends React.Component {
         }
         this.setState({ form })
         const result = await API.graphql(
-          graphqlOperation(sendEmail, {
+          graphqlOperation(sendMail, {
             'from': 'no-reply@rgpday.com',
             'to': 'jeanphilippe.bourgeon@gmail.com',
             'sender': this.state.sender.value,

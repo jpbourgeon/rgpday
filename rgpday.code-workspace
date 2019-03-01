@@ -13,12 +13,6 @@
 		"editor.tabSize": 2,
 		"editor.wordWrap": "wordWrapColumn",
 		"editor.wordWrapColumn": 120,
-		"files.exclude": {
-			"*.code-workspace": true,
-			"*.vscode": true,
-			"**/node_modules": true,
-			"**/build": true
-		},
 		"javascript.validate.enable": false,
 		"workbench.activityBar.visible": false,
 		"workbench.colorTheme": "Cobalt2",
