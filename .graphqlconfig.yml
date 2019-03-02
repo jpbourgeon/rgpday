@@ -1,5 +1,5 @@
 projects:
-  rgpday:
+  rgpdayAPI:
     schemaPath: src\graphql\schema.json
     includes:
       - src\graphql\**\*.js
@@ -10,7 +10,7 @@ projects:
         codeGenTarget: javascript
         generatedFileName: ''
         docsFilePath: src\graphql
-        graphQLApiId: vvberkgmevejhggrevxxmlujue
+        graphQLApiId: 2mwueq325zbqxiof4v7hry6qmu
       endpoints:
         prod: >-
-          https://wmc7hzsv5jckfd47okdet7axcm.appsync-api.eu-west-1.amazonaws.com/graphql
+          https://7zibadpsbbdt7jzhs5ehkamaca.appsync-api.eu-west-1.amazonaws.com/graphql

@@ -142,6 +142,35 @@
 					"env": "master"
 				}
 			}
+		},
+		"functionrgpdayFunctionSendMail": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/rgpday-20190301181040-deployment/amplify-cfn-templates/function/rgpdayFunctionSendMail-cloudformation-template.json",
+				"Parameters": {
+					"env": "master"
+				}
+			}
+		},
+		"apirgpdayAPI": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/rgpday-20190301181040-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+				"Parameters": {
+					"AppSyncApiName": "rgpdayAPI",
+					"AuthCognitoUserPoolId": {
+						"Fn::GetAtt": [
+							"authrgpday",
+							"Outputs.UserPoolId"
+						]
+					},
+					"schemaGraphql": "s3://rgpday-20190301181040-deployment/amplify-appsync-files/schema.graphql.1551530229457",
+					"ResolverBucket": "rgpday-20190301181040-deployment",
+					"ResolverRootKey": "amplify-appsync-files",
+					"DeploymentTimestamp": "1551530229457",
+					"env": "master"
+				}
+			}
 		}
 	},
 	"Outputs": {

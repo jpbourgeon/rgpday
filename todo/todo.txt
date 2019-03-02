@@ -1,6 +1,9 @@
-2019-03-01 rgpdaySendMailFunction lambda : Create, push, configure and document the backend for both environments
-2019-03-01 rgpdayAPI: Create, push, configure and document the backend for both environments
-2019-03-01 Connect the branches to the amplify console and build them
+2019-03-01 Connect the master branch to the amplify console and build it manually
+2019-03-02 Contact: get recaptcha token just-in-time
+2019-03-02 SignIn: get recaptcha token just-in-time
+2019-03-02 rgpdayFunctionPreAuth: create, push, configure and document the backend for both environments
+2019-03-02 Auth backend: configure [pre authentication lambda trigger](https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-lambda-pre-authentication.html) 
+2019-03-01 RELEASE VERSION v0.3.0
 2019-02-27 Admin page
 2019-02-27 Admin : edit session page
 2019-02-27 Admin : create session page
