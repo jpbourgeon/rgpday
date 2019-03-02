@@ -33,7 +33,7 @@
   "scripts": {
     "build": "react-scripts build",
     "ci-setup": "node scripts/ci-setup.js",
-    "ci-test": "cross-env-shell CI=true \"npm run lint && npm test\"",
+    "ci-test": "\"npm run lint && npm test\"",
     "ci-postbuild": "react-snap",
     "ci-push-to-master": "node scripts/ci-push-to-master.js",
     "lint": "standard",

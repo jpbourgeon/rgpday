@@ -15,10 +15,9 @@ exports[`The CallToAction component should render correctly 1`] = `
       >
         Si ce format vous intéresse, 
         <a
-          className="root-127 colorSecondary-158 inline-162 root-163 underlineHover-165 link-2"
-          href="https://fr.gravatar.com/jpbourgeon"
-          rel="noopener"
-          target="_blank"
+          className="root-127 colorSecondary-158 inline-162 root-163 underlineHover-165"
+          href="/contact"
+          onClick={[Function]}
         >
           contactez-moi
         </a>

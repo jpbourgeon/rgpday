@@ -1,4 +1,3 @@
-2019-03-01 Connect the master branch to the amplify console and build it manually
 2019-03-02 Contact: get recaptcha token just-in-time
 2019-03-02 SignIn: get recaptcha token just-in-time
 2019-03-02 rgpdayFunctionPreAuth: create, push, configure and document the backend for both environments
@@ -15,5 +14,5 @@
 2019-02-09 conditional robots.txt on CD, depending on the published branch
 2019-02-20 Home page : add reviews from CUCDB (Turrel / Aubrier)
 2019-02-26 meta => Title in Default page
-2019-02-10 SEO : start promoting the service => headers meta, sitemap, etc. Lighthouse, <https://varvy.com/>, <https://seositecheckup.com/>
+2019-02-10 SEO : start promoting the service => headers meta, sitemap, etc. Lighthouse, <httpgit s://varvy.com/>, <https://seositecheckup.com/>
 2019-03-01 Add analytics

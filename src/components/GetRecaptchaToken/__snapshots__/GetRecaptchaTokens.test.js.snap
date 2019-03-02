@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The GetRecaptchaToken component should render correctly 1`] = `
+<code
+  style={
+    Object {
+      "padding": "1em",
+    }
+  }
+>
+  <h1>
+    Get ReCaptcha tokens
+  </h1>
+  <div>
+    <button
+      onClick={[Function]}
+    >
+      Reload
+    </button>
+  </div>
+  <br />
+  <div>
+    
+  </div>
+</code>
+`;
