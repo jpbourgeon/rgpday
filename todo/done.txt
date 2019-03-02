@@ -51,3 +51,4 @@ x 2019-03-02 2019-03-01 rgpdayAPI: create, push, configure and document the back
 x 2019-03-02 2019-03-02 Fix testing errors (mock) 
 x 2019-03-02 2019-03-01 Connect the dev branch to the amplify console and build it manually
 x 2019-03-02 2019-03-01 Connect the master branch to the amplify console and build it manually
+x 2019-03-02 2019-03-02 Delete the broken amplify project and create a new one
