@@ -52,3 +52,9 @@ x 2019-03-02 2019-03-02 Fix testing errors (mock)
 x 2019-03-02 2019-03-01 Connect the dev branch to the amplify console and build it manually
 x 2019-03-02 2019-03-01 Connect the master branch to the amplify console and build it manually
 x 2019-03-02 2019-03-02 Delete the broken amplify project and create a new one
+x 2019-03-02 2019-03-02 Init amplify project
+x 2019-03-02 2019-03-02 Create and push amplify environments dev and master
+x 2019-03-02 2019-03-02 rgpdayAuth: Create, push, configure and document the backend for both environments
+x 2019-03-02 2019-03-02 add a GetRecaptchaToken component to get recaptcha tokens more easily for testing purpose
+x 2019-03-02 2019-03-02 rgpdaySendMailFunction lambda : Create, push, configure and document the backend for both environments
+x 2019-03-02 2019-03-02 rgpdayAPI: create, push, configure and document the backend for both environments

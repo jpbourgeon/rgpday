@@ -1,0 +1,13 @@
+{
+    "AppSyncApiName": "rgpdayAPI",
+    "AuthCognitoUserPoolId": {
+        "Fn::GetAtt": [
+            "authrgpdayAuth",
+            "Outputs.UserPoolId"
+        ]
+    },
+    "schemaGraphql": "s3://rgpday-20190302152928-deployment/amplify-appsync-files/schema.graphql.1551543135968",
+    "ResolverBucket": "rgpday-20190302152928-deployment",
+    "ResolverRootKey": "amplify-appsync-files",
+    "DeploymentTimestamp": "1551543135968"
+}

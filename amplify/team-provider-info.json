@@ -1,0 +1,36 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "rgpday-20190302152928-authRole",
+            "UnauthRoleArn": "arn:aws:iam::919510806644:role/rgpday-20190302152928-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::919510806644:role/rgpday-20190302152928-authRole",
+            "Region": "eu-west-1",
+            "DeploymentBucketName": "rgpday-20190302152928-deployment",
+            "UnauthRoleName": "rgpday-20190302152928-unauthRole",
+            "StackName": "rgpday-20190302152928",
+            "StackId": "arn:aws:cloudformation:eu-west-1:919510806644:stack/rgpday-20190302152928/960f8920-3cf7-11e9-8697-0a0c5b3ce4f4"
+        },
+        "categories": {
+            "auth": {
+                "rgpdayAuth": {}
+            }
+        }
+    },
+    "master": {
+        "awscloudformation": {
+            "AuthRoleName": "rgpday-20190302163236-authRole",
+            "UnauthRoleArn": "arn:aws:iam::919510806644:role/rgpday-20190302163236-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::919510806644:role/rgpday-20190302163236-authRole",
+            "Region": "eu-west-1",
+            "DeploymentBucketName": "rgpday-20190302163236-deployment",
+            "UnauthRoleName": "rgpday-20190302163236-unauthRole",
+            "StackName": "rgpday-20190302163236",
+            "StackId": "arn:aws:cloudformation:eu-west-1:919510806644:stack/rgpday-20190302163236/68518ca0-3d00-11e9-a650-0ade9df0c35e"
+        },
+        "categories": {
+            "auth": {
+                "rgpdayAuth": {}
+            }
+        }
+    }
+}

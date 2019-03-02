@@ -1,12 +1,7 @@
-2019-03-02 Init amplify project
-2019-03-02 Create and push amplify environments dev and master
-2019-03-02 rgpdayAuth: Create, push, configure and document the backend for both environments
-2019-03-02 add a GetRecaptchaToken component to get recaptcha tokens more easily for testing purpose
-2019-03-02 rgpdaySendMailFunction lambda : Create, push, configure and document the backend for both environments
-2019-03-02 rgpdayAPI: create, push, configure and document the backend for both environments
-2019-03-02 Contact: get recaptcha token just-in-time
-2019-03-02 SignIn: get recaptcha token just-in-time
 2019-03-02 rgpdayFunctionPreAuth: create, push, configure and document the backend for both environments
+2019-03-02 Clone recaptcha-v3-react and adapt it for just-in-time (execute on componentDidUpdate)
+2019-03-02 Contact: get recaptcha token just-in-time (replace ref with prop)
+2019-03-02 SignIn: get recaptcha token just-in-time
 2019-03-02 Auth backend: configure [pre authentication lambda trigger](https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-lambda-pre-authentication.html) 
 2019-03-01 RELEASE VERSION v0.3.0
 2019-02-27 Admin page

@@ -52,7 +52,9 @@
     "parser": "babel-eslint",
     "ignore": [
       "build/**",
-      "node_modules/**"
+      "node_modules/**",
+      "src/aws-exports.js",
+      "src/graphql/*/**"
     ]
   }
 }

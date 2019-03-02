@@ -1,0 +1,27 @@
+type Session @model {
+  id: ID!
+  name: String!
+  description: String
+  contact: String
+  numberOfParticipants: Int
+  RGPDay: AWSDate!
+  startDate: AWSDate!
+  endDate: AWSDate!
+}
+
+type Config @model {
+  id: ID!
+  name: String!
+  value: String!
+}
+
+type Query {
+  sendMail(
+    from: String,
+    to: String,
+    sender: String,
+    content: String,
+    subject: String,
+    recaptcha: String
+  ): AWSJSON
+}
