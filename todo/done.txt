@@ -45,3 +45,4 @@ x 2019-03-01 2019-03-01 Delete the broken amplify project and create a new one
 x 2019-03-01 2019-03-01 Init amplify project
 x 2019-03-01 2019-03-01 Create and push amplify environments dev and master
 x 2019-03-01 2019-03-01 rgpdayAuth: Create, push, configure and document the backend for both environments
+x 2019-03-02 2019-03-01 add a GetRecaptchaToken component to get recaptcha tokens more easily for testing purpose
