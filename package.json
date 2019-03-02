@@ -51,8 +51,8 @@
   "standard": {
     "parser": "babel-eslint",
     "ignore": [
-      "/**/build/**",
-      "/**/node_modules/**",
+      "**/build/",
+      "**/node_modules/",
       "src/aws-exports.js",
       "src/graphql/**"
     ]

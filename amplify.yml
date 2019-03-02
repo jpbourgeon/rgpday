@@ -4,10 +4,11 @@ backend:
     preBuild:
       commands:
         # Disable building for testing purpose
-        - envCache --set installChrome true
+        - envCache --set installChrome false
         - envCache --set installNpmPackages true
-        - envCache --set build true
-        - envCache --set pushToMaster true
+        - envCache --set build false
+        - envCache --set test true
+        - envCache --set pushToMaster false
     build:
       commands:
         # Get Amplify CLI Cloud-Formation stack info from environment cache
@@ -27,7 +28,7 @@ frontend:
         # Setup custom package.json for CI (headless no-sandbox puppeteer)
         - if [[ "$(envCache --get build)" == "true" ]]; then npm run ci-setup; fi
         # Run tests
-        - if [[ "$(envCache --get build)" == "true" ]]; then npm run ci-test; fi
+        - if [[ "$(envCache --get test)" == "true" ]]; then npm run ci-test; fi
     build:
       commands:
         - if [[ "$(envCache --get build)" == "true" ]]; then npm run build; fi
