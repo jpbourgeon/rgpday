@@ -28,8 +28,8 @@ frontend:
         # Setup custom package.json for CI (headless no-sandbox puppeteer)
         - if [[ "$(envCache --get build)" == "true" ]]; then npm run ci-setup; fi
         # Run tests
-        - if [[ "$(xenvCache --get test)" == "true" ]]; then npm run lint; fi
-        - if [[ "$(xenvCache --get test)" == "true" ]]; then npm run test; fi
+        - if [[ "$(envCache --get test)" == "true" ]]; then npm run lint; fi
+        - if [[ "$(envCache --get test)" == "true" ]]; then npm run test; fi
     build:
       commands:
         - if [[ "$(envCache --get build)" == "true" ]]; then npm run build; fi
