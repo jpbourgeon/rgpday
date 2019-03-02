@@ -81,7 +81,7 @@
 		"authrgpdayAuth": {
 			"Type": "AWS::CloudFormation::Stack",
 			"Properties": {
-				"TemplateURL": "https://s3.amazonaws.com/rgpday-20190302152928-deployment/amplify-cfn-templates/auth/rgpdayAuth-cloudformation-template.yml",
+				"TemplateURL": "https://s3.amazonaws.com/rgpday-20190302163236-deployment/amplify-cfn-templates/auth/rgpdayAuth-cloudformation-template.yml",
 				"Parameters": {
 					"identityPoolName": "rgpdayIdentityPool",
 					"allowUnauthenticatedIdentities": true,
@@ -139,23 +139,23 @@
 							"Arn"
 						]
 					},
-					"env": "dev"
+					"env": "master"
 				}
 			}
 		},
 		"functionrgpdayFuncSendMail": {
 			"Type": "AWS::CloudFormation::Stack",
 			"Properties": {
-				"TemplateURL": "https://s3.amazonaws.com/rgpday-20190302152928-deployment/amplify-cfn-templates/function/rgpdayFuncSendMail-cloudformation-template.json",
+				"TemplateURL": "https://s3.amazonaws.com/rgpday-20190302163236-deployment/amplify-cfn-templates/function/rgpdayFuncSendMail-cloudformation-template.json",
 				"Parameters": {
-					"env": "dev"
+					"env": "master"
 				}
 			}
 		},
 		"apirgpdayAPI": {
 			"Type": "AWS::CloudFormation::Stack",
 			"Properties": {
-				"TemplateURL": "https://s3.amazonaws.com/rgpday-20190302152928-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+				"TemplateURL": "https://s3.amazonaws.com/rgpday-20190302163236-deployment/amplify-cfn-templates/api/cloudformation-template.json",
 				"Parameters": {
 					"AppSyncApiName": "rgpdayAPI",
 					"AuthCognitoUserPoolId": {
@@ -164,11 +164,11 @@
 							"Outputs.UserPoolId"
 						]
 					},
-					"schemaGraphql": "s3://rgpday-20190302152928-deployment/amplify-appsync-files/schema.graphql.1551543135968",
-					"ResolverBucket": "rgpday-20190302152928-deployment",
+					"schemaGraphql": "s3://rgpday-20190302163236-deployment/amplify-appsync-files/schema.graphql.1551562973948",
+					"ResolverBucket": "rgpday-20190302163236-deployment",
 					"ResolverRootKey": "amplify-appsync-files",
-					"DeploymentTimestamp": "1551543135968",
-					"env": "dev"
+					"DeploymentTimestamp": "1551562973948",
+					"env": "master"
 				}
 			}
 		}

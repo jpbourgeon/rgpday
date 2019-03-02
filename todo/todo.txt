@@ -1,5 +1,5 @@
 2019-03-02 rgpdayFunctionPreAuth: create, push, configure and document the backend for both environments
-2019-03-02 Clone recaptcha-v3-react and adapt it for just-in-time (execute on componentDidUpdate)
+2019-03-02 Extend the Recaptcha component recaptcha-v3-react and adapt it for just-in-time (execute on componentDidUpdate)
 2019-03-02 Contact: get recaptcha token just-in-time (replace ref with prop)
 2019-03-02 SignIn: get recaptcha token just-in-time
 2019-03-02 Auth backend: configure [pre authentication lambda trigger](https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-lambda-pre-authentication.html) 

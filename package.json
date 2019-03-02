@@ -24,6 +24,7 @@
   },
   "devDependencies": {
     "compare-versions": "^3.4.0",
+    "cross-env": "^5.2.0",
     "react-snap": "^1.22.1",
     "react-test-renderer": "^16.8.2",
     "simple-git": "^1.107.0",
@@ -33,7 +34,7 @@
   "scripts": {
     "build": "react-scripts build",
     "ci-setup": "node scripts/ci-setup.js",
-    "ci-test": "\"npm run lint && npm test\"",
+    "ci-test": "cross-env-shell CI=true \"npm run lint && npm test\"",
     "ci-postbuild": "react-snap",
     "ci-push-to-master": "node scripts/ci-push-to-master.js",
     "lint": "standard",

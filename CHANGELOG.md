@@ -7,6 +7,15 @@ List of change types (one of: Added, Changed, Deprecated, Removed, Fixed, Securi
 
 ## [Unreleased]
 
+## 0.2.1 - 2019-03-02
+
+- Added: add a GetRecaptchaToken component to get recaptcha tokens more easily for testing purpose
+- Changed: fully functionnal contact page sends mails after ReCaptcha verification in authenticated and unauthenticated state
+- Changed: use the amplify logger instead of debug (isomorphic)
+- Fixed: rebuild the broken amplify from scratch 
+- Removed: backend deprecated cloudformation stacks and associated ressources 
+- Security: remove useless dependencies
+
 ## 0.2.0 - 2019-02-26
 
 - Added: configure code splitting (@loadable/component)
