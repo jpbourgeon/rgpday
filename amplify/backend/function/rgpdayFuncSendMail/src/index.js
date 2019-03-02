@@ -23,7 +23,11 @@ exports.handler = async function (event, context, callback) {
     if (verification.success &&
       verification.score > 0.5 &&
       verification.action === 'contact' &&
-      (verification.hostname === 'localhost' || verification.hostname.indexOf('rgpday.com') !== -1)
+      (
+        verification.hostname === 'localhost' ||
+        verification.hostname.indexOf('rgpday.com') !== -1 ||
+        verification.hostname.indexOf('amplifyapp.com') !== -1
+      )
     ) {
     // SEND EMAIL
       const eParams = {

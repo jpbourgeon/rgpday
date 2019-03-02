@@ -59,3 +59,4 @@ x 2019-03-02 2019-03-02 add a GetRecaptchaToken component to get recaptcha token
 x 2019-03-02 2019-03-02 rgpdaySendMailFunction lambda : Create, push, configure and document the backend for both environments
 x 2019-03-02 2019-03-02 rgpdayAPI: create, push, configure and document the backend for both environments
 x 2019-03-02 2019-03-02 fix ci linting
+x 2019-03-02 2019-03-02 add amplifyapp.com to recaptcha authorized domains and to rgpdaySendMailFunction
