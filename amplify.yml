@@ -4,11 +4,11 @@ backend:
     preBuild:
       commands:
         # Disable building for testing purpose
-        - envCache --set installChrome false
+        - envCache --set installChrome true
         - envCache --set installNpmPackages true
-        - envCache --set build false
+        - envCache --set build true
         - envCache --set test true
-        - envCache --set pushToMaster false
+        - envCache --set pushToMaster true
     build:
       commands:
         # Get Amplify CLI Cloud-Formation stack info from environment cache
