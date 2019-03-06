@@ -1,4 +1,3 @@
-2019-03-01 RELEASE VERSION v0.3.0
 2019-02-27 Admin page
 2019-02-27 Admin : edit session page
 2019-02-27 Admin : create session page

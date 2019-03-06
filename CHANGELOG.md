@@ -7,6 +7,16 @@ List of change types (one of: Added, Changed, Deprecated, Removed, Fixed, Securi
 
 ## [Unreleased]
 
+## 0.3.0 - 2019-03-06
+
+- Added: Backend Auth - do a ReCaptcha antispam verification before authenticating users
+- Added: Backend function rgpdayFuncVerifyRecaptcha - manage Recaptcha tokens verifications
+- Changed: Backend function rgpdayFuncSendMail - verify user ReCaptcha token before sending an email
+- Changed: Backend functions - make the lambdas synchronous
+- Changed: Frontend ReCaptcha component - extend the recaptcha-v3-react library to provide on-demand tokens
+- Changed: Frontend Contact component - get recaptcha tokens just before submitting
+- Changed: Frontend SignIn component - do a ReCaptcha verification before user authentication
+
 ## 0.2.1 - 2019-03-02
 
 - Added: add a GetRecaptchaToken component to get recaptcha tokens more easily for testing purpose
