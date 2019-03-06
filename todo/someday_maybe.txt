@@ -1,3 +1,8 @@
+When API is available with AWS_IAM, manage auth and unauth role automatically instead of manually
+see <https://github.com/aws-amplify/amplify-cli/issues/235#issuecomment-464523677> and <https://github.com/dabit3/appsync-auth-and-unauth> and <https://github.com/aws-amplify/amplify-cli/issues/766>
+
+---
+
 GRAPHQL relationships (one to one, one to many, many to one)
 
 type Blog @model {

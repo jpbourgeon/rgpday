@@ -62,3 +62,14 @@ x 2019-03-02 2019-03-02 fix ci linting
 x 2019-03-02 2019-03-02 add amplifyapp.com to recaptcha authorized domains and to rgpdaySendMailFunction
 x 2019-03-02 2019-03-02 fix cross-env CI linting
 x 2019-03-02 2019-03-01 RELEASE VERSION v0.2.1
+x 2019-03-03 2019-03-03 rgpdayFuncSendMail: modify IAM roles policies to allow sending email with AWS SES
+x 2019-03-03 2019-03-02 Extend the Recaptcha component recaptcha-v3-react and adapt it for just-in-time (execute on componentDidUpdate)
+x 2019-03-03 2019-03-02 Contact: get recaptcha token just-in-time (replace ref with prop)
+x 2019-03-04 2019-03-03 Contact: lock the form and show the snackbar before requesting a ReCaptchaToken
+x 2019-03-06 2019-03-02 rgpdayFuncVerifyRecaptcha: create, push, configure and document the backend for both environments
+x 2019-03-06 2019-03-02 rgpdayFunctionSendMail: refactor to use rgpdayFuncVerifyRecaptcha
+x 2019-03-06 2019-03-06 Make the lambdas synchronous
+x 2019-03-06 2019-03-02 Auth backend: configure [pre authentication lambda trigger](https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-lambda-pre-authentication.html)
+x 2019-03-06 2019-03-02 ProtectedRoutes: show Recaptcha badge on SignIn only
+x 2019-03-06 2019-03-02 SignIn: get recaptcha token just-in-time (outside the state)
+x 2019-03-06 2019-03-02 Contact: get recaptcha token just-in-time (outside the state)

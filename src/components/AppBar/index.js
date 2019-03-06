@@ -15,7 +15,7 @@ import classNames from 'classnames'
 
 import Auth from '@aws-amplify/auth'
 import { Hub } from '@aws-amplify/core'
-import config from '../../aws-config'
+import config from '../../aws-exports'
 
 Auth.configure(config)
 

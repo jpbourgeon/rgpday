@@ -1,16 +1,25 @@
 import React from 'react'
+import { withStyles } from '@material-ui/core/styles'
 import { Router } from '@reach/router'
 import SignIn from './components/SignIn'
 import Loadable from './components/Loadable'
 
 import Auth from '@aws-amplify/auth'
 import { Authenticator } from 'aws-amplify-react'
-import config from './aws-config'
+import config from './aws-exports'
 
 Auth.configure(config)
 
 const Default = () => (<Loadable component='components/Default' />)
 const Dashboard = () => (<Loadable component='components/Dashboard' />)
+
+const styles = {
+  '@global': {
+    '.grecaptcha-badge': {
+      visibility: 'visible'
+    }
+  }
+}
 
 class MyRouter extends React.Component {
   constructor (props) {
@@ -34,6 +43,7 @@ class MyRouter extends React.Component {
     }
   }
 }
+const MyStyledRouter = withStyles(styles)(MyRouter)
 
 const ProtectedRoutes = () => (
   <React.Fragment>
@@ -41,7 +51,7 @@ const ProtectedRoutes = () => (
       hideDefault
     >
       <SignIn />
-      <MyRouter />
+      <MyStyledRouter />
     </Authenticator>
   </React.Fragment>
 )

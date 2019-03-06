@@ -168,6 +168,8 @@ Resources:
     Type: AWS::Cognito::UserPool
     UpdateReplacePolicy: Retain
     Properties:
+      AdminCreateUserConfig: 
+        AllowAdminCreateUserOnly: true
       UserPoolName: !If [ShouldNotCreateEnvResources, !Ref userPoolName, !Join ['',[!Ref userPoolName, '-', !Ref env]]]
       Schema: 
         
@@ -182,7 +184,12 @@ Resources:
       
       EmailVerificationMessage: !Ref emailVerificationMessage
       EmailVerificationSubject: !Ref emailVerificationSubject
-            
+      
+      LambdaConfig:
+        PreAuthentication: !Sub
+          - arn:aws:lambda:${region}:${account}:function:rgpdayFuncVerifyRecaptcha-${env}
+          - { region: !Ref "AWS::Region",  account: !Ref "AWS::AccountId", env: !Ref env}
+
       Policies:
         PasswordPolicy:
           MinimumLength: !Ref passwordPolicyMinLength

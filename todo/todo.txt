@@ -1,8 +1,3 @@
-2019-03-02 rgpdayFunctionPreAuth: create, push, configure and document the backend for both environments
-2019-03-02 Extend the Recaptcha component recaptcha-v3-react and adapt it for just-in-time (execute on componentDidUpdate)
-2019-03-02 Contact: get recaptcha token just-in-time (replace ref with prop)
-2019-03-02 SignIn: get recaptcha token just-in-time
-2019-03-02 Auth backend: configure [pre authentication lambda trigger](https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-lambda-pre-authentication.html) 
 2019-03-01 RELEASE VERSION v0.3.0
 2019-02-27 Admin page
 2019-02-27 Admin : edit session page
@@ -14,6 +9,6 @@
 2019-02-09 "mentions legales" (CopyRight) / RGPD page + [Cookie Consent](https://cookieconsent.insites.com/) <https://www.service-public.fr/professionnels-entreprises/vosdroits/F31228>
 2019-02-09 conditional robots.txt on CD, depending on the published branch
 2019-02-20 Home page : add reviews from CUCDB (Turrel / Aubrier)
-2019-02-26 meta => Title in Default page
-2019-02-10 SEO : start promoting the service => headers meta, sitemap, etc. Lighthouse, <httpgit s://varvy.com/>, <https://seositecheckup.com/>
+2019-02-26 meta => Title in Default page (in particular for 404.html)
+2019-02-10 SEO : start promoting the service => headers meta, sitemap, etc. Lighthouse, <https://varvy.com/>, <https://seositecheckup.com/>
 2019-03-01 Add analytics

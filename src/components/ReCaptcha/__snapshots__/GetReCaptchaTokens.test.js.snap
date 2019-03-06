@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The GetReCaptchaTokens component should render correctly 1`] = `
+<div
+  style={
+    Object {
+      "margin": "1em",
+    }
+  }
+>
+  <code>
+    <h1>
+      rgpday.com reCaptcha
+    </h1>
+    <div>
+      <button
+        onClick={[Function]}
+      >
+        Get a token
+      </button>
+    </div>
+    <br />
+    <div>
+      
+    </div>
+  </code>
+</div>
+`;

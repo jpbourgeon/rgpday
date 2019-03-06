@@ -11,9 +11,10 @@ import AccountCircle from '@material-ui/icons/AccountCircleOutlined'
 import Collapse from '@material-ui/core/Collapse'
 import isEmpty from 'validator/lib/isEmpty'
 import AppBar from '../AppBar'
+import ReCaptcha from '../ReCaptcha'
 
 import Auth from '@aws-amplify/auth'
-import config from '../../aws-config'
+import config from '../../aws-exports'
 
 Auth.configure(config)
 
@@ -70,6 +71,7 @@ class SignIn extends React.Component {
   constructor (props) {
     super(props)
     this.state = defaultState
+    this.ReCaptchaRef = React.createRef()
 
     this._validAuthStates = ['signIn', 'signedOut']
     this._isHidden = true
@@ -132,8 +134,12 @@ class SignIn extends React.Component {
 
   handleSubmit (event) {
     event.preventDefault()
+    let state = this.state
     if (!isEmpty(this.state.username.value) && !isEmpty(this.state.password.value)) {
-      this.signIn()
+      state.loading = true
+      this.setState({ state }, () => {
+        this.ReCaptchaRef.current.execute()
+      })
     }
   }
 
@@ -144,20 +150,19 @@ class SignIn extends React.Component {
     this.setState(state)
   }
 
-  async signIn () {
-    const { username: { value: username }, password: { value: password } } = this.state
-    if (!Auth || typeof Auth.signIn !== 'function') {
-      throw new Error('No Auth module found, please ensure @aws-amplify/auth is imported')
-    }
-    this.setState({ loading: true })
+  async signIn (token) {
     try {
-      const user = await Auth.signIn(username, password)
-        .catch(e => logger.error('signIn', e))
+      const { username: { value: username }, password: { value: password } } = this.state
+      if (!Auth || typeof Auth.signIn !== 'function') {
+        throw new Error('No Auth module found, please ensure @aws-amplify/auth is imported')
+      }
+      const validationData = { recaptcha: token }
+      const user = await Auth.signIn({ username, password, validationData })
       if (user.challengeName === 'NEW_PASSWORD_REQUIRED') {
         this.changeState('requireNewPassword', user)
         Auth.completeNewPassword(
           user, // the Cognito User Object
-          password // the new password
+          password // same password
         ).catch(e => logger.error('signIn', e))
       }
       this.changeState('signedIn', user)
@@ -257,6 +262,12 @@ class SignIn extends React.Component {
             </Grid>
           </Paper>
         </main>
+        <ReCaptcha
+          action='contact'
+          sitekey='6LedLpMUAAAAAG8Ai4M4x9wTcIs4rPmvYV82a7Yh'
+          verifyCallback={this.signIn}
+          ref={this.ReCaptchaRef}
+        />
       </div>
     )
   }

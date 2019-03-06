@@ -2,7 +2,7 @@ import React from 'react'
 import logger from '../../logger'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
-import { ReCaptcha } from 'recaptcha-v3-react'
+import ReCaptcha from '../ReCaptcha'
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
@@ -18,7 +18,7 @@ import AppBar from '../AppBar'
 
 import API, { graphqlOperation } from '@aws-amplify/api'
 import { sendMail } from '../../graphql/queries'
-import config from '../../aws-config'
+import config from '../../aws-exports'
 
 API.configure(config)
 
@@ -26,7 +26,7 @@ const styles = theme => {
   return {
     '@global': {
       '.grecaptcha-badge': {
-        visibility: 'visible !important'
+        visibility: 'visible'
       }
     },
     layout: {
@@ -75,9 +75,6 @@ const defaultState = {
   form: {
     isDisabled: false
   },
-  recaptcha: {
-    token: ''
-  },
   snackbar: {
     open: false,
     message: ''
@@ -92,7 +89,7 @@ class Contact extends React.Component {
   constructor (props) {
     super(props)
     this.state = { ...defaultState }
-    this.recaptcha = React.createRef()
+    this.ReCaptchaRef = React.createRef()
 
     this.handleChange = this.handleChange.bind(this)
     this.handleBlur = this.handleBlur.bind(this)
@@ -126,60 +123,24 @@ class Contact extends React.Component {
     if (
       !isEmpty(this.state.sender.value) && isEmail(this.state.sender.value) &&
       !isEmpty(this.state.subject.value) &&
-      !isEmpty(this.state.content.value) &&
-      !isEmpty(this.state.recaptcha.token)
+      !isEmpty(this.state.content.value)
     ) {
-      try {
-        const form = {
-          isDisabled: true
-        }
-        this.setState({ form })
-        const result = await API.graphql(
-          graphqlOperation(sendMail, {
-            'from': 'no-reply@rgpday.com',
-            'to': 'jeanphilippe.bourgeon@gmail.com',
-            'sender': this.state.sender.value,
-            'content': this.state.content.value,
-            'subject': this.state.subject.value,
-            'recaptcha': this.state.recaptcha.token
-          })
-        )
-        logger.info(result)
-        if (!result.errors) {
-          logger.info('handleSubmit', result)
-          state = { ...defaultState }
-          state.snackbar.message = `Votre message a été envoyé avec succès.`
-          state.snackbar.open = true
-        } else {
-          logger.error('handleSubmit', result)
-          state.snackbar.message = `L'envoi de votre message a échoué.`
-          state.snackbar.open = true
-        }
-      } catch (error) {
-        logger.error('handleSubmit', error)
-        state.snackbar.message = `L'envoi de votre message a échoué.`
-        state.snackbar.open = true
-      } finally {
-        logger.info('handleSubmit:finally', state)
-        this.setState({ ...state, form: { isDisabled: false } }, () => {
-          this.getNewRecaptcha()
-        })
-      }
+      state.form.isDisabled = true
+      state.snackbar.message = `Votre message est en cours d'envoi. Merci de patienter...`
+      state.snackbar.open = true
+      this.setState({ state }, () => {
+        this.ReCaptchaRef.current.execute()
+      })
     } else {
       state.snackbar.message = `Votre message n'a pas été envoyé. Le formulaire est invalide.`
+      state.snackbar.open = true
       this.setState({ state })
     }
   }
 
   handleCancel (event = { preventDefault: () => {} }) {
     event.preventDefault()
-    this.setState({ ...defaultState, form: { isDisabled: false }, snackbar: { open: false, message: '' } }, () => {
-      this.getNewRecaptcha()
-    })
-  }
-
-  getNewRecaptcha () {
-    this.recaptcha.current.execute()
+    this.setState({ ...defaultState, form: { isDisabled: false }, snackbar: { open: false, message: '' } })
   }
 
   handleCloseSnackbar (event, reason) {
@@ -193,9 +154,35 @@ class Contact extends React.Component {
     this.setState({ snackbar })
   }
 
-  handleReCaptchaToken (token) {
-    const recaptcha = { token }
-    this.setState({ recaptcha })
+  async handleReCaptchaToken (token) {
+    let state = this.state
+    try {
+      const result = await API.graphql(
+        graphqlOperation(sendMail, {
+          'sender': this.state.sender.value,
+          'content': this.state.content.value,
+          'subject': this.state.subject.value,
+          'recaptcha': token
+        })
+      )
+      logger.info(result)
+      if (!result.errors) {
+        logger.info('handleSubmit', result)
+        state = { ...defaultState }
+        state.snackbar.message = `Votre message a été envoyé avec succès.`
+        state.snackbar.open = true
+      } else {
+        logger.error('handleSubmit', result)
+        state.snackbar.message = `L'envoi de votre message a échoué.`
+        state.snackbar.open = true
+      }
+    } catch (error) {
+      logger.error('handleSubmit', error)
+      state.snackbar.message = `L'envoi de votre message a échoué.`
+      state.snackbar.open = true
+    } finally {
+      this.setState({ ...state, form: { isDisabled: false } })
+    }
   }
 
   render () {
@@ -284,7 +271,7 @@ class Contact extends React.Component {
                       horizontal: 'center'
                     }}
                     open={this.state.snackbar.open}
-                    autoHideDuration={5000}
+                    autoHideDuration={10000}
                     onClose={this.handleCloseSnackbar}
                     ContentProps={{
                       'aria-describedby': 'message-id'
@@ -311,7 +298,7 @@ class Contact extends React.Component {
           action='contact'
           sitekey='6LedLpMUAAAAAG8Ai4M4x9wTcIs4rPmvYV82a7Yh'
           verifyCallback={this.handleReCaptchaToken}
-          ref={this.recaptcha}
+          ref={this.ReCaptchaRef}
         />
       </div>
     )

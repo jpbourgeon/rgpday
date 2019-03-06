@@ -12,6 +12,11 @@ import GameBoard from './images/gameboard.jpg'
 import Admin from './images/controlpanel.jpg'
 
 const styles = theme => ({
+  '@global': {
+    '.grecaptcha-badge': {
+      visibility: 'hidden'
+    }
+  },
   layout: {
     width: 'auto',
     marginLeft: theme.spacing.unit * 3,

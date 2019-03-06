@@ -16,7 +16,7 @@ type Config {
 }
 
 type Query {
-  sendMail(from: String, to: String, sender: String, content: String, subject: String, recaptcha: String): AWSJSON
+  sendMail(sender: String, content: String, subject: String, recaptcha: String): AWSJSON
   getSession(id: ID!): Session
   listSessions(filter: ModelSessionFilterInput, limit: Int, nextToken: String): ModelSessionConnection
   getConfig(id: ID!): Config

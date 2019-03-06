@@ -11,6 +11,7 @@ const Home = () => (<Loadable component='components/Home' />)
 const About = () => (<Loadable component='components/About' />)
 const Contact = () => (<Loadable component='components/Contact' />)
 const ProtectedRoutes = () => (<Loadable component='ProtectedRoutes' />)
+const ReCaptcha = () => (<Loadable component='components/ReCaptcha/GetReCaptchaTokens' />)
 
 const styles = () => ({
   '@global': {
@@ -40,6 +41,7 @@ class App extends React.Component {
           <About path='about' />
           <Contact path='/contact' />
           <ProtectedRoutes path='/session' />
+          <ReCaptcha path='/recaptcha' />
         </Router>
 
       </React.Fragment>

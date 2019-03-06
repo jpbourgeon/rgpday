@@ -11,6 +11,12 @@
 			"providerPlugin": "awscloudformation",
 			"build": true,
 			"dependsOn": []
+		},
+		"rgpdayFuncVerifyRecaptcha": {
+			"service": "Lambda",
+			"providerPlugin": "awscloudformation",
+			"build": true,
+			"dependsOn": []
 		}
 	},
 	"api": {
@@ -18,7 +24,7 @@
 			"service": "AppSync",
 			"providerPlugin": "awscloudformation",
 			"output": {
-				"securityType": "AMAZON_COGNITO_USER_POOLS"
+				"securityType": "AWS_IAM"
 			}
 		}
 	}

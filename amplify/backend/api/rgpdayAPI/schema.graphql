@@ -17,11 +17,9 @@ type Config @model {
 
 type Query {
   sendMail(
-    from: String,
-    to: String,
     sender: String,
     content: String,
     subject: String,
-    recaptcha: String
+    recaptcha: String,
   ): AWSJSON
 }

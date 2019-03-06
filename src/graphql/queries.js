@@ -2,16 +2,12 @@
 // this is an auto generated file. This will be overwritten
 
 export const sendMail = `query SendMail(
-  $from: String
-  $to: String
   $sender: String
   $content: String
   $subject: String
   $recaptcha: String
 ) {
   sendMail(
-    from: $from
-    to: $to
     sender: $sender
     content: $content
     subject: $subject
