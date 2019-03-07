@@ -4,76 +4,25 @@ exports[`The Contact component should render correctly 1`] = `
 <div
   className="layout-1"
 >
-  <div
-    className="root-8"
-  >
-    <header
-      className="root-21 elevation4-27 root-12 positionStatic-16 colorPrimary-19"
-    >
-      <div
-        className="root-48 regular-50 gutters-49"
-      >
-        <h6
-          className="root-52 h6-69 colorInherit-81 grow-9"
-        >
-          <a
-            aria-current="page"
-            className="menuLink-10"
-            href="/"
-            onClick={[Function]}
-          >
-            RGPDay
-          </a>
-        </h6>
-        <a
-          className="menuLink-10"
-          href="/about"
-          onClick={[Function]}
-        >
-          À propos
-        </a>
-        <a
-          className="menuLink-10"
-          href="/contact"
-          onClick={[Function]}
-        >
-          Contact
-        </a>
-        <a
-          className="menuLink-10"
-          href="/session"
-          onClick={[Function]}
-        >
-          Session
-        </a>
-        <div
-          className="menuLink-10 hide-11"
-          onClick={[Function]}
-        >
-          Déconnexion
-        </div>
-      </div>
-    </header>
-  </div>
   <main>
     <div
-      className="root-21 elevation2-25 rounded-22 mainFeaturedPost-4"
+      className="root-8 elevation2-12 rounded-9 mainFeaturedPost-4"
     >
       <div
-        className="container-88"
+        className="container-35"
       >
         <div
-          className="item-89 12-128"
+          className="item-36 12-75"
         >
           <div
             className="mainFeaturedPostContent-5"
           >
             <h4
-              className="root-52 h4-67 colorInherit-81 gutterBottom-79"
+              className="root-132 h4-147 colorInherit-161 gutterBottom-159"
             >
               <svg
                 aria-hidden="true"
-                className="root-185 titleIcon-2"
+                className="root-168 titleIcon-2"
                 focusable="false"
                 role="presentation"
                 viewBox="0 0 24 24"
@@ -97,21 +46,21 @@ exports[`The Contact component should render correctly 1`] = `
               onSubmit={[Function]}
             >
               <div
-                className="root-194 marginNormal-195 fullWidth-197"
+                className="root-177 marginNormal-178 fullWidth-180"
               >
                 <label
-                  className="root-209 root-198 formControl-203 animated-206 outlined-208"
+                  className="root-192 root-181 formControl-186 animated-189 outlined-191"
                   data-shrink={false}
                 >
                   Votre email
                 </label>
                 <div
-                  className="root-229 root-216 fullWidth-238 formControl-230"
+                  className="root-212 root-199 fullWidth-221 formControl-213"
                   onClick={[Function]}
                 >
                   <fieldset
                     aria-hidden={true}
-                    className="root-246 notchedOutline-223"
+                    className="root-229 notchedOutline-206"
                     style={
                       Object {
                         "paddingLeft": 8,
@@ -119,7 +68,7 @@ exports[`The Contact component should render correctly 1`] = `
                     }
                   >
                     <legend
-                      className="legend-247"
+                      className="legend-230"
                       style={
                         Object {
                           "width": 0.01,
@@ -137,7 +86,7 @@ exports[`The Contact component should render correctly 1`] = `
                   </fieldset>
                   <input
                     aria-invalid={false}
-                    className="input-239 input-224"
+                    className="input-222 input-207"
                     disabled={false}
                     onBlur={[Function]}
                     onChange={[Function]}
@@ -149,21 +98,21 @@ exports[`The Contact component should render correctly 1`] = `
                 </div>
               </div>
               <div
-                className="root-194 marginNormal-195 fullWidth-197"
+                className="root-177 marginNormal-178 fullWidth-180"
               >
                 <label
-                  className="root-209 root-198 formControl-203 animated-206 outlined-208"
+                  className="root-192 root-181 formControl-186 animated-189 outlined-191"
                   data-shrink={false}
                 >
                   Sujet
                 </label>
                 <div
-                  className="root-229 root-216 fullWidth-238 formControl-230"
+                  className="root-212 root-199 fullWidth-221 formControl-213"
                   onClick={[Function]}
                 >
                   <fieldset
                     aria-hidden={true}
-                    className="root-246 notchedOutline-223"
+                    className="root-229 notchedOutline-206"
                     style={
                       Object {
                         "paddingLeft": 8,
@@ -171,7 +120,7 @@ exports[`The Contact component should render correctly 1`] = `
                     }
                   >
                     <legend
-                      className="legend-247"
+                      className="legend-230"
                       style={
                         Object {
                           "width": 0.01,
@@ -189,7 +138,7 @@ exports[`The Contact component should render correctly 1`] = `
                   </fieldset>
                   <input
                     aria-invalid={false}
-                    className="input-239 input-224"
+                    className="input-222 input-207"
                     disabled={false}
                     onBlur={[Function]}
                     onChange={[Function]}
@@ -201,21 +150,21 @@ exports[`The Contact component should render correctly 1`] = `
                 </div>
               </div>
               <div
-                className="root-194 marginNormal-195 fullWidth-197"
+                className="root-177 marginNormal-178 fullWidth-180"
               >
                 <label
-                  className="root-209 root-198 formControl-203 animated-206 outlined-208"
+                  className="root-192 root-181 formControl-186 animated-189 outlined-191"
                   data-shrink={false}
                 >
                   Description
                 </label>
                 <div
-                  className="root-229 root-216 fullWidth-238 formControl-230 multiline-237 multiline-222"
+                  className="root-212 root-199 fullWidth-221 formControl-213 multiline-220 multiline-205"
                   onClick={[Function]}
                 >
                   <fieldset
                     aria-hidden={true}
-                    className="root-246 notchedOutline-223"
+                    className="root-229 notchedOutline-206"
                     style={
                       Object {
                         "paddingLeft": 8,
@@ -223,7 +172,7 @@ exports[`The Contact component should render correctly 1`] = `
                     }
                   >
                     <legend
-                      className="legend-247"
+                      className="legend-230"
                       style={
                         Object {
                           "width": 0.01,
@@ -241,7 +190,7 @@ exports[`The Contact component should render correctly 1`] = `
                   </fieldset>
                   <textarea
                     aria-invalid={false}
-                    className="input-239 input-224 inputMultiline-241 inputMultiline-226"
+                    className="input-222 input-207 inputMultiline-224 inputMultiline-209"
                     disabled={false}
                     onBlur={[Function]}
                     onChange={[Function]}
@@ -253,7 +202,7 @@ exports[`The Contact component should render correctly 1`] = `
                 </div>
               </div>
               <button
-                className="root-274 root-248 outlined-256 outlinedSecondary-258 button-6"
+                className="root-257 root-231 outlined-239 outlinedSecondary-241 button-6"
                 disabled={false}
                 onBlur={[Function]}
                 onContextMenu={[Function]}
@@ -270,16 +219,16 @@ exports[`The Contact component should render correctly 1`] = `
                 type="submit"
               >
                 <span
-                  className="label-249"
+                  className="label-232"
                 >
                   Envoyer
                 </span>
                 <span
-                  className="root-284"
+                  className="root-267"
                 />
               </button>
               <button
-                className="root-274 root-248 outlined-256 button-6"
+                className="root-257 root-231 outlined-239 button-6"
                 disabled={false}
                 onBlur={[Function]}
                 onClick={[Function]}
@@ -297,12 +246,12 @@ exports[`The Contact component should render correctly 1`] = `
                 type="button"
               >
                 <span
-                  className="label-249"
+                  className="label-232"
                 >
                   Annuler
                 </span>
                 <span
-                  className="root-284"
+                  className="root-267"
                 />
               </button>
             </form>

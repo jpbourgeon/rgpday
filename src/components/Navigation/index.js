@@ -2,17 +2,19 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import logger from '../../logger'
 import { withStyles } from '@material-ui/core/styles'
+import classNames from 'classnames'
 import AppBar from '@material-ui/core/AppBar'
 import { Link } from '@reach/router'
 import Toolbar from '@material-ui/core/Toolbar'
+import Fade from '@material-ui/core/Fade'
 import Typography from '@material-ui/core/Typography'
 import Hidden from '@material-ui/core/Hidden'
 import Info from '@material-ui/icons/Info'
 import Email from '@material-ui/icons/Email'
 import Game from '@material-ui/icons/VideogameAsset'
 import SignOut from '@material-ui/icons/PowerSettingsNew'
-import classNames from 'classnames'
-
+import ArrowBack from '@material-ui/icons/ArrowBack'
+import Fab from '@material-ui/core/Fab'
 import Auth from '@aws-amplify/auth'
 import { Hub } from '@aws-amplify/core'
 import config from '../../aws-exports'
@@ -21,6 +23,14 @@ Auth.configure(config)
 
 const styles = theme => ({
   root: {
+    width: 'auto',
+    marginLeft: theme.spacing.unit * 3,
+    marginRight: theme.spacing.unit * 3,
+    [theme.breakpoints.up(1100 + theme.spacing.unit * 3 * 2)]: {
+      width: 1100,
+      marginLeft: 'auto',
+      marginRight: 'auto'
+    },
     paddingBottom: theme.spacing.unit * 4
   },
   grow: {
@@ -36,6 +46,11 @@ const styles = theme => ({
   },
   hide: {
     display: 'none'
+  },
+  fab: {
+    position: 'fixed',
+    top: theme.spacing.unit,
+    left: theme.spacing.unit
   }
 })
 
@@ -47,18 +62,28 @@ class AppBarComponent extends React.Component {
       throw new Error('No Auth module found, please ensure @aws-amplify/auth is imported')
     }
     this.signOut = this.signOut.bind(this)
-
-    this.state = {}
+    this._timer = null
+    this.state = {
+      moved: false
+    }
     Hub.listen('auth', this)
   }
 
   componentDidMount () {
     this._isMounted = true
     this.findState()
+    document.documentElement.onmousemove = () => {
+      clearTimeout(this._timer)
+      if (!this.state.moved) this.setState({ moved: true })
+      this._timer = setTimeout(function () {
+        this.setState({ moved: false })
+      }.bind(this), 3000)
+    }
   }
 
   componentWillUnmount () {
     this._isMounted = false
+    document.documentElement.onmousemove = () => {}
   }
 
   triggerAuthEvent (event) {
@@ -123,10 +148,23 @@ class AppBarComponent extends React.Component {
   }
 
   render () {
-    const { classes } = this.props
+    const { classes, minified } = this.props
+    const { moved } = this.state
     const authState = this.props.authState || this.state.authState
     const signedIn = (authState === 'signedIn')
 
+    if (minified) {
+      return (<React.Fragment>
+        <Fade in={moved}>
+          <Link to='../'>
+            <Fab color='primary' aria-label='Back' className={classes.fab}>
+              <ArrowBack />
+            </Fab>
+          </Link>
+        </Fade>
+        <div className={classes.root} />
+      </React.Fragment>)
+    }
     return (
       <div className={classes.root}>
         <AppBar position='static'>
@@ -161,7 +199,11 @@ class AppBarComponent extends React.Component {
 }
 
 AppBarComponent.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  minified: PropTypes.bool
+}
+AppBarComponent.defaultProps = {
+  minified: false
 }
 
 export default withStyles(styles)(AppBarComponent)

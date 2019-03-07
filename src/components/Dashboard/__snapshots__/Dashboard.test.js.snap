@@ -4,64 +4,13 @@ exports[`The Dashboard component should render correctly 1`] = `
 <div
   className="layout-1"
 >
-  <div
-    className="root-4"
-  >
-    <header
-      className="root-17 elevation4-23 root-8 positionStatic-12 colorPrimary-15"
-    >
-      <div
-        className="root-44 regular-46 gutters-45"
-      >
-        <h6
-          className="root-48 h6-65 colorInherit-77 grow-5"
-        >
-          <a
-            aria-current="page"
-            className="menuLink-6"
-            href="/"
-            onClick={[Function]}
-          >
-            RGPDay
-          </a>
-        </h6>
-        <a
-          className="menuLink-6"
-          href="/about"
-          onClick={[Function]}
-        >
-          À propos
-        </a>
-        <a
-          className="menuLink-6"
-          href="/contact"
-          onClick={[Function]}
-        >
-          Contact
-        </a>
-        <a
-          className="menuLink-6"
-          href="/session"
-          onClick={[Function]}
-        >
-          Session
-        </a>
-        <div
-          className="menuLink-6 hide-7"
-          onClick={[Function]}
-        >
-          Déconnexion
-        </div>
-      </div>
-    </header>
-  </div>
   <main>
     <h4
-      className="root-48 h4-63 colorInherit-77 gutterBottom-75 title-2"
+      className="root-4 h4-19 colorInherit-33 gutterBottom-31 title-2"
     >
       <svg
         aria-hidden="true"
-        className="root-84 titleIcon-3"
+        className="root-40 titleIcon-3"
         focusable="false"
         role="presentation"
         viewBox="0 0 24 24"
@@ -79,34 +28,34 @@ exports[`The Dashboard component should render correctly 1`] = `
        Session
     </h4>
     <div
-      className="container-93 40-119"
+      className="container-49 40-75"
     >
       <div
-        className="item-94 12-133 6-155"
+        className="item-50 12-89 6-111"
       >
         <div
-          className="root-17 elevation1-20 rounded-18 root-193 card-190"
+          className="root-150 elevation1-153 rounded-151 root-149 card-146"
         >
           <div
-            className="cardDetails-191"
+            className="cardDetails-147"
           >
             <div
-              className="root-194"
+              className="root-177"
             >
               <h5
-                className="root-48 h5-64"
+                className="root-4 h5-20"
               >
                 Administration du site
               </h5>
               <p
-                className="root-48 subtitle1-66 paragraph-76"
+                className="root-4 subtitle1-22 paragraph-32"
               >
                 
               </p>
             </div>
           </div>
           <div
-            className="root-195 cardMedia-192"
+            className="root-178 cardMedia-148"
             style={
               Object {
                 "backgroundImage": "url(\\"controlpanel.jpg\\")",
@@ -117,31 +66,31 @@ exports[`The Dashboard component should render correctly 1`] = `
         </div>
       </div>
       <div
-        className="item-94 12-133 6-155"
+        className="item-50 12-89 6-111"
       >
         <div
-          className="root-17 elevation1-20 rounded-18 root-193 card-190"
+          className="root-150 elevation1-153 rounded-151 root-149 card-146"
         >
           <div
-            className="cardDetails-191"
+            className="cardDetails-147"
           >
             <div
-              className="root-194"
+              className="root-177"
             >
               <h5
-                className="root-48 h5-64"
+                className="root-4 h5-20"
               >
                 Conférence
               </h5>
               <p
-                className="root-48 subtitle1-66 paragraph-76"
+                className="root-4 subtitle1-22 paragraph-32"
               >
                 
               </p>
             </div>
           </div>
           <div
-            className="root-195 cardMedia-192"
+            className="root-178 cardMedia-148"
             style={
               Object {
                 "backgroundImage": "url(\\"conference.jpg\\")",
@@ -152,31 +101,31 @@ exports[`The Dashboard component should render correctly 1`] = `
         </div>
       </div>
       <div
-        className="item-94 12-133 6-155"
+        className="item-50 12-89 6-111"
       >
         <div
-          className="root-17 elevation1-20 rounded-18 root-193 card-190"
+          className="root-150 elevation1-153 rounded-151 root-149 card-146"
         >
           <div
-            className="cardDetails-191"
+            className="cardDetails-147"
           >
             <div
-              className="root-194"
+              className="root-177"
             >
               <h5
-                className="root-48 h5-64"
+                className="root-4 h5-20"
               >
                 Serious game
               </h5>
               <p
-                className="root-48 subtitle1-66 paragraph-76"
+                className="root-4 subtitle1-22 paragraph-32"
               >
                 
               </p>
             </div>
           </div>
           <div
-            className="root-195 cardMedia-192"
+            className="root-178 cardMedia-148"
             style={
               Object {
                 "backgroundImage": "url(\\"gameboard.jpg\\")",
@@ -187,31 +136,31 @@ exports[`The Dashboard component should render correctly 1`] = `
         </div>
       </div>
       <div
-        className="item-94 12-133 6-155"
+        className="item-50 12-89 6-111"
       >
         <div
-          className="root-17 elevation1-20 rounded-18 root-193 card-190"
+          className="root-150 elevation1-153 rounded-151 root-149 card-146"
         >
           <div
-            className="cardDetails-191"
+            className="cardDetails-147"
           >
             <div
-              className="root-194"
+              className="root-177"
             >
               <h5
-                className="root-48 h5-64"
+                className="root-4 h5-20"
               >
                 Plan d'action
               </h5>
               <p
-                className="root-48 subtitle1-66 paragraph-76"
+                className="root-4 subtitle1-22 paragraph-32"
               >
                 
               </p>
             </div>
           </div>
           <div
-            className="root-195 cardMedia-192"
+            className="root-178 cardMedia-148"
             style={
               Object {
                 "backgroundImage": "url(\\"coconstruction.jpg\\")",

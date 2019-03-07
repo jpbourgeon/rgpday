@@ -4,82 +4,31 @@ exports[`The Default component should render correctly 1`] = `
 <div
   className="layout-1"
 >
-  <div
-    className="root-4"
-  >
-    <header
-      className="root-17 elevation4-23 root-8 positionStatic-12 colorPrimary-15"
-    >
-      <div
-        className="root-44 regular-46 gutters-45"
-      >
-        <h6
-          className="root-48 h6-65 colorInherit-77 grow-5"
-        >
-          <a
-            aria-current="page"
-            className="menuLink-6"
-            href="/"
-            onClick={[Function]}
-          >
-            RGPDay
-          </a>
-        </h6>
-        <a
-          className="menuLink-6"
-          href="/about"
-          onClick={[Function]}
-        >
-          À propos
-        </a>
-        <a
-          className="menuLink-6"
-          href="/contact"
-          onClick={[Function]}
-        >
-          Contact
-        </a>
-        <a
-          className="menuLink-6"
-          href="/session"
-          onClick={[Function]}
-        >
-          Session
-        </a>
-        <div
-          className="menuLink-6 hide-7"
-          onClick={[Function]}
-        >
-          Déconnexion
-        </div>
-      </div>
-    </header>
-  </div>
   <main>
     <div
-      className="root-17 elevation2-21 rounded-18 mainFeaturedPost-2"
+      className="root-4 elevation2-8 rounded-5 mainFeaturedPost-2"
     >
       <div
-        className="container-84"
+        className="container-31"
       >
         <div
-          className="item-85 6-146"
+          className="item-32 6-93"
         >
           <div
             className="mainFeaturedPostContent-3"
           >
             <h4
-              className="root-48 h4-63 colorInherit-77 gutterBottom-75"
+              className="root-128 h4-143 colorInherit-157 gutterBottom-155"
             >
               Ce contenu est indisponible.
             </h4>
             <h6
-              className="root-48 subtitle1-66 colorInherit-77 gutterBottom-75"
+              className="root-128 subtitle1-146 colorInherit-157 gutterBottom-155"
             >
               Avez vous consulté la 
               <a
                 aria-current="page"
-                className="root-48 colorSecondary-79 inline-83 root-181 underlineHover-183"
+                className="root-128 colorSecondary-159 inline-163 root-164 underlineHover-166"
                 href="/"
                 onClick={[Function]}
               >

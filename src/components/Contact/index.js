@@ -14,7 +14,6 @@ import CloseIcon from '@material-ui/icons/Close'
 import Email from '@material-ui/icons/EmailOutlined'
 import isEmail from 'validator/lib/isEmail'
 import isEmpty from 'validator/lib/isEmpty'
-import AppBar from '../AppBar'
 
 import API, { graphqlOperation } from '@aws-amplify/api'
 import { sendMail } from '../../graphql/queries'
@@ -189,7 +188,6 @@ class Contact extends React.Component {
     const { classes } = this.props
     return (
       <div className={classes.layout}>
-        <AppBar />
         <main>
           <Paper className={classes.mainFeaturedPost}>
             <Grid container>

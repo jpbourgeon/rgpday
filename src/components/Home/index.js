@@ -4,7 +4,6 @@ import { withStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
-import AppBar from '../AppBar'
 import CallToAction from '../CallToAction'
 import Tile from '../Tile'
 import BookStore from './images/bookstore.jpg'
@@ -52,7 +51,6 @@ const HomeComponent = props => {
   const { classes } = props
   return (
     <div className={classes.layout}>
-      <AppBar />
       <main>
         <Paper className={classes.mainFeaturedPost}>
           <Grid container alignItems='center'>

@@ -4,77 +4,26 @@ exports[`The Home component should render correctly 1`] = `
 <div
   className="layout-1"
 >
-  <div
-    className="root-6"
-  >
-    <header
-      className="root-19 elevation4-25 root-10 positionStatic-14 colorPrimary-17"
-    >
-      <div
-        className="root-46 regular-48 gutters-47"
-      >
-        <h6
-          className="root-50 h6-67 colorInherit-79 grow-7"
-        >
-          <a
-            aria-current="page"
-            className="menuLink-8"
-            href="/"
-            onClick={[Function]}
-          >
-            RGPDay
-          </a>
-        </h6>
-        <a
-          className="menuLink-8"
-          href="/about"
-          onClick={[Function]}
-        >
-          À propos
-        </a>
-        <a
-          className="menuLink-8"
-          href="/contact"
-          onClick={[Function]}
-        >
-          Contact
-        </a>
-        <a
-          className="menuLink-8"
-          href="/session"
-          onClick={[Function]}
-        >
-          Session
-        </a>
-        <div
-          className="menuLink-8 hide-9"
-          onClick={[Function]}
-        >
-          Déconnexion
-        </div>
-      </div>
-    </header>
-  </div>
   <main>
     <div
-      className="root-19 elevation2-23 rounded-20 mainFeaturedPost-2"
+      className="root-6 elevation2-10 rounded-7 mainFeaturedPost-2"
     >
       <div
-        className="container-86 center-94"
+        className="container-33 center-41"
       >
         <div
-          className="item-87 12-126 6-148"
+          className="item-34 12-73 6-95"
         >
           <div
             className="mainFeaturedPostContent-3"
           >
             <h4
-              className="root-50 h4-65 colorInherit-79 gutterBottom-77"
+              className="root-130 h4-145 colorInherit-159 gutterBottom-157"
             >
               Une journée pour expérimenter le RGPD et en comprendre les enjeux
             </h4>
             <p
-              className="root-50 h5-66 colorInherit-79 paragraph-78"
+              className="root-130 h5-146 colorInherit-159 paragraph-158"
             >
               La règlementation sur les données à caractère personnel est une opportunité pour mieux gérer et pour valoriser les données de l'entreprise.
               <br />
@@ -83,34 +32,30 @@ exports[`The Home component should render correctly 1`] = `
           </div>
         </div>
         <div
-          className="item-87 12-126 6-148"
+          className="item-34 12-73 6-95"
         >
           <div
-            className="container-86 40-112 column-89 center-94"
+            className="container-33 40-59 column-36 center-41"
           >
             <div
-              className="item-87 10-124 12-154"
+              className="item-34 10-71 12-101"
             >
               <div
-                className="root-19 elevation1-22 rounded-20 cta-183"
+                className="root-6 elevation1-9 rounded-7 cta-166"
               >
                 <h6
-                  className="root-50 h6-67"
+                  className="root-130 h6-147"
                 >
-                  Si ce format vous intéresse, 
                   <a
-                    className="root-50 colorSecondary-81 inline-85 root-185 underlineHover-187"
+                    className="root-130 colorSecondary-161 inline-165 root-168 underlineHover-170"
                     href="/contact"
                     onClick={[Function]}
                   >
-                    contactez-moi
+                    Contactez-moi
                   </a>
-                </h6>
-                <p
-                  className="root-50 body1-59"
-                >
+                  <br />
                   pour organiser le RGPDay dans votre établissement !
-                </p>
+                </h6>
               </div>
             </div>
           </div>
@@ -118,34 +63,34 @@ exports[`The Home component should render correctly 1`] = `
       </div>
     </div>
     <div
-      className="container-86 40-112"
+      className="container-33 40-59"
     >
       <div
-        className="item-87 12-126 6-148"
+        className="item-34 12-73 6-95"
       >
         <div
-          className="root-19 elevation1-22 rounded-20 root-193 card-190"
+          className="root-6 elevation1-9 rounded-7 root-176 card-173"
         >
           <div
-            className="cardDetails-191"
+            className="cardDetails-174"
           >
             <div
-              className="root-194"
+              className="root-177"
             >
               <h5
-                className="root-50 h5-66"
+                className="root-130 h5-146"
               >
                 Une conférence
               </h5>
               <p
-                className="root-50 subtitle1-68 paragraph-78"
+                className="root-130 subtitle1-148 paragraph-158"
               >
                 Quel bilan pour le RGPD depuis son entrée en vigueur ? Comment l'insérer dans les outils de gestion des documents et des données au sein de l'entreprise ? Cette conférence fait le point sur la mise en oeuvre du RGPD au quotidien.
               </p>
             </div>
           </div>
           <div
-            className="root-195 cardMedia-192"
+            className="root-178 cardMedia-175"
             style={
               Object {
                 "backgroundImage": "url(\\"conference.jpg\\")",
@@ -156,31 +101,31 @@ exports[`The Home component should render correctly 1`] = `
         </div>
       </div>
       <div
-        className="item-87 12-126 6-148"
+        className="item-34 12-73 6-95"
       >
         <div
-          className="root-19 elevation1-22 rounded-20 root-193 card-190"
+          className="root-6 elevation1-9 rounded-7 root-176 card-173"
         >
           <div
-            className="cardDetails-191"
+            className="cardDetails-174"
           >
             <div
-              className="root-194"
+              className="root-177"
             >
               <h5
-                className="root-50 h5-66"
+                className="root-130 h5-146"
               >
                 Un serious game
               </h5>
               <p
-                className="root-50 subtitle1-68 paragraph-78"
+                className="root-130 subtitle1-148 paragraph-158"
               >
                 Pour mettre en pratique de façon ludique les connaissances théoriques et défier les équipes des autres participants !
               </p>
             </div>
           </div>
           <div
-            className="root-195 cardMedia-192"
+            className="root-178 cardMedia-175"
             style={
               Object {
                 "backgroundImage": "url(\\"gameboard.jpg\\")",
@@ -191,31 +136,31 @@ exports[`The Home component should render correctly 1`] = `
         </div>
       </div>
       <div
-        className="item-87 12-126 6-148"
+        className="item-34 12-73 6-95"
       >
         <div
-          className="root-19 elevation1-22 rounded-20 root-193 card-190"
+          className="root-6 elevation1-9 rounded-7 root-176 card-173"
         >
           <div
-            className="cardDetails-191"
+            className="cardDetails-174"
           >
             <div
-              className="root-194"
+              className="root-177"
             >
               <h5
-                className="root-50 h5-66"
+                className="root-130 h5-146"
               >
                 Une séance de co-constructrion
               </h5>
               <p
-                className="root-50 subtitle1-68 paragraph-78"
+                className="root-130 subtitle1-148 paragraph-158"
               >
                 Pour mettre en commun les enseignements de la journée et dégager une vision sur les actions à entreprendre pour tendre vers la conformité.
               </p>
             </div>
           </div>
           <div
-            className="root-195 cardMedia-192"
+            className="root-178 cardMedia-175"
             style={
               Object {
                 "backgroundImage": "url(\\"coconstruction.jpg\\")",

@@ -1,17 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`The AppBar component should render correctly 1`] = `
+exports[`The Navigation component should render correctly 1`] = `
 <div
   className="root-1"
 >
   <header
-    className="root-14 elevation4-20 root-5 positionStatic-9 colorPrimary-12"
+    className="root-15 elevation4-21 root-6 positionStatic-10 colorPrimary-13"
   >
     <div
-      className="root-41 regular-43 gutters-42"
+      className="root-42 regular-44 gutters-43"
     >
       <h6
-        className="root-45 h6-62 colorInherit-74 grow-2"
+        className="root-46 h6-63 colorInherit-75 grow-2"
       >
         <a
           aria-current="page"

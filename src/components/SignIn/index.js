@@ -10,7 +10,6 @@ import Button from '@material-ui/core/Button'
 import AccountCircle from '@material-ui/icons/AccountCircleOutlined'
 import Collapse from '@material-ui/core/Collapse'
 import isEmpty from 'validator/lib/isEmpty'
-import AppBar from '../AppBar'
 import ReCaptcha from '../ReCaptcha'
 
 import Auth from '@aws-amplify/auth'
@@ -192,7 +191,6 @@ class SignIn extends React.Component {
     this._isHidden = false
     return (
       <div className={classes.layout}>
-        <AppBar />
         <main>
           <Paper className={classes.mainFeaturedPost}>
             <Grid container alignContent='center' direction='column'>

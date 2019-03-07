@@ -4,7 +4,6 @@ import { withStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import DashboardIcon from '@material-ui/icons/DashboardOutlined'
-import AppBar from '../AppBar'
 import Tile from '../Tile'
 import Coconstruction from './images/coconstruction.jpg'
 import Conference from './images/conference.jpg'
@@ -40,7 +39,6 @@ const DashboardComponent = props => {
   const { classes } = props
   return (
     <div className={classes.layout}>
-      <AppBar />
       <main>
         <Typography variant='h4' color='inherit' gutterBottom className={classes.title}>
           <DashboardIcon className={classes.titleIcon} />&nbsp;Session

@@ -78,3 +78,7 @@ x 2019-03-07 2019-03-07 Fixed: Backend function rgpdayFuncVerifyCaptcha - introd
 x 2019-03-07 2019-03-07 Fixed: Backend function rgpdayFuncSendMail - ReCaptcha errors where not handle properly when the rgpdayFuncVerifyCaptcha lambda failed
 x 2019-03-07 2019-03-07 Changed: frontend CallToAction component - better wording
 x 2019-03-07 2019-03-07 Changed: frontend Home and about component - better call to action
+x 2019-03-07 2019-02-27 Changed: frontend Navigation component - refactor the AppBar component into Navigation
+x 2019-03-07 2019-02-27 Changed: frontend Navigation component - refactor to display a back button in minified state
+x 2019-03-07 2019-02-27 Changed: frontend Navigation component - imported only once in App Router with a minified boolean prop based on the current page name (false by default)
+x 2019-03-07 2019-02-27 Changed: frontend Navigation component - Fade in the back button on mouse move, fade it out 3sec after the mouse stopped moving

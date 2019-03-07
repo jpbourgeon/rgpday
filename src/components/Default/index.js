@@ -6,7 +6,6 @@ import { withStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
-import AppBar from '../AppBar'
 
 const styles = theme => {
   return {
@@ -39,7 +38,6 @@ const HomeComponent = props => {
   const { classes } = props
   return (
     <div className={classes.layout}>
-      <AppBar />
       <main>
         {/* Hero */}
         <Paper className={classes.mainFeaturedPost}>

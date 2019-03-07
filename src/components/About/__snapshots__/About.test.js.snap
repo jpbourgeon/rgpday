@@ -4,70 +4,19 @@ exports[`The About component should render correctly 1`] = `
 <div
   className="layout-1"
 >
-  <div
-    className="root-4"
-  >
-    <header
-      className="root-17 elevation4-23 root-8 positionStatic-12 colorPrimary-15"
-    >
-      <div
-        className="root-44 regular-46 gutters-45"
-      >
-        <h6
-          className="root-48 h6-65 colorInherit-77 grow-5"
-        >
-          <a
-            aria-current="page"
-            className="menuLink-6"
-            href="/"
-            onClick={[Function]}
-          >
-            RGPDay
-          </a>
-        </h6>
-        <a
-          className="menuLink-6"
-          href="/about"
-          onClick={[Function]}
-        >
-          À propos
-        </a>
-        <a
-          className="menuLink-6"
-          href="/contact"
-          onClick={[Function]}
-        >
-          Contact
-        </a>
-        <a
-          className="menuLink-6"
-          href="/session"
-          onClick={[Function]}
-        >
-          Session
-        </a>
-        <div
-          className="menuLink-6 hide-7"
-          onClick={[Function]}
-        >
-          Déconnexion
-        </div>
-      </div>
-    </header>
-  </div>
   <main>
     <div
-      className="container-84 40-110"
+      className="container-4 40-30"
     >
       <div
-        className="item-85 12-124"
+        className="item-5 12-44"
       >
         <h4
-          className="root-48 h4-63 gutterBottom-75"
+          className="root-101 h4-116 gutterBottom-128"
         >
           <svg
             aria-hidden="true"
-            className="root-181 titleIcon-2"
+            className="root-137 titleIcon-2"
             focusable="false"
             role="presentation"
             viewBox="0 0 24 24"
@@ -86,23 +35,23 @@ exports[`The About component should render correctly 1`] = `
            À propos
         </h4>
         <hr
-          className="root-190"
+          className="root-146"
         />
       </div>
       <div
-        className="item-85 12-124"
+        className="item-5 12-44"
       >
         <div
-          className="root-195 avatar-3"
+          className="root-151 avatar-3"
         >
           <img
             alt="Remy Sharp"
-            className="img-197"
+            className="img-153"
             src="avatar.jpg"
           />
         </div>
         <p
-          className="root-48 body1-57 gutterBottom-75"
+          className="root-101 body1-110 gutterBottom-128"
         >
           En qualité de Responsable du pôle Systèmes d'information, gestion des données et des méthodes au Centre de gestion de la fonction publique territoriale de Saône-et-Loire, 
           <strong>
@@ -115,7 +64,7 @@ exports[`The About component should render correctly 1`] = `
            : nous accompagnons nos adhérents dans leur mise en conformité avec le RGPD.
         </p>
         <p
-          className="root-48 body1-57 gutterBottom-75"
+          className="root-101 body1-110 gutterBottom-128"
         >
           Cette journée a été conçue pour répondre à un problème 
           <strong>
@@ -128,7 +77,7 @@ exports[`The About component should render correctly 1`] = `
            ? Comment cette démarche est-elle liée aux autres outils de gestion de l'information dans l'entreprise ?
         </p>
         <p
-          className="root-48 body1-57 gutterBottom-75"
+          className="root-101 body1-110 gutterBottom-128"
         >
           Le 
           <strong>
@@ -144,37 +93,8 @@ exports[`The About component should render correctly 1`] = `
           </strong>
            à leurs étudiants, dans le prolongement de leur formation théorique.
         </p>
-        <div
-          className="container-84 40-110 column-87 center-92"
-        >
-          <div
-            className="item-85 12-124 6-146"
-          >
-            <div
-              className="root-17 elevation1-20 rounded-18 cta-198"
-            >
-              <h6
-                className="root-48 h6-65"
-              >
-                Si ce format vous intéresse, 
-                <a
-                  className="root-48 colorSecondary-79 inline-83 root-200 underlineHover-202"
-                  href="/contact"
-                  onClick={[Function]}
-                >
-                  contactez-moi
-                </a>
-              </h6>
-              <p
-                className="root-48 body1-57"
-              >
-                pour organiser le RGPDay dans votre établissement !
-              </p>
-            </div>
-          </div>
-        </div>
         <p
-          className="root-48 body1-57 gutterBottom-75"
+          className="root-101 body1-110 gutterBottom-128"
         >
           --
           <br />
@@ -182,12 +102,37 @@ exports[`The About component should render correctly 1`] = `
           <br />
           LinkedIn : 
           <a
-            className="root-48 colorPrimary-78 inline-83 root-200 underlineHover-202"
+            className="root-101 colorPrimary-131 inline-136 root-154 underlineHover-156"
             href="https://www.linkedin.com/in/jpbourgeon"
           >
             https://www.linkedin.com/in/jpbourgeon
           </a>
         </p>
+        <div
+          className="container-4 40-30 column-7 center-12"
+        >
+          <div
+            className="item-5 12-44 6-66"
+          >
+            <div
+              className="root-161 elevation1-164 rounded-162 cta-159"
+            >
+              <h6
+                className="root-101 h6-118"
+              >
+                <a
+                  className="root-101 colorSecondary-132 inline-136 root-154 underlineHover-156"
+                  href="/contact"
+                  onClick={[Function]}
+                >
+                  Contactez-moi
+                </a>
+                <br />
+                pour organiser le RGPDay dans votre établissement !
+              </h6>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </main>

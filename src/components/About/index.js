@@ -7,7 +7,6 @@ import Grid from '@material-ui/core/Grid'
 import Divider from '@material-ui/core/Divider'
 import Avatar from '@material-ui/core/Avatar'
 import Info from '@material-ui/icons/InfoOutlined'
-import AppBar from '../AppBar'
 import CallToAction from '../CallToAction'
 import JPB from './images/avatar.jpg'
 
@@ -38,7 +37,6 @@ const About = props => {
   const { classes } = props
   return (
     <div className={classes.layout}>
-      <AppBar />
       <main>
 
         <Grid container spacing={40}>
