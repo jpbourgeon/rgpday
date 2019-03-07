@@ -82,3 +82,6 @@ x 2019-03-07 2019-02-27 Changed: frontend Navigation component - refactor the Ap
 x 2019-03-07 2019-02-27 Changed: frontend Navigation component - refactor to display a back button in minified state
 x 2019-03-07 2019-02-27 Changed: frontend Navigation component - imported only once in App Router with a minified boolean prop based on the current page name (false by default)
 x 2019-03-07 2019-02-27 Changed: frontend Navigation component - Fade in the back button on mouse move, fade it out 3sec after the mouse stopped moving
+x 2019-03-07 2019-02-27 Changed: frontend About page - better layout
+x 2019-03-07 2019-02-27 Changed: frontend About page - better layout
+x 2019-03-07 2019-02-27 Changed: CallToAction component - better layout

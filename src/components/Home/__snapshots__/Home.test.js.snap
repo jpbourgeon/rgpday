@@ -38,7 +38,7 @@ exports[`The Home component should render correctly 1`] = `
             className="container-33 40-59 column-36 center-41"
           >
             <div
-              className="item-34 10-71 12-101"
+              className="item-34 10-71 12-87 12-101"
             >
               <div
                 className="root-6 elevation1-9 rounded-7 cta-166"
@@ -47,14 +47,14 @@ exports[`The Home component should render correctly 1`] = `
                   className="root-130 h6-147"
                 >
                   <a
-                    className="root-130 colorSecondary-161 inline-165 root-168 underlineHover-170"
+                    className="root-130 colorSecondary-161 inline-165 root-175 underlineHover-177"
                     href="/contact"
                     onClick={[Function]}
                   >
-                    Contactez-moi
+                    Contactez-moi !
                   </a>
                   <br />
-                  pour organiser le RGPDay dans votre établissement !
+                  pour organiser le RGPDay dans votre établissement
                 </h6>
               </div>
             </div>
@@ -69,13 +69,13 @@ exports[`The Home component should render correctly 1`] = `
         className="item-34 12-73 6-95"
       >
         <div
-          className="root-6 elevation1-9 rounded-7 root-176 card-173"
+          className="root-6 elevation1-9 rounded-7 root-171 card-168"
         >
           <div
-            className="cardDetails-174"
+            className="cardDetails-169"
           >
             <div
-              className="root-177"
+              className="root-172"
             >
               <h5
                 className="root-130 h5-146"
@@ -90,7 +90,7 @@ exports[`The Home component should render correctly 1`] = `
             </div>
           </div>
           <div
-            className="root-178 cardMedia-175"
+            className="root-173 cardMedia-170"
             style={
               Object {
                 "backgroundImage": "url(\\"conference.jpg\\")",
@@ -104,13 +104,13 @@ exports[`The Home component should render correctly 1`] = `
         className="item-34 12-73 6-95"
       >
         <div
-          className="root-6 elevation1-9 rounded-7 root-176 card-173"
+          className="root-6 elevation1-9 rounded-7 root-171 card-168"
         >
           <div
-            className="cardDetails-174"
+            className="cardDetails-169"
           >
             <div
-              className="root-177"
+              className="root-172"
             >
               <h5
                 className="root-130 h5-146"
@@ -125,7 +125,7 @@ exports[`The Home component should render correctly 1`] = `
             </div>
           </div>
           <div
-            className="root-178 cardMedia-175"
+            className="root-173 cardMedia-170"
             style={
               Object {
                 "backgroundImage": "url(\\"gameboard.jpg\\")",
@@ -139,13 +139,13 @@ exports[`The Home component should render correctly 1`] = `
         className="item-34 12-73 6-95"
       >
         <div
-          className="root-6 elevation1-9 rounded-7 root-176 card-173"
+          className="root-6 elevation1-9 rounded-7 root-171 card-168"
         >
           <div
-            className="cardDetails-174"
+            className="cardDetails-169"
           >
             <div
-              className="root-177"
+              className="root-172"
             >
               <h5
                 className="root-130 h5-146"
@@ -160,7 +160,7 @@ exports[`The Home component should render correctly 1`] = `
             </div>
           </div>
           <div
-            className="root-178 cardMedia-175"
+            className="root-173 cardMedia-170"
             style={
               Object {
                 "backgroundImage": "url(\\"coconstruction.jpg\\")",

@@ -27,10 +27,11 @@ const styles = theme => {
       background: `url('${BookStore}') no-repeat`,
       backgroundSize: `100% 100%`,
       color: theme.palette.common.white,
-      marginBottom: theme.spacing.unit * 4
+      marginBottom: theme.spacing.unit * 2
     },
     mainFeaturedPostContent: {
       padding: `${theme.spacing.unit * 6}px`,
+      paddingBottom: `${theme.spacing.unit * 2}px`,
       [theme.breakpoints.up('md')]: {
         paddingRight: 0
       }
