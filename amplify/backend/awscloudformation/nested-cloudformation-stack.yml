@@ -81,7 +81,7 @@
 		"authrgpdayAuth": {
 			"Type": "AWS::CloudFormation::Stack",
 			"Properties": {
-				"TemplateURL": "https://s3.amazonaws.com/rgpday-20190305112118-deployment/amplify-cfn-templates/auth/rgpdayAuth-cloudformation-template.yml",
+				"TemplateURL": "https://s3.amazonaws.com/rgpday-20190302163236-deployment/amplify-cfn-templates/auth/rgpdayAuth-cloudformation-template.yml",
 				"Parameters": {
 					"identityPoolName": "rgpdayIdentityPool",
 					"allowUnauthenticatedIdentities": true,
@@ -139,32 +139,32 @@
 							"Arn"
 						]
 					},
-					"env": "dev"
+					"env": "master"
 				}
 			}
 		},
 		"functionrgpdayFuncSendMail": {
 			"Type": "AWS::CloudFormation::Stack",
 			"Properties": {
-				"TemplateURL": "https://s3.amazonaws.com/rgpday-20190305112118-deployment/amplify-cfn-templates/function/rgpdayFuncSendMail-cloudformation-template.json",
+				"TemplateURL": "https://s3.amazonaws.com/rgpday-20190302163236-deployment/amplify-cfn-templates/function/rgpdayFuncSendMail-cloudformation-template.json",
 				"Parameters": {
-					"env": "dev"
+					"env": "master"
 				}
 			}
 		},
 		"functionrgpdayFuncVerifyRecaptcha": {
 			"Type": "AWS::CloudFormation::Stack",
 			"Properties": {
-				"TemplateURL": "https://s3.amazonaws.com/rgpday-20190305112118-deployment/amplify-cfn-templates/function/rgpdayFuncVerifyRecaptcha-cloudformation-template.json",
+				"TemplateURL": "https://s3.amazonaws.com/rgpday-20190302163236-deployment/amplify-cfn-templates/function/rgpdayFuncVerifyRecaptcha-cloudformation-template.json",
 				"Parameters": {
-					"env": "dev"
+					"env": "master"
 				}
 			}
 		},
 		"apirgpdayAPI": {
 			"Type": "AWS::CloudFormation::Stack",
 			"Properties": {
-				"TemplateURL": "https://s3.amazonaws.com/rgpday-20190305112118-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+				"TemplateURL": "https://s3.amazonaws.com/rgpday-20190302163236-deployment/amplify-cfn-templates/api/cloudformation-template.json",
 				"Parameters": {
 					"DynamoDBBillingMode": "PROVISIONED",
 					"AppSyncApiName": "rgpdayAPI",
@@ -175,8 +175,8 @@
 						]
 					},
 					"S3DeploymentBucket": "rgpday-20190302163236-deployment",
-					"S3DeploymentRootKey": "amplify-appsync-files/453ae29ebd103db845e74f97d8196899afc08b4f",
-					"env": "dev"
+					"S3DeploymentRootKey": "amplify-appsync-files/49100e2b1bb158a66af18d5e53a376dc75377ffc",
+					"env": "master"
 				}
 			}
 		}

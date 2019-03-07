@@ -1,8 +1,8 @@
 const request = require('sync-request')
 
 exports.handler = function (event, context, callback) {
-  const RECAPTCHA_SECRET = require('./secret_env.json').RECAPTCHA_SECRET
-  if (!RECAPTCHA_SECRET) {
+  const RECAPTCHA_SECRET = process.env.RECAPTCHA_SECRET || require('./secret_env.json').RECAPTCHA_SECRET
+  if (!RECAPTCHA_SECRET || RECAPTCHA_SECRET === '') {
     callback(new Error('The RECAPTCHA_SECRET is missing'), event)
   } else {
     const res = request('POST', 'https://www.google.com/recaptcha/api/siteverify', {

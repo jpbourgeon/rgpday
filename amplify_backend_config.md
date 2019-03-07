@@ -97,42 +97,46 @@ Describes all the steps necessary to provision the backend resources in the clou
 
 ### Local configuration
 
-- In the cloudformation template
-  - Authorize the UserPoolClientRole preAuthentication trigger to invoke the rpdayFuncVerifyCaptcha lambda. Add to the Ressources
-  ```json
-  "rgpdayFuncVerifyRecaptchaInvocationPermission": {
-    "Type": "AWS::Lambda::Permission",
-    "Properties": {
-      "Action": "lambda:InvokeFunction",
-      "FunctionName": {
-        "Fn::GetAtt": [
-          "LambdaFunction",
-          "Arn"
-        ]
-      },
-      "Principal": "cognito-idp.amazonaws.com",
-      "SourceArn": {
-        "Fn::Sub": [
-          "arn:aws:cognito-idp:${region}:${account}:userpool/*",
-          {
-            "region": {
-              "Ref": "AWS::Region"
-            },
-            "account": {
-              "Ref": "AWS::AccountId"
-            }
+- In the cloudformation template's Resources section of the lambda authorize the UserPoolClientRole preAuthentication trigger to invoke the rpdayFuncVerifyCaptcha lambda. Add:
+```json
+"rgpdayFuncVerifyRecaptchaInvocationPermission": {
+  "Type": "AWS::Lambda::Permission",
+  "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+      "Fn::GetAtt": [
+        "LambdaFunction",
+        "Arn"
+      ]
+    },
+    "Principal": "cognito-idp.amazonaws.com",
+    "SourceArn": {
+      "Fn::Sub": [
+        "arn:aws:cognito-idp:${region}:${account}:userpool/*",
+        {
+          "region": {
+            "Ref": "AWS::Region"
+          },
+          "account": {
+            "Ref": "AWS::AccountId"
           }
-        ]
-      }
+        }
+      ]
     }
   }
-  ```
+}
+```
 - Customize the function in `./amplify/backend/function/rgpdayFuncSendMail/src`
   - function code: index.js
   - sample for testing: event.json (keep recaptcha empty before amplify push to avoid a useless update)
   - Secret Recaptcha Key: secret_env.json /!\ WARNING THIS FILE MUST BE REGISTERED IN `.gitignore` and should never be committed and/or pushed to CodeCommit
   - additional packages for the lambda: `npm install request-sync --save` to package.json
 - Build and test the lambda locally with `amplify function invoke rgpdayFuncVerifyRecaptcha`
+
+
+### AWS Console configuration
+
+- Add the RECAPTCHA_SECRET to the environment variables. Optional but sometimes ``secret_env.json`` is not uploaded and ReCaptcha verification fail. The environment variable fixes the issue permanently.
 
 ## Function: rgpdayFuncSendMail
 

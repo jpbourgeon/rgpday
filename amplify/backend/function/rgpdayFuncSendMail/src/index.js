@@ -13,7 +13,7 @@ exports.handler = function (event, context, callback) {
       callback(new Error(JSON.stringify(error)), event)
     } else {
       const payload = JSON.parse(data.Payload)
-      if (typeof payload.errorType !== 'undefined') {
+      if (typeof payload.errorMessage !== 'undefined') {
         callback(new Error(JSON.stringify(payload)), event)
       } else {
         const Data =
