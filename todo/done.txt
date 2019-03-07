@@ -76,3 +76,5 @@ x 2019-03-06 2019-03-02 Contact: get recaptcha token just-in-time (outside the s
 x 2019-03-06 2019-03-01 RELEASE VERSION v0.3.0
 x 2019-03-07 2019-03-07 Fixed: Backend function rgpdayFuncVerifyCaptcha - introduce an environment variable online to provide the RECAPTCHA_SECRET more reliably
 x 2019-03-07 2019-03-07 Fixed: Backend function rgpdayFuncSendMail - ReCaptcha errors where not handle properly when the rgpdayFuncVerifyCaptcha lambda failed
+x 2019-03-07 2019-03-07 Changed: frontend CallToAction component - better wording
+x 2019-03-07 2019-03-07 Changed: frontend Home and about component - better call to action

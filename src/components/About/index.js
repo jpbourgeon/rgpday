@@ -59,12 +59,12 @@ const About = props => {
             <Typography variant='body1' gutterBottom>
               Le <strong>RGPDay</strong> s'adresse à <strong>tous les organismes de formation</strong>, initiale ou continue, dans le domaine de la gestion de l'information, qui souhaitent proposer <strong>une expérience du RGPD pratique et ludique</strong> à leurs étudiants, dans le prolongement de leur formation théorique.
             </Typography>
-            <CallToAction classes={{ cta: classes.cta }} />
             <Typography variant='body1' gutterBottom>
               --<br />
               Jean-Philippe Bourgeon<br />
               LinkedIn : <Link href='https://www.linkedin.com/in/jpbourgeon'>https://www.linkedin.com/in/jpbourgeon</Link>
             </Typography>
+            <CallToAction classes={{ cta: classes.cta }} />
           </Grid>
         </Grid>
       </main>

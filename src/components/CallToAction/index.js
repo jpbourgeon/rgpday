@@ -12,8 +12,7 @@ const styles = theme => ({
     ...theme.mixins.gutters(),
     paddingTop: theme.spacing.unit * 2,
     paddingBottom: theme.spacing.unit * 2,
-    marginTop: theme.spacing.unit * 4,
-    marginBottom: theme.spacing.unit * 4,
+    margin: theme.spacing.unit * 4,
     textAlign: 'center'
   },
   link: {
@@ -33,9 +32,7 @@ const CallToAction = (props) => {
       <Grid item xs={xs} md={md}>
         <Paper className={classes.cta} elevation={1}>
           <Typography variant='h6'>
-            Si ce format vous intéresse, <Link component={LinkToContact} color='secondary'>contactez-moi</Link>
-          </Typography>
-          <Typography variant='body1'>
+            <Link component={LinkToContact} color='secondary'>Contactez-moi</Link><br />
             pour organiser le RGPDay dans votre établissement !
           </Typography>
         </Paper>
