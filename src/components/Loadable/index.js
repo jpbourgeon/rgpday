@@ -2,7 +2,7 @@ import React from 'react'
 import logger from '../../logger'
 import loadable from '@loadable/component'
 import Loading from '../Loading'
-import Default from '../Default'
+import Default from '../../pages/Default'
 
 class ErrorBoundary extends React.Component {
   constructor (props) {

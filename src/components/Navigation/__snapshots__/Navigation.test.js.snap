@@ -38,7 +38,7 @@ exports[`The Navigation component should render correctly 1`] = `
       </a>
       <a
         className="menuLink-3"
-        href="/session"
+        href="/dashboard"
         onClick={[Function]}
       >
         Session

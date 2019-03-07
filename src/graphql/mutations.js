@@ -1,6 +1,69 @@
 // eslint-disable
 // this is an auto generated file. This will be overwritten
 
+export const createScenario = `mutation CreateScenario($input: CreateScenarioInput!) {
+  createScenario(input: $input) {
+    id
+    name
+    description
+    sessions {
+      items {
+        id
+        name
+        description
+        contact
+        numberOfParticipants
+        RGPDay
+        startDate
+        endDate
+      }
+      nextToken
+    }
+  }
+}
+`;
+export const updateScenario = `mutation UpdateScenario($input: UpdateScenarioInput!) {
+  updateScenario(input: $input) {
+    id
+    name
+    description
+    sessions {
+      items {
+        id
+        name
+        description
+        contact
+        numberOfParticipants
+        RGPDay
+        startDate
+        endDate
+      }
+      nextToken
+    }
+  }
+}
+`;
+export const deleteScenario = `mutation DeleteScenario($input: DeleteScenarioInput!) {
+  deleteScenario(input: $input) {
+    id
+    name
+    description
+    sessions {
+      items {
+        id
+        name
+        description
+        contact
+        numberOfParticipants
+        RGPDay
+        startDate
+        endDate
+      }
+      nextToken
+    }
+  }
+}
+`;
 export const createSession = `mutation CreateSession($input: CreateSessionInput!) {
   createSession(input: $input) {
     id
@@ -11,6 +74,14 @@ export const createSession = `mutation CreateSession($input: CreateSessionInput!
     RGPDay
     startDate
     endDate
+    scenario {
+      id
+      name
+      description
+      sessions {
+        nextToken
+      }
+    }
   }
 }
 `;
@@ -24,6 +95,14 @@ export const updateSession = `mutation UpdateSession($input: UpdateSessionInput!
     RGPDay
     startDate
     endDate
+    scenario {
+      id
+      name
+      description
+      sessions {
+        nextToken
+      }
+    }
   }
 }
 `;
@@ -37,6 +116,14 @@ export const deleteSession = `mutation DeleteSession($input: DeleteSessionInput!
     RGPDay
     startDate
     endDate
+    scenario {
+      id
+      name
+      description
+      sessions {
+        nextToken
+      }
+    }
   }
 }
 `;

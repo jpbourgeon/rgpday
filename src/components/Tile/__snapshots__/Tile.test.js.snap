@@ -18,7 +18,9 @@ exports[`The Tile component should render correctly 1`] = `
         />
         <p
           className="root-130 subtitle1-148 paragraph-158"
-        />
+        >
+          
+        </p>
       </div>
     </div>
     <div

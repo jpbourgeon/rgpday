@@ -7,12 +7,12 @@ import withRoot from './withRoot'
 import Loadable from './components/Loadable'
 import Navigation from './components/Navigation'
 
-const Default = () => (<Loadable component='components/Default' />)
-const Home = () => (<Loadable component='components/Home' />)
-const About = () => (<Loadable component='components/About' />)
-const Contact = () => (<Loadable component='components/Contact' />)
-const ProtectedRoutes = () => (<Loadable component='ProtectedRoutes' />)
 const ReCaptcha = () => (<Loadable component='components/ReCaptcha/GetReCaptchaTokens' />)
+const Default = () => (<Loadable component='pages/Default' />)
+const Home = () => (<Loadable component='pages/Home' />)
+const About = () => (<Loadable component='pages/About' />)
+const Contact = () => (<Loadable component='pages/Contact' />)
+const ProtectedRoutes = () => (<Loadable component='ProtectedRoutes' />)
 
 const styles = () => ({
   '@global': {
@@ -51,7 +51,7 @@ class App extends React.Component {
           <Home path='/' />
           <About path='about' />
           <Contact path='/contact' />
-          <ProtectedRoutes path='/session' />
+          <ProtectedRoutes path='/dashboard/*' />
           <ReCaptcha path='/recaptcha' />
         </Router>
 

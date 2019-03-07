@@ -183,7 +183,7 @@ class AppBarComponent extends React.Component {
               <Hidden xsDown>Contact</Hidden>
             </Link>
 
-            <Link to='/session' className={classes.menuLink}>
+            <Link to='/dashboard' className={classes.menuLink}>
               <Hidden smUp><Game /></Hidden>
               <Hidden xsDown>Session</Hidden>
             </Link>

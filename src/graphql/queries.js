@@ -15,6 +15,45 @@ export const sendMail = `query SendMail(
   )
 }
 `;
+export const getScenario = `query GetScenario($id: ID!) {
+  getScenario(id: $id) {
+    id
+    name
+    description
+    sessions {
+      items {
+        id
+        name
+        description
+        contact
+        numberOfParticipants
+        RGPDay
+        startDate
+        endDate
+      }
+      nextToken
+    }
+  }
+}
+`;
+export const listScenarios = `query ListScenarios(
+  $filter: ModelScenarioFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listScenarios(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      name
+      description
+      sessions {
+        nextToken
+      }
+    }
+    nextToken
+  }
+}
+`;
 export const getSession = `query GetSession($id: ID!) {
   getSession(id: $id) {
     id
@@ -25,6 +64,14 @@ export const getSession = `query GetSession($id: ID!) {
     RGPDay
     startDate
     endDate
+    scenario {
+      id
+      name
+      description
+      sessions {
+        nextToken
+      }
+    }
   }
 }
 `;
@@ -43,6 +90,11 @@ export const listSessions = `query ListSessions(
       RGPDay
       startDate
       endDate
+      scenario {
+        id
+        name
+        description
+      }
     }
     nextToken
   }

@@ -7,11 +7,12 @@ import Loadable from './components/Loadable'
 import Auth from '@aws-amplify/auth'
 import { Authenticator } from 'aws-amplify-react'
 import config from './aws-exports'
-
 Auth.configure(config)
 
-const Default = () => (<Loadable component='components/Default' />)
-const Dashboard = () => (<Loadable component='components/Dashboard' />)
+const Default = () => (<Loadable component='pages/Default' />)
+const Dashboard = () => (<Loadable component='protectedPages/Dashboard' />)
+const Sessions = () => (<Loadable component='protectedPages/Sessions' />)
+const Scenarios = () => (<Loadable component='protectedPages/Scenarios' />)
 
 const styles = {
   '@global': {
@@ -38,6 +39,8 @@ class MyRouter extends React.Component {
         <Router>
           <Default default />
           <Dashboard path='/' />
+          <Sessions path='/sessions' />
+          <Scenarios path='/scenarios' />
         </Router>
       )
     }

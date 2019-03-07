@@ -121,6 +121,10 @@
                     {
                         "AttributeName": "id",
                         "AttributeType": "S"
+                    },
+                    {
+                        "AttributeName": "sessionScenarioId",
+                        "AttributeType": "S"
                     }
                 ],
                 "StreamSpecification": {
@@ -150,7 +154,37 @@
                             }
                         }
                     ]
-                }
+                },
+                "GlobalSecondaryIndexes": [
+                    {
+                        "IndexName": "gsi-ScenarioSessions",
+                        "KeySchema": [
+                            {
+                                "AttributeName": "sessionScenarioId",
+                                "KeyType": "HASH"
+                            }
+                        ],
+                        "Projection": {
+                            "ProjectionType": "ALL"
+                        },
+                        "ProvisionedThroughput": {
+                            "Fn::If": [
+                                "ShouldUsePayPerRequestBilling",
+                                {
+                                    "Ref": "AWS::NoValue"
+                                },
+                                {
+                                    "ReadCapacityUnits": {
+                                        "Ref": "DynamoDBModelTableReadIOPS"
+                                    },
+                                    "WriteCapacityUnits": {
+                                        "Ref": "DynamoDBModelTableWriteIOPS"
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
             }
         },
         "ConfigTable": {
@@ -293,7 +327,7 @@
                         {
                             "Ref": "APIKeyExpirationEpoch"
                         },
-                        1552554226
+                        1552601276
                     ]
                 }
             },
@@ -402,6 +436,83 @@
                     ]
                 }
             }
+        },
+        "Scenario": {
+            "Type": "AWS::CloudFormation::Stack",
+            "Properties": {
+                "Parameters": {
+                    "AppSyncApiId": {
+                        "Fn::GetAtt": [
+                            "GraphQLAPI",
+                            "ApiId"
+                        ]
+                    },
+                    "AppSyncApiName": {
+                        "Ref": "AppSyncApiName"
+                    },
+                    "APIKeyExpirationEpoch": {
+                        "Ref": "APIKeyExpirationEpoch"
+                    },
+                    "DynamoDBModelTableReadIOPS": {
+                        "Ref": "DynamoDBModelTableReadIOPS"
+                    },
+                    "DynamoDBModelTableWriteIOPS": {
+                        "Ref": "DynamoDBModelTableWriteIOPS"
+                    },
+                    "DynamoDBBillingMode": {
+                        "Ref": "DynamoDBBillingMode"
+                    },
+                    "AuthCognitoUserPoolId": {
+                        "Ref": "AuthCognitoUserPoolId"
+                    },
+                    "AuthCognitoUserPoolName": {
+                        "Ref": "AuthCognitoUserPoolName"
+                    },
+                    "AuthCognitoUserPoolMobileClientName": {
+                        "Ref": "AuthCognitoUserPoolMobileClientName"
+                    },
+                    "AuthCognitoUserPoolJSClientName": {
+                        "Ref": "AuthCognitoUserPoolJSClientName"
+                    },
+                    "AuthCognitoUserPoolRefreshTokenValidity": {
+                        "Ref": "AuthCognitoUserPoolRefreshTokenValidity"
+                    },
+                    "env": {
+                        "Ref": "env"
+                    },
+                    "S3DeploymentBucket": {
+                        "Ref": "S3DeploymentBucket"
+                    },
+                    "S3DeploymentRootKey": {
+                        "Ref": "S3DeploymentRootKey"
+                    },
+                    "GetAttGraphQLAPIApiId": {
+                        "Fn::GetAtt": [
+                            "GraphQLAPI",
+                            "ApiId"
+                        ]
+                    }
+                },
+                "TemplateURL": {
+                    "Fn::Join": [
+                        "/",
+                        [
+                            "https://s3.amazonaws.com",
+                            {
+                                "Ref": "S3DeploymentBucket"
+                            },
+                            {
+                                "Ref": "S3DeploymentRootKey"
+                            },
+                            "stacks",
+                            "Scenario.json"
+                        ]
+                    ]
+                }
+            },
+            "DependsOn": [
+                "GraphQLSchema"
+            ]
         },
         "Session": {
             "Type": "AWS::CloudFormation::Stack",
@@ -557,6 +668,85 @@
                 "GraphQLSchema"
             ]
         },
+        "ConnectionStack": {
+            "Type": "AWS::CloudFormation::Stack",
+            "Properties": {
+                "Parameters": {
+                    "AppSyncApiId": {
+                        "Fn::GetAtt": [
+                            "GraphQLAPI",
+                            "ApiId"
+                        ]
+                    },
+                    "AppSyncApiName": {
+                        "Ref": "AppSyncApiName"
+                    },
+                    "APIKeyExpirationEpoch": {
+                        "Ref": "APIKeyExpirationEpoch"
+                    },
+                    "DynamoDBModelTableReadIOPS": {
+                        "Ref": "DynamoDBModelTableReadIOPS"
+                    },
+                    "DynamoDBModelTableWriteIOPS": {
+                        "Ref": "DynamoDBModelTableWriteIOPS"
+                    },
+                    "DynamoDBBillingMode": {
+                        "Ref": "DynamoDBBillingMode"
+                    },
+                    "AuthCognitoUserPoolId": {
+                        "Ref": "AuthCognitoUserPoolId"
+                    },
+                    "AuthCognitoUserPoolName": {
+                        "Ref": "AuthCognitoUserPoolName"
+                    },
+                    "AuthCognitoUserPoolMobileClientName": {
+                        "Ref": "AuthCognitoUserPoolMobileClientName"
+                    },
+                    "AuthCognitoUserPoolJSClientName": {
+                        "Ref": "AuthCognitoUserPoolJSClientName"
+                    },
+                    "AuthCognitoUserPoolRefreshTokenValidity": {
+                        "Ref": "AuthCognitoUserPoolRefreshTokenValidity"
+                    },
+                    "env": {
+                        "Ref": "env"
+                    },
+                    "S3DeploymentBucket": {
+                        "Ref": "S3DeploymentBucket"
+                    },
+                    "S3DeploymentRootKey": {
+                        "Ref": "S3DeploymentRootKey"
+                    },
+                    "GetAttGraphQLAPIApiId": {
+                        "Fn::GetAtt": [
+                            "GraphQLAPI",
+                            "ApiId"
+                        ]
+                    }
+                },
+                "TemplateURL": {
+                    "Fn::Join": [
+                        "/",
+                        [
+                            "https://s3.amazonaws.com",
+                            {
+                                "Ref": "S3DeploymentBucket"
+                            },
+                            {
+                                "Ref": "S3DeploymentRootKey"
+                            },
+                            "stacks",
+                            "ConnectionStack.json"
+                        ]
+                    ]
+                }
+            },
+            "DependsOn": [
+                "GraphQLSchema",
+                "Session",
+                "Scenario"
+            ]
+        },
         "sendMailStackjson": {
             "Type": "AWS::CloudFormation::Stack",
             "Properties": {
@@ -597,8 +787,10 @@
             "DependsOn": [
                 "GraphQLAPI",
                 "GraphQLSchema",
+                "Scenario",
                 "Session",
-                "Config"
+                "Config",
+                "ConnectionStack"
             ]
         }
     },

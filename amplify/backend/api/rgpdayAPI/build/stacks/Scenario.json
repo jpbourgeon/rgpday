@@ -80,7 +80,85 @@
         }
     },
     "Resources": {
-        "SessionIAMRole": {
+        "ScenarioTable": {
+            "Type": "AWS::DynamoDB::Table",
+            "Properties": {
+                "TableName": {
+                    "Fn::If": [
+                        "HasEnvironmentParameter",
+                        {
+                            "Fn::Join": [
+                                "-",
+                                [
+                                    "Scenario",
+                                    {
+                                        "Ref": "GetAttGraphQLAPIApiId"
+                                    },
+                                    {
+                                        "Ref": "env"
+                                    }
+                                ]
+                            ]
+                        },
+                        {
+                            "Fn::Join": [
+                                "-",
+                                [
+                                    "Scenario",
+                                    {
+                                        "Ref": "GetAttGraphQLAPIApiId"
+                                    }
+                                ]
+                            ]
+                        }
+                    ]
+                },
+                "KeySchema": [
+                    {
+                        "AttributeName": "id",
+                        "KeyType": "HASH"
+                    }
+                ],
+                "AttributeDefinitions": [
+                    {
+                        "AttributeName": "id",
+                        "AttributeType": "S"
+                    }
+                ],
+                "StreamSpecification": {
+                    "StreamViewType": "NEW_AND_OLD_IMAGES"
+                },
+                "BillingMode": {
+                    "Fn::If": [
+                        "ShouldUsePayPerRequestBilling",
+                        "PAY_PER_REQUEST",
+                        {
+                            "Ref": "AWS::NoValue"
+                        }
+                    ]
+                },
+                "ProvisionedThroughput": {
+                    "Fn::If": [
+                        "ShouldUsePayPerRequestBilling",
+                        {
+                            "Ref": "AWS::NoValue"
+                        },
+                        {
+                            "ReadCapacityUnits": {
+                                "Ref": "DynamoDBModelTableReadIOPS"
+                            },
+                            "WriteCapacityUnits": {
+                                "Ref": "DynamoDBModelTableWriteIOPS"
+                            }
+                        }
+                    ]
+                },
+                "SSESpecification": {
+                    "SSEEnabled": true
+                }
+            }
+        },
+        "ScenarioIAMRole": {
             "Type": "AWS::IAM::Role",
             "Properties": {
                 "RoleName": {
@@ -90,7 +168,7 @@
                             "Fn::Join": [
                                 "-",
                                 [
-                                    "Session",
+                                    "Scenario",
                                     "role",
                                     {
                                         "Ref": "GetAttGraphQLAPIApiId"
@@ -105,7 +183,7 @@
                             "Fn::Join": [
                                 "-",
                                 [
-                                    "Session",
+                                    "Scenario",
                                     "role",
                                     {
                                         "Ref": "GetAttGraphQLAPIApiId"
@@ -157,7 +235,7 @@
                                                                 "Fn::Join": [
                                                                     "-",
                                                                     [
-                                                                        "Session",
+                                                                        "Scenario",
                                                                         {
                                                                             "Ref": "GetAttGraphQLAPIApiId"
                                                                         },
@@ -171,7 +249,7 @@
                                                                 "Fn::Join": [
                                                                     "-",
                                                                     [
-                                                                        "Session",
+                                                                        "Scenario",
                                                                         {
                                                                             "Ref": "GetAttGraphQLAPIApiId"
                                                                         }
@@ -194,7 +272,7 @@
                                                                 "Fn::Join": [
                                                                     "-",
                                                                     [
-                                                                        "Session",
+                                                                        "Scenario",
                                                                         {
                                                                             "Ref": "GetAttGraphQLAPIApiId"
                                                                         },
@@ -208,7 +286,7 @@
                                                                 "Fn::Join": [
                                                                     "-",
                                                                     [
-                                                                        "Session",
+                                                                        "Scenario",
                                                                         {
                                                                             "Ref": "GetAttGraphQLAPIApiId"
                                                                         }
@@ -228,17 +306,17 @@
                 ]
             }
         },
-        "SessionDataSource": {
+        "ScenarioDataSource": {
             "Type": "AWS::AppSync::DataSource",
             "Properties": {
                 "ApiId": {
                     "Ref": "GetAttGraphQLAPIApiId"
                 },
-                "Name": "SessionTable",
+                "Name": "ScenarioTable",
                 "Type": "AMAZON_DYNAMODB",
                 "ServiceRoleArn": {
                     "Fn::GetAtt": [
-                        "SessionIAMRole",
+                        "ScenarioIAMRole",
                         "Arn"
                     ]
                 },
@@ -253,7 +331,7 @@
                                 "Fn::Join": [
                                     "-",
                                     [
-                                        "Session",
+                                        "Scenario",
                                         {
                                             "Ref": "GetAttGraphQLAPIApiId"
                                         },
@@ -267,7 +345,7 @@
                                 "Fn::Join": [
                                     "-",
                                     [
-                                        "Session",
+                                        "Scenario",
                                         {
                                             "Ref": "GetAttGraphQLAPIApiId"
                                         }
@@ -279,10 +357,10 @@
                 }
             },
             "DependsOn": [
-                "SessionIAMRole"
+                "ScenarioIAMRole"
             ]
         },
-        "GetSessionResolver": {
+        "GetScenarioResolver": {
             "Type": "AWS::AppSync::Resolver",
             "Properties": {
                 "ApiId": {
@@ -290,11 +368,11 @@
                 },
                 "DataSourceName": {
                     "Fn::GetAtt": [
-                        "SessionDataSource",
+                        "ScenarioDataSource",
                         "Name"
                     ]
                 },
-                "FieldName": "getSession",
+                "FieldName": "getScenario",
                 "TypeName": "Query",
                 "RequestMappingTemplateS3Location": {
                     "Fn::Sub": [
@@ -311,7 +389,7 @@
                                     ".",
                                     [
                                         "Query",
-                                        "getSession",
+                                        "getScenario",
                                         "req",
                                         "vtl"
                                     ]
@@ -335,7 +413,7 @@
                                     ".",
                                     [
                                         "Query",
-                                        "getSession",
+                                        "getScenario",
                                         "res",
                                         "vtl"
                                     ]
@@ -346,7 +424,7 @@
                 }
             }
         },
-        "ListSessionResolver": {
+        "ListScenarioResolver": {
             "Type": "AWS::AppSync::Resolver",
             "Properties": {
                 "ApiId": {
@@ -354,11 +432,11 @@
                 },
                 "DataSourceName": {
                     "Fn::GetAtt": [
-                        "SessionDataSource",
+                        "ScenarioDataSource",
                         "Name"
                     ]
                 },
-                "FieldName": "listSessions",
+                "FieldName": "listScenarios",
                 "TypeName": "Query",
                 "RequestMappingTemplateS3Location": {
                     "Fn::Sub": [
@@ -375,7 +453,7 @@
                                     ".",
                                     [
                                         "Query",
-                                        "listSessions",
+                                        "listScenarios",
                                         "req",
                                         "vtl"
                                     ]
@@ -399,7 +477,7 @@
                                     ".",
                                     [
                                         "Query",
-                                        "listSessions",
+                                        "listScenarios",
                                         "res",
                                         "vtl"
                                     ]
@@ -410,7 +488,7 @@
                 }
             }
         },
-        "CreateSessionResolver": {
+        "CreateScenarioResolver": {
             "Type": "AWS::AppSync::Resolver",
             "Properties": {
                 "ApiId": {
@@ -418,11 +496,11 @@
                 },
                 "DataSourceName": {
                     "Fn::GetAtt": [
-                        "SessionDataSource",
+                        "ScenarioDataSource",
                         "Name"
                     ]
                 },
-                "FieldName": "createSession",
+                "FieldName": "createScenario",
                 "TypeName": "Mutation",
                 "RequestMappingTemplateS3Location": {
                     "Fn::Sub": [
@@ -439,7 +517,7 @@
                                     ".",
                                     [
                                         "Mutation",
-                                        "createSession",
+                                        "createScenario",
                                         "req",
                                         "vtl"
                                     ]
@@ -463,7 +541,7 @@
                                     ".",
                                     [
                                         "Mutation",
-                                        "createSession",
+                                        "createScenario",
                                         "res",
                                         "vtl"
                                     ]
@@ -474,7 +552,7 @@
                 }
             }
         },
-        "UpdateSessionResolver": {
+        "UpdateScenarioResolver": {
             "Type": "AWS::AppSync::Resolver",
             "Properties": {
                 "ApiId": {
@@ -482,11 +560,11 @@
                 },
                 "DataSourceName": {
                     "Fn::GetAtt": [
-                        "SessionDataSource",
+                        "ScenarioDataSource",
                         "Name"
                     ]
                 },
-                "FieldName": "updateSession",
+                "FieldName": "updateScenario",
                 "TypeName": "Mutation",
                 "RequestMappingTemplateS3Location": {
                     "Fn::Sub": [
@@ -503,7 +581,7 @@
                                     ".",
                                     [
                                         "Mutation",
-                                        "updateSession",
+                                        "updateScenario",
                                         "req",
                                         "vtl"
                                     ]
@@ -527,7 +605,7 @@
                                     ".",
                                     [
                                         "Mutation",
-                                        "updateSession",
+                                        "updateScenario",
                                         "res",
                                         "vtl"
                                     ]
@@ -538,7 +616,7 @@
                 }
             }
         },
-        "DeleteSessionResolver": {
+        "DeleteScenarioResolver": {
             "Type": "AWS::AppSync::Resolver",
             "Properties": {
                 "ApiId": {
@@ -546,11 +624,11 @@
                 },
                 "DataSourceName": {
                     "Fn::GetAtt": [
-                        "SessionDataSource",
+                        "ScenarioDataSource",
                         "Name"
                     ]
                 },
-                "FieldName": "deleteSession",
+                "FieldName": "deleteScenario",
                 "TypeName": "Mutation",
                 "RequestMappingTemplateS3Location": {
                     "Fn::Sub": [
@@ -567,7 +645,7 @@
                                     ".",
                                     [
                                         "Mutation",
-                                        "deleteSession",
+                                        "deleteScenario",
                                         "req",
                                         "vtl"
                                     ]
@@ -591,7 +669,7 @@
                                     ".",
                                     [
                                         "Mutation",
-                                        "deleteSession",
+                                        "deleteScenario",
                                         "res",
                                         "vtl"
                                     ]
@@ -604,10 +682,10 @@
         }
     },
     "Outputs": {
-        "GetAttSessionDataSourceName": {
+        "GetAttScenarioDataSourceName": {
             "Value": {
                 "Fn::GetAtt": [
-                    "SessionDataSource",
+                    "ScenarioDataSource",
                     "Name"
                 ]
             },
@@ -620,7 +698,7 @@
                                 "Ref": "AppSyncApiId"
                             },
                             "GetAtt",
-                            "SessionDataSource",
+                            "ScenarioDataSource",
                             "Name"
                         ]
                     ]

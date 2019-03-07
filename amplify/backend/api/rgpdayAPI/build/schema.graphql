@@ -1,3 +1,10 @@
+type Scenario {
+  id: ID!
+  name: String!
+  description: String
+  sessions(filter: ModelSessionFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelSessionConnection
+}
+
 type Session {
   id: ID!
   name: String!
@@ -7,6 +14,7 @@ type Session {
   RGPDay: AWSDate!
   startDate: AWSDate!
   endDate: AWSDate!
+  scenario: Scenario!
 }
 
 type Config {
@@ -17,6 +25,8 @@ type Config {
 
 type Query {
   sendMail(sender: String, content: String, subject: String, recaptcha: String): AWSJSON
+  getScenario(id: ID!): Scenario
+  listScenarios(filter: ModelScenarioFilterInput, limit: Int, nextToken: String): ModelScenarioConnection
   getSession(id: ID!): Session
   listSessions(filter: ModelSessionFilterInput, limit: Int, nextToken: String): ModelSessionConnection
   getConfig(id: ID!): Config
@@ -28,8 +38,8 @@ enum ModelSortDirection {
   DESC
 }
 
-type ModelSessionConnection {
-  items: [Session]
+type ModelScenarioConnection {
+  items: [Scenario]
   nextToken: String
 }
 
@@ -88,6 +98,60 @@ input ModelBooleanFilterInput {
   eq: Boolean
 }
 
+input ModelScenarioFilterInput {
+  id: ModelIDFilterInput
+  name: ModelStringFilterInput
+  description: ModelStringFilterInput
+  and: [ModelScenarioFilterInput]
+  or: [ModelScenarioFilterInput]
+  not: ModelScenarioFilterInput
+}
+
+input CreateScenarioInput {
+  id: ID
+  name: String!
+  description: String
+}
+
+input UpdateScenarioInput {
+  id: ID!
+  name: String
+  description: String
+}
+
+input DeleteScenarioInput {
+  id: ID
+}
+
+type Mutation {
+  createScenario(input: CreateScenarioInput!): Scenario
+  updateScenario(input: UpdateScenarioInput!): Scenario
+  deleteScenario(input: DeleteScenarioInput!): Scenario
+  createSession(input: CreateSessionInput!): Session
+  updateSession(input: UpdateSessionInput!): Session
+  deleteSession(input: DeleteSessionInput!): Session
+  createConfig(input: CreateConfigInput!): Config
+  updateConfig(input: UpdateConfigInput!): Config
+  deleteConfig(input: DeleteConfigInput!): Config
+}
+
+type Subscription {
+  onCreateScenario: Scenario @aws_subscribe(mutations: ["createScenario"])
+  onUpdateScenario: Scenario @aws_subscribe(mutations: ["updateScenario"])
+  onDeleteScenario: Scenario @aws_subscribe(mutations: ["deleteScenario"])
+  onCreateSession: Session @aws_subscribe(mutations: ["createSession"])
+  onUpdateSession: Session @aws_subscribe(mutations: ["updateSession"])
+  onDeleteSession: Session @aws_subscribe(mutations: ["deleteSession"])
+  onCreateConfig: Config @aws_subscribe(mutations: ["createConfig"])
+  onUpdateConfig: Config @aws_subscribe(mutations: ["updateConfig"])
+  onDeleteConfig: Config @aws_subscribe(mutations: ["deleteConfig"])
+}
+
+type ModelSessionConnection {
+  items: [Session]
+  nextToken: String
+}
+
 input ModelSessionFilterInput {
   id: ModelIDFilterInput
   name: ModelStringFilterInput
@@ -111,6 +175,7 @@ input CreateSessionInput {
   RGPDay: AWSDate!
   startDate: AWSDate!
   endDate: AWSDate!
+  sessionScenarioId: ID!
 }
 
 input UpdateSessionInput {
@@ -122,28 +187,11 @@ input UpdateSessionInput {
   RGPDay: AWSDate
   startDate: AWSDate
   endDate: AWSDate
+  sessionScenarioId: ID
 }
 
 input DeleteSessionInput {
   id: ID
-}
-
-type Mutation {
-  createSession(input: CreateSessionInput!): Session
-  updateSession(input: UpdateSessionInput!): Session
-  deleteSession(input: DeleteSessionInput!): Session
-  createConfig(input: CreateConfigInput!): Config
-  updateConfig(input: UpdateConfigInput!): Config
-  deleteConfig(input: DeleteConfigInput!): Config
-}
-
-type Subscription {
-  onCreateSession: Session @aws_subscribe(mutations: ["createSession"])
-  onUpdateSession: Session @aws_subscribe(mutations: ["updateSession"])
-  onDeleteSession: Session @aws_subscribe(mutations: ["deleteSession"])
-  onCreateConfig: Config @aws_subscribe(mutations: ["createConfig"])
-  onUpdateConfig: Config @aws_subscribe(mutations: ["updateConfig"])
-  onDeleteConfig: Config @aws_subscribe(mutations: ["deleteConfig"])
 }
 
 type ModelConfigConnection {
