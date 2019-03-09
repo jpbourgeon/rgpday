@@ -3,16 +3,16 @@ import { Router, Location } from '@reach/router'
 import { withStyles } from '@material-ui/core/styles'
 import { loadReCaptcha } from 'recaptcha-v3-react'
 import CssBaseline from '@material-ui/core/CssBaseline'
-import withRoot from './withRoot'
-import Loadable from './components/Loadable'
-import Navigation from './components/Navigation'
+import withRoot from 'src/withRoot'
+import Loadable from 'src/components/Loadable'
+import Navigation from 'src/components/Navigation'
 
-const ReCaptcha = () => (<Loadable component='components/ReCaptcha/GetReCaptchaTokens' />)
-const Default = () => (<Loadable component='pages/Default' />)
-const Home = () => (<Loadable component='pages/Home' />)
-const About = () => (<Loadable component='pages/About' />)
-const Contact = () => (<Loadable component='pages/Contact' />)
-const ProtectedRoutes = () => (<Loadable component='ProtectedRoutes' />)
+const ReCaptcha = () => (<Loadable path='components/ReCaptcha/GetReCaptchaTokens' />)
+const Default = () => (<Loadable path='pages/Default' />)
+const Home = () => (<Loadable path='pages/Home' />)
+const About = () => (<Loadable path='pages/About' />)
+const Contact = () => (<Loadable path='pages/Contact' />)
+const ProtectedRoutes = () => (<Loadable path='ProtectedRoutes' />)
 
 const styles = () => ({
   '@global': {

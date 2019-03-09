@@ -8,7 +8,7 @@ import Grid from '@material-ui/core/Grid'
 import Divider from '@material-ui/core/Divider'
 import Avatar from '@material-ui/core/Avatar'
 import Info from '@material-ui/icons/InfoOutlined'
-import CallToAction from '../../components/CallToAction'
+import CallToAction from 'src/components/CallToAction'
 import JPB from './images/avatar.jpg'
 
 const styles = theme => ({

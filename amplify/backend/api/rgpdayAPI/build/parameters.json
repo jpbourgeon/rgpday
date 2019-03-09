@@ -1,0 +1,12 @@
+{
+    "DynamoDBBillingMode": "PROVISIONED",
+    "AppSyncApiName": "rgpdayAPI",
+    "AuthCognitoUserPoolId": {
+        "Fn::GetAtt": [
+            "authrgpdayAuth",
+            "Outputs.UserPoolId"
+        ]
+    },
+    "S3DeploymentBucket": "rgpday-20190305112118-deployment",
+    "S3DeploymentRootKey": "amplify-appsync-files/d8d541c52ec4e73790c884c04c70753b924d86eb"
+}

@@ -1,8 +1,8 @@
 import React from 'react'
-import logger from '../../logger'
+import logger from 'src/logger'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
-import ReCaptcha from '../../components/ReCaptcha'
+import ReCaptcha from 'src/components/ReCaptcha'
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
@@ -16,8 +16,8 @@ import isEmail from 'validator/lib/isEmail'
 import isEmpty from 'validator/lib/isEmpty'
 
 import API, { graphqlOperation } from '@aws-amplify/api'
-import { sendMail } from '../../graphql/queries'
-import config from '../../aws-exports'
+import { sendMail } from 'src/graphql/queries'
+import config from 'src/aws-exports'
 
 API.configure(config)
 

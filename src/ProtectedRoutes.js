@@ -1,18 +1,20 @@
 import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
-import { Router } from '@reach/router'
-import SignIn from './components/SignIn'
-import Loadable from './components/Loadable'
+import { Router, Redirect } from '@reach/router'
+import SignIn from 'src/components/SignIn'
+import Loadable from 'src/components/Loadable'
 
 import Auth from '@aws-amplify/auth'
 import { Authenticator } from 'aws-amplify-react'
-import config from './aws-exports'
+import config from 'src/aws-exports'
 Auth.configure(config)
 
-const Default = () => (<Loadable component='pages/Default' />)
-const Dashboard = () => (<Loadable component='protectedPages/Dashboard' />)
-const Sessions = () => (<Loadable component='protectedPages/Sessions' />)
-const Scenarios = () => (<Loadable component='protectedPages/Scenarios' />)
+const Default = () => (<Loadable path='pages/Default' />)
+const Dashboard = () => (<Loadable path='protectedPages/Dashboard' />)
+const Sessions = () => (<Loadable path='protectedPages/Sessions' />)
+const Scenarios = () => (<Loadable path='protectedPages/Scenarios' />)
+const EditScenario = () => (<Loadable path='protectedPages/EditScenario' />)
+const EditSession = () => (<Loadable path='protectedPages/EditSession' />)
 
 const styles = {
   '@global': {
@@ -41,6 +43,12 @@ class MyRouter extends React.Component {
           <Dashboard path='/' />
           <Sessions path='/sessions' />
           <Scenarios path='/scenarios' />
+          <EditScenario path='/scenarios/add' />
+          <EditScenario path='/scenarios/update/:scenarioId' />
+          <Redirect noThrow from='/scenarios/update' to='/dashboard/scenarios/add' />
+          <EditSession path='/sessions/add' />
+          <EditSession path='/sessions/update/:sessionId' />
+          <Redirect noThrow from='/sessions/update' to='/dashboard/sessions/add' />
         </Router>
       )
     }

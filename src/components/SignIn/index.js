@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import logger from '../../logger'
+import logger from 'src/logger'
 import { withStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
@@ -10,10 +10,10 @@ import Button from '@material-ui/core/Button'
 import AccountCircle from '@material-ui/icons/AccountCircleOutlined'
 import Collapse from '@material-ui/core/Collapse'
 import isEmpty from 'validator/lib/isEmpty'
-import ReCaptcha from '../ReCaptcha'
+import ReCaptcha from 'src/components/ReCaptcha'
 
 import Auth from '@aws-amplify/auth'
-import config from '../../aws-exports'
+import config from 'src/aws-exports'
 
 Auth.configure(config)
 

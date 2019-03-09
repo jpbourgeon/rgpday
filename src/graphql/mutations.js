@@ -4,18 +4,18 @@
 export const createScenario = `mutation CreateScenario($input: CreateScenarioInput!) {
   createScenario(input: $input) {
     id
-    name
     description
+    searchable
     sessions {
       items {
         id
-        name
         description
         contact
         numberOfParticipants
         RGPDay
         startDate
         endDate
+        searchable
       }
       nextToken
     }
@@ -25,18 +25,18 @@ export const createScenario = `mutation CreateScenario($input: CreateScenarioInp
 export const updateScenario = `mutation UpdateScenario($input: UpdateScenarioInput!) {
   updateScenario(input: $input) {
     id
-    name
     description
+    searchable
     sessions {
       items {
         id
-        name
         description
         contact
         numberOfParticipants
         RGPDay
         startDate
         endDate
+        searchable
       }
       nextToken
     }
@@ -46,18 +46,18 @@ export const updateScenario = `mutation UpdateScenario($input: UpdateScenarioInp
 export const deleteScenario = `mutation DeleteScenario($input: DeleteScenarioInput!) {
   deleteScenario(input: $input) {
     id
-    name
     description
+    searchable
     sessions {
       items {
         id
-        name
         description
         contact
         numberOfParticipants
         RGPDay
         startDate
         endDate
+        searchable
       }
       nextToken
     }
@@ -67,20 +67,30 @@ export const deleteScenario = `mutation DeleteScenario($input: DeleteScenarioInp
 export const createSession = `mutation CreateSession($input: CreateSessionInput!) {
   createSession(input: $input) {
     id
-    name
     description
     contact
     numberOfParticipants
     RGPDay
     startDate
     endDate
+    searchable
     scenario {
       id
-      name
       description
+      searchable
       sessions {
         nextToken
       }
+    }
+    teams {
+      items {
+        id
+        name
+        initials
+        color
+        searchable
+      }
+      nextToken
     }
   }
 }
@@ -88,20 +98,30 @@ export const createSession = `mutation CreateSession($input: CreateSessionInput!
 export const updateSession = `mutation UpdateSession($input: UpdateSessionInput!) {
   updateSession(input: $input) {
     id
-    name
     description
     contact
     numberOfParticipants
     RGPDay
     startDate
     endDate
+    searchable
     scenario {
       id
-      name
       description
+      searchable
       sessions {
         nextToken
       }
+    }
+    teams {
+      items {
+        id
+        name
+        initials
+        color
+        searchable
+      }
+      nextToken
     }
   }
 }
@@ -109,18 +129,112 @@ export const updateSession = `mutation UpdateSession($input: UpdateSessionInput!
 export const deleteSession = `mutation DeleteSession($input: DeleteSessionInput!) {
   deleteSession(input: $input) {
     id
-    name
     description
     contact
     numberOfParticipants
     RGPDay
     startDate
     endDate
+    searchable
     scenario {
       id
-      name
       description
+      searchable
       sessions {
+        nextToken
+      }
+    }
+    teams {
+      items {
+        id
+        name
+        initials
+        color
+        searchable
+      }
+      nextToken
+    }
+  }
+}
+`;
+export const createTeam = `mutation CreateTeam($input: CreateTeamInput!) {
+  createTeam(input: $input) {
+    id
+    name
+    initials
+    color
+    searchable
+    session {
+      id
+      description
+      contact
+      numberOfParticipants
+      RGPDay
+      startDate
+      endDate
+      searchable
+      scenario {
+        id
+        description
+        searchable
+      }
+      teams {
+        nextToken
+      }
+    }
+  }
+}
+`;
+export const updateTeam = `mutation UpdateTeam($input: UpdateTeamInput!) {
+  updateTeam(input: $input) {
+    id
+    name
+    initials
+    color
+    searchable
+    session {
+      id
+      description
+      contact
+      numberOfParticipants
+      RGPDay
+      startDate
+      endDate
+      searchable
+      scenario {
+        id
+        description
+        searchable
+      }
+      teams {
+        nextToken
+      }
+    }
+  }
+}
+`;
+export const deleteTeam = `mutation DeleteTeam($input: DeleteTeamInput!) {
+  deleteTeam(input: $input) {
+    id
+    name
+    initials
+    color
+    searchable
+    session {
+      id
+      description
+      contact
+      numberOfParticipants
+      RGPDay
+      startDate
+      endDate
+      searchable
+      scenario {
+        id
+        description
+        searchable
+      }
+      teams {
         nextToken
       }
     }
@@ -130,7 +244,6 @@ export const deleteSession = `mutation DeleteSession($input: DeleteSessionInput!
 export const createConfig = `mutation CreateConfig($input: CreateConfigInput!) {
   createConfig(input: $input) {
     id
-    name
     value
   }
 }
@@ -138,7 +251,6 @@ export const createConfig = `mutation CreateConfig($input: CreateConfigInput!) {
 export const updateConfig = `mutation UpdateConfig($input: UpdateConfigInput!) {
   updateConfig(input: $input) {
     id
-    name
     value
   }
 }
@@ -146,7 +258,6 @@ export const updateConfig = `mutation UpdateConfig($input: UpdateConfigInput!) {
 export const deleteConfig = `mutation DeleteConfig($input: DeleteConfigInput!) {
   deleteConfig(input: $input) {
     id
-    name
     value
   }
 }

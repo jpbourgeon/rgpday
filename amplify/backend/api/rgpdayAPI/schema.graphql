@@ -1,33 +1,42 @@
 type Scenario @model {
   id: ID!
-  name: String!
   description: String
+  searchable: String
   sessions: [Session] @connection(name: "ScenarioSessions")
 }
 
 type Session @model {
   id: ID!
-  name: String!
   description: String
   contact: String
   numberOfParticipants: Int
   RGPDay: AWSDate!
   startDate: AWSDate!
   endDate: AWSDate!
+  searchable: String
   scenario: Scenario! @connection(name: "ScenarioSessions")
+  teams: [Team] @connection(name: "SessionTeams")
+}
+
+type Team @model {
+  id: ID!
+  name: String
+  initials: String
+  color: String
+  searchable: String
+  session: Session! @connection(name: "SessionTeams")
 }
 
 type Config @model {
   id: ID!
-  name: String!
-  value: String!
+  value: String
 }
 
 type Query {
   sendMail(
-    sender: String,
-    content: String,
-    subject: String,
-    recaptcha: String,
+    sender: String
+    content: String
+    subject: String
+    recaptcha: String
   ): AWSJSON
 }

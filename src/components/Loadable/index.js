@@ -1,8 +1,8 @@
 import React from 'react'
-import logger from '../../logger'
 import loadable from '@loadable/component'
-import Loading from '../Loading'
-import Default from '../../pages/Default'
+import logger from 'src/logger'
+import Loading from 'src/components/Loading'
+import Default from 'src/pages/Default'
 
 class ErrorBoundary extends React.Component {
   constructor (props) {
@@ -31,13 +31,13 @@ class ErrorBoundary extends React.Component {
 }
 
 const Loadable = (props) => {
-  const { component, prefetch } = props
+  const { path, prefetch } = props
   let AsyncComponent
   if (prefetch) {
-    AsyncComponent = loadable(() => import(/* webpackPrefetch: true */ `../../${component}`),
+    AsyncComponent = loadable(() => import(/* webpackPrefetch: true */ `../../${path}`),
       { fallback: <Loading /> })
   } else {
-    AsyncComponent = loadable(() => import(`../../${component}`),
+    AsyncComponent = loadable(() => import(`../../${path}`),
       { fallback: <Loading /> })
   }
   return (

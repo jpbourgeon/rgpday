@@ -1,9 +1,8 @@
-2019-02-27 Added: frontend Scenarios page : filterable list session page
-2019-02-27 Added: frontend Scenarios page : edit session page
-2019-02-27 Added: frontend Scenarios page : delete session button
-2019-02-27 Added: frontend Sessions page : filterable list session page
-2019-02-27 Added: frontend Sessions page : edit session page
-2019-02-27 Added: frontend Sessions page : delete session button
+2019-03-09 Added: frontend Sessions : LED
+2019-03-09 Added: frontend Teams : LED
+2019-03-09 cascade delete scenario
+2019-03-09 cascade delete session
+2019-03-09 cascade delete team
 2019-02-09 write the game specs
 2019-02-09 write the conference specs
 2019-02-09 "mentions legales" (CopyRight) / RGPD page + [Cookie Consent](https://cookieconsent.insites.com/) <https://www.service-public.fr/professionnels-entreprises/vosdroits/F31228>

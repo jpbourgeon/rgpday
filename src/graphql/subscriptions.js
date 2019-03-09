@@ -4,18 +4,18 @@
 export const onCreateScenario = `subscription OnCreateScenario {
   onCreateScenario {
     id
-    name
     description
+    searchable
     sessions {
       items {
         id
-        name
         description
         contact
         numberOfParticipants
         RGPDay
         startDate
         endDate
+        searchable
       }
       nextToken
     }
@@ -25,18 +25,18 @@ export const onCreateScenario = `subscription OnCreateScenario {
 export const onUpdateScenario = `subscription OnUpdateScenario {
   onUpdateScenario {
     id
-    name
     description
+    searchable
     sessions {
       items {
         id
-        name
         description
         contact
         numberOfParticipants
         RGPDay
         startDate
         endDate
+        searchable
       }
       nextToken
     }
@@ -46,18 +46,18 @@ export const onUpdateScenario = `subscription OnUpdateScenario {
 export const onDeleteScenario = `subscription OnDeleteScenario {
   onDeleteScenario {
     id
-    name
     description
+    searchable
     sessions {
       items {
         id
-        name
         description
         contact
         numberOfParticipants
         RGPDay
         startDate
         endDate
+        searchable
       }
       nextToken
     }
@@ -67,20 +67,30 @@ export const onDeleteScenario = `subscription OnDeleteScenario {
 export const onCreateSession = `subscription OnCreateSession {
   onCreateSession {
     id
-    name
     description
     contact
     numberOfParticipants
     RGPDay
     startDate
     endDate
+    searchable
     scenario {
       id
-      name
       description
+      searchable
       sessions {
         nextToken
       }
+    }
+    teams {
+      items {
+        id
+        name
+        initials
+        color
+        searchable
+      }
+      nextToken
     }
   }
 }
@@ -88,20 +98,30 @@ export const onCreateSession = `subscription OnCreateSession {
 export const onUpdateSession = `subscription OnUpdateSession {
   onUpdateSession {
     id
-    name
     description
     contact
     numberOfParticipants
     RGPDay
     startDate
     endDate
+    searchable
     scenario {
       id
-      name
       description
+      searchable
       sessions {
         nextToken
       }
+    }
+    teams {
+      items {
+        id
+        name
+        initials
+        color
+        searchable
+      }
+      nextToken
     }
   }
 }
@@ -109,18 +129,112 @@ export const onUpdateSession = `subscription OnUpdateSession {
 export const onDeleteSession = `subscription OnDeleteSession {
   onDeleteSession {
     id
-    name
     description
     contact
     numberOfParticipants
     RGPDay
     startDate
     endDate
+    searchable
     scenario {
       id
-      name
       description
+      searchable
       sessions {
+        nextToken
+      }
+    }
+    teams {
+      items {
+        id
+        name
+        initials
+        color
+        searchable
+      }
+      nextToken
+    }
+  }
+}
+`;
+export const onCreateTeam = `subscription OnCreateTeam {
+  onCreateTeam {
+    id
+    name
+    initials
+    color
+    searchable
+    session {
+      id
+      description
+      contact
+      numberOfParticipants
+      RGPDay
+      startDate
+      endDate
+      searchable
+      scenario {
+        id
+        description
+        searchable
+      }
+      teams {
+        nextToken
+      }
+    }
+  }
+}
+`;
+export const onUpdateTeam = `subscription OnUpdateTeam {
+  onUpdateTeam {
+    id
+    name
+    initials
+    color
+    searchable
+    session {
+      id
+      description
+      contact
+      numberOfParticipants
+      RGPDay
+      startDate
+      endDate
+      searchable
+      scenario {
+        id
+        description
+        searchable
+      }
+      teams {
+        nextToken
+      }
+    }
+  }
+}
+`;
+export const onDeleteTeam = `subscription OnDeleteTeam {
+  onDeleteTeam {
+    id
+    name
+    initials
+    color
+    searchable
+    session {
+      id
+      description
+      contact
+      numberOfParticipants
+      RGPDay
+      startDate
+      endDate
+      searchable
+      scenario {
+        id
+        description
+        searchable
+      }
+      teams {
         nextToken
       }
     }
@@ -130,7 +244,6 @@ export const onDeleteSession = `subscription OnDeleteSession {
 export const onCreateConfig = `subscription OnCreateConfig {
   onCreateConfig {
     id
-    name
     value
   }
 }
@@ -138,7 +251,6 @@ export const onCreateConfig = `subscription OnCreateConfig {
 export const onUpdateConfig = `subscription OnUpdateConfig {
   onUpdateConfig {
     id
-    name
     value
   }
 }
@@ -146,7 +258,6 @@ export const onUpdateConfig = `subscription OnUpdateConfig {
 export const onDeleteConfig = `subscription OnDeleteConfig {
   onDeleteConfig {
     id
-    name
     value
   }
 }

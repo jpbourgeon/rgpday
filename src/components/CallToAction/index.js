@@ -1,8 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
-import { Link as RouterLink } from '@reach/router'
-import Link from '@material-ui/core/Link'
+import Link from '../Link'
 import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
@@ -24,13 +23,11 @@ const styles = theme => ({
   }
 })
 
-const LinkToContact = props => <RouterLink to='/contact' {...props} />
-
 const CallToAction = (props) => {
   const { classes, xs, sm, md } = props
   const cta = (
     <React.Fragment>
-      <Link component={LinkToContact} color='secondary'>Contactez-moi&nbsp;!</Link><br />
+      <Link to='/contact' color='secondary'>Contactez-moi&nbsp;!</Link><br />
     pour organiser le RGPDay dans votre établissement
     </React.Fragment>
   )

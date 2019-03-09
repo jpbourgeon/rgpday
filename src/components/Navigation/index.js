@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import logger from '../../logger'
+import logger from 'src/logger'
 import { withStyles } from '@material-ui/core/styles'
 import classNames from 'classnames'
 import AppBar from '@material-ui/core/AppBar'
@@ -17,7 +17,7 @@ import ArrowBack from '@material-ui/icons/ArrowBack'
 import Fab from '@material-ui/core/Fab'
 import Auth from '@aws-amplify/auth'
 import { Hub } from '@aws-amplify/core'
-import config from '../../aws-exports'
+import config from 'src/aws-exports'
 
 Auth.configure(config)
 
@@ -157,7 +157,7 @@ class AppBarComponent extends React.Component {
       return (<React.Fragment>
         <Fade in={moved}>
           <Link to='../'>
-            <Fab color='primary' aria-label='Back' className={classes.fab}>
+            <Fab color='primary' aria-label='Retour' className={classes.fab}>
               <ArrowBack />
             </Fab>
           </Link>

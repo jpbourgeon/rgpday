@@ -1,26 +1,35 @@
 type Scenario {
   id: ID!
-  name: String!
   description: String
+  searchable: String
   sessions(filter: ModelSessionFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelSessionConnection
 }
 
 type Session {
   id: ID!
-  name: String!
   description: String
   contact: String
   numberOfParticipants: Int
   RGPDay: AWSDate!
   startDate: AWSDate!
   endDate: AWSDate!
+  searchable: String
   scenario: Scenario!
+  teams(filter: ModelTeamFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelTeamConnection
+}
+
+type Team {
+  id: ID!
+  name: String
+  initials: String
+  color: String
+  searchable: String
+  session: Session!
 }
 
 type Config {
   id: ID!
-  name: String!
-  value: String!
+  value: String
 }
 
 type Query {
@@ -29,6 +38,8 @@ type Query {
   listScenarios(filter: ModelScenarioFilterInput, limit: Int, nextToken: String): ModelScenarioConnection
   getSession(id: ID!): Session
   listSessions(filter: ModelSessionFilterInput, limit: Int, nextToken: String): ModelSessionConnection
+  getTeam(id: ID!): Team
+  listTeams(filter: ModelTeamFilterInput, limit: Int, nextToken: String): ModelTeamConnection
   getConfig(id: ID!): Config
   listConfigs(filter: ModelConfigFilterInput, limit: Int, nextToken: String): ModelConfigConnection
 }
@@ -100,8 +111,8 @@ input ModelBooleanFilterInput {
 
 input ModelScenarioFilterInput {
   id: ModelIDFilterInput
-  name: ModelStringFilterInput
   description: ModelStringFilterInput
+  searchable: ModelStringFilterInput
   and: [ModelScenarioFilterInput]
   or: [ModelScenarioFilterInput]
   not: ModelScenarioFilterInput
@@ -109,14 +120,14 @@ input ModelScenarioFilterInput {
 
 input CreateScenarioInput {
   id: ID
-  name: String!
   description: String
+  searchable: String
 }
 
 input UpdateScenarioInput {
   id: ID!
-  name: String
   description: String
+  searchable: String
 }
 
 input DeleteScenarioInput {
@@ -130,6 +141,9 @@ type Mutation {
   createSession(input: CreateSessionInput!): Session
   updateSession(input: UpdateSessionInput!): Session
   deleteSession(input: DeleteSessionInput!): Session
+  createTeam(input: CreateTeamInput!): Team
+  updateTeam(input: UpdateTeamInput!): Team
+  deleteTeam(input: DeleteTeamInput!): Team
   createConfig(input: CreateConfigInput!): Config
   updateConfig(input: UpdateConfigInput!): Config
   deleteConfig(input: DeleteConfigInput!): Config
@@ -142,6 +156,9 @@ type Subscription {
   onCreateSession: Session @aws_subscribe(mutations: ["createSession"])
   onUpdateSession: Session @aws_subscribe(mutations: ["updateSession"])
   onDeleteSession: Session @aws_subscribe(mutations: ["deleteSession"])
+  onCreateTeam: Team @aws_subscribe(mutations: ["createTeam"])
+  onUpdateTeam: Team @aws_subscribe(mutations: ["updateTeam"])
+  onDeleteTeam: Team @aws_subscribe(mutations: ["deleteTeam"])
   onCreateConfig: Config @aws_subscribe(mutations: ["createConfig"])
   onUpdateConfig: Config @aws_subscribe(mutations: ["updateConfig"])
   onDeleteConfig: Config @aws_subscribe(mutations: ["deleteConfig"])
@@ -154,13 +171,13 @@ type ModelSessionConnection {
 
 input ModelSessionFilterInput {
   id: ModelIDFilterInput
-  name: ModelStringFilterInput
   description: ModelStringFilterInput
   contact: ModelStringFilterInput
   numberOfParticipants: ModelIntFilterInput
   RGPDay: ModelStringFilterInput
   startDate: ModelStringFilterInput
   endDate: ModelStringFilterInput
+  searchable: ModelStringFilterInput
   and: [ModelSessionFilterInput]
   or: [ModelSessionFilterInput]
   not: ModelSessionFilterInput
@@ -168,29 +185,67 @@ input ModelSessionFilterInput {
 
 input CreateSessionInput {
   id: ID
-  name: String!
   description: String
   contact: String
   numberOfParticipants: Int
   RGPDay: AWSDate!
   startDate: AWSDate!
   endDate: AWSDate!
+  searchable: String
   sessionScenarioId: ID!
 }
 
 input UpdateSessionInput {
   id: ID!
-  name: String
   description: String
   contact: String
   numberOfParticipants: Int
   RGPDay: AWSDate
   startDate: AWSDate
   endDate: AWSDate
+  searchable: String
   sessionScenarioId: ID
 }
 
 input DeleteSessionInput {
+  id: ID
+}
+
+type ModelTeamConnection {
+  items: [Team]
+  nextToken: String
+}
+
+input ModelTeamFilterInput {
+  id: ModelIDFilterInput
+  name: ModelStringFilterInput
+  initials: ModelStringFilterInput
+  color: ModelStringFilterInput
+  searchable: ModelStringFilterInput
+  and: [ModelTeamFilterInput]
+  or: [ModelTeamFilterInput]
+  not: ModelTeamFilterInput
+}
+
+input CreateTeamInput {
+  id: ID
+  name: String
+  initials: String
+  color: String
+  searchable: String
+  teamSessionId: ID!
+}
+
+input UpdateTeamInput {
+  id: ID!
+  name: String
+  initials: String
+  color: String
+  searchable: String
+  teamSessionId: ID
+}
+
+input DeleteTeamInput {
   id: ID
 }
 
@@ -201,7 +256,6 @@ type ModelConfigConnection {
 
 input ModelConfigFilterInput {
   id: ModelIDFilterInput
-  name: ModelStringFilterInput
   value: ModelStringFilterInput
   and: [ModelConfigFilterInput]
   or: [ModelConfigFilterInput]
@@ -210,13 +264,11 @@ input ModelConfigFilterInput {
 
 input CreateConfigInput {
   id: ID
-  name: String!
-  value: String!
+  value: String
 }
 
 input UpdateConfigInput {
   id: ID!
-  name: String
   value: String
 }
 

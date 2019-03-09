@@ -18,18 +18,18 @@ export const sendMail = `query SendMail(
 export const getScenario = `query GetScenario($id: ID!) {
   getScenario(id: $id) {
     id
-    name
     description
+    searchable
     sessions {
       items {
         id
-        name
         description
         contact
         numberOfParticipants
         RGPDay
         startDate
         endDate
+        searchable
       }
       nextToken
     }
@@ -44,8 +44,8 @@ export const listScenarios = `query ListScenarios(
   listScenarios(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
-      name
       description
+      searchable
       sessions {
         nextToken
       }
@@ -57,20 +57,30 @@ export const listScenarios = `query ListScenarios(
 export const getSession = `query GetSession($id: ID!) {
   getSession(id: $id) {
     id
-    name
     description
     contact
     numberOfParticipants
     RGPDay
     startDate
     endDate
+    searchable
     scenario {
       id
-      name
       description
+      searchable
       sessions {
         nextToken
       }
+    }
+    teams {
+      items {
+        id
+        name
+        initials
+        color
+        searchable
+      }
+      nextToken
     }
   }
 }
@@ -83,17 +93,75 @@ export const listSessions = `query ListSessions(
   listSessions(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
-      name
       description
       contact
       numberOfParticipants
       RGPDay
       startDate
       endDate
+      searchable
       scenario {
         id
-        name
         description
+        searchable
+      }
+      teams {
+        nextToken
+      }
+    }
+    nextToken
+  }
+}
+`;
+export const getTeam = `query GetTeam($id: ID!) {
+  getTeam(id: $id) {
+    id
+    name
+    initials
+    color
+    searchable
+    session {
+      id
+      description
+      contact
+      numberOfParticipants
+      RGPDay
+      startDate
+      endDate
+      searchable
+      scenario {
+        id
+        description
+        searchable
+      }
+      teams {
+        nextToken
+      }
+    }
+  }
+}
+`;
+export const listTeams = `query ListTeams(
+  $filter: ModelTeamFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listTeams(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      name
+      initials
+      color
+      searchable
+      session {
+        id
+        description
+        contact
+        numberOfParticipants
+        RGPDay
+        startDate
+        endDate
+        searchable
       }
     }
     nextToken
@@ -103,7 +171,6 @@ export const listSessions = `query ListSessions(
 export const getConfig = `query GetConfig($id: ID!) {
   getConfig(id: $id) {
     id
-    name
     value
   }
 }
@@ -116,7 +183,6 @@ export const listConfigs = `query ListConfigs(
   listConfigs(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
-      name
       value
     }
     nextToken

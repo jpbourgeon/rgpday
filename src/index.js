@@ -1,8 +1,8 @@
 import 'react-app-polyfill/ie11'
 import React from 'react'
 import { hydrate, render } from 'react-dom'
-import * as serviceWorker from './serviceWorker'
-import App from './App'
+import * as serviceWorker from 'src/serviceWorker'
+import App from 'src/App'
 
 // Load Roboto typeface
 import('typeface-roboto')

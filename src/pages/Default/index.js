@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link as RouterLink } from '@reach/router'
-import Link from '@material-ui/core/Link'
+import Link from 'src/components/Link'
 import { withStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
@@ -37,8 +36,6 @@ const styles = theme => {
   }
 }
 
-const LinkToHome = props => <RouterLink to='/' {...props} />
-
 const HomeComponent = props => {
   const { classes } = props
   return (
@@ -53,7 +50,7 @@ const HomeComponent = props => {
                     Ce contenu est indisponible.
                 </Typography>
                 <Typography variant='subtitle1' color='inherit' gutterBottom>
-                    Avez vous consulté la <Link component={LinkToHome} color='secondary'>page d'accueil</Link> du site ?
+                    Avez vous consulté la <Link to='/' color='secondary'>page d'accueil</Link> du site ?
                 </Typography>
               </div>
             </Grid>
