@@ -1,32 +1,32 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`The Sessions component should render correctly 1`] = `
+exports[`The Scenarios component should render correctly 1`] = `
 <div
   className="layout-1"
 >
   <main>
     <div
-      className="root-16 elevation2-20 rounded-17 paper-2"
+      className="root-15 elevation2-19 rounded-16 paper-2"
     >
       <div
-        className="container-43"
+        className="container-42"
       >
         <div
-          className="item-44 12-83 breadcrumb-3"
+          className="item-43 12-82 breadcrumb-3"
         >
           <nav
             arial-label="Breadcrumb"
-            className="root-144 body1-153 colorTextSecondary-177 root-140"
+            className="root-143 body1-152 colorTextSecondary-176 root-139"
           >
             <ol
-              className="ol-141"
+              className="ol-140"
             >
               <li
-                className="li-142"
+                className="li-141"
               >
                 <a
                   aria-current="page"
-                  className="root-144 colorInherit-173 inline-179 root-180 underlineHover-182"
+                  className="root-143 colorInherit-172 inline-178 root-179 underlineHover-181"
                   href="/"
                   onClick={[Function]}
                 >
@@ -35,11 +35,11 @@ exports[`The Sessions component should render correctly 1`] = `
               </li>
               <li
                 aria-hidden="true"
-                className="root-185 separator-143"
+                className="root-184 separator-142"
               >
                 <svg
                   aria-hidden="true"
-                  className="root-186 fontSizeSmall-193"
+                  className="root-185 fontSizeSmall-192"
                   focusable="false"
                   role="presentation"
                   viewBox="0 0 24 24"
@@ -54,11 +54,11 @@ exports[`The Sessions component should render correctly 1`] = `
                 </svg>
               </li>
               <li
-                className="li-142"
+                className="li-141"
               >
                 <a
                   aria-current="page"
-                  className="root-144 colorInherit-173 inline-179 root-180 underlineHover-182"
+                  className="root-143 colorInherit-172 inline-178 root-179 underlineHover-181"
                   href="/"
                   onClick={[Function]}
                 >
@@ -67,11 +67,11 @@ exports[`The Sessions component should render correctly 1`] = `
               </li>
               <li
                 aria-hidden="true"
-                className="root-185 separator-143"
+                className="root-184 separator-142"
               >
                 <svg
                   aria-hidden="true"
-                  className="root-186 fontSizeSmall-193"
+                  className="root-185 fontSizeSmall-192"
                   focusable="false"
                   role="presentation"
                   viewBox="0 0 24 24"
@@ -86,37 +86,37 @@ exports[`The Sessions component should render correctly 1`] = `
                 </svg>
               </li>
               <li
-                className="li-142"
+                className="li-141"
               >
                 <a
                   aria-current="page"
-                  className="root-144 colorInherit-173 inline-179 root-180 underlineHover-182"
+                  className="root-143 colorInherit-172 inline-178 root-179 underlineHover-181"
                   href="/"
                   onClick={[Function]}
                 >
-                  Sessions
+                  Scénarios
                 </a>
               </li>
             </ol>
           </nav>
         </div>
         <div
-          className="item-44 12-83 title-4"
+          className="item-43 12-82 title-4"
         >
           <h4
-            className="root-144 h4-159 gutterBottom-171"
+            className="root-143 h4-158 gutterBottom-170"
           >
             <div
               className="fab-6"
             >
               <a
-                className="root-144 colorPrimary-174 inline-179 root-180 underlineHover-182"
+                className="root-143 colorPrimary-173 inline-178 root-179 underlineHover-181"
                 href="//add"
                 onClick={[Function]}
               >
                 <button
                   aria-label="Ajouter"
-                  className="root-205 root-195 primary-197"
+                  className="root-204 root-194 primary-196"
                   disabled={false}
                   onBlur={[Function]}
                   onContextMenu={[Function]}
@@ -133,11 +133,11 @@ exports[`The Sessions component should render correctly 1`] = `
                   type="button"
                 >
                   <span
-                    className="label-196"
+                    className="label-195"
                   >
                     <svg
                       aria-hidden="true"
-                      className="root-186"
+                      className="root-185"
                       focusable="false"
                       role="presentation"
                       viewBox="0 0 24 24"
@@ -152,14 +152,14 @@ exports[`The Sessions component should render correctly 1`] = `
                     </svg>
                   </span>
                   <span
-                    className="root-289"
+                    className="root-288"
                   />
                 </button>
               </a>
             </div>
             <svg
               aria-hidden="true"
-              className="root-186 titleIcon-5"
+              className="root-185 titleIcon-5"
               focusable="false"
               role="presentation"
               viewBox="0 0 24 24"
@@ -172,14 +172,14 @@ exports[`The Sessions component should render correctly 1`] = `
                 d="M20 6h-8l-2-2H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 12H4V8h16v10z"
               />
             </svg>
-             Sessions
+             Scénarios
           </h4>
           <hr
-            className="root-208"
+            className="root-207"
           />
         </div>
         <div
-          className="item-44 12-83"
+          className="item-43 12-82"
         >
           <form
             autoComplete="off"
@@ -188,27 +188,27 @@ exports[`The Sessions component should render correctly 1`] = `
             onSubmit={[Function]}
           >
             <div
-              className="container-43"
+              className="container-42"
             >
               <div
-                className="item-44 grow-7"
+                className="item-43 grow-7"
               >
                 <div
-                  className="root-213 marginNormal-214 fullWidth-216"
+                  className="root-212 marginNormal-213 fullWidth-215"
                 >
                   <label
-                    className="root-228 root-217 formControl-222 animated-225 outlined-227"
+                    className="root-227 root-216 formControl-221 animated-224 outlined-226"
                     data-shrink={false}
                   >
                     Filtrer
                   </label>
                   <div
-                    className="root-248 root-235 fullWidth-257 formControl-249"
+                    className="root-247 root-234 fullWidth-256 formControl-248"
                     onClick={[Function]}
                   >
                     <fieldset
                       aria-hidden={true}
-                      className="root-265 notchedOutline-242"
+                      className="root-264 notchedOutline-241"
                       style={
                         Object {
                           "paddingLeft": 8,
@@ -216,7 +216,7 @@ exports[`The Sessions component should render correctly 1`] = `
                       }
                     >
                       <legend
-                        className="legend-266"
+                        className="legend-265"
                         style={
                           Object {
                             "width": 0.01,
@@ -234,7 +234,7 @@ exports[`The Sessions component should render correctly 1`] = `
                     </fieldset>
                     <input
                       aria-invalid={false}
-                      className="input-258 input-243"
+                      className="input-257 input-242"
                       disabled={false}
                       onBlur={[Function]}
                       onChange={[Function]}
@@ -247,13 +247,13 @@ exports[`The Sessions component should render correctly 1`] = `
                 </div>
               </div>
               <div
-                className="item-44 filterButtonsContainer-13"
+                className="item-43 filterButtonsContainer-13"
               >
                 <div
                   className="filterButtons-14"
                 >
                   <button
-                    className="root-205 root-267"
+                    className="root-204 root-266"
                     disabled={false}
                     onBlur={[Function]}
                     onContextMenu={[Function]}
@@ -270,11 +270,11 @@ exports[`The Sessions component should render correctly 1`] = `
                     type="submit"
                   >
                     <span
-                      className="label-272"
+                      className="label-271"
                     >
                       <svg
                         aria-hidden="true"
-                        className="root-186"
+                        className="root-185"
                         focusable="false"
                         role="presentation"
                         viewBox="0 0 24 24"
@@ -289,11 +289,11 @@ exports[`The Sessions component should render correctly 1`] = `
                       </svg>
                     </span>
                     <span
-                      className="root-289"
+                      className="root-288"
                     />
                   </button>
                   <button
-                    className="root-205 root-267"
+                    className="root-204 root-266"
                     disabled={false}
                     onBlur={[Function]}
                     onClick={[Function]}
@@ -311,11 +311,11 @@ exports[`The Sessions component should render correctly 1`] = `
                     type="button"
                   >
                     <span
-                      className="label-272"
+                      className="label-271"
                     >
                       <svg
                         aria-hidden="true"
-                        className="root-186"
+                        className="root-185"
                         focusable="false"
                         role="presentation"
                         viewBox="0 0 24 24"
@@ -330,7 +330,7 @@ exports[`The Sessions component should render correctly 1`] = `
                       </svg>
                     </span>
                     <span
-                      className="root-289"
+                      className="root-288"
                     />
                   </button>
                 </div>
@@ -339,28 +339,28 @@ exports[`The Sessions component should render correctly 1`] = `
           </form>
         </div>
         <div
-          className="item-44 12-83"
+          className="item-43 12-82"
         >
           <div
-            className="container-43 40-69"
+            className="container-42 40-68"
           >
             <div
-              className="item-44"
+              className="item-43"
             >
               <p
-                className="root-144 body1-153 gutterBottom-171"
+                className="root-143 body1-152 gutterBottom-170"
               >
-                Il n'y a pas de session à afficher
+                Il n'y a pas de scénario à afficher
               </p>
             </div>
             <div
-              className="item-44 12-83 hide-11"
+              className="item-43 12-82 hide-11"
             >
               <p
-                className="root-144 body1-153 gutterBottom-171 loadMoreItem-10"
+                className="root-143 body1-152 gutterBottom-170 loadMoreItem-10"
               >
                 <a
-                  className="root-144 colorPrimary-174 inline-179 root-180 underlineHover-182 loadMoreLink-9"
+                  className="root-143 colorPrimary-173 inline-178 root-179 underlineHover-181 loadMoreLink-9"
                   onClick={[Function]}
                 >
                   Afficher plus de résultats

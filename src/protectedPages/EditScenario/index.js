@@ -62,7 +62,8 @@ const styles = theme => {
       flexWrap: 'wrap'
     },
     button: {
-      margin: theme.spacing.unit
+      marginRight: theme.spacing.unit,
+      marginTop: theme.spacing.unit * 2
     },
     closeSnackbar: {
       padding: theme.spacing.unit / 2
@@ -166,7 +167,7 @@ class Component extends React.Component {
     this.setState({ ...state, form: { isDisabled: true } })
     const id = state.id.value
     const description = (isEmpty(state.description.value)) ? null : state.description.value
-    const searchable = [id, description].join('').toLowerCase()
+    const searchable = [id, description].join(' ').toLowerCase()
     if (!isEmpty(state.id.value)) {
       state.form.isDisabled = true
       state.snackbar.message = `Sauvegarde en cours. Merci de patienter...`
@@ -256,7 +257,7 @@ class Component extends React.Component {
                   onSubmit={this.handleSubmit}
                 >
                   <TextField
-                    label='Nom'
+                    label='Nom *'
                     fullWidth
                     margin='normal'
                     variant='outlined'
@@ -269,7 +270,8 @@ class Component extends React.Component {
                   <TextField
                     label='Description'
                     multiline
-                    rows='10'
+                    rows='5'
+                    rowsMax='10'
                     fullWidth
                     margin='normal'
                     variant='outlined'

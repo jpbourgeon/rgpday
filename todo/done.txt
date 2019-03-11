@@ -91,3 +91,4 @@ x 2019-03-07 2019-03-07 Changed: frontend App - rename route /session into /dash
 x 2019-03-07 2019-02-27 Changed: refactor the components folder into components, pages and protectedPages folders
 x 2019-03-08 2019-02-27 Added: frontend Scenarios template page
 x 2019-03-08 2019-02-27 Added: frontend Sessions template page
+x 2019-03-11 2019-03-09 Added: frontend Sessions : LED

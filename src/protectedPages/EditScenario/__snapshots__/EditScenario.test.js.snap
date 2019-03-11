@@ -1,0 +1,358 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The EditScenario component should render correctly 1`] = `
+<div
+  className="layout-1"
+>
+  <main>
+    <div
+      className="root-9 elevation2-13 rounded-10 paper-2"
+    >
+      <div
+        className="container-36"
+      >
+        <div
+          className="item-37 12-76 breadcrumb-3"
+        >
+          <nav
+            arial-label="Breadcrumb"
+            className="root-137 body1-146 colorTextSecondary-170 root-133"
+          >
+            <ol
+              className="ol-134"
+            >
+              <li
+                className="li-135"
+              >
+                <a
+                  aria-current="page"
+                  className="root-137 colorInherit-166 inline-172 root-173 underlineHover-175"
+                  href="/"
+                  onClick={[Function]}
+                >
+                  Accueil
+                </a>
+              </li>
+              <li
+                aria-hidden="true"
+                className="root-178 separator-136"
+              >
+                <svg
+                  aria-hidden="true"
+                  className="root-179 fontSizeSmall-186"
+                  focusable="false"
+                  role="presentation"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"
+                  />
+                  <path
+                    d="M0 0h24v24H0z"
+                    fill="none"
+                  />
+                </svg>
+              </li>
+              <li
+                className="li-135"
+              >
+                <a
+                  className="root-137 colorInherit-166 inline-172 root-173 underlineHover-175"
+                  href="/dashboard"
+                  onClick={[Function]}
+                >
+                  Tableau de bord
+                </a>
+              </li>
+              <li
+                aria-hidden="true"
+                className="root-178 separator-136"
+              >
+                <svg
+                  aria-hidden="true"
+                  className="root-179 fontSizeSmall-186"
+                  focusable="false"
+                  role="presentation"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"
+                  />
+                  <path
+                    d="M0 0h24v24H0z"
+                    fill="none"
+                  />
+                </svg>
+              </li>
+              <li
+                className="li-135"
+              >
+                <a
+                  className="root-137 colorInherit-166 inline-172 root-173 underlineHover-175"
+                  href="/dashboard/scenarios"
+                  onClick={[Function]}
+                >
+                  Scénarios
+                </a>
+              </li>
+              <li
+                aria-hidden="true"
+                className="root-178 separator-136"
+              >
+                <svg
+                  aria-hidden="true"
+                  className="root-179 fontSizeSmall-186"
+                  focusable="false"
+                  role="presentation"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"
+                  />
+                  <path
+                    d="M0 0h24v24H0z"
+                    fill="none"
+                  />
+                </svg>
+              </li>
+              <li
+                className="li-135"
+              >
+                <a
+                  aria-current="page"
+                  className="root-137 colorInherit-166 inline-172 root-173 underlineHover-175"
+                  href="/"
+                  onClick={[Function]}
+                >
+                  Modifier le scénario 
+                </a>
+              </li>
+            </ol>
+          </nav>
+        </div>
+        <div
+          className="item-37 12-76 title-4"
+        >
+          <h4
+            className="root-137 h4-152 gutterBottom-164"
+          >
+            <svg
+              aria-hidden="true"
+              className="root-179 titleIcon-5"
+              focusable="false"
+              role="presentation"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34a.9959.9959 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"
+              />
+              <path
+                d="M0 0h24v24H0z"
+                fill="none"
+              />
+            </svg>
+             
+            Modifier le scénario 
+          </h4>
+          <hr
+            className="root-188"
+          />
+        </div>
+        <div
+          className="item-37 12-104"
+        >
+          <form
+            autoComplete="off"
+            className="formContainer-6"
+            noValidate={true}
+            onSubmit={[Function]}
+          >
+            <div
+              className="root-193 marginNormal-194 fullWidth-196"
+            >
+              <label
+                className="root-208 root-197 formControl-202 animated-205 outlined-207"
+                data-shrink={false}
+              >
+                Nom *
+              </label>
+              <div
+                className="root-228 root-215 fullWidth-237 formControl-229"
+                onClick={[Function]}
+              >
+                <fieldset
+                  aria-hidden={true}
+                  className="root-245 notchedOutline-222"
+                  style={
+                    Object {
+                      "paddingLeft": 8,
+                    }
+                  }
+                >
+                  <legend
+                    className="legend-246"
+                    style={
+                      Object {
+                        "width": 0.01,
+                      }
+                    }
+                  >
+                    <span
+                      dangerouslySetInnerHTML={
+                        Object {
+                          "__html": "&#8203;",
+                        }
+                      }
+                    />
+                  </legend>
+                </fieldset>
+                <input
+                  aria-invalid={false}
+                  className="input-238 input-223"
+                  disabled={false}
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onFocus={[Function]}
+                  required={false}
+                  type="text"
+                  value=""
+                />
+              </div>
+            </div>
+            <div
+              className="root-193 marginNormal-194 fullWidth-196"
+            >
+              <label
+                className="root-208 root-197 formControl-202 animated-205 outlined-207"
+                data-shrink={false}
+              >
+                Description
+              </label>
+              <div
+                className="root-228 root-215 fullWidth-237 formControl-229 multiline-236 multiline-221"
+                onClick={[Function]}
+              >
+                <fieldset
+                  aria-hidden={true}
+                  className="root-245 notchedOutline-222"
+                  style={
+                    Object {
+                      "paddingLeft": 8,
+                    }
+                  }
+                >
+                  <legend
+                    className="legend-246"
+                    style={
+                      Object {
+                        "width": 0.01,
+                      }
+                    }
+                  >
+                    <span
+                      dangerouslySetInnerHTML={
+                        Object {
+                          "__html": "&#8203;",
+                        }
+                      }
+                    />
+                  </legend>
+                </fieldset>
+                <div
+                  className="root-247"
+                >
+                  <textarea
+                    aria-hidden="true"
+                    className="textarea-248 shadow-249"
+                    readOnly={true}
+                    rows="1"
+                    tabIndex={-1}
+                    value=""
+                  />
+                  <textarea
+                    aria-hidden="true"
+                    className="textarea-248 shadow-249"
+                    readOnly={true}
+                    rows="5"
+                    tabIndex={-1}
+                    value=""
+                  />
+                  <textarea
+                    aria-invalid={false}
+                    className="textarea-248 input-238 input-223 inputMultiline-240 inputMultiline-225"
+                    disabled={false}
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    required={false}
+                    rows="5"
+                    style={
+                      Object {
+                        "height": 95,
+                      }
+                    }
+                    value=""
+                  />
+                </div>
+              </div>
+            </div>
+            <button
+              className="root-276 root-250 outlined-258 outlinedSecondary-260 button-7"
+              disabled={false}
+              onBlur={[Function]}
+              onContextMenu={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              onKeyUp={[Function]}
+              onMouseDown={[Function]}
+              onMouseLeave={[Function]}
+              onMouseUp={[Function]}
+              onTouchEnd={[Function]}
+              onTouchMove={[Function]}
+              onTouchStart={[Function]}
+              tabIndex="0"
+              type="submit"
+            >
+              <span
+                className="label-251"
+              >
+                Envoyer
+              </span>
+              <span
+                className="root-286"
+              />
+            </button>
+            <button
+              className="root-276 root-250 outlined-258 button-7"
+              disabled={false}
+              onBlur={[Function]}
+              onClick={[Function]}
+              onContextMenu={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              onKeyUp={[Function]}
+              onMouseDown={[Function]}
+              onMouseLeave={[Function]}
+              onMouseUp={[Function]}
+              onTouchEnd={[Function]}
+              onTouchMove={[Function]}
+              onTouchStart={[Function]}
+              tabIndex="0"
+              type="button"
+            >
+              <span
+                className="label-251"
+              >
+                Annuler
+              </span>
+              <span
+                className="root-286"
+              />
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+`;

@@ -25,13 +25,33 @@ import Add from '@material-ui/icons/Add'
 import Link from 'src/components/Link'
 import MUILink from '@material-ui/core/Link'
 import Tile from 'src/components/Tile'
-import { listScenarios } from 'src/graphql/queries'
 import { deleteScenario } from 'src/graphql/mutations'
 import logger from 'src/logger'
 import API, { graphqlOperation } from '@aws-amplify/api'
 import config from 'src/aws-exports'
 
 API.configure(config)
+const listScenarios = `query ListScenarios(
+  $filter: ModelScenarioFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listScenarios(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      description
+      searchable
+      sessions {
+        items {
+          id
+        }
+        nextToken
+      }
+    }
+    nextToken
+  }
+}
+`
 
 const styles = theme => {
   return {
@@ -154,6 +174,7 @@ class Component extends React.Component {
           nextToken: this.state.nextToken
         })
       )
+      logger.info(result)
       if (!result.errors) {
         state.nextToken = result.data.listScenarios.nextToken
         state.items = [...state.items, ...result.data.listScenarios.items]
@@ -233,24 +254,28 @@ class Component extends React.Component {
     const renderItems = (items) => {
       return (
         items
-          .map((item) => (
-            <Tile
-              key={item.id}
-              title={renderActions(item.id)}
-              description={(
-                <React.Fragment>
-                  <span>{item.description.split('\n').map((line, key) => {
-                    return (<React.Fragment key={key}>{line}<br /></React.Fragment>)
-                  })}</span>
-                  {(!(Array.isArray(item.sessions.items) && item.session.items.length > 0)) ? null : (
-                    <React.Fragment>
-                      <br /><span><strong>Sessions : </strong>{item.sessions.items.join(', ')}</span>
-                    </React.Fragment>
-                  )}
-                </React.Fragment>
-              )}
-            />
-          ))
+          .map((item) => {
+            return (
+              <Tile
+                key={item.id}
+                title={renderActions(item.id)}
+                description={(
+                  <React.Fragment>
+                    <span>{item.description.split('\n').map((line, key) => {
+                      return (<React.Fragment key={key}>{line}<br /></React.Fragment>)
+                    })}</span>
+                    {(!(Array.isArray(item.sessions.items) && item.sessions.items.length > 0)) ? null : (
+                      <React.Fragment>
+                        <br /><span><strong>Sessions : </strong>{item.sessions.items.map(i => {
+                          return <Link key={i.id} to={`../sessions/update/${i.id}`}>{i.id}</Link>
+                        })}</span>
+                      </React.Fragment>
+                    )}
+                  </React.Fragment>
+                )}
+              />
+            )
+          })
       )
     }
     return (

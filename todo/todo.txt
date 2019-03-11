@@ -1,4 +1,4 @@
-2019-03-09 Added: frontend Sessions : LED
+2019-03-09 Limit access to admin and features depending on the user's group
 2019-03-09 Added: frontend Teams : LED
 2019-03-09 cascade delete scenario
 2019-03-09 cascade delete session

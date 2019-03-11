@@ -52,7 +52,7 @@ exports[`The Contact component should render correctly 1`] = `
                   className="root-192 root-181 formControl-186 animated-189 outlined-191"
                   data-shrink={false}
                 >
-                  Votre email
+                  Votre email *
                 </label>
                 <div
                   className="root-212 root-199 fullWidth-221 formControl-213"
@@ -104,7 +104,7 @@ exports[`The Contact component should render correctly 1`] = `
                   className="root-192 root-181 formControl-186 animated-189 outlined-191"
                   data-shrink={false}
                 >
-                  Sujet
+                  Sujet *
                 </label>
                 <div
                   className="root-212 root-199 fullWidth-221 formControl-213"
@@ -156,7 +156,7 @@ exports[`The Contact component should render correctly 1`] = `
                   className="root-192 root-181 formControl-186 animated-189 outlined-191"
                   data-shrink={false}
                 >
-                  Description
+                  Message *
                 </label>
                 <div
                   className="root-212 root-199 fullWidth-221 formControl-213 multiline-220 multiline-205"

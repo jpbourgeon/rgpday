@@ -1,0 +1,758 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The EditSession component should render correctly 1`] = `
+<div
+  className="layout-1"
+>
+  <main>
+    <div
+      className="root-10 elevation2-14 rounded-11 paper-2"
+    >
+      <div
+        className="container-37"
+      >
+        <div
+          className="item-38 12-77 breadcrumb-3"
+        >
+          <nav
+            arial-label="Breadcrumb"
+            className="root-138 body1-147 colorTextSecondary-171 root-134"
+          >
+            <ol
+              className="ol-135"
+            >
+              <li
+                className="li-136"
+              >
+                <a
+                  aria-current="page"
+                  className="root-138 colorInherit-167 inline-173 root-174 underlineHover-176"
+                  href="/"
+                  onClick={[Function]}
+                >
+                  Accueil
+                </a>
+              </li>
+              <li
+                aria-hidden="true"
+                className="root-179 separator-137"
+              >
+                <svg
+                  aria-hidden="true"
+                  className="root-180 fontSizeSmall-187"
+                  focusable="false"
+                  role="presentation"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"
+                  />
+                  <path
+                    d="M0 0h24v24H0z"
+                    fill="none"
+                  />
+                </svg>
+              </li>
+              <li
+                className="li-136"
+              >
+                <a
+                  className="root-138 colorInherit-167 inline-173 root-174 underlineHover-176"
+                  href="/dashboard"
+                  onClick={[Function]}
+                >
+                  Tableau de bord
+                </a>
+              </li>
+              <li
+                aria-hidden="true"
+                className="root-179 separator-137"
+              >
+                <svg
+                  aria-hidden="true"
+                  className="root-180 fontSizeSmall-187"
+                  focusable="false"
+                  role="presentation"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"
+                  />
+                  <path
+                    d="M0 0h24v24H0z"
+                    fill="none"
+                  />
+                </svg>
+              </li>
+              <li
+                className="li-136"
+              >
+                <a
+                  className="root-138 colorInherit-167 inline-173 root-174 underlineHover-176"
+                  href="/dashboard/sessions"
+                  onClick={[Function]}
+                >
+                  Sessions
+                </a>
+              </li>
+              <li
+                aria-hidden="true"
+                className="root-179 separator-137"
+              >
+                <svg
+                  aria-hidden="true"
+                  className="root-180 fontSizeSmall-187"
+                  focusable="false"
+                  role="presentation"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"
+                  />
+                  <path
+                    d="M0 0h24v24H0z"
+                    fill="none"
+                  />
+                </svg>
+              </li>
+              <li
+                className="li-136"
+              >
+                <a
+                  aria-current="page"
+                  className="root-138 colorInherit-167 inline-173 root-174 underlineHover-176"
+                  href="/"
+                  onClick={[Function]}
+                >
+                  Modifier la session 
+                </a>
+              </li>
+            </ol>
+          </nav>
+        </div>
+        <div
+          className="item-38 12-77 title-4"
+        >
+          <h4
+            className="root-138 h4-153 gutterBottom-165"
+          >
+            <svg
+              aria-hidden="true"
+              className="root-180 titleIcon-5"
+              focusable="false"
+              role="presentation"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34a.9959.9959 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"
+              />
+              <path
+                d="M0 0h24v24H0z"
+                fill="none"
+              />
+            </svg>
+             
+            Modifier la session 
+          </h4>
+          <hr
+            className="root-189"
+          />
+        </div>
+        <div
+          className="item-38 12-77"
+        >
+          <form
+            autoComplete="off"
+            className="formContainer-6"
+            noValidate={true}
+            onSubmit={[Function]}
+          >
+            <div
+              className="container-37 24-61"
+            >
+              <div
+                className="item-38 12-77 6-99"
+              >
+                <div
+                  className="root-194 marginNormal-195 fullWidth-197"
+                >
+                  <label
+                    className="root-209 root-198 formControl-203 animated-206 outlined-208"
+                    data-shrink={false}
+                  >
+                    Nom *
+                  </label>
+                  <div
+                    className="root-229 root-216 fullWidth-238 formControl-230"
+                    onClick={[Function]}
+                  >
+                    <fieldset
+                      aria-hidden={true}
+                      className="root-246 notchedOutline-223"
+                      style={
+                        Object {
+                          "paddingLeft": 8,
+                        }
+                      }
+                    >
+                      <legend
+                        className="legend-247"
+                        style={
+                          Object {
+                            "width": 0.01,
+                          }
+                        }
+                      >
+                        <span
+                          dangerouslySetInnerHTML={
+                            Object {
+                              "__html": "&#8203;",
+                            }
+                          }
+                        />
+                      </legend>
+                    </fieldset>
+                    <input
+                      aria-invalid={false}
+                      className="input-239 input-224"
+                      disabled={false}
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onFocus={[Function]}
+                      required={false}
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                </div>
+                <div
+                  className="root-194 marginNormal-195 fullWidth-197"
+                >
+                  <label
+                    className="root-209 root-198 formControl-203 animated-206 outlined-208"
+                    data-shrink={false}
+                  >
+                    Description
+                  </label>
+                  <div
+                    className="root-229 root-216 fullWidth-238 formControl-230 multiline-237 multiline-222"
+                    onClick={[Function]}
+                  >
+                    <fieldset
+                      aria-hidden={true}
+                      className="root-246 notchedOutline-223"
+                      style={
+                        Object {
+                          "paddingLeft": 8,
+                        }
+                      }
+                    >
+                      <legend
+                        className="legend-247"
+                        style={
+                          Object {
+                            "width": 0.01,
+                          }
+                        }
+                      >
+                        <span
+                          dangerouslySetInnerHTML={
+                            Object {
+                              "__html": "&#8203;",
+                            }
+                          }
+                        />
+                      </legend>
+                    </fieldset>
+                    <div
+                      className="root-248"
+                    >
+                      <textarea
+                        aria-hidden="true"
+                        className="textarea-249 shadow-250"
+                        readOnly={true}
+                        rows="1"
+                        tabIndex={-1}
+                        value=""
+                      />
+                      <textarea
+                        aria-hidden="true"
+                        className="textarea-249 shadow-250"
+                        readOnly={true}
+                        rows="5"
+                        tabIndex={-1}
+                        value=""
+                      />
+                      <textarea
+                        aria-invalid={false}
+                        className="textarea-249 input-239 input-224 inputMultiline-241 inputMultiline-226"
+                        disabled={false}
+                        onBlur={[Function]}
+                        onChange={[Function]}
+                        onFocus={[Function]}
+                        required={false}
+                        rows="5"
+                        style={
+                          Object {
+                            "height": 95,
+                          }
+                        }
+                        value=""
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div
+                  className="root-194 marginNormal-195 fullWidth-197"
+                >
+                  <label
+                    className="root-209 root-198 formControl-203 animated-206 outlined-208"
+                    data-shrink={false}
+                  >
+                    Contact
+                  </label>
+                  <div
+                    className="root-229 root-216 fullWidth-238 formControl-230 multiline-237 multiline-222"
+                    onClick={[Function]}
+                  >
+                    <fieldset
+                      aria-hidden={true}
+                      className="root-246 notchedOutline-223"
+                      style={
+                        Object {
+                          "paddingLeft": 8,
+                        }
+                      }
+                    >
+                      <legend
+                        className="legend-247"
+                        style={
+                          Object {
+                            "width": 0.01,
+                          }
+                        }
+                      >
+                        <span
+                          dangerouslySetInnerHTML={
+                            Object {
+                              "__html": "&#8203;",
+                            }
+                          }
+                        />
+                      </legend>
+                    </fieldset>
+                    <div
+                      className="root-248"
+                    >
+                      <textarea
+                        aria-hidden="true"
+                        className="textarea-249 shadow-250"
+                        readOnly={true}
+                        rows="1"
+                        tabIndex={-1}
+                        value=""
+                      />
+                      <textarea
+                        aria-hidden="true"
+                        className="textarea-249 shadow-250"
+                        readOnly={true}
+                        rows="5"
+                        tabIndex={-1}
+                        value=""
+                      />
+                      <textarea
+                        aria-invalid={false}
+                        className="textarea-249 input-239 input-224 inputMultiline-241 inputMultiline-226"
+                        disabled={false}
+                        onBlur={[Function]}
+                        onChange={[Function]}
+                        onFocus={[Function]}
+                        required={false}
+                        rows="5"
+                        style={
+                          Object {
+                            "height": 95,
+                          }
+                        }
+                        value=""
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div
+                  className="root-194 marginNormal-195 fullWidth-197"
+                >
+                  <label
+                    className="root-209 root-198 formControl-203 animated-206 outlined-208"
+                    data-shrink={false}
+                  >
+                    Nombre de participants
+                  </label>
+                  <div
+                    className="root-229 root-216 fullWidth-238 formControl-230"
+                    onClick={[Function]}
+                  >
+                    <fieldset
+                      aria-hidden={true}
+                      className="root-246 notchedOutline-223"
+                      style={
+                        Object {
+                          "paddingLeft": 8,
+                        }
+                      }
+                    >
+                      <legend
+                        className="legend-247"
+                        style={
+                          Object {
+                            "width": 0.01,
+                          }
+                        }
+                      >
+                        <span
+                          dangerouslySetInnerHTML={
+                            Object {
+                              "__html": "&#8203;",
+                            }
+                          }
+                        />
+                      </legend>
+                    </fieldset>
+                    <input
+                      aria-invalid={false}
+                      className="input-239 input-224"
+                      disabled={false}
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onFocus={[Function]}
+                      required={false}
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                  <p
+                    className="root-251 contained-255"
+                  >
+                    Nombre entier
+                  </p>
+                </div>
+              </div>
+              <div
+                className="item-38 12-77 6-99"
+              >
+                <div
+                  className="root-194 marginNormal-195 fullWidth-197"
+                >
+                  <label
+                    className="root-209 root-198 formControl-203 animated-206 outlined-208"
+                    data-shrink={false}
+                  >
+                    Date de la session RGPDay *
+                  </label>
+                  <div
+                    className="root-229 root-216 fullWidth-238 formControl-230"
+                    onClick={[Function]}
+                  >
+                    <fieldset
+                      aria-hidden={true}
+                      className="root-246 notchedOutline-223"
+                      style={
+                        Object {
+                          "paddingLeft": 8,
+                        }
+                      }
+                    >
+                      <legend
+                        className="legend-247"
+                        style={
+                          Object {
+                            "width": 0.01,
+                          }
+                        }
+                      >
+                        <span
+                          dangerouslySetInnerHTML={
+                            Object {
+                              "__html": "&#8203;",
+                            }
+                          }
+                        />
+                      </legend>
+                    </fieldset>
+                    <input
+                      aria-invalid={false}
+                      className="input-239 input-224"
+                      disabled={false}
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onFocus={[Function]}
+                      required={false}
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                  <p
+                    className="root-251 contained-255"
+                  >
+                    Format ISO-8601
+                  </p>
+                </div>
+                <div
+                  className="root-194 marginNormal-195 fullWidth-197"
+                >
+                  <label
+                    className="root-209 root-198 formControl-203 animated-206 outlined-208"
+                    data-shrink={false}
+                  >
+                    Date d'ouverture du jeu *
+                  </label>
+                  <div
+                    className="root-229 root-216 fullWidth-238 formControl-230"
+                    onClick={[Function]}
+                  >
+                    <fieldset
+                      aria-hidden={true}
+                      className="root-246 notchedOutline-223"
+                      style={
+                        Object {
+                          "paddingLeft": 8,
+                        }
+                      }
+                    >
+                      <legend
+                        className="legend-247"
+                        style={
+                          Object {
+                            "width": 0.01,
+                          }
+                        }
+                      >
+                        <span
+                          dangerouslySetInnerHTML={
+                            Object {
+                              "__html": "&#8203;",
+                            }
+                          }
+                        />
+                      </legend>
+                    </fieldset>
+                    <input
+                      aria-invalid={false}
+                      className="input-239 input-224"
+                      disabled={false}
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onFocus={[Function]}
+                      required={false}
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                  <p
+                    className="root-251 contained-255"
+                  >
+                    Format ISO-8601
+                  </p>
+                </div>
+                <div
+                  className="root-194 marginNormal-195 fullWidth-197"
+                >
+                  <label
+                    className="root-209 root-198 formControl-203 animated-206 outlined-208"
+                    data-shrink={false}
+                  >
+                    Date de fermeture du jeu *
+                  </label>
+                  <div
+                    className="root-229 root-216 fullWidth-238 formControl-230"
+                    onClick={[Function]}
+                  >
+                    <fieldset
+                      aria-hidden={true}
+                      className="root-246 notchedOutline-223"
+                      style={
+                        Object {
+                          "paddingLeft": 8,
+                        }
+                      }
+                    >
+                      <legend
+                        className="legend-247"
+                        style={
+                          Object {
+                            "width": 0.01,
+                          }
+                        }
+                      >
+                        <span
+                          dangerouslySetInnerHTML={
+                            Object {
+                              "__html": "&#8203;",
+                            }
+                          }
+                        />
+                      </legend>
+                    </fieldset>
+                    <input
+                      aria-invalid={false}
+                      className="input-239 input-224"
+                      disabled={false}
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onFocus={[Function]}
+                      required={false}
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                  <p
+                    className="root-251 contained-255"
+                  >
+                    Format ISO-8601
+                  </p>
+                </div>
+                <div
+                  className="root-194 marginNormal-195 fullWidth-197"
+                >
+                  <label
+                    className="root-209 root-198 formControl-203 animated-206 outlined-208"
+                    data-shrink={false}
+                  >
+                    Scenario *
+                  </label>
+                  <div
+                    className="root-229 root-216 fullWidth-238 formControl-230"
+                    onClick={[Function]}
+                  >
+                    <fieldset
+                      aria-hidden={true}
+                      className="root-246 notchedOutline-223"
+                      style={
+                        Object {
+                          "paddingLeft": 8,
+                        }
+                      }
+                    >
+                      <legend
+                        className="legend-247"
+                        style={
+                          Object {
+                            "width": 0.01,
+                          }
+                        }
+                      >
+                        <span
+                          dangerouslySetInnerHTML={
+                            Object {
+                              "__html": "&#8203;",
+                            }
+                          }
+                        />
+                      </legend>
+                    </fieldset>
+                    <div
+                      className="root-259"
+                    >
+                      <div
+                        aria-haspopup="true"
+                        aria-pressed="false"
+                        className="select-260 selectMenu-263 outlined-262 input-239 input-224"
+                        onBlur={[Function]}
+                        onClick={[Function]}
+                        onFocus={[Function]}
+                        onKeyDown={[Function]}
+                        role="button"
+                        tabIndex={0}
+                      >
+                        <span
+                          dangerouslySetInnerHTML={
+                            Object {
+                              "__html": "&#8203;",
+                            }
+                          }
+                        />
+                      </div>
+                      <input
+                        type="hidden"
+                        value=""
+                      />
+                      <svg
+                        aria-hidden="true"
+                        className="root-180 icon-265"
+                        focusable="false"
+                        role="presentation"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M7 10l5 5 5-5z"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                className="item-38 12-77 12-105"
+              >
+                <button
+                  className="root-296 root-270 outlined-278 outlinedSecondary-280 button-7"
+                  disabled={false}
+                  onBlur={[Function]}
+                  onContextMenu={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  onKeyUp={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseLeave={[Function]}
+                  onMouseUp={[Function]}
+                  onTouchEnd={[Function]}
+                  onTouchMove={[Function]}
+                  onTouchStart={[Function]}
+                  tabIndex="0"
+                  type="submit"
+                >
+                  <span
+                    className="label-271"
+                  >
+                    Envoyer
+                  </span>
+                  <span
+                    className="root-306"
+                  />
+                </button>
+                <button
+                  className="root-296 root-270 outlined-278 button-7"
+                  disabled={false}
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onContextMenu={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  onKeyUp={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseLeave={[Function]}
+                  onMouseUp={[Function]}
+                  onTouchEnd={[Function]}
+                  onTouchMove={[Function]}
+                  onTouchStart={[Function]}
+                  tabIndex="0"
+                  type="button"
+                >
+                  <span
+                    className="label-271"
+                  >
+                    Annuler
+                  </span>
+                  <span
+                    className="root-306"
+                  />
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+`;

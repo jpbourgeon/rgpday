@@ -54,7 +54,8 @@ const styles = theme => {
       padding: `${theme.spacing.unit * 6}px`
     },
     button: {
-      margin: theme.spacing.unit
+      marginRight: theme.spacing.unit,
+      marginTop: theme.spacing.unit * 2
     },
     closeSnackbar: {
       padding: theme.spacing.unit / 2
@@ -204,7 +205,7 @@ class Contact extends React.Component {
                     onSubmit={this.handleSubmit}
                   >
                     <TextField
-                      label='Votre email'
+                      label='Votre email *'
                       fullWidth
                       margin='normal'
                       variant='outlined'
@@ -221,7 +222,7 @@ class Contact extends React.Component {
                       disabled={this.state.form.isDisabled}
                     />
                     <TextField
-                      label='Sujet'
+                      label='Sujet *'
                       fullWidth
                       margin='normal'
                       variant='outlined'
@@ -232,7 +233,7 @@ class Contact extends React.Component {
                       disabled={this.state.form.isDisabled}
                     />
                     <TextField
-                      label='Description'
+                      label='Message *'
                       multiline
                       rows='10'
                       fullWidth

@@ -45,7 +45,8 @@ const styles = theme => {
       padding: `${theme.spacing.unit * 6}px`
     },
     button: {
-      margin: `${theme.spacing.unit}px ${theme.spacing.unit * 2}px ${theme.spacing.unit}px 0px`
+      marginRight: theme.spacing.unit,
+      marginTop: theme.spacing.unit * 2
     }
   }
 }
