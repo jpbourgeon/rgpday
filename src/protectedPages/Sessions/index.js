@@ -22,6 +22,8 @@ import Delete from '@material-ui/icons/Delete'
 import Edit from '@material-ui/icons/Edit'
 import NavigateNext from '@material-ui/icons/NavigateNext'
 import Add from '@material-ui/icons/Add'
+import Play from '@material-ui/icons/PlayCircleFilled'
+import Stop from '@material-ui/icons/Stop'
 import Link from 'src/components/Link'
 import MUILink from '@material-ui/core/Link'
 import Tile from 'src/components/Tile'
@@ -130,6 +132,9 @@ const styles = theme => {
     },
     tileContent: {
       display: 'block'
+    },
+    dialog: {
+      padding: '1em'
     }
   }
 }
@@ -170,7 +175,7 @@ class Component extends React.Component {
       if (state.nextToken === null) state.items = []
       let filter = null
       if (this.state.filter !== '') {
-        filter = { searchable: { contains: this.state.filter } }
+        filter = { searchable: { contains: this.state.filter.toLowerCase() } }
       }
       // GraphQL
       const result = await API.graphql(
@@ -221,7 +226,9 @@ class Component extends React.Component {
   async deleteSession () {
     try {
       // GraphQL
+      const { config, setConfig } = this.props
       const id = this.state.delete.id
+      if (config.currentSession === id) setConfig(null)
       this.handleDeleteDialog('', false)
       const result = await API.graphql(
         graphqlOperation(deleteSession, { input: { id } })
@@ -242,11 +249,17 @@ class Component extends React.Component {
   }
 
   render () {
-    const { classes } = this.props
+    const { classes, setConfig, config } = this.props
     const renderActions = (id) => (
       <Grid container>
         <Grid item className={classes.grow}>{id}</Grid>
         <Grid item>
+          <MUILink onClick={() => setConfig(id)} className={(config.currentSession === id) ? classes.hide : null}>
+            <IconButton><Play size='small' className={classes.itemActionIcon} /></IconButton>
+          </MUILink>
+          <MUILink onClick={() => setConfig(null)} className={(config.currentSession !== id) ? classes.hide : null}>
+            <IconButton><Stop size='small' className={classes.itemActionIcon} /></IconButton>
+          </MUILink>
           <Link to={`./update/${id}`}>
             <IconButton><Edit className={classes.itemActionIcon} /></IconButton>
           </Link>
@@ -263,6 +276,7 @@ class Component extends React.Component {
             <Tile
               key={item.id}
               title={renderActions(item.id)}
+              isActive={(item.id === config.currentSession)}
               description={(
                 <React.Fragment>
                   {(!item.description) ? null : (
@@ -411,7 +425,7 @@ class Component extends React.Component {
               Attention, cette action est irréversible.
             </DialogContentText>
           </DialogContent>
-          <DialogActions>
+          <DialogActions className={classes.dialog}>
             <Button onClick={this.deleteSession} color='secondary' variant='contained'>
               Confirmer
             </Button>

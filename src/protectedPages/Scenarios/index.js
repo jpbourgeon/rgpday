@@ -124,6 +124,9 @@ const styles = theme => {
     filterButtons: {
       padding: theme.spacing.unit,
       marginTop: theme.spacing.unit
+    },
+    dialog: {
+      padding: '1em'
     }
   }
 }
@@ -164,7 +167,7 @@ class Component extends React.Component {
       if (state.nextToken === null) state.items = []
       let filter = null
       if (this.state.filter !== '') {
-        filter = { searchable: { contains: this.state.filter } }
+        filter = { searchable: { contains: this.state.filter.toLowerCase() } }
       }
       // GraphQL
       const result = await API.graphql(
@@ -371,7 +374,7 @@ class Component extends React.Component {
               Attention, cette action est irréversible.
             </DialogContentText>
           </DialogContent>
-          <DialogActions>
+          <DialogActions className={classes.dialog}>
             <Button onClick={this.deleteScenario} color='secondary' variant='contained'>
               Confirmer
             </Button>

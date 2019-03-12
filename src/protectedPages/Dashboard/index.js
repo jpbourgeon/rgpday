@@ -47,54 +47,59 @@ const styles = theme => ({
   }
 })
 
-const DashboardComponent = props => {
-  const { classes } = props
+const DashboardComponent = (props) => {
+  const { classes, config } = props
+  const renderSession = (!config.currentSession) ? null : (
+    <Grid container spacing={40}>
+      <Grid item xs={12}>
+        <Typography variant='h4' color='inherit' gutterBottom className={classes.title}>
+          <DashboardIcon className={classes.titleIcon} />&nbsp;Session {config.currentSession}
+        </Typography>
+      </Grid>
+      <Tile
+        title='Conférence'
+        description=''
+        image={Conference}
+      />
+      <Tile
+        title='Serious game'
+        description=''
+        image={GameBoard}
+      />
+      <Tile
+        title={`Plan d'action`}
+        description=''
+        image={Coconstruction}
+      />
+    </Grid>
+  )
+  const renderAdmin = (!config.isAdmin) ? null : (
+    <Grid container spacing={40}>
+      <Grid item xs={12}>
+        <Typography variant='h4' color='inherit' gutterBottom className={classes.title}>
+          <DashboardIcon className={classes.titleIcon} />&nbsp;Administration
+        </Typography>
+      </Grid>
+      <Tile
+        title='Scénarios'
+        description=''
+        image={Scenario}
+        to='./scenarios'
+      />
+      <Tile
+        title='Sessions'
+        description=''
+        image={Admin}
+        to='./sessions'
+      />
+    </Grid>
+  )
   return (
     <div className={classes.layout}>
       <main>
         <Paper className={classes.paper}>
-          <Grid container spacing={40}>
-            <Grid item xs={12}>
-              <Typography variant='h4' color='inherit' gutterBottom className={classes.title}>
-                <DashboardIcon className={classes.titleIcon} />&nbsp;Session
-              </Typography>
-            </Grid>
-            <Tile
-              title='Conférence'
-              description=''
-              image={Conference}
-            />
-            <Tile
-              title='Serious game'
-              description=''
-              image={GameBoard}
-            />
-            <Tile
-              title={`Plan d'action`}
-              description=''
-              image={Coconstruction}
-            />
-          </Grid>
-
-          <Grid container spacing={40}>
-            <Grid item xs={12}>
-              <Typography variant='h4' color='inherit' gutterBottom className={classes.title}>
-                <DashboardIcon className={classes.titleIcon} />&nbsp;Administration
-              </Typography>
-            </Grid>
-            <Tile
-              title='Scénarios'
-              description=''
-              image={Scenario}
-              to='./scenarios'
-            />
-            <Tile
-              title='Sessions'
-              description=''
-              image={Admin}
-              to='./sessions'
-            />
-          </Grid>
+          {renderSession}
+          {renderAdmin}
         </Paper>
       </main>
     </div>

@@ -31,18 +31,18 @@ class ErrorBoundary extends React.Component {
 }
 
 const Loadable = (props) => {
-  const { path, prefetch } = props
+  const { loadablePath, prefetch } = props
   let AsyncComponent
   if (prefetch) {
-    AsyncComponent = loadable(() => import(/* webpackPrefetch: true */ `../../${path}`),
+    AsyncComponent = loadable(() => import(/* webpackPrefetch: true */ `../../${loadablePath}`),
       { fallback: <Loading /> })
   } else {
-    AsyncComponent = loadable(() => import(`../../${path}`),
+    AsyncComponent = loadable(() => import(`../../${loadablePath}`),
       { fallback: <Loading /> })
   }
   return (
     <ErrorBoundary>
-      <AsyncComponent />
+      <AsyncComponent {...props} />
     </ErrorBoundary>
   )
 }

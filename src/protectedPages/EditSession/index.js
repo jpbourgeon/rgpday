@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { navigate, Location } from '@reach/router'
+import { navigate } from '@reach/router'
 import isEmpty from 'validator/lib/isEmpty'
 import isInt from 'validator/lib/isInt'
 import isISO8601 from 'validator/lib/isISO8601'
@@ -91,7 +91,6 @@ const styles = theme => {
 }
 
 const defaultState = {
-  sessionId: '',
   id: {
     isDirty: false,
     value: ''
@@ -106,7 +105,7 @@ const defaultState = {
   },
   numberOfParticipants: {
     isDirty: false,
-    value: ''
+    value: '0'
   },
   RGPDay: {
     isDirty: false,
@@ -147,16 +146,15 @@ class Component extends React.Component {
   }
 
   async componentWillMount () {
-    const { location } = this.props
+    const { sessionId } = this.props
     const state = defaultState
     const queryScenarios = () => (API.graphql(
       graphqlOperation(listScenariosIds)
     ))
     let querySession
-    if (location.pathname.includes('update')) {
-      state.sessionId = location.pathname.split('/').pop()
+    if (sessionId) {
       querySession = () => (API.graphql(
-        graphqlOperation(getSession, { id: state.sessionId })
+        graphqlOperation(getSession, { id: sessionId })
       ))
     } else {
       querySession = () => Promise.resolve({ errors: true })
@@ -211,6 +209,7 @@ class Component extends React.Component {
 
   async handleSubmit (event) {
     event.preventDefault()
+    const { sessionId } = this.props
     let state = this.state
     state.form.isDisabled = true
     this.setState(state)
@@ -262,7 +261,7 @@ class Component extends React.Component {
       this.setState(state)
       // GraphQL
       try {
-        const action = (isEmpty(state.sessionId)) ? createSession : updateSession
+        const action = (!sessionId) ? createSession : updateSession
         const result = await API.graphql(
           graphqlOperation(action, { input: {
             id,
@@ -328,11 +327,9 @@ class Component extends React.Component {
   }
 
   render () {
-    const { classes, location } = this.props
+    const { classes, sessionId } = this.props
     const { id } = this.state
-    const pageTitle = (location.pathname.includes('add'))
-      ? 'Ajouter une session'
-      : `Modifier la session ${id.value}`
+    const pageTitle = (!sessionId) ? 'Ajouter une session' : `Modifier la session ${id.value}`
     const renderScenarioOptions = () => {
       const list = [{ id: '' }, ...this.state.scenarios]
       return (
@@ -382,7 +379,7 @@ class Component extends React.Component {
                         onBlur={(e) => this.handleBlur(e, 'id')}
                         value={this.state.id.value}
                         error={(this.state.id.isDirty && isEmpty(this.state.id.value))}
-                        disabled={this.state.form.isDisabled || !isEmpty(this.state.sessionId)}
+                        disabled={this.state.form.isDisabled || (typeof sessionId !== 'undefined')}
                       />
                       <TextField
                         label='Description'
@@ -557,12 +554,4 @@ Component.propTypes = {
   classes: PropTypes.object.isRequired
 }
 
-const WithLocation = (props) => (
-  <Location>
-    {({ location }) => (
-      <Component {...props} location={location} />
-    )}
-  </Location>
-)
-
-export default withStyles(styles)(WithLocation)
+export default withStyles(styles)(Component)

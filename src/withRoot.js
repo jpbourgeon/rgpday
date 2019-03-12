@@ -22,7 +22,7 @@ const createGenerateClassName = () => {
 const theme = createMuiTheme({
   palette: {
     primary: {
-      light: primary[300],
+      light: primary[50],
       main: primary[500],
       dark: primary[700]
     },

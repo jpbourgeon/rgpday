@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { navigate, Location } from '@reach/router'
+import { navigate } from '@reach/router'
 import isEmpty from 'validator/lib/isEmpty'
 import { withStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
@@ -72,7 +72,6 @@ const styles = theme => {
 }
 
 const defaultState = {
-  scenarioId: '',
   id: {
     isDirty: false,
     value: ''
@@ -103,9 +102,8 @@ class Component extends React.Component {
   }
 
   async componentWillMount () {
-    const { location } = this.props
-    const scenarioId = location.pathname.split('/').pop()
-    if (location.pathname.includes('update')) {
+    const { scenarioId } = this.props
+    if (scenarioId) {
       // GraphQL
       try {
         const result = await API.graphql(
@@ -113,7 +111,6 @@ class Component extends React.Component {
         )
         if (!result.errors) {
           this.setState({
-            scenarioId,
             id: {
               isDirty: false,
               value: result.data.getScenario.id
@@ -163,6 +160,7 @@ class Component extends React.Component {
 
   async handleSubmit (event) {
     event.preventDefault()
+    const { scenarioId } = this.props
     let state = this.state
     this.setState({ ...state, form: { isDisabled: true } })
     const id = state.id.value
@@ -174,7 +172,7 @@ class Component extends React.Component {
       state.snackbar.open = true
       // GraphQL
       try {
-        const action = (isEmpty(state.scenarioId)) ? createScenario : updateScenario
+        const action = (!scenarioId) ? createScenario : updateScenario
         const result = await API.graphql(
           graphqlOperation(action, { input: { id, description, searchable } })
         )
@@ -223,11 +221,9 @@ class Component extends React.Component {
   }
 
   render () {
-    const { classes, location } = this.props
+    const { classes, scenarioId } = this.props
     const { id } = this.state
-    const pageTitle = (location.pathname.includes('add'))
-      ? 'Ajouter un scénario'
-      : `Modifier le scénario ${id.value}`
+    const pageTitle = (!scenarioId) ? 'Ajouter un scénario' : `Modifier le scénario ${id.value}`
     return (
       <div className={classes.layout}>
         <main>
@@ -265,7 +261,7 @@ class Component extends React.Component {
                     onBlur={(e) => this.handleBlur(e, 'id')}
                     value={this.state.id.value}
                     error={(this.state.id.isDirty && isEmpty(this.state.id.value))}
-                    disabled={this.state.form.isDisabled || !isEmpty(this.state.scenarioId)}
+                    disabled={this.state.form.isDisabled || (typeof scenarioId !== 'undefined')}
                   />
                   <TextField
                     label='Description'
@@ -335,12 +331,4 @@ Component.propTypes = {
   classes: PropTypes.object.isRequired
 }
 
-const WithLocation = (props) => (
-  <Location>
-    {({ location }) => (
-      <Component {...props} location={location} />
-    )}
-  </Location>
-)
-
-export default withStyles(styles)(WithLocation)
+export default withStyles(styles)(Component)

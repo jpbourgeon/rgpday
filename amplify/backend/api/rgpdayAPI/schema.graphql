@@ -29,7 +29,7 @@ type Team @model {
 
 type Config @model {
   id: ID!
-  value: String
+  value: AWSJSON
 }
 
 type Query {

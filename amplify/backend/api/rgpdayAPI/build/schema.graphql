@@ -29,7 +29,7 @@ type Team {
 
 type Config {
   id: ID!
-  value: String
+  value: AWSJSON
 }
 
 type Query {
@@ -264,12 +264,12 @@ input ModelConfigFilterInput {
 
 input CreateConfigInput {
   id: ID
-  value: String
+  value: AWSJSON
 }
 
 input UpdateConfigInput {
   id: ID!
-  value: String
+  value: AWSJSON
 }
 
 input DeleteConfigInput {

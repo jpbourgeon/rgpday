@@ -151,6 +151,7 @@ class SignIn extends React.Component {
   }
 
   async signIn (token) {
+    const { setConfig } = this.props
     try {
       const { username: { value: username }, password: { value: password } } = this.state
       if (!Auth || typeof Auth.signIn !== 'function') {
@@ -166,6 +167,7 @@ class SignIn extends React.Component {
         ).catch(e => logger.error('signIn', e))
       }
       this.changeState('signedIn', user)
+      setConfig()
     } catch (err) {
       logger.error('signIn', err)
     } finally {
