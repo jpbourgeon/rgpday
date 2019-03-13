@@ -22,7 +22,7 @@ const styles = () => ({
   }
 })
 
-const routesWithBackButton = []
+const routesWithBackButton = ['/dashboard/presentation']
 
 class App extends React.Component {
   componentDidMount () {

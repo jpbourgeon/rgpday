@@ -54,6 +54,45 @@ export const listScenarios = `query ListScenarios(
   }
 }
 `;
+export const getPresentation = `query GetPresentation($id: ID!) {
+  getPresentation(id: $id) {
+    id
+    description
+    searchable
+    sessions {
+      items {
+        id
+        description
+        contact
+        numberOfParticipants
+        RGPDay
+        startDate
+        endDate
+        searchable
+      }
+      nextToken
+    }
+  }
+}
+`;
+export const listPresentations = `query ListPresentations(
+  $filter: ModelPresentationFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listPresentations(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      description
+      searchable
+      sessions {
+        nextToken
+      }
+    }
+    nextToken
+  }
+}
+`;
 export const getSession = `query GetSession($id: ID!) {
   getSession(id: $id) {
     id
@@ -65,6 +104,14 @@ export const getSession = `query GetSession($id: ID!) {
     endDate
     searchable
     scenario {
+      id
+      description
+      searchable
+      sessions {
+        nextToken
+      }
+    }
+    presentation {
       id
       description
       searchable
@@ -105,6 +152,11 @@ export const listSessions = `query ListSessions(
         description
         searchable
       }
+      presentation {
+        id
+        description
+        searchable
+      }
       teams {
         nextToken
       }
@@ -130,6 +182,11 @@ export const getTeam = `query GetTeam($id: ID!) {
       endDate
       searchable
       scenario {
+        id
+        description
+        searchable
+      }
+      presentation {
         id
         description
         searchable

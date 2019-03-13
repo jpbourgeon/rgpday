@@ -125,6 +125,10 @@
                     {
                         "AttributeName": "sessionScenarioId",
                         "AttributeType": "S"
+                    },
+                    {
+                        "AttributeName": "sessionPresentationId",
+                        "AttributeType": "S"
                     }
                 ],
                 "StreamSpecification": {
@@ -161,6 +165,34 @@
                         "KeySchema": [
                             {
                                 "AttributeName": "sessionScenarioId",
+                                "KeyType": "HASH"
+                            }
+                        ],
+                        "Projection": {
+                            "ProjectionType": "ALL"
+                        },
+                        "ProvisionedThroughput": {
+                            "Fn::If": [
+                                "ShouldUsePayPerRequestBilling",
+                                {
+                                    "Ref": "AWS::NoValue"
+                                },
+                                {
+                                    "ReadCapacityUnits": {
+                                        "Ref": "DynamoDBModelTableReadIOPS"
+                                    },
+                                    "WriteCapacityUnits": {
+                                        "Ref": "DynamoDBModelTableWriteIOPS"
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "IndexName": "gsi-PresentationSessions",
+                        "KeySchema": [
+                            {
+                                "AttributeName": "sessionPresentationId",
                                 "KeyType": "HASH"
                             }
                         ],
@@ -327,7 +359,7 @@
                         {
                             "Ref": "APIKeyExpirationEpoch"
                         },
-                        1553069810
+                        1553097679
                     ]
                 }
             },
@@ -506,6 +538,83 @@
                             },
                             "stacks",
                             "Scenario.json"
+                        ]
+                    ]
+                }
+            },
+            "DependsOn": [
+                "GraphQLSchema"
+            ]
+        },
+        "Presentation": {
+            "Type": "AWS::CloudFormation::Stack",
+            "Properties": {
+                "Parameters": {
+                    "AppSyncApiId": {
+                        "Fn::GetAtt": [
+                            "GraphQLAPI",
+                            "ApiId"
+                        ]
+                    },
+                    "AppSyncApiName": {
+                        "Ref": "AppSyncApiName"
+                    },
+                    "APIKeyExpirationEpoch": {
+                        "Ref": "APIKeyExpirationEpoch"
+                    },
+                    "DynamoDBModelTableReadIOPS": {
+                        "Ref": "DynamoDBModelTableReadIOPS"
+                    },
+                    "DynamoDBModelTableWriteIOPS": {
+                        "Ref": "DynamoDBModelTableWriteIOPS"
+                    },
+                    "DynamoDBBillingMode": {
+                        "Ref": "DynamoDBBillingMode"
+                    },
+                    "AuthCognitoUserPoolId": {
+                        "Ref": "AuthCognitoUserPoolId"
+                    },
+                    "AuthCognitoUserPoolName": {
+                        "Ref": "AuthCognitoUserPoolName"
+                    },
+                    "AuthCognitoUserPoolMobileClientName": {
+                        "Ref": "AuthCognitoUserPoolMobileClientName"
+                    },
+                    "AuthCognitoUserPoolJSClientName": {
+                        "Ref": "AuthCognitoUserPoolJSClientName"
+                    },
+                    "AuthCognitoUserPoolRefreshTokenValidity": {
+                        "Ref": "AuthCognitoUserPoolRefreshTokenValidity"
+                    },
+                    "env": {
+                        "Ref": "env"
+                    },
+                    "S3DeploymentBucket": {
+                        "Ref": "S3DeploymentBucket"
+                    },
+                    "S3DeploymentRootKey": {
+                        "Ref": "S3DeploymentRootKey"
+                    },
+                    "GetAttGraphQLAPIApiId": {
+                        "Fn::GetAtt": [
+                            "GraphQLAPI",
+                            "ApiId"
+                        ]
+                    }
+                },
+                "TemplateURL": {
+                    "Fn::Join": [
+                        "/",
+                        [
+                            "https://s3.amazonaws.com",
+                            {
+                                "Ref": "S3DeploymentBucket"
+                            },
+                            {
+                                "Ref": "S3DeploymentRootKey"
+                            },
+                            "stacks",
+                            "Presentation.json"
                         ]
                     ]
                 }
@@ -822,6 +931,7 @@
                 "GraphQLSchema",
                 "Session",
                 "Scenario",
+                "Presentation",
                 "Team"
             ]
         },
@@ -866,6 +976,7 @@
                 "GraphQLAPI",
                 "GraphQLSchema",
                 "Scenario",
+                "Presentation",
                 "Session",
                 "Team",
                 "Config",

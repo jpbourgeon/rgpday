@@ -153,17 +153,20 @@ class Component extends React.Component {
     this.deleteScenario = this.deleteScenario.bind(this)
   }
 
-  componentWillMount () {
+  componentDidMount () {
+    this.loadState()
+  }
+
+  loadState () {
     this.setState(defaultState, () => {
       this.loadItems()
     })
   }
 
-  async loadItems (event = { preventDefault: () => {} }, initialLoad: false) {
+  async loadItems (event = { preventDefault: () => {} }) {
     event.preventDefault()
     try {
       const state = this.state
-      if (initialLoad) state.nextToken = null
       if (state.nextToken === null) state.items = []
       let filter = null
       if (this.state.filter !== '') {

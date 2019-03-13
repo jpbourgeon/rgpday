@@ -17,8 +17,8 @@ import NavigateNext from '@material-ui/icons/NavigateNext'
 import Edit from '@material-ui/icons/Edit'
 import Link from 'src/components/Link'
 import logger from 'src/logger'
-import { createScenario, updateScenario } from 'src/graphql/mutations'
-import { getScenario } from 'src/graphql/queries'
+import { createPresentation, updatePresentation } from 'src/graphql/mutations'
+import { getPresentation } from 'src/graphql/queries'
 import API, { graphqlOperation } from '@aws-amplify/api'
 import config from 'src/aws-exports'
 
@@ -102,26 +102,26 @@ class Component extends React.Component {
   }
 
   componentDidMount () {
-    this.loadScenario()
+    this.loadPresentations()
   }
 
-  async loadScenario () {
-    const { scenarioId } = this.props
-    if (scenarioId) {
+  async loadPresentations () {
+    const { presentationId } = this.props
+    if (presentationId) {
       // GraphQL
       try {
         const result = await API.graphql(
-          graphqlOperation(getScenario, { id: scenarioId })
+          graphqlOperation(getPresentation, { id: presentationId })
         )
         if (!result.errors) {
           this.setState({
             id: {
               isDirty: false,
-              value: result.data.getScenario.id
+              value: result.data.getPresentation.id
             },
             description: {
               isDirty: false,
-              value: result.data.getScenario.description
+              value: result.data.getPresentation.description
             },
             form: {
               isDisabled: false
@@ -164,7 +164,7 @@ class Component extends React.Component {
 
   async handleSubmit (event) {
     event.preventDefault()
-    const { scenarioId } = this.props
+    const { presentationId } = this.props
     let state = this.state
     this.setState({ ...state, form: { isDisabled: true } })
     const id = state.id.value
@@ -176,13 +176,13 @@ class Component extends React.Component {
       state.snackbar.open = true
       // GraphQL
       try {
-        const action = (!scenarioId) ? createScenario : updateScenario
+        const action = (!presentationId) ? createPresentation : updatePresentation
         const result = await API.graphql(
           graphqlOperation(action, { input: { id, description, searchable } })
         )
         if (!result.errors) {
           logger.info('handleSubmit', result)
-          navigate('/dashboard/scenarios')
+          navigate('/dashboard/presentations')
         } else {
           logger.error('handleSubmit', result)
           state.snackbar.message = `La sauvegarde a échoué.`
@@ -196,7 +196,7 @@ class Component extends React.Component {
         this.setState({ ...state, form: { isDisabled: false } })
       }
     } else {
-      state.snackbar.message = `Votre scénario n'a pas été sauvegardé. Le formulaire est invalide.`
+      state.snackbar.message = `Votre présentation n'a pas été sauvegardée. Le formulaire est invalide.`
       state.snackbar.open = true
       this.setState({ ...state })
     }
@@ -209,7 +209,7 @@ class Component extends React.Component {
   handleCancel (event = { preventDefault: () => {} }) {
     event.preventDefault()
     this.setState({ ...defaultState, form: { isDisabled: false }, snackbar: { open: false, message: '' } }, () => {
-      navigate('/dashboard/scenarios')
+      navigate('/dashboard/presentations')
     })
   }
 
@@ -225,9 +225,9 @@ class Component extends React.Component {
   }
 
   render () {
-    const { classes, scenarioId } = this.props
+    const { classes, presentationId } = this.props
     const { id } = this.state
-    const pageTitle = (!scenarioId) ? 'Ajouter un scénario' : `Modifier le scénario ${id.value}`
+    const pageTitle = (!presentationId) ? 'Ajouter une présentation' : `Modifier la présentation ${id.value}`
     return (
       <div className={classes.layout}>
         <main>
@@ -237,7 +237,7 @@ class Component extends React.Component {
                 <Breadcrumbs separator={<NavigateNext fontSize='small' />} arial-label='Breadcrumb'>
                   <Link to='/' color='inherit'>Accueil</Link>
                   <Link to='/dashboard' color='inherit'>Tableau de bord</Link>
-                  <Link to='/dashboard/scenarios' color='inherit'>Scénarios</Link>
+                  <Link to='/dashboard/presentations' color='inherit'>Présentations</Link>
                   <Link to='.' color='inherit'>
                     {pageTitle}
                   </Link>
@@ -265,7 +265,7 @@ class Component extends React.Component {
                     onBlur={(e) => this.handleBlur(e, 'id')}
                     value={this.state.id.value}
                     error={(this.state.id.isDirty && isEmpty(this.state.id.value))}
-                    disabled={this.state.form.isDisabled || (typeof scenarioId !== 'undefined')}
+                    disabled={this.state.form.isDisabled || (typeof presentationId !== 'undefined')}
                   />
                   <TextField
                     label='Description'

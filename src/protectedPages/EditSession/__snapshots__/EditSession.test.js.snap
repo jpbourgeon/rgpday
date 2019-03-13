@@ -690,6 +690,85 @@ exports[`The EditSession component should render correctly 1`] = `
                     </div>
                   </div>
                 </div>
+                <div
+                  className="root-194 marginNormal-195 fullWidth-197"
+                >
+                  <label
+                    className="root-209 root-198 formControl-203 animated-206 outlined-208"
+                    data-shrink={false}
+                  >
+                    Presentation *
+                  </label>
+                  <div
+                    className="root-229 root-216 fullWidth-238 formControl-230"
+                    onClick={[Function]}
+                  >
+                    <fieldset
+                      aria-hidden={true}
+                      className="root-246 notchedOutline-223"
+                      style={
+                        Object {
+                          "paddingLeft": 8,
+                        }
+                      }
+                    >
+                      <legend
+                        className="legend-247"
+                        style={
+                          Object {
+                            "width": 0.01,
+                          }
+                        }
+                      >
+                        <span
+                          dangerouslySetInnerHTML={
+                            Object {
+                              "__html": "&#8203;",
+                            }
+                          }
+                        />
+                      </legend>
+                    </fieldset>
+                    <div
+                      className="root-259"
+                    >
+                      <div
+                        aria-haspopup="true"
+                        aria-pressed="false"
+                        className="select-260 selectMenu-263 outlined-262 input-239 input-224"
+                        onBlur={[Function]}
+                        onClick={[Function]}
+                        onFocus={[Function]}
+                        onKeyDown={[Function]}
+                        role="button"
+                        tabIndex={0}
+                      >
+                        <span
+                          dangerouslySetInnerHTML={
+                            Object {
+                              "__html": "&#8203;",
+                            }
+                          }
+                        />
+                      </div>
+                      <input
+                        type="hidden"
+                        value=""
+                      />
+                      <svg
+                        aria-hidden="true"
+                        className="root-180 icon-265"
+                        focusable="false"
+                        role="presentation"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M7 10l5 5 5-5z"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
               </div>
               <div
                 className="item-38 12-77 12-105"

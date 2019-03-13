@@ -5,6 +5,13 @@ type Scenario {
   sessions(filter: ModelSessionFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelSessionConnection
 }
 
+type Presentation {
+  id: ID!
+  description: String
+  searchable: String
+  sessions(filter: ModelSessionFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelSessionConnection
+}
+
 type Session {
   id: ID!
   description: String
@@ -15,6 +22,7 @@ type Session {
   endDate: AWSDate!
   searchable: String
   scenario: Scenario!
+  presentation: Presentation!
   teams(filter: ModelTeamFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelTeamConnection
 }
 
@@ -36,6 +44,8 @@ type Query {
   sendMail(sender: String, content: String, subject: String, recaptcha: String): AWSJSON
   getScenario(id: ID!): Scenario
   listScenarios(filter: ModelScenarioFilterInput, limit: Int, nextToken: String): ModelScenarioConnection
+  getPresentation(id: ID!): Presentation
+  listPresentations(filter: ModelPresentationFilterInput, limit: Int, nextToken: String): ModelPresentationConnection
   getSession(id: ID!): Session
   listSessions(filter: ModelSessionFilterInput, limit: Int, nextToken: String): ModelSessionConnection
   getTeam(id: ID!): Team
@@ -138,6 +148,9 @@ type Mutation {
   createScenario(input: CreateScenarioInput!): Scenario
   updateScenario(input: UpdateScenarioInput!): Scenario
   deleteScenario(input: DeleteScenarioInput!): Scenario
+  createPresentation(input: CreatePresentationInput!): Presentation
+  updatePresentation(input: UpdatePresentationInput!): Presentation
+  deletePresentation(input: DeletePresentationInput!): Presentation
   createSession(input: CreateSessionInput!): Session
   updateSession(input: UpdateSessionInput!): Session
   deleteSession(input: DeleteSessionInput!): Session
@@ -153,6 +166,9 @@ type Subscription {
   onCreateScenario: Scenario @aws_subscribe(mutations: ["createScenario"])
   onUpdateScenario: Scenario @aws_subscribe(mutations: ["updateScenario"])
   onDeleteScenario: Scenario @aws_subscribe(mutations: ["deleteScenario"])
+  onCreatePresentation: Presentation @aws_subscribe(mutations: ["createPresentation"])
+  onUpdatePresentation: Presentation @aws_subscribe(mutations: ["updatePresentation"])
+  onDeletePresentation: Presentation @aws_subscribe(mutations: ["deletePresentation"])
   onCreateSession: Session @aws_subscribe(mutations: ["createSession"])
   onUpdateSession: Session @aws_subscribe(mutations: ["updateSession"])
   onDeleteSession: Session @aws_subscribe(mutations: ["deleteSession"])
@@ -162,6 +178,36 @@ type Subscription {
   onCreateConfig: Config @aws_subscribe(mutations: ["createConfig"])
   onUpdateConfig: Config @aws_subscribe(mutations: ["updateConfig"])
   onDeleteConfig: Config @aws_subscribe(mutations: ["deleteConfig"])
+}
+
+type ModelPresentationConnection {
+  items: [Presentation]
+  nextToken: String
+}
+
+input ModelPresentationFilterInput {
+  id: ModelIDFilterInput
+  description: ModelStringFilterInput
+  searchable: ModelStringFilterInput
+  and: [ModelPresentationFilterInput]
+  or: [ModelPresentationFilterInput]
+  not: ModelPresentationFilterInput
+}
+
+input CreatePresentationInput {
+  id: ID
+  description: String
+  searchable: String
+}
+
+input UpdatePresentationInput {
+  id: ID!
+  description: String
+  searchable: String
+}
+
+input DeletePresentationInput {
+  id: ID
 }
 
 type ModelSessionConnection {
@@ -193,6 +239,7 @@ input CreateSessionInput {
   endDate: AWSDate!
   searchable: String
   sessionScenarioId: ID!
+  sessionPresentationId: ID!
 }
 
 input UpdateSessionInput {
@@ -205,6 +252,7 @@ input UpdateSessionInput {
   endDate: AWSDate
   searchable: String
   sessionScenarioId: ID
+  sessionPresentationId: ID
 }
 
 input DeleteSessionInput {

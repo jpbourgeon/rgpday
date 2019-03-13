@@ -5,6 +5,13 @@ type Scenario @model {
   sessions: [Session] @connection(name: "ScenarioSessions")
 }
 
+type Presentation @model {
+  id: ID!
+  description: String
+  searchable: String
+  sessions: [Session] @connection(name: "PresentationSessions")
+}
+
 type Session @model {
   id: ID!
   description: String
@@ -15,6 +22,7 @@ type Session @model {
   endDate: AWSDate!
   searchable: String
   scenario: Scenario! @connection(name: "ScenarioSessions")
+  presentation: Presentation! @connection(name: "PresentationSessions")
   teams: [Team] @connection(name: "SessionTeams")
 }
 

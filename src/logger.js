@@ -1,6 +1,7 @@
 const Logger = require('@aws-amplify/core').Logger
 
-if (typeof window !== 'undefined') window.LOG_LEVEL = 'INFO'
+window.LOG_LEVEL = null
+if (typeof window !== 'undefined' && process.env.NODE_ENV === 'development') window.LOG_LEVEL = 'INFO'
 
 const logger = new Logger('rgpday')
 

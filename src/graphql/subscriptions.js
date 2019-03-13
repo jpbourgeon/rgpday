@@ -64,6 +64,69 @@ export const onDeleteScenario = `subscription OnDeleteScenario {
   }
 }
 `;
+export const onCreatePresentation = `subscription OnCreatePresentation {
+  onCreatePresentation {
+    id
+    description
+    searchable
+    sessions {
+      items {
+        id
+        description
+        contact
+        numberOfParticipants
+        RGPDay
+        startDate
+        endDate
+        searchable
+      }
+      nextToken
+    }
+  }
+}
+`;
+export const onUpdatePresentation = `subscription OnUpdatePresentation {
+  onUpdatePresentation {
+    id
+    description
+    searchable
+    sessions {
+      items {
+        id
+        description
+        contact
+        numberOfParticipants
+        RGPDay
+        startDate
+        endDate
+        searchable
+      }
+      nextToken
+    }
+  }
+}
+`;
+export const onDeletePresentation = `subscription OnDeletePresentation {
+  onDeletePresentation {
+    id
+    description
+    searchable
+    sessions {
+      items {
+        id
+        description
+        contact
+        numberOfParticipants
+        RGPDay
+        startDate
+        endDate
+        searchable
+      }
+      nextToken
+    }
+  }
+}
+`;
 export const onCreateSession = `subscription OnCreateSession {
   onCreateSession {
     id
@@ -75,6 +138,14 @@ export const onCreateSession = `subscription OnCreateSession {
     endDate
     searchable
     scenario {
+      id
+      description
+      searchable
+      sessions {
+        nextToken
+      }
+    }
+    presentation {
       id
       description
       searchable
@@ -113,6 +184,14 @@ export const onUpdateSession = `subscription OnUpdateSession {
         nextToken
       }
     }
+    presentation {
+      id
+      description
+      searchable
+      sessions {
+        nextToken
+      }
+    }
     teams {
       items {
         id
@@ -137,6 +216,14 @@ export const onDeleteSession = `subscription OnDeleteSession {
     endDate
     searchable
     scenario {
+      id
+      description
+      searchable
+      sessions {
+        nextToken
+      }
+    }
+    presentation {
       id
       description
       searchable
@@ -178,6 +265,11 @@ export const onCreateTeam = `subscription OnCreateTeam {
         description
         searchable
       }
+      presentation {
+        id
+        description
+        searchable
+      }
       teams {
         nextToken
       }
@@ -206,6 +298,11 @@ export const onUpdateTeam = `subscription OnUpdateTeam {
         description
         searchable
       }
+      presentation {
+        id
+        description
+        searchable
+      }
       teams {
         nextToken
       }
@@ -230,6 +327,11 @@ export const onDeleteTeam = `subscription OnDeleteTeam {
       endDate
       searchable
       scenario {
+        id
+        description
+        searchable
+      }
+      presentation {
         id
         description
         searchable

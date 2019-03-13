@@ -50,7 +50,9 @@ const styles = theme => ({
   fab: {
     position: 'fixed',
     top: theme.spacing.unit,
-    left: theme.spacing.unit
+    left: theme.spacing.unit,
+    zIndex: 10
+
   }
 })
 
@@ -156,7 +158,7 @@ class AppBarComponent extends React.Component {
     if (minified) {
       return (<React.Fragment>
         <Fade in={moved}>
-          <Link to='../'>
+          <Link to='/dashboard'>
             <Fab color='primary' aria-label='Retour' className={classes.fab}>
               <ArrowBack />
             </Fab>

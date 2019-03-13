@@ -13,13 +13,28 @@ import { createConfig as gqlCreateConfig, updateConfig as gqlUpdateConfig } from
 import config from 'src/aws-exports'
 Auth.configure(config)
 API.configure(config)
+const gqlGetSession = `query GetSession($id: ID!) {
+  getSession(id: $id) {
+    id
+    scenario {
+      id
+    }
+    presentation {
+      id
+    }
+  }
+}
+`
 
 const Default = (props) => (<Loadable loadablePath='pages/Default' {...props} />)
 const Dashboard = (props) => (<Loadable loadablePath='protectedPages/Dashboard' {...props} />)
 const Sessions = (props) => (<Loadable loadablePath='protectedPages/Sessions' {...props} />)
 const Scenarios = (props) => (<Loadable loadablePath='protectedPages/Scenarios' {...props} />)
-const EditScenario = (props) => (<Loadable loadablePath='protectedPages/EditScenario' {...props} />)
+const Presentations = (props) => (<Loadable loadablePath='protectedPages/Presentations' {...props} />)
 const EditSession = (props) => (<Loadable loadablePath='protectedPages/EditSession' {...props} />)
+const EditScenario = (props) => (<Loadable loadablePath='protectedPages/EditScenario' {...props} />)
+const EditPresentation = (props) => (<Loadable loadablePath='protectedPages/EditPresentation' {...props} />)
+const Presentation = (props) => (<Loadable loadablePath='protectedPages/Presentation' {...props} />)
 // const SeriousGame = (props) => (<Loadable loadablePath='protectedPages/SeriousGame' {...props} />)
 
 const styles = {
@@ -47,14 +62,19 @@ class MyRouter extends React.Component {
         <Router>
           <Default default />
           <Dashboard path='/' config={config} />
-          <Sessions path='/sessions' setConfig={setConfig} config={config} />
           <Scenarios path='/scenarios' />
           <EditScenario path='/scenarios/add' />
           <EditScenario path='/scenarios/update/:scenarioId' />
           <Redirect noThrow from='/scenarios/update' to='/dashboard/scenarios/add' />
+          <Presentations path='/presentations' />
+          <EditPresentation path='/presentations/add' />
+          <EditPresentation path='/presentations/update/:presentationId' />
+          <Redirect noThrow from='/scenarios/update' to='/dashboard/scenarios/add' />
+          <Sessions path='/sessions' setConfig={setConfig} config={config} />
           <EditSession path='/sessions/add' />
           <EditSession path='/sessions/update/:sessionId' />
           <Redirect noThrow from='/sessions/update' to='/dashboard' />
+          <Presentation path='/presentation' config={config} />
           {/* <SeriousGame path='/seriousgame' config={config} /> */}
         </Router>
       )
@@ -68,16 +88,19 @@ class ProtectedRoutes extends React.Component {
     super(props)
     this.state = {
       config: {
+        _isLoaded: false,
         isAdmin: false,
-        currentSession: null
+        sessionId: null,
+        scenarioId: null,
+        presentationId: null
       }
     }
     this.setConfig = this.setConfig.bind(this)
     this.getConfig = this.getConfig.bind(this)
   }
 
-  async componentWillMount () {
-    await this.getConfig()
+  componentDidMount () {
+    this.getConfig()
   }
 
   async getConfig () {
@@ -103,28 +126,50 @@ class ProtectedRoutes extends React.Component {
       const group = (authData.signInUserSession.idToken.payload['cognito:groups'][0])
       let config
       let gqlMutation
-      // GraphQL
+      // GraphQL Query config
       const result = await API.graphql(graphqlOperation(gqlGetConfig, { id: authData.username }))
-      if (!result.errors) {
+      if (!result.errors && result.data.getConfig !== null) {
         config = JSON.parse(result.data.getConfig.value)
         gqlMutation = gqlUpdateConfig
-        logger.info('protectedRoutes.getConfig::result', result)
+        logger.info('protectedRoutes.setConfig::result', result)
       } else {
         gqlMutation = gqlCreateConfig
         config = this.state.config
-        logger.error('protectedRoutes.getConfig::result', result)
+        logger.error('protectedRoutes.setConfig::result', result)
       }
-
+      // Adjust config
       if (group === 'sessions') {
         config.isAdmin = false
-        config.currentSession = authData.username
+        config.sessionId = authData.username
+        config.scenarioId = null
+        config.presentationId = null
       } else if (group === 'admins') {
         config.isAdmin = true
         if (typeof id !== 'undefined') {
-          config.currentSession = id
+          config.sessionId = id
+          config.scenarioId = null
+          config.presentationId = null
+        } else {
+          config.sessionId = null
+          config.scenarioId = null
+          config.presentationId = null
         }
       }
-      // GraphQL
+      // GraphQL query Session
+      console.log(config)
+      if (config.sessionId !== null) {
+        const getSession = await API.graphql(graphqlOperation(gqlGetSession, { id: config.sessionId }))
+        if (!getSession.errors && getSession.data.getSession !== null) {
+          const session = getSession.data.getSession
+          config.scenarioId = session.scenario.id
+          config.presentationId = session.presentation.id
+          logger.info('protectedRoutes.setConfig::getSession', getSession)
+        } else {
+          logger.error('protectedRoutes.setConfig::getSession', getSession)
+        }
+      }
+      console.log(config)
+      // GraphQL Mutation
       const mutation = await API.graphql(graphqlOperation(gqlMutation, {
         input: {
           id: authData.username,
@@ -136,7 +181,7 @@ class ProtectedRoutes extends React.Component {
       } else {
         logger.error('protectedRoutes.setConfig::mutation', mutation)
       }
-      this.getConfig()
+      this.setState({ config })
     } catch (error) {
       logger.error('ProtectedRoutes.setConfig', error)
     }

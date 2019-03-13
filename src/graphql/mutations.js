@@ -64,6 +64,69 @@ export const deleteScenario = `mutation DeleteScenario($input: DeleteScenarioInp
   }
 }
 `;
+export const createPresentation = `mutation CreatePresentation($input: CreatePresentationInput!) {
+  createPresentation(input: $input) {
+    id
+    description
+    searchable
+    sessions {
+      items {
+        id
+        description
+        contact
+        numberOfParticipants
+        RGPDay
+        startDate
+        endDate
+        searchable
+      }
+      nextToken
+    }
+  }
+}
+`;
+export const updatePresentation = `mutation UpdatePresentation($input: UpdatePresentationInput!) {
+  updatePresentation(input: $input) {
+    id
+    description
+    searchable
+    sessions {
+      items {
+        id
+        description
+        contact
+        numberOfParticipants
+        RGPDay
+        startDate
+        endDate
+        searchable
+      }
+      nextToken
+    }
+  }
+}
+`;
+export const deletePresentation = `mutation DeletePresentation($input: DeletePresentationInput!) {
+  deletePresentation(input: $input) {
+    id
+    description
+    searchable
+    sessions {
+      items {
+        id
+        description
+        contact
+        numberOfParticipants
+        RGPDay
+        startDate
+        endDate
+        searchable
+      }
+      nextToken
+    }
+  }
+}
+`;
 export const createSession = `mutation CreateSession($input: CreateSessionInput!) {
   createSession(input: $input) {
     id
@@ -75,6 +138,14 @@ export const createSession = `mutation CreateSession($input: CreateSessionInput!
     endDate
     searchable
     scenario {
+      id
+      description
+      searchable
+      sessions {
+        nextToken
+      }
+    }
+    presentation {
       id
       description
       searchable
@@ -113,6 +184,14 @@ export const updateSession = `mutation UpdateSession($input: UpdateSessionInput!
         nextToken
       }
     }
+    presentation {
+      id
+      description
+      searchable
+      sessions {
+        nextToken
+      }
+    }
     teams {
       items {
         id
@@ -137,6 +216,14 @@ export const deleteSession = `mutation DeleteSession($input: DeleteSessionInput!
     endDate
     searchable
     scenario {
+      id
+      description
+      searchable
+      sessions {
+        nextToken
+      }
+    }
+    presentation {
       id
       description
       searchable
@@ -178,6 +265,11 @@ export const createTeam = `mutation CreateTeam($input: CreateTeamInput!) {
         description
         searchable
       }
+      presentation {
+        id
+        description
+        searchable
+      }
       teams {
         nextToken
       }
@@ -206,6 +298,11 @@ export const updateTeam = `mutation UpdateTeam($input: UpdateTeamInput!) {
         description
         searchable
       }
+      presentation {
+        id
+        description
+        searchable
+      }
       teams {
         nextToken
       }
@@ -230,6 +327,11 @@ export const deleteTeam = `mutation DeleteTeam($input: DeleteTeamInput!) {
       endDate
       searchable
       scenario {
+        id
+        description
+        searchable
+      }
+      presentation {
         id
         description
         searchable

@@ -95,3 +95,13 @@ x 2019-03-11 2019-03-09 Added: frontend Sessions : LED
 x 2019-03-12 2019-03-12 Fixed: Loadable components now pass props down
 x 2019-03-12 2019-03-09 Added: frontend ProtectedRoutes - retrieve and share the user data : isAdmin and currentSession
 x 2019-03-12 2019-03-09 Limit access to admin and features depending on the user's group
+x 2019-03-13 2019-03-13 Added: frontend Presentations and EditPresentation pages - protected routes
+x 2019-03-13 2019-03-13 Added: frontend Admin Presentations : add the link to the dashboard
+x 2019-03-13 Added: frontend presentations : LED
+x 2019-03-13 2019-03-13 Added: frontend presentation : extend the session management to include the presentation
+x 2019-03-13 2019-03-13 Added: frontend ProtectRoutes - manage the scenarioId and the presentationId
+x 2019-03-13 2019-03-13 Added: frontend Presentation page - protected route <Presentation path='dashboard/presentation' config={config} />
+x 2019-03-13 2019-03-13 Added: frontend - load presentation library dynamically
+x 2019-03-13 2019-03-13 Added: frontend presentation - FormidableLabs/spectacle integration
+x 2019-03-13 2019-03-13 Added: frontend presentation : add the link to the dashboard
+x 2019-03-13 2019-03-13 Added: frontend Dashboard - Admin Help section (how to create a scenario, a presentation and a session)

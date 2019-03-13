@@ -40,6 +40,18 @@ const listScenariosIds = `query ListScenarios(
   }
 }
 `
+const listPresentationsIds = `query ListPresentations(
+  $filter: ModelPresentationFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listPresentations(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+    }
+  }
+}
+`
 
 const styles = theme => {
   return {
@@ -127,6 +139,11 @@ const defaultState = {
   form: {
     isDisabled: false
   },
+  presentation: {
+    isDirty: false,
+    value: ''
+  },
+  presentations: [],
   snackbar: {
     open: false,
     message: ''
@@ -145,11 +162,18 @@ class Component extends React.Component {
     this.handleCloseSnackbar = this.handleCloseSnackbar.bind(this)
   }
 
-  async componentWillMount () {
+  componentDidMount () {
+    this.loadSession()
+  }
+
+  async loadSession () {
     const { sessionId } = this.props
     const state = defaultState
     const queryScenarios = () => (API.graphql(
       graphqlOperation(listScenariosIds)
+    ))
+    const queryPresentations = () => (API.graphql(
+      graphqlOperation(listPresentationsIds)
     ))
     let querySession
     if (sessionId) {
@@ -161,11 +185,20 @@ class Component extends React.Component {
     }
     // GraphQL
     try {
-      const [scenarios, session] = await Promise.all([queryScenarios(), querySession()])
+      const [scenarios, presentations, session] = await Promise.all([
+        queryScenarios(),
+        queryPresentations(),
+        querySession()
+      ])
       if (!scenarios.errors) {
         state.scenarios = scenarios.data.listScenarios.items
       } else {
         logger.info('scenarios', scenarios.error)
+      }
+      if (!presentations.errors) {
+        state.presentations = presentations.data.listPresentations.items
+      } else {
+        logger.info('presentations', presentations.error)
       }
       if (!session.errors) {
         state.id.value = session.data.getSession.id
@@ -176,6 +209,7 @@ class Component extends React.Component {
         state.startDate.value = session.data.getSession.startDate
         state.endDate.value = session.data.getSession.endDate
         state.scenario.value = session.data.getSession.scenario.id
+        state.presentation.value = session.data.getSession.presentation.id
       } else {
         logger.info('session', session.error)
       }
@@ -244,6 +278,10 @@ class Component extends React.Component {
         !isIn(this.state.scenario.value, this.state.scenarios.map(i => (i.id))))
       ? null
       : state.scenario.value
+    const sessionPresentationId = (isEmpty(this.state.presentation.value) ||
+        !isIn(this.state.presentation.value, this.state.presentations.map(i => (i.id))))
+      ? null
+      : state.presentation.value
     const searchable = [
       id,
       description,
@@ -252,9 +290,10 @@ class Component extends React.Component {
       RGPDay,
       startDate,
       endDate,
-      sessionScenarioId
+      sessionScenarioId,
+      sessionPresentationId
     ].join(' ').toLowerCase()
-    if (id && RGPDay && startDate && endDate && sessionScenarioId) {
+    if (id && RGPDay && startDate && endDate && sessionScenarioId && sessionPresentationId) {
       state.form.isDisabled = true
       state.snackbar.message = `Sauvegarde en cours. Merci de patienter...`
       state.snackbar.open = true
@@ -272,6 +311,7 @@ class Component extends React.Component {
             startDate,
             endDate,
             sessionScenarioId,
+            sessionPresentationId,
             searchable
           } })
         )
@@ -330,8 +370,8 @@ class Component extends React.Component {
     const { classes, sessionId } = this.props
     const { id } = this.state
     const pageTitle = (!sessionId) ? 'Ajouter une session' : `Modifier la session ${id.value}`
-    const renderScenarioOptions = () => {
-      const list = [{ id: '' }, ...this.state.scenarios]
+    const renderOptions = (data) => {
+      const list = [{ id: '' }, ...data]
       return (
         list.map(option => (
           <MenuItem key={option.id} value={option.id}>
@@ -493,7 +533,29 @@ class Component extends React.Component {
                           }
                         }}
                       >
-                        {renderScenarioOptions()}
+                        {renderOptions(this.state.scenarios)}
+                      </TextField>
+                      <TextField
+                        label='Presentation *'
+                        select
+                        fullWidth
+                        margin='normal'
+                        variant='outlined'
+                        value={this.state.presentation.value}
+                        onChange={(e) => this.handleChange(e, 'presentation')}
+                        onBlur={(e) => this.handleBlur(e, 'presentation')}
+                        error={(this.state.presentation.isDirty &&
+                          (isEmpty(this.state.presentation.value) ||
+                            !isIn(this.state.presentation.value, this.state.presentations.map(i => (i.id)))
+                          )
+                        )}
+                        SelectProps={{
+                          MenuProps: {
+                            className: classes.menu
+                          }
+                        }}
+                      >
+                        {renderOptions(this.state.presentations)}
                       </TextField>
                     </Grid>
                     <Grid item xs={12} md={12}>

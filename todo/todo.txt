@@ -1,11 +1,12 @@
-2019-03-13 Added: frontend Dashboard - Admin Help section (how to create a scenario and a session)
 2019-03-13 RELEASE VERSION v0.4.0
 2019-03-09 Added: frontend SeriousGame page
 2019-03-09 Added: frontend Teams : LED
+2019-03-13 Changed: Secure admin Protected routes and pages
 2019-03-09 cascade delete scenario
 2019-03-09 cascade delete session
 2019-03-09 cascade delete team
 2019-02-09 write the game specs
+2019-02-09 write the mind map specs <https://www.mindmup.com/>
 2019-02-09 write the conference specs
 2019-02-09 "mentions legales" (CopyRight) / RGPD page + [Cookie Consent](https://cookieconsent.insites.com/) <https://www.service-public.fr/professionnels-entreprises/vosdroits/F31228>
 2019-02-09 conditional robots.txt on CD, depending on the published branch

@@ -22,35 +22,30 @@ import Delete from '@material-ui/icons/Delete'
 import Edit from '@material-ui/icons/Edit'
 import NavigateNext from '@material-ui/icons/NavigateNext'
 import Add from '@material-ui/icons/Add'
-import Play from '@material-ui/icons/PlayCircleFilled'
-import Stop from '@material-ui/icons/Stop'
 import Link from 'src/components/Link'
 import MUILink from '@material-ui/core/Link'
 import Tile from 'src/components/Tile'
-import { deleteSession } from 'src/graphql/mutations'
+import { deletePresentation } from 'src/graphql/mutations'
 import logger from 'src/logger'
 import API, { graphqlOperation } from '@aws-amplify/api'
 import config from 'src/aws-exports'
 
 API.configure(config)
-const listSessions = `query ListSessions(
-  $filter: ModelSessionFilterInput
+const listPresentations = `query ListPresentations(
+  $filter: ModelPresentationFilterInput
   $limit: Int
   $nextToken: String
 ) {
-  listSessions(filter: $filter, limit: $limit, nextToken: $nextToken) {
+  listPresentations(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
       description
-      contact
-      RGPDay
-      startDate
       searchable
-      scenario {
-        id
-      }
-      presentation {
-        id
+      sessions {
+        items {
+          id
+        }
+        nextToken
       }
     }
     nextToken
@@ -130,9 +125,6 @@ const styles = theme => {
       padding: theme.spacing.unit,
       marginTop: theme.spacing.unit
     },
-    tileContent: {
-      display: 'block'
-    },
     dialog: {
       padding: '1em'
     }
@@ -158,7 +150,7 @@ class Component extends React.Component {
     this.handleChangeFilter = this.handleChangeFilter.bind(this)
     this.handleCancelFilter = this.handleCancelFilter.bind(this)
     this.handleDeleteDialog = this.handleDeleteDialog.bind(this)
-    this.deleteSession = this.deleteSession.bind(this)
+    this.deletePresentation = this.deletePresentation.bind(this)
   }
 
   componentDidMount () {
@@ -182,7 +174,7 @@ class Component extends React.Component {
       }
       // GraphQL
       const result = await API.graphql(
-        graphqlOperation(listSessions, {
+        graphqlOperation(listPresentations, {
           filter,
           limit: this.state.limit,
           nextToken: this.state.nextToken
@@ -190,10 +182,10 @@ class Component extends React.Component {
       )
       logger.info(result)
       if (!result.errors) {
-        state.nextToken = result.data.listSessions.nextToken
-        state.items = [...state.items, ...result.data.listSessions.items]
+        state.nextToken = result.data.listPresentations.nextToken
+        state.items = [...state.items, ...result.data.listPresentations.items]
         this.setState(state, () => {
-          if (result.data.listSessions.items.length === 0 && result.data.listSessions.nextToken !== null) {
+          if (result.data.listPresentations.items.length === 0 && result.data.listPresentations.nextToken !== null) {
             this.loadItems()
           }
         })
@@ -227,15 +219,13 @@ class Component extends React.Component {
     })
   }
 
-  async deleteSession () {
+  async deletePresentation () {
     try {
       // GraphQL
-      const { config, setConfig } = this.props
       const id = this.state.delete.id
-      if (config.sessionId === id) setConfig(null)
       this.handleDeleteDialog('', false)
       const result = await API.graphql(
-        graphqlOperation(deleteSession, { input: { id } })
+        graphqlOperation(deletePresentation, { input: { id } })
       )
       if (!result.errors) {
         const items = this.state.items
@@ -245,25 +235,19 @@ class Component extends React.Component {
         }
         this.setState({ items })
       } else {
-        logger.error('deleteSession', result)
+        logger.error('deletePresentation', result)
       }
     } catch (error) {
-      logger.error('deleteSession', error)
+      logger.error('deletePresentation', error)
     }
   }
 
   render () {
-    const { classes, setConfig, config } = this.props
+    const { classes } = this.props
     const renderActions = (id) => (
       <Grid container>
         <Grid item className={classes.grow}>{id}</Grid>
         <Grid item>
-          <MUILink onClick={() => setConfig(id)} className={(config.sessionId === id) ? classes.hide : null}>
-            <IconButton><Play size='small' className={classes.itemActionIcon} /></IconButton>
-          </MUILink>
-          <MUILink onClick={() => setConfig(null)} className={(config.sessionId !== id) ? classes.hide : null}>
-            <IconButton><Stop size='small' className={classes.itemActionIcon} /></IconButton>
-          </MUILink>
           <Link to={`./update/${id}`}>
             <IconButton><Edit className={classes.itemActionIcon} /></IconButton>
           </Link>
@@ -276,65 +260,28 @@ class Component extends React.Component {
     const renderItems = (items) => {
       return (
         items
-          .map((item) => (
-            <Tile
-              key={item.id}
-              title={renderActions(item.id)}
-              isActive={(item.id === config.sessionId)}
-              description={(
-                <React.Fragment>
-                  {(!item.description) ? null : (
-                    <React.Fragment>
-                      <span className={classes.tileContent}>{item.description.split('\n').map((line, key) => {
-                        if (key !== item.description.split('\n').length) {
-                          return (<React.Fragment key={key}>{line}<br /></React.Fragment>)
-                        } else {
-                          return (<React.Fragment key={key}>{line}</React.Fragment>)
-                        }
-                      })}
-                      </span>
-                    </React.Fragment>
-                  )}
-                  {(!item.RGPDay) ? null : (
-                    <React.Fragment>
-                      <span className={classes.tileContent}>
-                        <strong>Date : </strong>{item.RGPDay}
-                      </span>
-                    </React.Fragment>
-                  )}
-                  {(!item.contact) ? null : (
-                    <React.Fragment>
-                      <span className={classes.tileContent}><strong>Contact : </strong>{item.contact.split('\n')
-                        .map((line, key) => {
-                          if (key !== item.contact.split('\n').length) {
-                            return (<React.Fragment key={key}>{line}<br /></React.Fragment>)
-                          } else {
-                            return (<React.Fragment key={key}>{line}</React.Fragment>)
-                          }
-                        })
-                      }</span>
-                    </React.Fragment>
-                  )}
-                  {(!item.scenario.id) ? null : (
-                    <React.Fragment>
-                      <span className={classes.tileContent}>
-                        <strong>Scénario : </strong>
-                        <Link to={`../scenarios/update/${item.scenario.id}`}>{item.scenario.id}</Link>
-                      </span>
-                    </React.Fragment>
-                  )}
-                  {(!item.presentation.id) ? null : (
-                    <React.Fragment>
-                      <span className={classes.tileContent}>
-                        <strong>Présentation : </strong>
-                        <Link to={`../presentations/update/${item.presentation.id}`}>{item.presentation.id}</Link>
-                      </span>
-                    </React.Fragment>
-                  )}
-                </React.Fragment>
-              )}
-            />
-          ))
+          .map((item) => {
+            return (
+              <Tile
+                key={item.id}
+                title={renderActions(item.id)}
+                description={(
+                  <React.Fragment>
+                    <span>{item.description.split('\n').map((line, key) => {
+                      return (<React.Fragment key={key}>{line}<br /></React.Fragment>)
+                    })}</span>
+                    {(!(Array.isArray(item.sessions.items) && item.sessions.items.length > 0)) ? null : (
+                      <React.Fragment>
+                        <br /><span><strong>Sessions : </strong>{item.sessions.items.map(i => {
+                          return <Link key={i.id} to={`../sessions/update/${i.id}`}>{i.id}</Link>
+                        })}</span>
+                      </React.Fragment>
+                    )}
+                  </React.Fragment>
+                )}
+              />
+            )
+          })
       )
     }
     return (
@@ -346,7 +293,7 @@ class Component extends React.Component {
                 <Breadcrumbs separator={<NavigateNext fontSize='small' />} arial-label='Breadcrumb'>
                   <Link to='/' color='inherit'>Accueil</Link>
                   <Link to='../' color='inherit'>Tableau de bord</Link>
-                  <Link to='.' color='inherit'>Sessions</Link>
+                  <Link to='.' color='inherit'>Présentations</Link>
                 </Breadcrumbs>
               </Grid>
               <Grid item xs={12} className={classes.title}>
@@ -358,7 +305,7 @@ class Component extends React.Component {
                       </Fab>
                     </Link>
                   </div>
-                  <Folder className={classes.titleIcon} />&nbsp;Sessions
+                  <Folder className={classes.titleIcon} />&nbsp;Présentations
                 </Typography>
                 <Divider />
               </Grid>
@@ -399,9 +346,9 @@ class Component extends React.Component {
               </Grid>
               <Grid item xs={12}>
                 <Grid container spacing={40}>
-                  {(Array.isArray(this.state.items) && this.state.items.length > 0) ? renderItems(this.state.items) : (
+                  {(this.state.items.length > 0) ? renderItems(this.state.items) : (
                     <Grid item>
-                      <Typography variant='body1' gutterBottom>Il n'y a pas de session à afficher</Typography>
+                      <Typography variant='body1' gutterBottom>Il n'y a pas de présentation à afficher</Typography>
                     </Grid>
                   )}
                   <Grid item xs={12} className={(this.state.nextToken === null) ? classes.hide : null}>
@@ -424,14 +371,14 @@ class Component extends React.Component {
           aria-labelledby='alert-dialog-title'
           aria-describedby='alert-dialog-description'
         >
-          <DialogTitle id='alert-dialog-title'>Effacer le session {this.state.delete.id}</DialogTitle>
+          <DialogTitle id='alert-dialog-title'>Effacer la présentation {this.state.delete.id}</DialogTitle>
           <DialogContent>
             <DialogContentText id='alert-dialog-description'>
               Attention, cette action est irréversible.
             </DialogContentText>
           </DialogContent>
           <DialogActions className={classes.dialog}>
-            <Button onClick={this.deleteSession} color='secondary' variant='contained'>
+            <Button onClick={this.deletePresentation} color='secondary' variant='contained'>
               Confirmer
             </Button>
             <Button onClick={() => { this.handleDeleteDialog('', false) }} color='primary' autoFocus variant='outlined'>

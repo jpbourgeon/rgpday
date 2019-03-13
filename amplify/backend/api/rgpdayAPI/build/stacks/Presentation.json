@@ -80,175 +80,300 @@
         }
     },
     "Resources": {
-        "ScenariosessionsResolver": {
-            "Type": "AWS::AppSync::Resolver",
+        "PresentationTable": {
+            "Type": "AWS::DynamoDB::Table",
             "Properties": {
-                "ApiId": {
-                    "Ref": "GetAttGraphQLAPIApiId"
-                },
-                "DataSourceName": {
-                    "Fn::ImportValue": {
-                        "Fn::Join": [
-                            ":",
-                            [
-                                {
-                                    "Ref": "AppSyncApiId"
-                                },
-                                "GetAtt",
-                                "SessionDataSource",
-                                "Name"
+                "TableName": {
+                    "Fn::If": [
+                        "HasEnvironmentParameter",
+                        {
+                            "Fn::Join": [
+                                "-",
+                                [
+                                    "Presentation",
+                                    {
+                                        "Ref": "GetAttGraphQLAPIApiId"
+                                    },
+                                    {
+                                        "Ref": "env"
+                                    }
+                                ]
                             ]
-                        ]
+                        },
+                        {
+                            "Fn::Join": [
+                                "-",
+                                [
+                                    "Presentation",
+                                    {
+                                        "Ref": "GetAttGraphQLAPIApiId"
+                                    }
+                                ]
+                            ]
+                        }
+                    ]
+                },
+                "KeySchema": [
+                    {
+                        "AttributeName": "id",
+                        "KeyType": "HASH"
                     }
+                ],
+                "AttributeDefinitions": [
+                    {
+                        "AttributeName": "id",
+                        "AttributeType": "S"
+                    }
+                ],
+                "StreamSpecification": {
+                    "StreamViewType": "NEW_AND_OLD_IMAGES"
                 },
-                "FieldName": "sessions",
-                "TypeName": "Scenario",
-                "RequestMappingTemplateS3Location": {
-                    "Fn::Sub": [
-                        "s3://${S3DeploymentBucket}/${S3DeploymentRootKey}/resolvers/${ResolverFileName}",
+                "BillingMode": {
+                    "Fn::If": [
+                        "ShouldUsePayPerRequestBilling",
+                        "PAY_PER_REQUEST",
                         {
-                            "S3DeploymentBucket": {
-                                "Ref": "S3DeploymentBucket"
+                            "Ref": "AWS::NoValue"
+                        }
+                    ]
+                },
+                "ProvisionedThroughput": {
+                    "Fn::If": [
+                        "ShouldUsePayPerRequestBilling",
+                        {
+                            "Ref": "AWS::NoValue"
+                        },
+                        {
+                            "ReadCapacityUnits": {
+                                "Ref": "DynamoDBModelTableReadIOPS"
                             },
-                            "S3DeploymentRootKey": {
-                                "Ref": "S3DeploymentRootKey"
-                            },
-                            "ResolverFileName": {
-                                "Fn::Join": [
-                                    ".",
-                                    [
-                                        "Scenario",
-                                        "sessions",
-                                        "req",
-                                        "vtl"
-                                    ]
-                                ]
+                            "WriteCapacityUnits": {
+                                "Ref": "DynamoDBModelTableWriteIOPS"
                             }
                         }
                     ]
                 },
-                "ResponseMappingTemplateS3Location": {
-                    "Fn::Sub": [
-                        "s3://${S3DeploymentBucket}/${S3DeploymentRootKey}/resolvers/${ResolverFileName}",
-                        {
-                            "S3DeploymentBucket": {
-                                "Ref": "S3DeploymentBucket"
-                            },
-                            "S3DeploymentRootKey": {
-                                "Ref": "S3DeploymentRootKey"
-                            },
-                            "ResolverFileName": {
-                                "Fn::Join": [
-                                    ".",
-                                    [
-                                        "Scenario",
-                                        "sessions",
-                                        "res",
-                                        "vtl"
-                                    ]
-                                ]
-                            }
-                        }
-                    ]
+                "SSESpecification": {
+                    "SSEEnabled": true
                 }
             }
         },
-        "PresentationsessionsResolver": {
-            "Type": "AWS::AppSync::Resolver",
+        "PresentationIAMRole": {
+            "Type": "AWS::IAM::Role",
+            "Properties": {
+                "RoleName": {
+                    "Fn::If": [
+                        "HasEnvironmentParameter",
+                        {
+                            "Fn::Join": [
+                                "-",
+                                [
+                                    "Presentation",
+                                    "role",
+                                    {
+                                        "Ref": "GetAttGraphQLAPIApiId"
+                                    },
+                                    {
+                                        "Ref": "env"
+                                    }
+                                ]
+                            ]
+                        },
+                        {
+                            "Fn::Join": [
+                                "-",
+                                [
+                                    "Presentation",
+                                    "role",
+                                    {
+                                        "Ref": "GetAttGraphQLAPIApiId"
+                                    }
+                                ]
+                            ]
+                        }
+                    ]
+                },
+                "AssumeRolePolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                        {
+                            "Effect": "Allow",
+                            "Principal": {
+                                "Service": "appsync.amazonaws.com"
+                            },
+                            "Action": "sts:AssumeRole"
+                        }
+                    ]
+                },
+                "Policies": [
+                    {
+                        "PolicyName": "DynamoDBAccess",
+                        "PolicyDocument": {
+                            "Version": "2012-10-17",
+                            "Statement": [
+                                {
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "dynamodb:BatchGetItem",
+                                        "dynamodb:BatchWriteItem",
+                                        "dynamodb:PutItem",
+                                        "dynamodb:DeleteItem",
+                                        "dynamodb:GetItem",
+                                        "dynamodb:Scan",
+                                        "dynamodb:Query",
+                                        "dynamodb:UpdateItem"
+                                    ],
+                                    "Resource": [
+                                        {
+                                            "Fn::Sub": [
+                                                "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${tablename}",
+                                                {
+                                                    "tablename": {
+                                                        "Fn::If": [
+                                                            "HasEnvironmentParameter",
+                                                            {
+                                                                "Fn::Join": [
+                                                                    "-",
+                                                                    [
+                                                                        "Presentation",
+                                                                        {
+                                                                            "Ref": "GetAttGraphQLAPIApiId"
+                                                                        },
+                                                                        {
+                                                                            "Ref": "env"
+                                                                        }
+                                                                    ]
+                                                                ]
+                                                            },
+                                                            {
+                                                                "Fn::Join": [
+                                                                    "-",
+                                                                    [
+                                                                        "Presentation",
+                                                                        {
+                                                                            "Ref": "GetAttGraphQLAPIApiId"
+                                                                        }
+                                                                    ]
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "Fn::Sub": [
+                                                "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${tablename}/*",
+                                                {
+                                                    "tablename": {
+                                                        "Fn::If": [
+                                                            "HasEnvironmentParameter",
+                                                            {
+                                                                "Fn::Join": [
+                                                                    "-",
+                                                                    [
+                                                                        "Presentation",
+                                                                        {
+                                                                            "Ref": "GetAttGraphQLAPIApiId"
+                                                                        },
+                                                                        {
+                                                                            "Ref": "env"
+                                                                        }
+                                                                    ]
+                                                                ]
+                                                            },
+                                                            {
+                                                                "Fn::Join": [
+                                                                    "-",
+                                                                    [
+                                                                        "Presentation",
+                                                                        {
+                                                                            "Ref": "GetAttGraphQLAPIApiId"
+                                                                        }
+                                                                    ]
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        },
+        "PresentationDataSource": {
+            "Type": "AWS::AppSync::DataSource",
             "Properties": {
                 "ApiId": {
                     "Ref": "GetAttGraphQLAPIApiId"
                 },
-                "DataSourceName": {
-                    "Fn::ImportValue": {
-                        "Fn::Join": [
-                            ":",
-                            [
-                                {
-                                    "Ref": "AppSyncApiId"
-                                },
-                                "GetAtt",
-                                "SessionDataSource",
-                                "Name"
-                            ]
-                        ]
-                    }
+                "Name": "PresentationTable",
+                "Type": "AMAZON_DYNAMODB",
+                "ServiceRoleArn": {
+                    "Fn::GetAtt": [
+                        "PresentationIAMRole",
+                        "Arn"
+                    ]
                 },
-                "FieldName": "sessions",
-                "TypeName": "Presentation",
-                "RequestMappingTemplateS3Location": {
-                    "Fn::Sub": [
-                        "s3://${S3DeploymentBucket}/${S3DeploymentRootKey}/resolvers/${ResolverFileName}",
-                        {
-                            "S3DeploymentBucket": {
-                                "Ref": "S3DeploymentBucket"
-                            },
-                            "S3DeploymentRootKey": {
-                                "Ref": "S3DeploymentRootKey"
-                            },
-                            "ResolverFileName": {
+                "DynamoDBConfig": {
+                    "AwsRegion": {
+                        "Ref": "AWS::Region"
+                    },
+                    "TableName": {
+                        "Fn::If": [
+                            "HasEnvironmentParameter",
+                            {
                                 "Fn::Join": [
-                                    ".",
+                                    "-",
                                     [
                                         "Presentation",
-                                        "sessions",
-                                        "req",
-                                        "vtl"
+                                        {
+                                            "Ref": "GetAttGraphQLAPIApiId"
+                                        },
+                                        {
+                                            "Ref": "env"
+                                        }
                                     ]
                                 ]
-                            }
-                        }
-                    ]
-                },
-                "ResponseMappingTemplateS3Location": {
-                    "Fn::Sub": [
-                        "s3://${S3DeploymentBucket}/${S3DeploymentRootKey}/resolvers/${ResolverFileName}",
-                        {
-                            "S3DeploymentBucket": {
-                                "Ref": "S3DeploymentBucket"
                             },
-                            "S3DeploymentRootKey": {
-                                "Ref": "S3DeploymentRootKey"
-                            },
-                            "ResolverFileName": {
+                            {
                                 "Fn::Join": [
-                                    ".",
+                                    "-",
                                     [
                                         "Presentation",
-                                        "sessions",
-                                        "res",
-                                        "vtl"
+                                        {
+                                            "Ref": "GetAttGraphQLAPIApiId"
+                                        }
                                     ]
                                 ]
                             }
-                        }
-                    ]
+                        ]
+                    }
                 }
-            }
+            },
+            "DependsOn": [
+                "PresentationIAMRole"
+            ]
         },
-        "SessionscenarioResolver": {
+        "GetPresentationResolver": {
             "Type": "AWS::AppSync::Resolver",
             "Properties": {
                 "ApiId": {
                     "Ref": "GetAttGraphQLAPIApiId"
                 },
                 "DataSourceName": {
-                    "Fn::ImportValue": {
-                        "Fn::Join": [
-                            ":",
-                            [
-                                {
-                                    "Ref": "AppSyncApiId"
-                                },
-                                "GetAtt",
-                                "ScenarioDataSource",
-                                "Name"
-                            ]
-                        ]
-                    }
+                    "Fn::GetAtt": [
+                        "PresentationDataSource",
+                        "Name"
+                    ]
                 },
-                "FieldName": "scenario",
-                "TypeName": "Session",
+                "FieldName": "getPresentation",
+                "TypeName": "Query",
                 "RequestMappingTemplateS3Location": {
                     "Fn::Sub": [
                         "s3://${S3DeploymentBucket}/${S3DeploymentRootKey}/resolvers/${ResolverFileName}",
@@ -263,8 +388,8 @@
                                 "Fn::Join": [
                                     ".",
                                     [
-                                        "Session",
-                                        "scenario",
+                                        "Query",
+                                        "getPresentation",
                                         "req",
                                         "vtl"
                                     ]
@@ -287,8 +412,8 @@
                                 "Fn::Join": [
                                     ".",
                                     [
-                                        "Session",
-                                        "scenario",
+                                        "Query",
+                                        "getPresentation",
                                         "res",
                                         "vtl"
                                     ]
@@ -299,29 +424,20 @@
                 }
             }
         },
-        "SessionpresentationResolver": {
+        "ListPresentationResolver": {
             "Type": "AWS::AppSync::Resolver",
             "Properties": {
                 "ApiId": {
                     "Ref": "GetAttGraphQLAPIApiId"
                 },
                 "DataSourceName": {
-                    "Fn::ImportValue": {
-                        "Fn::Join": [
-                            ":",
-                            [
-                                {
-                                    "Ref": "AppSyncApiId"
-                                },
-                                "GetAtt",
-                                "PresentationDataSource",
-                                "Name"
-                            ]
-                        ]
-                    }
+                    "Fn::GetAtt": [
+                        "PresentationDataSource",
+                        "Name"
+                    ]
                 },
-                "FieldName": "presentation",
-                "TypeName": "Session",
+                "FieldName": "listPresentations",
+                "TypeName": "Query",
                 "RequestMappingTemplateS3Location": {
                     "Fn::Sub": [
                         "s3://${S3DeploymentBucket}/${S3DeploymentRootKey}/resolvers/${ResolverFileName}",
@@ -336,8 +452,8 @@
                                 "Fn::Join": [
                                     ".",
                                     [
-                                        "Session",
-                                        "presentation",
+                                        "Query",
+                                        "listPresentations",
                                         "req",
                                         "vtl"
                                     ]
@@ -360,8 +476,8 @@
                                 "Fn::Join": [
                                     ".",
                                     [
-                                        "Session",
-                                        "presentation",
+                                        "Query",
+                                        "listPresentations",
                                         "res",
                                         "vtl"
                                     ]
@@ -372,29 +488,20 @@
                 }
             }
         },
-        "SessionteamsResolver": {
+        "CreatePresentationResolver": {
             "Type": "AWS::AppSync::Resolver",
             "Properties": {
                 "ApiId": {
                     "Ref": "GetAttGraphQLAPIApiId"
                 },
                 "DataSourceName": {
-                    "Fn::ImportValue": {
-                        "Fn::Join": [
-                            ":",
-                            [
-                                {
-                                    "Ref": "AppSyncApiId"
-                                },
-                                "GetAtt",
-                                "TeamDataSource",
-                                "Name"
-                            ]
-                        ]
-                    }
+                    "Fn::GetAtt": [
+                        "PresentationDataSource",
+                        "Name"
+                    ]
                 },
-                "FieldName": "teams",
-                "TypeName": "Session",
+                "FieldName": "createPresentation",
+                "TypeName": "Mutation",
                 "RequestMappingTemplateS3Location": {
                     "Fn::Sub": [
                         "s3://${S3DeploymentBucket}/${S3DeploymentRootKey}/resolvers/${ResolverFileName}",
@@ -409,8 +516,8 @@
                                 "Fn::Join": [
                                     ".",
                                     [
-                                        "Session",
-                                        "teams",
+                                        "Mutation",
+                                        "createPresentation",
                                         "req",
                                         "vtl"
                                     ]
@@ -433,8 +540,8 @@
                                 "Fn::Join": [
                                     ".",
                                     [
-                                        "Session",
-                                        "teams",
+                                        "Mutation",
+                                        "createPresentation",
                                         "res",
                                         "vtl"
                                     ]
@@ -445,29 +552,20 @@
                 }
             }
         },
-        "TeamsessionResolver": {
+        "UpdatePresentationResolver": {
             "Type": "AWS::AppSync::Resolver",
             "Properties": {
                 "ApiId": {
                     "Ref": "GetAttGraphQLAPIApiId"
                 },
                 "DataSourceName": {
-                    "Fn::ImportValue": {
-                        "Fn::Join": [
-                            ":",
-                            [
-                                {
-                                    "Ref": "AppSyncApiId"
-                                },
-                                "GetAtt",
-                                "SessionDataSource",
-                                "Name"
-                            ]
-                        ]
-                    }
+                    "Fn::GetAtt": [
+                        "PresentationDataSource",
+                        "Name"
+                    ]
                 },
-                "FieldName": "session",
-                "TypeName": "Team",
+                "FieldName": "updatePresentation",
+                "TypeName": "Mutation",
                 "RequestMappingTemplateS3Location": {
                     "Fn::Sub": [
                         "s3://${S3DeploymentBucket}/${S3DeploymentRootKey}/resolvers/${ResolverFileName}",
@@ -482,8 +580,8 @@
                                 "Fn::Join": [
                                     ".",
                                     [
-                                        "Team",
-                                        "session",
+                                        "Mutation",
+                                        "updatePresentation",
                                         "req",
                                         "vtl"
                                     ]
@@ -506,8 +604,72 @@
                                 "Fn::Join": [
                                     ".",
                                     [
-                                        "Team",
-                                        "session",
+                                        "Mutation",
+                                        "updatePresentation",
+                                        "res",
+                                        "vtl"
+                                    ]
+                                ]
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        "DeletePresentationResolver": {
+            "Type": "AWS::AppSync::Resolver",
+            "Properties": {
+                "ApiId": {
+                    "Ref": "GetAttGraphQLAPIApiId"
+                },
+                "DataSourceName": {
+                    "Fn::GetAtt": [
+                        "PresentationDataSource",
+                        "Name"
+                    ]
+                },
+                "FieldName": "deletePresentation",
+                "TypeName": "Mutation",
+                "RequestMappingTemplateS3Location": {
+                    "Fn::Sub": [
+                        "s3://${S3DeploymentBucket}/${S3DeploymentRootKey}/resolvers/${ResolverFileName}",
+                        {
+                            "S3DeploymentBucket": {
+                                "Ref": "S3DeploymentBucket"
+                            },
+                            "S3DeploymentRootKey": {
+                                "Ref": "S3DeploymentRootKey"
+                            },
+                            "ResolverFileName": {
+                                "Fn::Join": [
+                                    ".",
+                                    [
+                                        "Mutation",
+                                        "deletePresentation",
+                                        "req",
+                                        "vtl"
+                                    ]
+                                ]
+                            }
+                        }
+                    ]
+                },
+                "ResponseMappingTemplateS3Location": {
+                    "Fn::Sub": [
+                        "s3://${S3DeploymentBucket}/${S3DeploymentRootKey}/resolvers/${ResolverFileName}",
+                        {
+                            "S3DeploymentBucket": {
+                                "Ref": "S3DeploymentBucket"
+                            },
+                            "S3DeploymentRootKey": {
+                                "Ref": "S3DeploymentRootKey"
+                            },
+                            "ResolverFileName": {
+                                "Fn::Join": [
+                                    ".",
+                                    [
+                                        "Mutation",
+                                        "deletePresentation",
                                         "res",
                                         "vtl"
                                     ]
@@ -519,7 +681,31 @@
             }
         }
     },
-    "Outputs": {},
+    "Outputs": {
+        "GetAttPresentationDataSourceName": {
+            "Value": {
+                "Fn::GetAtt": [
+                    "PresentationDataSource",
+                    "Name"
+                ]
+            },
+            "Export": {
+                "Name": {
+                    "Fn::Join": [
+                        ":",
+                        [
+                            {
+                                "Ref": "AppSyncApiId"
+                            },
+                            "GetAtt",
+                            "PresentationDataSource",
+                            "Name"
+                        ]
+                    ]
+                }
+            }
+        }
+    },
     "Conditions": {
         "APIKeyExpirationEpochIsNotNegOne": {
             "Fn::Not": [
