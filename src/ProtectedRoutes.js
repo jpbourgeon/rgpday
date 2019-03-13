@@ -20,6 +20,7 @@ const Sessions = (props) => (<Loadable loadablePath='protectedPages/Sessions' {.
 const Scenarios = (props) => (<Loadable loadablePath='protectedPages/Scenarios' {...props} />)
 const EditScenario = (props) => (<Loadable loadablePath='protectedPages/EditScenario' {...props} />)
 const EditSession = (props) => (<Loadable loadablePath='protectedPages/EditSession' {...props} />)
+// const SeriousGame = (props) => (<Loadable loadablePath='protectedPages/SeriousGame' {...props} />)
 
 const styles = {
   '@global': {
@@ -53,7 +54,8 @@ class MyRouter extends React.Component {
           <Redirect noThrow from='/scenarios/update' to='/dashboard/scenarios/add' />
           <EditSession path='/sessions/add' />
           <EditSession path='/sessions/update/:sessionId' />
-          <Redirect noThrow from='/sessions/update' to='/dashboard/sessions/add' />
+          <Redirect noThrow from='/sessions/update' to='/dashboard' />
+          {/* <SeriousGame path='/seriousgame' config={config} /> */}
         </Router>
       )
     }
