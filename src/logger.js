@@ -1,8 +1,9 @@
 const Logger = require('@aws-amplify/core').Logger
 
-window.LOG_LEVEL = null
-if (typeof window !== 'undefined' && process.env.NODE_ENV === 'development') window.LOG_LEVEL = 'INFO'
+const logger = new Logger('rgpday', 'INFO')
 
-const logger = new Logger('rgpday')
+if (typeof window !== 'undefined') {
+  window.LOG_LEVEL = (process.env.NODE_ENV === 'development') ? 'INFO' : null
+}
 
 module.exports = logger
