@@ -1,4 +1,3 @@
-2019-03-13 RELEASE VERSION v0.4.0
 2019-03-09 Added: frontend SeriousGame page
 2019-03-09 Added: frontend Teams : LED
 2019-03-13 Changed: Secure admin Protected routes and pages

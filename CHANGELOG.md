@@ -7,6 +7,24 @@ List of change types (one of: Added, Changed, Deprecated, Removed, Fixed, Securi
 
 ## [Unreleased]
 
+## 0.4.0 - 2019-03-13
+
+- Added: Frontend Scenarios management
+- Added: Frontend Presentations management
+- Added: Frontend Sessions management
+- Added: Frontend ProtectedRoutes - retrieve and share the user data : isAdmin and currentSession
+- Changed: Global refactor the components folder into components, pages and protectedPages folders
+- Changed: Backend API - update graphql schema
+- Changed: Frontend CallToAction component - better wording and layout
+- Changed: Frontend Home and about component - better call to action
+- Changed: Frontend Navigation component - refactor the AppBar component into Navigation
+- Changed: Frontend About page - better layout
+- Changed: Frontend Dashboard page - better layout ; help tiles for admins
+- Changed: Frontend App - rename route /session into /dashboard
+- Fixed: Backend function rgpdayFuncVerifyCaptcha - introduce an environment variable online to provide the RECAPTCHA_SECRET more reliably
+- Fixed: Backend function rgpdayFuncSendMail - ReCaptcha errors where not handle properly when the rgpdayFuncVerifyCaptcha lambda failed
+- Fixed: Loadable components now pass props down to their children
+
 ## 0.3.0 - 2019-03-06
 
 - Added: Backend Auth - do a ReCaptcha antispam verification before authenticating users
@@ -23,7 +41,7 @@ List of change types (one of: Added, Changed, Deprecated, Removed, Fixed, Securi
 - Changed: fully functionnal contact page sends mails after ReCaptcha verification in authenticated and unauthenticated state
 - Changed: use the amplify logger instead of debug (isomorphic)
 - Fixed: rebuild the broken amplify from scratch 
-- Removed: backend deprecated cloudformation stacks and associated ressources 
+- Removed: Backend deprecated cloudformation stacks and associated ressources 
 - Security: remove useless dependencies
 
 ## 0.2.0 - 2019-02-26

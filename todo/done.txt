@@ -105,3 +105,4 @@ x 2019-03-13 2019-03-13 Added: frontend - load presentation library dynamically
 x 2019-03-13 2019-03-13 Added: frontend presentation - FormidableLabs/spectacle integration
 x 2019-03-13 2019-03-13 Added: frontend presentation : add the link to the dashboard
 x 2019-03-13 2019-03-13 Added: frontend Dashboard - Admin Help section (how to create a scenario, a presentation and a session)
+x 2019-03-13 2019-03-13 RELEASE VERSION v0.4.0
