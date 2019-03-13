@@ -8,7 +8,7 @@ expect.addSnapshotSerializer(jssSerializer)
 
 describe('The Link component', () => {
   it('should render correctly', () => {
-    const tree = renderer.create(<Link />).toJSON()
+    const tree = renderer.create(<Link to='/'>Hello world</Link>).toJSON()
     expect(tree).toMatchSnapshot()
   })
 })

@@ -47,7 +47,7 @@ exports[`The Home component should render correctly 1`] = `
                   className="root-130 h6-147"
                 >
                   <a
-                    className="root-130 colorSecondary-161 inline-165 root-175 underlineHover-177"
+                    className="root-130 colorSecondary-161 inline-165 root-176 underlineHover-178"
                     href="/contact"
                     onClick={[Function]}
                   >
@@ -69,13 +69,13 @@ exports[`The Home component should render correctly 1`] = `
         className="item-34 12-73 6-95"
       >
         <div
-          className="root-6 elevation1-9 rounded-7 root-171 card-168"
+          className="root-6 elevation1-9 rounded-7 root-172 card-168"
         >
           <div
             className="cardDetails-169"
           >
             <div
-              className="root-172"
+              className="root-173"
             >
               <h5
                 className="root-130 h5-146"
@@ -90,7 +90,7 @@ exports[`The Home component should render correctly 1`] = `
             </div>
           </div>
           <div
-            className="root-173 cardMedia-170"
+            className="root-174 cardMedia-170"
             style={
               Object {
                 "backgroundImage": "url(\\"conference.jpg\\")",
@@ -104,13 +104,13 @@ exports[`The Home component should render correctly 1`] = `
         className="item-34 12-73 6-95"
       >
         <div
-          className="root-6 elevation1-9 rounded-7 root-171 card-168"
+          className="root-6 elevation1-9 rounded-7 root-172 card-168"
         >
           <div
             className="cardDetails-169"
           >
             <div
-              className="root-172"
+              className="root-173"
             >
               <h5
                 className="root-130 h5-146"
@@ -125,7 +125,7 @@ exports[`The Home component should render correctly 1`] = `
             </div>
           </div>
           <div
-            className="root-173 cardMedia-170"
+            className="root-174 cardMedia-170"
             style={
               Object {
                 "backgroundImage": "url(\\"gameboard.jpg\\")",
@@ -139,13 +139,13 @@ exports[`The Home component should render correctly 1`] = `
         className="item-34 12-73 6-95"
       >
         <div
-          className="root-6 elevation1-9 rounded-7 root-171 card-168"
+          className="root-6 elevation1-9 rounded-7 root-172 card-168"
         >
           <div
             className="cardDetails-169"
           >
             <div
-              className="root-172"
+              className="root-173"
             >
               <h5
                 className="root-130 h5-146"
@@ -160,7 +160,7 @@ exports[`The Home component should render correctly 1`] = `
             </div>
           </div>
           <div
-            className="root-173 cardMedia-170"
+            className="root-174 cardMedia-170"
             style={
               Object {
                 "backgroundImage": "url(\\"coconstruction.jpg\\")",

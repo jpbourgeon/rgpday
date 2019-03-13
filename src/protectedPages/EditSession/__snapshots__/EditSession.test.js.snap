@@ -124,7 +124,7 @@ exports[`The EditSession component should render correctly 1`] = `
                   href="/"
                   onClick={[Function]}
                 >
-                  Modifier la session 
+                  Ajouter une session
                 </a>
               </li>
             </ol>
@@ -152,7 +152,7 @@ exports[`The EditSession component should render correctly 1`] = `
               />
             </svg>
              
-            Modifier la session 
+            Ajouter une session
           </h4>
           <hr
             className="root-189"
@@ -383,8 +383,8 @@ exports[`The EditSession component should render correctly 1`] = `
                   className="root-194 marginNormal-195 fullWidth-197"
                 >
                   <label
-                    className="root-209 root-198 formControl-203 animated-206 outlined-208"
-                    data-shrink={false}
+                    className="root-209 filled-213 root-198 formControl-203 animated-206 shrink-205 outlined-208"
+                    data-shrink={true}
                   >
                     Nombre de participants
                   </label>
@@ -405,7 +405,7 @@ exports[`The EditSession component should render correctly 1`] = `
                         className="legend-247"
                         style={
                           Object {
-                            "width": 0.01,
+                            "width": 0,
                           }
                         }
                       >
@@ -427,11 +427,11 @@ exports[`The EditSession component should render correctly 1`] = `
                       onFocus={[Function]}
                       required={false}
                       type="text"
-                      value=""
+                      value="0"
                     />
                   </div>
                   <p
-                    className="root-251 contained-255"
+                    className="root-251 contained-255 filled-257"
                   >
                     Nombre entier
                   </p>

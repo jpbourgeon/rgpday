@@ -8,7 +8,10 @@ expect.addSnapshotSerializer(jssSerializer)
 
 describe('The Dashboard component', () => {
   it('should render correctly', () => {
-    const tree = renderer.create(<Dashboard />).toJSON()
+    const tree = renderer.create(<Dashboard config={{
+      isAdmin: false,
+      currentSession: null
+    }} />).toJSON()
     expect(tree).toMatchSnapshot()
   })
 })

@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The Link component should render correctly 1`] = `
+<a
+  aria-current="page"
+  className="root-6 colorPrimary-36 inline-41 root-1 underlineHover-3"
+  href="/"
+  onClick={[Function]}
+>
+  Hello world
+</a>
+`;
