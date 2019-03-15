@@ -4,13 +4,13 @@ import { Router, Redirect } from '@reach/router'
 import SignIn from 'src/components/SignIn'
 import Loadable from 'src/components/Loadable'
 import logger from 'src/logger'
-
 import Auth from '@aws-amplify/auth'
 import API, { graphqlOperation } from '@aws-amplify/api'
 import { Authenticator } from 'aws-amplify-react'
 import { getConfig as gqlGetConfig } from 'src/graphql/queries'
 import { createConfig as gqlCreateConfig, updateConfig as gqlUpdateConfig } from 'src/graphql/mutations'
 import config from 'src/aws-exports'
+
 Auth.configure(config)
 API.configure(config)
 const gqlGetSession = `query GetSession($id: ID!) {
@@ -86,9 +86,10 @@ const MyStyledRouter = withStyles(styles)(MyRouter)
 class ProtectedRoutes extends React.Component {
   constructor (props) {
     super(props)
-    this.state = {
+    this.state = {}
+    this._isMounted = false
+    this.state.config = (this.props.config) ? this.props.config : {
       config: {
-        _isLoaded: false,
         isAdmin: false,
         sessionId: null,
         scenarioId: null,
@@ -100,7 +101,12 @@ class ProtectedRoutes extends React.Component {
   }
 
   componentDidMount () {
+    this._isMounted = true
     this.getConfig()
+  }
+
+  componentWillUnmount () {
+    this._isMounted = false
   }
 
   async getConfig () {
@@ -110,7 +116,13 @@ class ProtectedRoutes extends React.Component {
       const result = await API.graphql(graphqlOperation(gqlGetConfig, { id: authData.username }))
       if (!result.errors) {
         const config = JSON.parse(result.data.getConfig.value)
-        this.setState({ config })
+        const prevConfig = this.state.config
+        if (this._isMounted && (
+          config.isAdmin !== prevConfig.isAdmin ||
+          config.sessionId !== prevConfig.sessionId ||
+          config.scenarioId !== prevConfig.scenarioId ||
+          config.presentationId !== prevConfig.presentationId
+        )) this.setState({ config })
         logger.info('protectedRoutes.getConfig::result', result)
       } else {
         logger.error('protectedRoutes.getConfig::result', result)
@@ -156,7 +168,6 @@ class ProtectedRoutes extends React.Component {
         }
       }
       // GraphQL query Session
-      console.log(config)
       if (config.sessionId !== null) {
         const getSession = await API.graphql(graphqlOperation(gqlGetSession, { id: config.sessionId }))
         if (!getSession.errors && getSession.data.getSession !== null) {
@@ -168,7 +179,6 @@ class ProtectedRoutes extends React.Component {
           logger.error('protectedRoutes.setConfig::getSession', getSession)
         }
       }
-      console.log(config)
       // GraphQL Mutation
       const mutation = await API.graphql(graphqlOperation(gqlMutation, {
         input: {
@@ -181,7 +191,7 @@ class ProtectedRoutes extends React.Component {
       } else {
         logger.error('protectedRoutes.setConfig::mutation', mutation)
       }
-      this.setState({ config })
+      if (this._isMounted) this.setState({ config })
     } catch (error) {
       logger.error('ProtectedRoutes.setConfig', error)
     }

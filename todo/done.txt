@@ -106,3 +106,6 @@ x 2019-03-13 2019-03-13 Added: frontend presentation - FormidableLabs/spectacle 
 x 2019-03-13 2019-03-13 Added: frontend presentation : add the link to the dashboard
 x 2019-03-13 2019-03-13 Added: frontend Dashboard - Admin Help section (how to create a scenario, a presentation and a session)
 x 2019-03-13 2019-03-13 RELEASE VERSION v0.4.0
+x 2019-03-14 2019-03-14 Fixed: frontend - avoid useless ProtectedRoutes rerenders (ex: causes lag between presentation slides) 
+x 2019-03-14 2019-03-14 Fixed: frontend Presentation - find a solution to always access the first slide form the dashboard
+x 2019-03-14 2019-03-14 RELEASE VERSION v0.4.1

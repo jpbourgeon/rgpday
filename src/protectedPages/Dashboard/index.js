@@ -63,7 +63,7 @@ const DashboardComponent = (props) => {
         title='Conférence'
         description=''
         image={Conference}
-        to='/dashboard/presentation'
+        to='/dashboard/presentation#/start'
       />
       <Tile
         title='Serious game'

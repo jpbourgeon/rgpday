@@ -11,7 +11,9 @@ import {
   Text
 } from 'spectacle'
 import createTheme from 'spectacle/lib/themes/default'
+import createHistory from 'history/createHashHistory'
 
+const history = createHistory()
 const theme = createTheme(
   {
     primary: 'white',
@@ -26,12 +28,28 @@ const theme = createTheme(
 )
 
 class Presentation extends React.Component {
+  constructor (props) {
+    super(props)
+    this._isMounted = false
+  }
+
+  componentWillMount () {
+    this._isMounted = true
+    const { target } = this.props
+    if (target === '#/start') history.push('/')
+  }
+
+  componentWillUnmount () {
+    this._isMounted = false
+  }
+
   render () {
     return (
       <Deck
         theme={theme}
         transition={['zoom', 'slide']}
         transitionDuration={500}
+        history={history}
       >
         <Slide transition={['zoom']} bgColor='primary'>
           <Heading size={1} fit caps lineHeight={1} textColor='secondary'>
@@ -64,7 +82,7 @@ class Presentation extends React.Component {
             Standard text
           </Text>
         </Slide>
-        <Slide transition={['fade']} bgColor='primary' textColor='tertiary'>
+        <Slide bgColor='primary' textColor='tertiary'>
           <Heading size={6} textColor='secondary' caps>
             Standard List
           </Heading>

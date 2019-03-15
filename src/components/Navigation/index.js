@@ -76,10 +76,12 @@ class AppBarComponent extends React.Component {
     this.findState()
     document.documentElement.onmousemove = () => {
       clearTimeout(this._timer)
-      if (!this.state.moved) this.setState({ moved: true })
-      this._timer = setTimeout(function () {
-        this.setState({ moved: false })
-      }.bind(this), 3000)
+      if (this._isMounted) {
+        if (!this.state.moved) this.setState({ moved: true })
+        this._timer = setTimeout(function () {
+          this.setState({ moved: false })
+        }.bind(this), 3000)
+      }
     }
   }
 
@@ -146,7 +148,7 @@ class AppBarComponent extends React.Component {
     }
     await Auth.signOut()
       .catch(err => logger.error('signOut', err))
-    this.changeState('signedOut')
+    if (this._isMounted) this.changeState('signedOut')
   }
 
   render () {

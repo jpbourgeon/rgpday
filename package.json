@@ -4,7 +4,7 @@
   "private": true,
   "homepage": "https://rgpday.com",
   "dependencies": {
-    "@loadable/component": "^5.6.1",
+    "@loadable/component": "^5.7.0",
     "@material-ui/core": "^3.6.2",
     "@material-ui/icons": "^3.0.1",
     "@material-ui/lab": "^3.0.0-alpha.30",
@@ -12,6 +12,7 @@
     "aws-amplify": "^1.1.22",
     "aws-amplify-react": "^2.3.2",
     "classnames": "^2.2.6",
+    "history": "^4.7.2",
     "jss": "^9.8.7",
     "react": "^16.8.4",
     "react-app-polyfill": "^0.2.2",

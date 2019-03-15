@@ -7,6 +7,11 @@ List of change types (one of: Added, Changed, Deprecated, Removed, Fixed, Securi
 
 ## [Unreleased]
 
+## 0.4.1 - 2019-03-14
+
+- Fixed: frontend - avoid useless ProtectedRoutes rerenders (ex: causes lag between presentation slides) 
+- Fixed: frontend Presentation - find a solution to always access the first slide form the dashboard
+
 ## 0.4.0 - 2019-03-13
 
 - Added: Frontend Scenarios management

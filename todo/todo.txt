@@ -7,7 +7,10 @@
 2019-02-09 write the game specs
 2019-02-09 write the mind map specs <https://www.mindmup.com/>
 2019-02-09 write the conference specs
-2019-02-09 "mentions legales" (CopyRight) / RGPD page + [Cookie Consent](https://cookieconsent.insites.com/) <https://www.service-public.fr/professionnels-entreprises/vosdroits/F31228>
+2019-03-13 Code quality: write better snapshots (test props, mock async)
+2019-03-13 Code quality: refactor spaghetti components and pages
+2019-03-13 Code quality: refactor methods with unit tests
+2019-02-09 "mentions legales" (Copyright) / RGPD page + [Cookie Consent](https://cookieconsent.insites.com/) <https://www.service-public.fr/professionnels-entreprises/vosdroits/F31228>
 2019-02-09 conditional robots.txt on CD, depending on the published branch
 2019-02-20 Home page : add reviews from CUCDB (Turrel / Aubrier)
 2019-02-26 meta => Title in Default page (in particular for 404.html)

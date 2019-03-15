@@ -6,13 +6,13 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 import withRoot from 'src/withRoot'
 import Loadable from 'src/components/Loadable'
 import Navigation from 'src/components/Navigation'
+import ProtectedRoutes from 'src/ProtectedRoutes'
 
 const ReCaptcha = (props) => (<Loadable loadablePath='components/ReCaptcha/GetReCaptchaTokens' {...props} />)
 const Default = (props) => (<Loadable loadablePath='pages/Default' {...props} />)
 const Home = (props) => (<Loadable loadablePath='pages/Home' {...props} />)
 const About = (props) => (<Loadable loadablePath='pages/About' {...props} />)
 const Contact = (props) => (<Loadable loadablePath='pages/Contact' {...props} />)
-const ProtectedRoutes = (props) => (<Loadable loadablePath='ProtectedRoutes' {...props} />)
 
 const styles = () => ({
   '@global': {
