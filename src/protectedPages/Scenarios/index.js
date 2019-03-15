@@ -1,4 +1,5 @@
 import React from 'react'
+import { Redirect } from '@reach/router'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
@@ -35,23 +36,23 @@ const listScenarios = `query ListScenarios(
   $filter: ModelScenarioFilterInput
   $limit: Int
   $nextToken: String
-) {
-  listScenarios(filter: $filter, limit: $limit, nextToken: $nextToken) {
-    items {
-      id
-      description
-      searchable
-      sessions {
-        items {
-          id
+  ) {
+    listScenarios(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        description
+        searchable
+        sessions {
+          items {
+            id
+          }
+          nextToken
         }
-        nextToken
       }
+      nextToken
     }
-    nextToken
   }
-}
-`
+  `
 
 const styles = theme => {
   return {
@@ -145,6 +146,7 @@ const defaultState = {
 class Component extends React.Component {
   constructor (props) {
     super(props)
+    this._isMounted = false
     this.state = defaultState
     this.loadItems = this.loadItems.bind(this)
     this.handleChangeFilter = this.handleChangeFilter.bind(this)
@@ -154,13 +156,12 @@ class Component extends React.Component {
   }
 
   componentDidMount () {
-    this.loadState()
+    this._isMounted = true
+    this.loadItems()
   }
 
-  loadState () {
-    this.setState(defaultState, () => {
-      this.loadItems()
-    })
+  componentWillUnmount () {
+    this._isMounted = false
   }
 
   async loadItems (event = { preventDefault: () => {} }) {
@@ -180,15 +181,16 @@ class Component extends React.Component {
           nextToken: this.state.nextToken
         })
       )
-      logger.info(result)
       if (!result.errors) {
         state.nextToken = result.data.listScenarios.nextToken
         state.items = [...state.items, ...result.data.listScenarios.items]
-        this.setState(state, () => {
-          if (result.data.listScenarios.items.length === 0 && result.data.listScenarios.nextToken !== null) {
-            this.loadItems()
-          }
-        })
+        if (this._isMounted) {
+          this.setState(state, () => {
+            if (result.data.listScenarios.items.length === 0 && result.data.listScenarios.nextToken !== null) {
+              this.loadItems()
+            }
+          })
+        }
       } else {
         logger.error('loadItems', result)
       }
@@ -243,7 +245,8 @@ class Component extends React.Component {
   }
 
   render () {
-    const { classes } = this.props
+    const { classes, config } = this.props
+    if (!config.isAdmin) return (<Redirect noThrow to='/dashboard' />)
     const renderActions = (id) => (
       <Grid container>
         <Grid item className={classes.grow}>{id}</Grid>

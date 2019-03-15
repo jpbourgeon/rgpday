@@ -1,4 +1,5 @@
 import React from 'react'
+import { Redirect } from '@reach/router'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
@@ -145,6 +146,7 @@ const defaultState = {
 class Component extends React.Component {
   constructor (props) {
     super(props)
+    this._isMounted = false
     this.state = defaultState
     this.loadItems = this.loadItems.bind(this)
     this.handleChangeFilter = this.handleChangeFilter.bind(this)
@@ -154,13 +156,12 @@ class Component extends React.Component {
   }
 
   componentDidMount () {
-    this.loadState()
+    this._isMounted = true
+    this.loadItems()
   }
 
-  loadState () {
-    this.setState(defaultState, () => {
-      this.loadItems()
-    })
+  componentWillUnmount () {
+    this._isMounted = false
   }
 
   async loadItems (event = { preventDefault: () => {} }) {
@@ -180,15 +181,16 @@ class Component extends React.Component {
           nextToken: this.state.nextToken
         })
       )
-      logger.info(result)
       if (!result.errors) {
         state.nextToken = result.data.listPresentations.nextToken
         state.items = [...state.items, ...result.data.listPresentations.items]
-        this.setState(state, () => {
-          if (result.data.listPresentations.items.length === 0 && result.data.listPresentations.nextToken !== null) {
-            this.loadItems()
-          }
-        })
+        if (this._isMounted) {
+          this.setState(state, () => {
+            if (result.data.listPresentations.items.length === 0 && result.data.listPresentations.nextToken !== null) {
+              this.loadItems()
+            }
+          })
+        }
       } else {
         logger.error('loadItems', result)
       }
@@ -223,7 +225,7 @@ class Component extends React.Component {
     try {
       // GraphQL
       const id = this.state.delete.id
-      this.handleDeleteDialog('', false)
+      if (this._isMounted) this.handleDeleteDialog('', false)
       const result = await API.graphql(
         graphqlOperation(deletePresentation, { input: { id } })
       )
@@ -233,7 +235,7 @@ class Component extends React.Component {
         if (index > -1) {
           items.splice(index, 1)
         }
-        this.setState({ items })
+        if (this._isMounted) this.setState({ items })
       } else {
         logger.error('deletePresentation', result)
       }
@@ -243,7 +245,8 @@ class Component extends React.Component {
   }
 
   render () {
-    const { classes } = this.props
+    const { classes, config } = this.props
+    if (!config.isAdmin) return (<Redirect noThrow to='/dashboard' />)
     const renderActions = (id) => (
       <Grid container>
         <Grid item className={classes.grow}>{id}</Grid>

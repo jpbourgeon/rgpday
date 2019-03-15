@@ -62,17 +62,17 @@ class MyRouter extends React.Component {
         <Router>
           <Default default />
           <Dashboard path='/' config={config} />
-          <Scenarios path='/scenarios' />
-          <EditScenario path='/scenarios/add' />
-          <EditScenario path='/scenarios/update/:scenarioId' />
+          <Scenarios path='/scenarios' config={config} />
+          <EditScenario path='/scenarios/add' config={config} />
+          <EditScenario path='/scenarios/update/:scenarioId' config={config} />
           <Redirect noThrow from='/scenarios/update' to='/dashboard/scenarios/add' />
-          <Presentations path='/presentations' />
-          <EditPresentation path='/presentations/add' />
-          <EditPresentation path='/presentations/update/:presentationId' />
+          <Presentations path='/presentations' config={config} />
+          <EditPresentation path='/presentations/add' config={config} />
+          <EditPresentation path='/presentations/update/:presentationId' config={config} />
           <Redirect noThrow from='/scenarios/update' to='/dashboard/scenarios/add' />
           <Sessions path='/sessions' setConfig={setConfig} config={config} />
-          <EditSession path='/sessions/add' />
-          <EditSession path='/sessions/update/:sessionId' />
+          <EditSession path='/sessions/add' config={config} />
+          <EditSession path='/sessions/update/:sessionId' config={config} />
           <Redirect noThrow from='/sessions/update' to='/dashboard' />
           <Presentation path='/presentation' config={config} />
           {/* <SeriousGame path='/seriousgame' config={config} /> */}
@@ -119,9 +119,9 @@ class ProtectedRoutes extends React.Component {
         const prevConfig = this.state.config
         if (this._isMounted && (
           config.isAdmin !== prevConfig.isAdmin ||
-          config.sessionId !== prevConfig.sessionId ||
-          config.scenarioId !== prevConfig.scenarioId ||
-          config.presentationId !== prevConfig.presentationId
+            config.sessionId !== prevConfig.sessionId ||
+            config.scenarioId !== prevConfig.scenarioId ||
+            config.presentationId !== prevConfig.presentationId
         )) this.setState({ config })
         logger.info('protectedRoutes.getConfig::result', result)
       } else {
@@ -161,10 +161,6 @@ class ProtectedRoutes extends React.Component {
           config.sessionId = id
           config.scenarioId = null
           config.presentationId = null
-        } else {
-          config.sessionId = null
-          config.scenarioId = null
-          config.presentationId = null
         }
       }
       // GraphQL query Session
@@ -176,7 +172,7 @@ class ProtectedRoutes extends React.Component {
           config.presentationId = session.presentation.id
           logger.info('protectedRoutes.setConfig::getSession', getSession)
         } else {
-          logger.error('protectedRoutes.setConfig::getSession', getSession)
+          logger.error('protectedRoutes.setConfig::getSession', { config, getSession })
         }
       }
       // GraphQL Mutation
@@ -191,6 +187,7 @@ class ProtectedRoutes extends React.Component {
       } else {
         logger.error('protectedRoutes.setConfig::mutation', mutation)
       }
+      console.log(config)
       if (this._isMounted) this.setState({ config })
     } catch (error) {
       logger.error('ProtectedRoutes.setConfig', error)

@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { navigate } from '@reach/router'
+import { navigate, Redirect } from '@reach/router'
 import isEmpty from 'validator/lib/isEmpty'
 import isInt from 'validator/lib/isInt'
 import isISO8601 from 'validator/lib/isISO8601'
@@ -153,6 +153,7 @@ const defaultState = {
 class Component extends React.Component {
   constructor (props) {
     super(props)
+    this._isMounted = false
     this.state = defaultState
     this.handleChange = this.handleChange.bind(this)
     this.handleBlur = this.handleBlur.bind(this)
@@ -163,7 +164,12 @@ class Component extends React.Component {
   }
 
   componentDidMount () {
+    this._isMounted = true
     this.loadSession()
+  }
+
+  componentWillUnmount () {
+    this._isMounted = false
   }
 
   async loadSession () {
@@ -216,10 +222,10 @@ class Component extends React.Component {
       state.form.isDisabled = false
       state.snackbar.open = false
       state.snackbar.message = ''
-      this.setState(state)
+      if (this._isMounted) this.setState(state)
     } catch (error) {
       logger.error('handleSubmit', error)
-      this.resetState()
+      if (this._isMounted) this.resetState()
     }
   }
 
@@ -246,7 +252,7 @@ class Component extends React.Component {
     const { sessionId } = this.props
     let state = this.state
     state.form.isDisabled = true
-    this.setState(state)
+    if (this._isMounted) this.setState(state)
     const id = (isEmpty(state.id.value))
       ? null
       : state.id.value
@@ -297,7 +303,7 @@ class Component extends React.Component {
       state.form.isDisabled = true
       state.snackbar.message = `Sauvegarde en cours. Merci de patienter...`
       state.snackbar.open = true
-      this.setState(state)
+      if (this._isMounted) this.setState(state)
       // GraphQL
       try {
         const action = (!sessionId) ? createSession : updateSession
@@ -319,28 +325,30 @@ class Component extends React.Component {
           logger.info('handleSubmit', result)
           state.snackbar.open = false
           state.form.isDisabled = false
-          this.setState(defaultState, () => {
-            navigate('/dashboard/sessions')
-          })
+          if (this._isMounted) {
+            this.setState(defaultState, () => {
+              navigate('/dashboard/sessions')
+            })
+          }
         } else {
           logger.error('handleSubmit', result)
           state.snackbar.message = `La sauvegarde a échoué.`
           state.snackbar.open = true
           state.form.isDisabled = false
-          this.setState(state)
+          if (this._isMounted) this.setState(state)
         }
       } catch (error) {
         logger.error('handleSubmit', error)
         state.snackbar.message = `La sauvegarde a échoué.`
         state.snackbar.open = true
         state.form.isDisabled = false
-        this.setState(state)
+        if (this._isMounted) this.setState(state)
       }
     } else {
       state.snackbar.message = `Votre session n'a pas été sauvegardé. Le formulaire est invalide.`
       state.snackbar.open = true
       state.form.isDisabled = false
-      this.setState(state)
+      if (this._isMounted) this.setState(state)
     }
   }
 
@@ -367,7 +375,8 @@ class Component extends React.Component {
   }
 
   render () {
-    const { classes, sessionId } = this.props
+    const { classes, sessionId, config } = this.props
+    if (!config.isAdmin) return (<Redirect noThrow to='/dashboard' />)
     const { id } = this.state
     const pageTitle = (!sessionId) ? 'Ajouter une session' : `Modifier la session ${id.value}`
     const renderOptions = (data) => {

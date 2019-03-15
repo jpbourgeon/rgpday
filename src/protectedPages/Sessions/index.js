@@ -1,4 +1,5 @@
 import React from 'react'
+import { Redirect } from '@reach/router'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
@@ -153,6 +154,7 @@ const defaultState = {
 class Component extends React.Component {
   constructor (props) {
     super(props)
+    this._isMounted = false
     this.state = defaultState
     this.loadItems = this.loadItems.bind(this)
     this.handleChangeFilter = this.handleChangeFilter.bind(this)
@@ -162,7 +164,12 @@ class Component extends React.Component {
   }
 
   componentDidMount () {
+    this._isMounted = true
     this.loadState()
+  }
+
+  componentWillUnmount () {
+    this._isMounted = false
   }
 
   loadState () {
@@ -192,11 +199,13 @@ class Component extends React.Component {
       if (!result.errors) {
         state.nextToken = result.data.listSessions.nextToken
         state.items = [...state.items, ...result.data.listSessions.items]
-        this.setState(state, () => {
-          if (result.data.listSessions.items.length === 0 && result.data.listSessions.nextToken !== null) {
-            this.loadItems()
-          }
-        })
+        if (this._isMounted) {
+          this.setState(state, () => {
+            if (result.data.listSessions.items.length === 0 && result.data.listSessions.nextToken !== null) {
+              this.loadItems()
+            }
+          })
+        }
       } else {
         logger.error('loadItems', result)
       }
@@ -233,7 +242,7 @@ class Component extends React.Component {
       const { config, setConfig } = this.props
       const id = this.state.delete.id
       if (config.sessionId === id) setConfig(null)
-      this.handleDeleteDialog('', false)
+      if (this._isMounted) this.handleDeleteDialog('', false)
       const result = await API.graphql(
         graphqlOperation(deleteSession, { input: { id } })
       )
@@ -243,7 +252,7 @@ class Component extends React.Component {
         if (index > -1) {
           items.splice(index, 1)
         }
-        this.setState({ items })
+        if (this._isMounted) this.setState({ items })
       } else {
         logger.error('deleteSession', result)
       }
@@ -254,6 +263,7 @@ class Component extends React.Component {
 
   render () {
     const { classes, setConfig, config } = this.props
+    if (!config.isAdmin) return (<Redirect noThrow to='/dashboard' />)
     const renderActions = (id) => (
       <Grid container>
         <Grid item className={classes.grow}>{id}</Grid>

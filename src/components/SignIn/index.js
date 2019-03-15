@@ -73,6 +73,7 @@ class SignIn extends React.Component {
     this.state = defaultState
     this.ReCaptchaRef = React.createRef()
 
+    this._isMounted = false
     this._validAuthStates = ['signIn', 'signedOut']
     this._isHidden = true
     this.changeState = this.changeState.bind(this)
@@ -82,6 +83,14 @@ class SignIn extends React.Component {
     this.handleBlur = this.handleBlur.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleCancel = this.handleCancel.bind(this)
+  }
+
+  componentDidMount () {
+    this._isMounted = true
+  }
+
+  componentWillUnmount () {
+    this._isMounted = false
   }
 
   triggerAuthEvent (event) {
@@ -160,13 +169,13 @@ class SignIn extends React.Component {
       const validationData = { recaptcha: token }
       const user = await Auth.signIn({ username, password, validationData })
       if (user.challengeName === 'NEW_PASSWORD_REQUIRED') {
-        this.changeState('requireNewPassword', user)
+        if (this._isMounted) this.changeState('requireNewPassword', user)
         Auth.completeNewPassword(
           user, // the Cognito User Object
           password // same password
         ).catch(e => logger.error('signIn', e))
       }
-      this.changeState('signedIn', user)
+      if (this._isMounted) this.changeState('signedIn', user)
       setConfig()
     } catch (err) {
       logger.error('signIn', err)
@@ -174,7 +183,7 @@ class SignIn extends React.Component {
       const event = {
         preventDefault: () => (null)
       }
-      this.handleCancel(event)
+      if (this._isMounted) this.handleCancel(event)
     }
   }
 

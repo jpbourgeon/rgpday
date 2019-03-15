@@ -1,6 +1,6 @@
 import React from 'react'
 import loadable from '@loadable/component'
-import { navigate } from '@reach/router'
+import { Redirect } from '@reach/router'
 import { withStyles } from '@material-ui/core/styles'
 
 const styles = () => ({
@@ -16,10 +16,11 @@ const AsyncPresentation = loadable(props => (import(`../../presentations/${props
 const Presentation = (props) => {
   const { location, config } = props
   if (config && config.presentationId) {
-    return (<AsyncPresentation presentationId={config.presentationId} target={location.hash} />)
+    return (
+      <AsyncPresentation presentationId={config.presentationId} target={location.hash} />
+    )
   } else {
-    navigate('/dashboard')
-    return null
+    return (<Redirect to='/dashboard' noThrow />)
   }
 }
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { navigate } from '@reach/router'
+import { navigate, Redirect } from '@reach/router'
 import isEmpty from 'validator/lib/isEmpty'
 import { withStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
@@ -89,9 +89,10 @@ const defaultState = {
   }
 }
 
-class Component extends React.Component {
+class EditScenario extends React.Component {
   constructor (props) {
     super(props)
+    this._isMounted = false
     this.state = defaultState
     this.handleChange = this.handleChange.bind(this)
     this.handleBlur = this.handleBlur.bind(this)
@@ -102,6 +103,7 @@ class Component extends React.Component {
   }
 
   componentDidMount () {
+    this._isMounted = true
     this.loadScenario()
   }
 
@@ -113,34 +115,36 @@ class Component extends React.Component {
         const result = await API.graphql(
           graphqlOperation(getScenario, { id: scenarioId })
         )
-        if (!result.errors) {
-          this.setState({
-            id: {
-              isDirty: false,
-              value: result.data.getScenario.id
-            },
-            description: {
-              isDirty: false,
-              value: result.data.getScenario.description
-            },
-            form: {
-              isDisabled: false
-            },
-            snackbar: {
-              open: false,
-              message: ''
-            }
-          })
+        if (result.data.getScenario) {
+          if (this._isMounted) {
+            this.setState({
+              id: {
+                isDirty: false,
+                value: result.data.getScenario.id
+              },
+              description: {
+                isDirty: false,
+                value: result.data.getScenario.description
+              },
+              form: {
+                isDisabled: false
+              },
+              snackbar: {
+                open: false,
+                message: ''
+              }
+            })
+          }
         } else {
-          logger.logger(result.error)
-          this.resetState()
+          logger.error('loadScenario::result', result)
+          if (this._isMounted) this.resetState()
         }
       } catch (error) {
-        logger.error('handleSubmit', error)
-        this.resetState()
+        logger.error('loadScenario::catch', error)
+        if (this._isMounted) this.resetState()
       }
     } else {
-      this.resetState()
+      if (this._isMounted) this.resetState()
     }
   }
 
@@ -166,7 +170,7 @@ class Component extends React.Component {
     event.preventDefault()
     const { scenarioId } = this.props
     let state = this.state
-    this.setState({ ...state, form: { isDisabled: true } })
+    if (this._isMounted) this.setState({ ...state, form: { isDisabled: true } })
     const id = state.id.value
     const description = (isEmpty(state.description.value)) ? null : state.description.value
     const searchable = [id, description].join(' ').toLowerCase()
@@ -187,18 +191,18 @@ class Component extends React.Component {
           logger.error('handleSubmit', result)
           state.snackbar.message = `La sauvegarde a échoué.`
           state.snackbar.open = true
-          this.setState({ ...state, form: { isDisabled: false } })
+          if (this._isMounted) this.setState({ ...state, form: { isDisabled: false } })
         }
       } catch (error) {
         logger.error('handleSubmit', error)
         state.snackbar.message = `La sauvegarde a échoué.`
         state.snackbar.open = true
-        this.setState({ ...state, form: { isDisabled: false } })
+        if (this._isMounted) this.setState({ ...state, form: { isDisabled: false } })
       }
     } else {
       state.snackbar.message = `Votre scénario n'a pas été sauvegardé. Le formulaire est invalide.`
       state.snackbar.open = true
-      this.setState({ ...state })
+      if (this._isMounted) this.setState({ ...state })
     }
   }
 
@@ -225,7 +229,8 @@ class Component extends React.Component {
   }
 
   render () {
-    const { classes, scenarioId } = this.props
+    const { classes, scenarioId, config } = this.props
+    if (!config.isAdmin) return (<Redirect noThrow to='/dashboard' />)
     const { id } = this.state
     const pageTitle = (!scenarioId) ? 'Ajouter un scénario' : `Modifier le scénario ${id.value}`
     return (
@@ -331,8 +336,8 @@ class Component extends React.Component {
   }
 }
 
-Component.propTypes = {
+EditScenario.propTypes = {
   classes: PropTypes.object.isRequired
 }
 
-export default withStyles(styles)(Component)
+export default withStyles(styles)(EditScenario)

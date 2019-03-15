@@ -88,6 +88,7 @@ const defaultState = {
 class Contact extends React.Component {
   constructor (props) {
     super(props)
+    this._isMounted = false
     this.state = { ...defaultState }
     this.ReCaptchaRef = React.createRef()
 
@@ -97,6 +98,14 @@ class Contact extends React.Component {
     this.handleCancel = this.handleCancel.bind(this)
     this.handleCloseSnackbar = this.handleCloseSnackbar.bind(this)
     this.handleReCaptchaToken = this.handleReCaptchaToken.bind(this)
+  }
+
+  componentDidMount () {
+    this._isMounted = true
+  }
+
+  componentWillUnmount () {
+    this._isMounted = false
   }
 
   handleChange (event, field) {
@@ -128,13 +137,15 @@ class Contact extends React.Component {
       state.form.isDisabled = true
       state.snackbar.message = `Votre message est en cours d'envoi. Merci de patienter...`
       state.snackbar.open = true
-      this.setState({ state }, () => {
-        this.ReCaptchaRef.current.execute()
-      })
+      if (this._isMounted) {
+        this.setState({ state }, () => {
+          this.ReCaptchaRef.current.execute()
+        })
+      }
     } else {
       state.snackbar.message = `Votre message n'a pas été envoyé. Le formulaire est invalide.`
       state.snackbar.open = true
-      this.setState({ state })
+      if (this._isMounted) this.setState({ state })
     }
   }
 
@@ -181,7 +192,7 @@ class Contact extends React.Component {
       state.snackbar.message = `L'envoi de votre message a échoué.`
       state.snackbar.open = true
     } finally {
-      this.setState({ ...state, form: { isDisabled: false } })
+      if (this._isMounted) this.setState({ ...state, form: { isDisabled: false } })
     }
   }
 

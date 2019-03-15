@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { navigate } from '@reach/router'
+import { navigate, Redirect } from '@reach/router'
 import isEmpty from 'validator/lib/isEmpty'
 import { withStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
@@ -93,6 +93,7 @@ class Component extends React.Component {
   constructor (props) {
     super(props)
     this.state = defaultState
+    this._isMounted = false
     this.handleChange = this.handleChange.bind(this)
     this.handleBlur = this.handleBlur.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -102,7 +103,12 @@ class Component extends React.Component {
   }
 
   componentDidMount () {
+    this._isMounted = true
     this.loadPresentations()
+  }
+
+  componentWillUnmount () {
+    this._isMounted = false
   }
 
   async loadPresentations () {
@@ -114,33 +120,35 @@ class Component extends React.Component {
           graphqlOperation(getPresentation, { id: presentationId })
         )
         if (!result.errors) {
-          this.setState({
-            id: {
-              isDirty: false,
-              value: result.data.getPresentation.id
-            },
-            description: {
-              isDirty: false,
-              value: result.data.getPresentation.description
-            },
-            form: {
-              isDisabled: false
-            },
-            snackbar: {
-              open: false,
-              message: ''
-            }
-          })
+          if (this._isMounted) {
+            this.setState({
+              id: {
+                isDirty: false,
+                value: result.data.getPresentation.id
+              },
+              description: {
+                isDirty: false,
+                value: result.data.getPresentation.description
+              },
+              form: {
+                isDisabled: false
+              },
+              snackbar: {
+                open: false,
+                message: ''
+              }
+            })
+          }
         } else {
           logger.logger(result.error)
-          this.resetState()
+          if (this._isMounted) this.resetState()
         }
       } catch (error) {
         logger.error('handleSubmit', error)
-        this.resetState()
+        if (this._isMounted) this.resetState()
       }
     } else {
-      this.resetState()
+      if (this._isMounted) this.resetState()
     }
   }
 
@@ -166,7 +174,7 @@ class Component extends React.Component {
     event.preventDefault()
     const { presentationId } = this.props
     let state = this.state
-    this.setState({ ...state, form: { isDisabled: true } })
+    if (this._isMounted) this.setState({ ...state, form: { isDisabled: true } })
     const id = state.id.value
     const description = (isEmpty(state.description.value)) ? null : state.description.value
     const searchable = [id, description].join(' ').toLowerCase()
@@ -187,18 +195,18 @@ class Component extends React.Component {
           logger.error('handleSubmit', result)
           state.snackbar.message = `La sauvegarde a échoué.`
           state.snackbar.open = true
-          this.setState({ ...state, form: { isDisabled: false } })
+          if (this._isMounted) this.setState({ ...state, form: { isDisabled: false } })
         }
       } catch (error) {
         logger.error('handleSubmit', error)
         state.snackbar.message = `La sauvegarde a échoué.`
         state.snackbar.open = true
-        this.setState({ ...state, form: { isDisabled: false } })
+        if (this._isMounted) this.setState({ ...state, form: { isDisabled: false } })
       }
     } else {
       state.snackbar.message = `Votre présentation n'a pas été sauvegardée. Le formulaire est invalide.`
       state.snackbar.open = true
-      this.setState({ ...state })
+      if (this._isMounted) this.setState({ ...state })
     }
   }
 
@@ -225,7 +233,8 @@ class Component extends React.Component {
   }
 
   render () {
-    const { classes, presentationId } = this.props
+    const { classes, presentationId, config } = this.props
+    if (!config.isAdmin) return (<Redirect noThrow to='/dashboard' />)
     const { id } = this.state
     const pageTitle = (!presentationId) ? 'Ajouter une présentation' : `Modifier la présentation ${id.value}`
     return (
