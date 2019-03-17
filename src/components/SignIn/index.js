@@ -51,26 +51,25 @@ const styles = theme => {
   }
 }
 
-const defaultState = {
-  loading: false,
-  form: {
-    isDisabled: false,
-    showPassword: false
-  },
-  username: {
-    isDirty: false,
-    value: ''
-  },
-  password: {
-    isDirty: false,
-    value: ''
-  }
-}
-
 class SignIn extends React.Component {
   constructor (props) {
     super(props)
-    this.state = defaultState
+    this.defaultState = {
+      loading: false,
+      form: {
+        isDisabled: false,
+        showPassword: false
+      },
+      username: {
+        isDirty: false,
+        value: ''
+      },
+      password: {
+        isDirty: false,
+        value: ''
+      }
+    }
+    this.state = this.defaultState
     this.ReCaptchaRef = React.createRef()
 
     this._isMounted = false
@@ -154,7 +153,7 @@ class SignIn extends React.Component {
 
   handleCancel (event) {
     event.preventDefault()
-    const state = { ...defaultState }
+    const state = { ...this.defaultState }
     state.form.showPassword = false
     this.setState(state)
   }

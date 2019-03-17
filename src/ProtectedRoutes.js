@@ -35,7 +35,9 @@ const EditSession = (props) => (<Loadable loadablePath='protectedPages/EditSessi
 const EditScenario = (props) => (<Loadable loadablePath='protectedPages/EditScenario' {...props} />)
 const EditPresentation = (props) => (<Loadable loadablePath='protectedPages/EditPresentation' {...props} />)
 const Presentation = (props) => (<Loadable loadablePath='protectedPages/Presentation' {...props} />)
-// const SeriousGame = (props) => (<Loadable loadablePath='protectedPages/SeriousGame' {...props} />)
+const Teams = (props) => (<Loadable loadablePath='protectedPages/Teams' {...props} />)
+const EditTeam = (props) => (<Loadable loadablePath='protectedPages/EditTeam' {...props} />)
+const Board = (props) => (<Loadable loadablePath='protectedPages/Board' {...props} />)
 
 const styles = {
   '@global': {
@@ -75,7 +77,11 @@ class MyRouter extends React.Component {
           <EditSession path='/sessions/update/:sessionId' config={config} />
           <Redirect noThrow from='/sessions/update' to='/dashboard' />
           <Presentation path='/presentation' config={config} />
-          {/* <SeriousGame path='/seriousgame' config={config} /> */}
+          <Teams path='/serious-game' config={config} />
+          <EditTeam path='/serious-game/add-team' config={config} />
+          <EditTeam path='/serious-game/update-team/:teamId' config={config} />
+          <Redirect noThrow from='/serious-game/update-team' to='/dashboard' />
+          <Board path='/serious-game/board/:teamId' config={config} />
         </Router>
       )
     }
@@ -114,7 +120,7 @@ class ProtectedRoutes extends React.Component {
       const authData = await Auth.currentAuthenticatedUser()
       // GraphQL
       const result = await API.graphql(graphqlOperation(gqlGetConfig, { id: authData.username }))
-      if (!result.errors) {
+      if (!result.errors && result.data.getConfig) {
         const config = JSON.parse(result.data.getConfig.value)
         const prevConfig = this.state.config
         if (this._isMounted && (
@@ -123,7 +129,6 @@ class ProtectedRoutes extends React.Component {
             config.scenarioId !== prevConfig.scenarioId ||
             config.presentationId !== prevConfig.presentationId
         )) this.setState({ config })
-        logger.info('protectedRoutes.getConfig::result', result)
       } else {
         logger.error('protectedRoutes.getConfig::result', result)
       }
@@ -140,10 +145,9 @@ class ProtectedRoutes extends React.Component {
       let gqlMutation
       // GraphQL Query config
       const result = await API.graphql(graphqlOperation(gqlGetConfig, { id: authData.username }))
-      if (!result.errors && result.data.getConfig !== null) {
+      if (!result.errors && result.data.getConfig) {
         config = JSON.parse(result.data.getConfig.value)
         gqlMutation = gqlUpdateConfig
-        logger.info('protectedRoutes.setConfig::result', result)
       } else {
         gqlMutation = gqlCreateConfig
         config = this.state.config
@@ -166,11 +170,10 @@ class ProtectedRoutes extends React.Component {
       // GraphQL query Session
       if (config.sessionId !== null) {
         const getSession = await API.graphql(graphqlOperation(gqlGetSession, { id: config.sessionId }))
-        if (!getSession.errors && getSession.data.getSession !== null) {
+        if (!getSession.errors && getSession.data.getSession) {
           const session = getSession.data.getSession
           config.scenarioId = session.scenario.id
           config.presentationId = session.presentation.id
-          logger.info('protectedRoutes.setConfig::getSession', getSession)
         } else {
           logger.error('protectedRoutes.setConfig::getSession', { config, getSession })
         }
@@ -182,12 +185,7 @@ class ProtectedRoutes extends React.Component {
           value: JSON.stringify(config)
         }
       }))
-      if (!mutation.errors) {
-        logger.info('protectedRoutes.setConfig::mutation', mutation)
-      } else {
-        logger.error('protectedRoutes.setConfig::mutation', mutation)
-      }
-      console.log(config)
+      if (mutation.errors) logger.error('protectedRoutes.setConfig::mutation', mutation)
       if (this._isMounted) this.setState({ config })
     } catch (error) {
       logger.error('ProtectedRoutes.setConfig', error)

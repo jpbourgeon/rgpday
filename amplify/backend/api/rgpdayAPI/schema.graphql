@@ -27,10 +27,12 @@ type Session @model {
 }
 
 type Team @model {
-  id: ID!
-  name: String
+  # the id is a hash of the JSON stringification of
+  # the session and name key value pairs to make 
+  # the name unique for a particular session
+  id:ID!
+  name: String!
   initials: String
-  color: String
   searchable: String
   session: Session! @connection(name: "SessionTeams")
 }

@@ -63,33 +63,32 @@ const styles = theme => {
   }
 }
 
-const defaultState = {
-  content: {
-    isDirty: false,
-    value: ''
-  },
-  sender: {
-    isDirty: false,
-    value: ''
-  },
-  form: {
-    isDisabled: false
-  },
-  snackbar: {
-    open: false,
-    message: ''
-  },
-  subject: {
-    isDirty: false,
-    value: ''
-  }
-}
-
 class Contact extends React.Component {
   constructor (props) {
     super(props)
     this._isMounted = false
-    this.state = { ...defaultState }
+    this.defaultState = {
+      content: {
+        isDirty: false,
+        value: ''
+      },
+      sender: {
+        isDirty: false,
+        value: ''
+      },
+      form: {
+        isDisabled: false
+      },
+      snackbar: {
+        open: false,
+        message: ''
+      },
+      subject: {
+        isDirty: false,
+        value: ''
+      }
+    }
+    this.state = { ...this.defaultState }
     this.ReCaptchaRef = React.createRef()
 
     this.handleChange = this.handleChange.bind(this)
@@ -151,7 +150,7 @@ class Contact extends React.Component {
 
   handleCancel (event = { preventDefault: () => {} }) {
     event.preventDefault()
-    this.setState({ ...defaultState, form: { isDisabled: false }, snackbar: { open: false, message: '' } })
+    this.setState({ ...this.defaultState, form: { isDisabled: false }, snackbar: { open: false, message: '' } })
   }
 
   handleCloseSnackbar (event, reason) {
@@ -176,10 +175,8 @@ class Contact extends React.Component {
           'recaptcha': token
         })
       )
-      logger.info(result)
       if (!result.errors) {
-        logger.info('handleSubmit', result)
-        state = { ...defaultState }
+        state = { ...this.defaultState }
         state.snackbar.message = `Votre message a été envoyé avec succès.`
         state.snackbar.open = true
       } else {

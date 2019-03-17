@@ -124,7 +124,6 @@ export const getSession = `query GetSession($id: ID!) {
         id
         name
         initials
-        color
         searchable
       }
       nextToken
@@ -170,7 +169,6 @@ export const getTeam = `query GetTeam($id: ID!) {
     id
     name
     initials
-    color
     searchable
     session {
       id
@@ -208,7 +206,6 @@ export const listTeams = `query ListTeams(
       id
       name
       initials
-      color
       searchable
       session {
         id

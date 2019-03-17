@@ -158,7 +158,6 @@ export const createSession = `mutation CreateSession($input: CreateSessionInput!
         id
         name
         initials
-        color
         searchable
       }
       nextToken
@@ -197,7 +196,6 @@ export const updateSession = `mutation UpdateSession($input: UpdateSessionInput!
         id
         name
         initials
-        color
         searchable
       }
       nextToken
@@ -236,7 +234,6 @@ export const deleteSession = `mutation DeleteSession($input: DeleteSessionInput!
         id
         name
         initials
-        color
         searchable
       }
       nextToken
@@ -249,7 +246,6 @@ export const createTeam = `mutation CreateTeam($input: CreateTeamInput!) {
     id
     name
     initials
-    color
     searchable
     session {
       id
@@ -282,7 +278,6 @@ export const updateTeam = `mutation UpdateTeam($input: UpdateTeamInput!) {
     id
     name
     initials
-    color
     searchable
     session {
       id
@@ -315,7 +310,6 @@ export const deleteTeam = `mutation DeleteTeam($input: DeleteTeamInput!) {
     id
     name
     initials
-    color
     searchable
     session {
       id

@@ -34,8 +34,7 @@ const styles = theme => ({
   paper: {
     backgroundSize: `100% 100%`,
     marginBottom: theme.spacing.unit * 6,
-    padding: `0px ${theme.spacing.unit * 4}px ${theme.spacing.unit * 6}px ${theme.spacing.unit * 4}px`,
-    textAlign: 'justify'
+    padding: `0px ${theme.spacing.unit * 4}px ${theme.spacing.unit * 6}px ${theme.spacing.unit * 4}px`
   },
   breadcrumb: {
     marginBottom: theme.spacing.unit
@@ -69,6 +68,7 @@ const DashboardComponent = (props) => {
         title='Serious game'
         description=''
         image={GameBoard}
+        to='/dashboard/serious-game'
       />
       <Tile
         title={`Plan d'action`}

@@ -111,3 +111,5 @@ x 2019-03-14 2019-03-14 Fixed: frontend Presentation - find a solution to always
 x 2019-03-14 2019-03-14 RELEASE VERSION v0.4.1
 x 2019-03-15 2019-03-15 Fixed: frontend - don't set state of unmounted components after async calls
 x 2019-03-15 2019-03-13 Changed: Secure admin Protected routes and pages
+x 2019-03-17 2019-03-09 Added: frontend SeriousGame page
+x 2019-03-17 2019-03-09 Added: frontend Teams : LED

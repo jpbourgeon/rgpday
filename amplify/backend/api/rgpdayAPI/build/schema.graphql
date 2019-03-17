@@ -28,9 +28,8 @@ type Session {
 
 type Team {
   id: ID!
-  name: String
+  name: String!
   initials: String
-  color: String
   searchable: String
   session: Session!
 }
@@ -268,7 +267,6 @@ input ModelTeamFilterInput {
   id: ModelIDFilterInput
   name: ModelStringFilterInput
   initials: ModelStringFilterInput
-  color: ModelStringFilterInput
   searchable: ModelStringFilterInput
   and: [ModelTeamFilterInput]
   or: [ModelTeamFilterInput]
@@ -277,9 +275,8 @@ input ModelTeamFilterInput {
 
 input CreateTeamInput {
   id: ID
-  name: String
+  name: String!
   initials: String
-  color: String
   searchable: String
   teamSessionId: ID!
 }
@@ -288,7 +285,6 @@ input UpdateTeamInput {
   id: ID!
   name: String
   initials: String
-  color: String
   searchable: String
   teamSessionId: ID
 }

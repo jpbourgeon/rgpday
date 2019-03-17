@@ -1,9 +1,12 @@
 import React from 'react'
-import { Redirect } from '@reach/router'
+import { navigate } from '@reach/router'
+// import { Redirect } from '@reach/router'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
 import Breadcrumbs from '@material-ui/lab/Breadcrumbs'
+import Avatar from '@material-ui/core/Avatar'
+import toMaterialStyle from 'material-color-hash'
 import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
 import Divider from '@material-ui/core/Divider'
@@ -16,38 +19,34 @@ import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogActions from '@material-ui/core/DialogActions'
 import Dialog from '@material-ui/core/Dialog'
 import Fab from '@material-ui/core/Fab'
-import Folder from '@material-ui/icons/FolderOpenOutlined'
+import Game from '@material-ui/icons/VideogameAssetOutlined'
 import Search from '@material-ui/icons/Search'
 import Close from '@material-ui/icons/Close'
 import Delete from '@material-ui/icons/Delete'
+import Play from '@material-ui/icons/PlayCircleFilled'
 import Edit from '@material-ui/icons/Edit'
 import NavigateNext from '@material-ui/icons/NavigateNext'
 import Add from '@material-ui/icons/Add'
 import Link from 'src/components/Link'
 import MUILink from '@material-ui/core/Link'
 import Tile from 'src/components/Tile'
-import { deletePresentation } from 'src/graphql/mutations'
+import { deleteTeam } from 'src/graphql/mutations'
 import logger from 'src/logger'
 import API, { graphqlOperation } from '@aws-amplify/api'
 import config from 'src/aws-exports'
 
 API.configure(config)
-const listPresentations = `query ListPresentations(
-  $filter: ModelPresentationFilterInput
+const listTeams = `query ListTeams(
+  $filter: ModelTeamFilterInput
   $limit: Int
   $nextToken: String
 ) {
-  listPresentations(filter: $filter, limit: $limit, nextToken: $nextToken) {
+  listTeams(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
-      description
+      name
+      initials
       searchable
-      sessions {
-        items {
-          id
-        }
-        nextToken
-      }
     }
     nextToken
   }
@@ -99,10 +98,6 @@ const styles = theme => {
     grow: {
       flexGrow: 1
     },
-    itemActionIcon: {
-      width: '1rem',
-      height: '1rem'
-    },
     loadMoreLink: {
       cursor: 'pointer'
     },
@@ -127,6 +122,36 @@ const styles = theme => {
     },
     dialog: {
       padding: '1em'
+    },
+    avatar: {
+      margin: 'auto',
+      width: 50,
+      height: 50,
+      fontSize: theme.typography.h6.fontSize,
+      color: theme.palette.grey['700'],
+      backgroundColor: theme.palette.background.default
+    },
+    tile: {
+      textAlign: 'center',
+      justifyContent: 'flex-start'
+    },
+    tileTitle: {
+      marginTop: '1em !important',
+      marginBottom: '-0.5em !important'
+    },
+    tileAvatar: {
+      height: '100%'
+    },
+    tileActions: {
+      padding: '0.5em !important',
+      marginBottom: '-1em !important'
+    },
+    itemActionIcon: {
+      width: 25,
+      height: 25
+    },
+    itemActionDivider: {
+      marginBottom: '0.5em'
     }
   }
 }
@@ -142,6 +167,7 @@ class Component extends React.Component {
       filter: '',
       delete: {
         id: '',
+        name: '',
         openDialog: false
       }
     }
@@ -150,7 +176,7 @@ class Component extends React.Component {
     this.handleChangeFilter = this.handleChangeFilter.bind(this)
     this.handleCancelFilter = this.handleCancelFilter.bind(this)
     this.handleDeleteDialog = this.handleDeleteDialog.bind(this)
-    this.deletePresentation = this.deletePresentation.bind(this)
+    this.deleteTeam = this.deleteTeam.bind(this)
   }
 
   componentDidMount () {
@@ -173,18 +199,18 @@ class Component extends React.Component {
       }
       // GraphQL
       const result = await API.graphql(
-        graphqlOperation(listPresentations, {
+        graphqlOperation(listTeams, {
           filter,
           limit: this.state.limit,
           nextToken: this.state.nextToken
         })
       )
-      if (!result.errors && result.data.listPresentations) {
-        state.nextToken = result.data.listPresentations.nextToken
-        state.items = [...state.items, ...result.data.listPresentations.items]
+      if (!result.errors && result.data.listTeams) {
+        state.nextToken = result.data.listTeams.nextToken
+        state.items = [...state.items, ...result.data.listTeams.items]
         if (this._isMounted) {
           this.setState(state, () => {
-            if (result.data.listPresentations.items.length === 0 && result.data.listPresentations.nextToken !== null) {
+            if (result.data.listTeams.items.length === 0 && result.data.listTeams.nextToken !== null) {
               this.loadItems()
             }
           })
@@ -210,22 +236,23 @@ class Component extends React.Component {
     })
   }
 
-  handleDeleteDialog (id, openDialog) {
+  handleDeleteDialog (id, name, openDialog) {
     this.setState({
       delete: {
         id,
+        name,
         openDialog
       }
     })
   }
 
-  async deletePresentation () {
+  async deleteTeam () {
     try {
       // GraphQL
       const id = this.state.delete.id
-      if (this._isMounted) this.handleDeleteDialog('', false)
+      if (this._isMounted) this.handleDeleteDialog('', '', false)
       const result = await API.graphql(
-        graphqlOperation(deletePresentation, { input: { id } })
+        graphqlOperation(deleteTeam, { input: { id } })
       )
       if (!result.errors) {
         const items = this.state.items
@@ -235,24 +262,36 @@ class Component extends React.Component {
         }
         if (this._isMounted) this.setState({ items })
       } else {
-        logger.error('deletePresentation', result)
+        logger.error('deleteTeam', result)
       }
     } catch (error) {
-      logger.error('deletePresentation', error)
+      logger.error('deleteTeam', error)
     }
   }
 
   render () {
     const { classes, config } = this.props
-    if (!config.isAdmin) return (<Redirect noThrow to='/dashboard' />)
-    const renderActions = (id) => (
-      <Grid container>
-        <Grid item className={classes.grow}>{id}</Grid>
-        <Grid item>
-          <Link to={`./update/${id}`}>
+    // if (!config.sessionId) return (<Redirect noThrow to='/dashboard' />)
+    const renderTitle = (item) => (
+      <Grid container spacing={40} className={classes.tile}>
+        <Grid item xs={12} component='span'>
+          <Avatar className={classes.avatar} style={toMaterialStyle(item.name)} >{
+            (!item.initials) ? '?' : item.initials
+          }</Avatar>
+          <div className={classes.tileTitle}>{item.name}</div>
+        </Grid>
+        <Grid item xs={12} component='span' className={classes.tileActions}>
+          <Divider className={classes.itemActionDivider} />
+          <MUILink onClick={() => { navigate(`/dashboard/serious-game/board/${item.id}`) }}>
+            <IconButton><Play size='small' color='secondary' className={classes.itemActionIcon} /></IconButton>
+          </MUILink>
+          <Link to={`./update-team/${item.id}`}>
             <IconButton><Edit className={classes.itemActionIcon} /></IconButton>
           </Link>
-          <MUILink onClick={() => { this.handleDeleteDialog(id, true) }}>
+          <MUILink
+            onClick={() => { this.handleDeleteDialog(item.id, item.name, true) }}
+            className={(config.isAdmin) ? null : classes.hide}
+          >
             <IconButton><Delete size='small' className={classes.itemActionIcon} /></IconButton>
           </MUILink>
         </Grid>
@@ -260,29 +299,17 @@ class Component extends React.Component {
     )
     const renderItems = (items) => {
       return (
-        items
-          .map((item) => {
-            return (
-              <Tile
-                key={item.id}
-                title={renderActions(item.id)}
-                description={(
-                  <React.Fragment>
-                    <span>{item.description.split('\n').map((line, key) => {
-                      return (<React.Fragment key={key}>{line}<br /></React.Fragment>)
-                    })}</span>
-                    {(!(Array.isArray(item.sessions.items) && item.sessions.items.length > 0)) ? null : (
-                      <React.Fragment>
-                        <br /><span><strong>Sessions : </strong>{item.sessions.items.map(i => {
-                          return <Link key={i.id} to={`../sessions/update/${i.id}`}>{i.id}</Link>
-                        })}</span>
-                      </React.Fragment>
-                    )}
-                  </React.Fragment>
-                )}
-              />
-            )
-          })
+        items.map((item) => {
+          return (
+            <Tile
+              xs={12}
+              sm={6}
+              md={4}
+              key={item.id}
+              title={renderTitle(item)}
+            />
+          )
+        })
       )
     }
     return (
@@ -294,21 +321,24 @@ class Component extends React.Component {
                 <Breadcrumbs separator={<NavigateNext fontSize='small' />} arial-label='Breadcrumb'>
                   <Link to='/' color='inherit'>Accueil</Link>
                   <Link to='../' color='inherit'>Tableau de bord</Link>
-                  <Link to='.' color='inherit'>Présentations</Link>
+                  <Link to='.' color='inherit'>Serious Game : choix de l'équipe</Link>
                 </Breadcrumbs>
               </Grid>
               <Grid item xs={12} className={classes.title}>
                 <Typography variant='h4' gutterBottom>
+                  <Game className={classes.titleIcon} />&nbsp;Serious Game
                   <div className={classes.fab}>
-                    <Link to='./add'>
+                    <Link to='./add-team'>
                       <Fab color='primary' aria-label='Ajouter'>
                         <Add />
                       </Fab>
                     </Link>
                   </div>
-                  <Folder className={classes.titleIcon} />&nbsp;Présentations
                 </Typography>
-                <Divider />
+                <Divider className={classes.title} />
+                <Typography variant='h5' gutterBottom>
+                  Choisissez votre équipe ou créez-en une nouvelle
+                </Typography>
               </Grid>
               <Grid item xs={12}>
                 <form
@@ -346,10 +376,10 @@ class Component extends React.Component {
                 </form>
               </Grid>
               <Grid item xs={12}>
-                <Grid container spacing={40}>
+                <Grid container spacing={40} alignItems='baseline'>
                   {(this.state.items.length > 0) ? renderItems(this.state.items) : (
-                    <Grid item>
-                      <Typography variant='body1' gutterBottom>Il n'y a pas de présentation à afficher</Typography>
+                    <Grid item xs={12}>
+                      <Typography variant='body1' gutterBottom>Il n'y a pas d'équipe à afficher</Typography>
                     </Grid>
                   )}
                   <Grid item xs={12} className={(this.state.nextToken === null) ? classes.hide : null}>
@@ -368,21 +398,21 @@ class Component extends React.Component {
         </main>
         <Dialog
           open={this.state.delete.openDialog}
-          onClose={() => { this.handleDeleteDialog('', false) }}
+          onClose={() => { this.handleDeleteDialog('', '', false) }}
           aria-labelledby='alert-dialog-title'
           aria-describedby='alert-dialog-description'
         >
-          <DialogTitle id='alert-dialog-title'>Effacer la présentation {this.state.delete.id}</DialogTitle>
+          <DialogTitle id='alert-dialog-title'>Effacer l'équipe {this.state.delete.name}</DialogTitle>
           <DialogContent>
             <DialogContentText id='alert-dialog-description'>
               Attention, cette action est irréversible.
             </DialogContentText>
           </DialogContent>
           <DialogActions className={classes.dialog}>
-            <Button onClick={this.deletePresentation} color='secondary' variant='contained'>
+            <Button onClick={this.deleteTeam} color='secondary' variant='contained'>
               Confirmer
             </Button>
-            <Button onClick={() => { this.handleDeleteDialog('', false) }} color='primary' autoFocus variant='outlined'>
+            <Button onClick={() => { this.handleDeleteDialog('', '', false) }} color='primary' autoFocus variant='outlined'>
               Annuler
             </Button>
           </DialogActions>

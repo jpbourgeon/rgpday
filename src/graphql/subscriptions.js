@@ -158,7 +158,6 @@ export const onCreateSession = `subscription OnCreateSession {
         id
         name
         initials
-        color
         searchable
       }
       nextToken
@@ -197,7 +196,6 @@ export const onUpdateSession = `subscription OnUpdateSession {
         id
         name
         initials
-        color
         searchable
       }
       nextToken
@@ -236,7 +234,6 @@ export const onDeleteSession = `subscription OnDeleteSession {
         id
         name
         initials
-        color
         searchable
       }
       nextToken
@@ -249,7 +246,6 @@ export const onCreateTeam = `subscription OnCreateTeam {
     id
     name
     initials
-    color
     searchable
     session {
       id
@@ -282,7 +278,6 @@ export const onUpdateTeam = `subscription OnUpdateTeam {
     id
     name
     initials
-    color
     searchable
     session {
       id
@@ -315,7 +310,6 @@ export const onDeleteTeam = `subscription OnDeleteTeam {
     id
     name
     initials
-    color
     searchable
     session {
       id

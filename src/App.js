@@ -22,7 +22,7 @@ const styles = () => ({
   }
 })
 
-const routesWithBackButton = ['/dashboard/presentation']
+const routesWithBackButton = ['/dashboard/presentation', '/dashboard/serious-game/board']
 
 class App extends React.Component {
   componentDidMount () {
@@ -41,7 +41,10 @@ class App extends React.Component {
         <Location>
           {({ location }) => {
             return (
-              <Navigation minified={(routesWithBackButton.includes(location.pathname))} />
+              <Navigation minified={
+                routesWithBackButton.some(
+                  (item) => (location.pathname.includes(item)))
+              } />
             )
           }}
         </Location>

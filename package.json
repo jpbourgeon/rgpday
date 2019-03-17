@@ -14,6 +14,8 @@
     "classnames": "^2.2.6",
     "history": "^4.7.2",
     "jss": "^9.8.7",
+    "material-color-hash": "^0.1.6",
+    "normalize-diacritics": "^1.0.2",
     "react": "^16.8.4",
     "react-app-polyfill": "^0.2.2",
     "react-dom": "^16.8.4",
@@ -22,6 +24,7 @@
     "react-scripts": "^2.1.8",
     "recaptcha-v3-react": "^3.0.3",
     "spectacle": "^5.4.0",
+    "string-hash": "^1.1.3",
     "typeface-roboto": "0.0.54",
     "validator": "^10.11.0"
   },

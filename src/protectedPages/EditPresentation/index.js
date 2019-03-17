@@ -71,33 +71,31 @@ const styles = theme => {
   }
 }
 
-const defaultState = {
-  id: {
-    isDirty: false,
-    value: ''
-  },
-  description: {
-    isDirty: false,
-    value: ''
-  },
-  form: {
-    isDisabled: false
-  },
-  snackbar: {
-    open: false,
-    message: ''
-  }
-}
-
 class Component extends React.Component {
   constructor (props) {
     super(props)
-    this.state = defaultState
+    this.defaultState = {
+      id: {
+        isDirty: false,
+        value: ''
+      },
+      description: {
+        isDirty: false,
+        value: ''
+      },
+      form: {
+        isDisabled: false
+      },
+      snackbar: {
+        open: false,
+        message: ''
+      }
+    }
+    this.state = this.defaultState
     this._isMounted = false
     this.handleChange = this.handleChange.bind(this)
     this.handleBlur = this.handleBlur.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
-    this.resetState = this.resetState.bind(this)
     this.handleCancel = this.handleCancel.bind(this)
     this.handleCloseSnackbar = this.handleCloseSnackbar.bind(this)
   }
@@ -119,7 +117,7 @@ class Component extends React.Component {
         const result = await API.graphql(
           graphqlOperation(getPresentation, { id: presentationId })
         )
-        if (!result.errors) {
+        if (!result.errors && result.data.getPresentation) {
           if (this._isMounted) {
             this.setState({
               id: {
@@ -140,15 +138,15 @@ class Component extends React.Component {
             })
           }
         } else {
-          logger.logger(result.error)
-          if (this._isMounted) this.resetState()
+          logger.error(result.error)
+          if (this._isMounted) this.setState(this.defaultState)
         }
       } catch (error) {
         logger.error('handleSubmit', error)
-        if (this._isMounted) this.resetState()
+        if (this._isMounted) this.setState(this.defaultState)
       }
     } else {
-      if (this._isMounted) this.resetState()
+      if (this._isMounted) this.setState(this.defaultState)
     }
   }
 
@@ -189,7 +187,6 @@ class Component extends React.Component {
           graphqlOperation(action, { input: { id, description, searchable } })
         )
         if (!result.errors) {
-          logger.info('handleSubmit', result)
           navigate('/dashboard/presentations')
         } else {
           logger.error('handleSubmit', result)
@@ -210,13 +207,9 @@ class Component extends React.Component {
     }
   }
 
-  resetState () {
-    this.setState({ ...defaultState, form: { isDisabled: false }, snackbar: { open: false, message: '' } })
-  }
-
   handleCancel (event = { preventDefault: () => {} }) {
     event.preventDefault()
-    this.setState({ ...defaultState, form: { isDisabled: false }, snackbar: { open: false, message: '' } }, () => {
+    this.setState({ ...this.defaultState, form: { isDisabled: false }, snackbar: { open: false, message: '' } }, () => {
       navigate('/dashboard/presentations')
     })
   }
@@ -236,7 +229,7 @@ class Component extends React.Component {
     const { classes, presentationId, config } = this.props
     if (!config.isAdmin) return (<Redirect noThrow to='/dashboard' />)
     const { id } = this.state
-    const pageTitle = (!presentationId) ? 'Ajouter une présentation' : `Modifier la présentation ${id.value}`
+    const pageTitle = (!presentationId) ? 'Ajouter une présentation' : `Modifier la présentation : ${id.value}`
     return (
       <div className={classes.layout}>
         <main>
@@ -296,7 +289,7 @@ class Component extends React.Component {
                     type='submit'
                     disabled={this.state.form.isDisabled}
                   >
-                      Envoyer
+                      Valider
                   </Button>
                   <Button
                     variant='outlined'

@@ -26,10 +26,20 @@ const styles = theme => ({
 })
 
 const Tile = props => {
-  const { title: label, description, image, classes, to, isActive } = { ...props }
+  const {
+    title: label,
+    description,
+    image,
+    classes,
+    to,
+    isActive,
+    xs,
+    sm,
+    md
+  } = { ...props }
   let title = (!to) ? label : (<Link to={to} color='primary'>{label}</Link>)
   return (
-    <Grid item xs={12} md={6}>
+    <Grid item xs={xs} sm={sm} md={md}>
       <Card className={classnames([
         classes.card,
         (!isActive) ? null : classes.isActive
@@ -77,9 +87,7 @@ Tile.defaultProps = {
   isActive: false,
   xs: 12,
   sm: 12,
-  md: 6,
-  lg: 6,
-  xl: 6
+  md: 6
 }
 
 export default withStyles(styles)(Tile)

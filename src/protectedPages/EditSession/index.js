@@ -102,63 +102,61 @@ const styles = theme => {
   }
 }
 
-const defaultState = {
-  id: {
-    isDirty: false,
-    value: ''
-  },
-  description: {
-    isDirty: false,
-    value: ''
-  },
-  contact: {
-    isDirty: false,
-    value: ''
-  },
-  numberOfParticipants: {
-    isDirty: false,
-    value: '0'
-  },
-  RGPDay: {
-    isDirty: false,
-    value: ''
-  },
-  startDate: {
-    isDirty: false,
-    value: ''
-  },
-  endDate: {
-    isDirty: false,
-    value: ''
-  },
-  scenario: {
-    isDirty: false,
-    value: ''
-  },
-  scenarios: [],
-  form: {
-    isDisabled: false
-  },
-  presentation: {
-    isDirty: false,
-    value: ''
-  },
-  presentations: [],
-  snackbar: {
-    open: false,
-    message: ''
-  }
-}
-
 class Component extends React.Component {
   constructor (props) {
     super(props)
     this._isMounted = false
-    this.state = defaultState
+    this.defaultState = {
+      id: {
+        isDirty: false,
+        value: ''
+      },
+      description: {
+        isDirty: false,
+        value: ''
+      },
+      contact: {
+        isDirty: false,
+        value: ''
+      },
+      numberOfParticipants: {
+        isDirty: false,
+        value: '0'
+      },
+      RGPDay: {
+        isDirty: false,
+        value: ''
+      },
+      startDate: {
+        isDirty: false,
+        value: ''
+      },
+      endDate: {
+        isDirty: false,
+        value: ''
+      },
+      scenario: {
+        isDirty: false,
+        value: ''
+      },
+      scenarios: [],
+      form: {
+        isDisabled: false
+      },
+      presentation: {
+        isDirty: false,
+        value: ''
+      },
+      presentations: [],
+      snackbar: {
+        open: false,
+        message: ''
+      }
+    }
+    this.state = this.defaultState
     this.handleChange = this.handleChange.bind(this)
     this.handleBlur = this.handleBlur.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
-    this.resetState = this.resetState.bind(this)
     this.handleCancel = this.handleCancel.bind(this)
     this.handleCloseSnackbar = this.handleCloseSnackbar.bind(this)
   }
@@ -174,7 +172,7 @@ class Component extends React.Component {
 
   async loadSession () {
     const { sessionId } = this.props
-    const state = defaultState
+    const state = this.defaultState
     const queryScenarios = () => (API.graphql(
       graphqlOperation(listScenariosIds)
     ))
@@ -196,17 +194,17 @@ class Component extends React.Component {
         queryPresentations(),
         querySession()
       ])
-      if (!scenarios.errors) {
+      if (!scenarios.errors && scenarios.data.listScenarios) {
         state.scenarios = scenarios.data.listScenarios.items
       } else {
-        logger.info('scenarios', scenarios.error)
+        logger.error('scenarios', scenarios.error)
       }
-      if (!presentations.errors) {
+      if (!presentations.errors && presentations.data.listPresentations) {
         state.presentations = presentations.data.listPresentations.items
       } else {
-        logger.info('presentations', presentations.error)
+        logger.error('presentations', presentations.error)
       }
-      if (!session.errors) {
+      if (!session.errors && session.data.getSession) {
         state.id.value = session.data.getSession.id
         state.description.value = session.data.getSession.description
         state.contact.value = session.data.getSession.contact
@@ -217,7 +215,7 @@ class Component extends React.Component {
         state.scenario.value = session.data.getSession.scenario.id
         state.presentation.value = session.data.getSession.presentation.id
       } else {
-        logger.info('session', session.error)
+        logger.error('session', session.error)
       }
       state.form.isDisabled = false
       state.snackbar.open = false
@@ -225,7 +223,7 @@ class Component extends React.Component {
       if (this._isMounted) this.setState(state)
     } catch (error) {
       logger.error('handleSubmit', error)
-      if (this._isMounted) this.resetState()
+      if (this._isMounted) this.setState(this.defaultState)
     }
   }
 
@@ -322,11 +320,10 @@ class Component extends React.Component {
           } })
         )
         if (!result.errors) {
-          logger.info('handleSubmit', result)
           state.snackbar.open = false
           state.form.isDisabled = false
           if (this._isMounted) {
-            this.setState(defaultState, () => {
+            this.setState(this.defaultState, () => {
               navigate('/dashboard/sessions')
             })
           }
@@ -352,13 +349,9 @@ class Component extends React.Component {
     }
   }
 
-  resetState () {
-    this.setState(defaultState)
-  }
-
   handleCancel (event = { preventDefault: () => {} }) {
     event.preventDefault()
-    this.setState({ ...defaultState, form: { isDisabled: false }, snackbar: { open: false, message: '' } }, () => {
+    this.setState({ ...this.defaultState, form: { isDisabled: false }, snackbar: { open: false, message: '' } }, () => {
       navigate('/dashboard/sessions')
     })
   }
@@ -378,7 +371,7 @@ class Component extends React.Component {
     const { classes, sessionId, config } = this.props
     if (!config.isAdmin) return (<Redirect noThrow to='/dashboard' />)
     const { id } = this.state
-    const pageTitle = (!sessionId) ? 'Ajouter une session' : `Modifier la session ${id.value}`
+    const pageTitle = (!sessionId) ? 'Ajouter une session' : `Modifier la session : ${id.value}`
     const renderOptions = (data) => {
       const list = [{ id: '' }, ...data]
       return (
@@ -575,7 +568,7 @@ class Component extends React.Component {
                         type='submit'
                         disabled={this.state.form.isDisabled}
                       >
-                    Envoyer
+                    Valider
                       </Button>
                       <Button
                         variant='outlined'

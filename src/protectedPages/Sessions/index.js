@@ -79,8 +79,7 @@ const styles = theme => {
     paper: {
       backgroundSize: `100% 100%`,
       marginBottom: theme.spacing.unit * 4,
-      padding: theme.spacing.unit * 4,
-      textAlign: 'justify'
+      padding: theme.spacing.unit * 4
     },
     breadcrumb: {
       marginBottom: theme.spacing.unit * 2
@@ -140,22 +139,21 @@ const styles = theme => {
   }
 }
 
-const defaultState = {
-  items: [],
-  limit: 10,
-  nextToken: null,
-  filter: '',
-  delete: {
-    id: '',
-    openDialog: false
-  }
-}
-
 class Component extends React.Component {
   constructor (props) {
     super(props)
     this._isMounted = false
-    this.state = defaultState
+    this.defaultState = {
+      items: [],
+      limit: 10,
+      nextToken: null,
+      filter: '',
+      delete: {
+        id: '',
+        openDialog: false
+      }
+    }
+    this.state = this.defaultState
     this.loadItems = this.loadItems.bind(this)
     this.handleChangeFilter = this.handleChangeFilter.bind(this)
     this.handleCancelFilter = this.handleCancelFilter.bind(this)
@@ -173,7 +171,7 @@ class Component extends React.Component {
   }
 
   loadState () {
-    this.setState(defaultState, () => {
+    this.setState(this.defaultState, () => {
       this.loadItems()
     })
   }
@@ -195,8 +193,7 @@ class Component extends React.Component {
           nextToken: this.state.nextToken
         })
       )
-      logger.info(result)
-      if (!result.errors) {
+      if (!result.errors && result.data.listSessions) {
         state.nextToken = result.data.listSessions.nextToken
         state.items = [...state.items, ...result.data.listSessions.items]
         if (this._isMounted) {
@@ -222,7 +219,7 @@ class Component extends React.Component {
 
   handleCancelFilter (event) {
     event.preventDefault()
-    this.setState(defaultState, () => {
+    this.setState(this.defaultState, () => {
       this.loadItems()
     })
   }
@@ -246,7 +243,7 @@ class Component extends React.Component {
       const result = await API.graphql(
         graphqlOperation(deleteSession, { input: { id } })
       )
-      if (!result.errors) {
+      if (!result.erros) {
         const items = this.state.items
         const index = items.findIndex(item => item.id === id)
         if (index > -1) {
