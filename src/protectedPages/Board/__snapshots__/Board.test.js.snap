@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The Board component should render correctly 1`] = `
+<div
+  className="layout-1"
+  style={
+    Object {
+      "height": 630.7869481765835,
+      "width": 929.6746817538897,
+    }
+  }
+>
+  <main>
+    <div
+      className="root-4 elevation8-14 rounded-5"
+      style={
+        Object {
+          "height": 630.7869481765835,
+        }
+      }
+    >
+      <div
+        className="container-31"
+      >
+        <div
+          className="item-32 12-71 board-2"
+        />
+      </div>
+    </div>
+  </main>
+</div>
+`;

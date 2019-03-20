@@ -793,7 +793,7 @@ exports[`The EditSession component should render correctly 1`] = `
                   <span
                     className="label-271"
                   >
-                    Envoyer
+                    Valider
                   </span>
                   <span
                     className="root-306"

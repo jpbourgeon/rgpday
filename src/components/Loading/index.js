@@ -20,19 +20,15 @@ const styles = theme => ({
 function Loading (props) {
   const { classes } = props
 
-  if (props.pastDelay) {
-    return (
-      <div className={classes.layout}>
-        <Grid container alignContent='center' alignItems='center' className={classes.container}>
-          <Grid item xs={12} className={classes.item}>
-            <CircularProgress color='secondary' />
-          </Grid>
+  return (
+    <div className={classes.layout}>
+      <Grid container alignContent='center' alignItems='center' className={classes.container}>
+        <Grid item xs={12} className={classes.item}>
+          <CircularProgress color='secondary' />
         </Grid>
-      </div>
-    )
-  } else {
-    return null
-  }
+      </Grid>
+    </div>
+  )
 }
 
 Loading.propTypes = {

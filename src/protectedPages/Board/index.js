@@ -1,65 +1,91 @@
 import React from 'react'
+import loadable from '@loadable/component'
 import PropTypes from 'prop-types'
-import { withStyles } from '@material-ui/core/styles'
+import { withStyles, withTheme } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
-import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
+import Loading from 'src/components/Loading'
 
 const styles = theme => {
   return {
     '@global': {
       '.grecaptcha-badge': {
-        visibility: 'hidden !important'
+        display: 'none !important'
       }
     },
     layout: {
-      width: 'auto',
-      marginLeft: theme.spacing.unit * 3,
-      marginRight: theme.spacing.unit * 3,
-      [theme.breakpoints.up(1100 + theme.spacing.unit * 3 * 2)]: {
-        width: 1100,
-        marginLeft: 'auto',
-        marginRight: 'auto'
-      }
+      marginLeft: 'auto',
+      marginRight: 'auto'
     },
-    mainFeaturedPost: {
-      backgroundSize: `100% 100%`,
-      marginBottom: theme.spacing.unit * 4
+    board: {
+      padding: 10
     },
-    mainFeaturedPostContent: {
-      padding: `${theme.spacing.unit * 6}px`,
-      [theme.breakpoints.up('md')]: {
-        paddingRight: 0
-      }
+    svg: {
+      // display: 'block'
     }
   }
 }
+// const AsyncScenario = loadable(props => (import(`../../scenarios/${props.scenarioId}`)))
+// const AsyncBoard = loadable(props => (import(`../../scenarios/${props.scenarioId}/Board`)))
 
-const HomeComponent = props => {
-  const { classes } = props
-  return (
-    <div className={classes.layout}>
-      <main>
-        {/* Hero */}
-        <Paper className={classes.mainFeaturedPost}>
-          <Grid container>
-            <Grid item md={6}>
-              <div className={classes.mainFeaturedPostContent}>
-                <Typography variant='h4' color='inherit' gutterBottom>
-                    Plateau de jeu
-                </Typography>
-              </div>
+class Board extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {}
+    this.scenarioRef = React.createRef()
+    this.boardRef = React.createRef()
+    this.reload = this.reload.bind(this)
+  }
+
+  componentDidMount () {
+    window.addEventListener('resize', this.reload, false)
+  }
+
+  componentDidUpdate () {
+    console.log(this.scenarioRef)
+    if (this.scenarioRef.current) console.log(this.scenarioRef.current.getArticle(1))
+  }
+
+  componentWillUnmount () {
+    window.removeEventListener('resize', this.reload, false)
+  }
+
+  reload (event) {
+    event.preventDefault()
+    this.forceUpdate()
+  }
+
+  render () {
+    const { classes, config, theme } = this.props
+    const Scenario = (config.scenarioId)
+      ? loadable.lib(() => (import(`../../scenarios/${config.scenarioId}`)))
+      : null
+    const GameBoard = (config.scenarioId)
+      ? loadable(props => (import(`../../scenarios/${config.scenarioId}/Board`)))
+      : null
+    const paperHeight = window.innerHeight - theme.spacing.unit * 8
+    const maxSVGHeight = (window.innerWidth * 707 / 1042) - theme.spacing.unit * 8
+    const height = Math.min(paperHeight, maxSVGHeight)
+    return (
+      <div className={classes.layout} style={{ height, width: height * 1042 / 707 }}>
+        {(Scenario) ? <Scenario ref={this.scenarioRef} /> : null }
+        <main>
+          <Paper elevation={8} style={{ height }}>
+            <Grid container>
+              <Grid item xs={12} className={classes.board}>
+                {(GameBoard) ? <GameBoard ref={this.boardRef} /> : <Loading />}
+              </Grid>
             </Grid>
-          </Grid>
-        </Paper>
-        {/* End Hero */}
-      </main>
-    </div>
-  )
+          </Paper>
+        </main>
+      </div>
+    )
+  }
 }
 
-HomeComponent.propTypes = {
-  classes: PropTypes.object.isRequired
+Board.propTypes = {
+  classes: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired
 }
 
-export default withStyles(styles)(HomeComponent)
+export default withTheme()(withStyles(styles)(Board))

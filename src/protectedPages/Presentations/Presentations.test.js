@@ -8,7 +8,8 @@ expect.addSnapshotSerializer(jssSerializer)
 
 describe('The Presentations component', () => {
   it('should render correctly', () => {
-    const tree = renderer.create(<Presentations />).toJSON()
+    const config = { isAdmin: true }
+    const tree = renderer.create(<Presentations config={config} />).toJSON()
     expect(tree).toMatchSnapshot()
   })
 })

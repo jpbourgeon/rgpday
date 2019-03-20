@@ -316,7 +316,7 @@ exports[`The EditScenario component should render correctly 1`] = `
               <span
                 className="label-251"
               >
-                Envoyer
+                Valider
               </span>
               <span
                 className="root-286"

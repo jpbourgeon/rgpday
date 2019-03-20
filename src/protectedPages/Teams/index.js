@@ -1,6 +1,6 @@
 import React from 'react'
 import { navigate } from '@reach/router'
-// import { Redirect } from '@reach/router'
+// import { navigate, Redirect } from '@reach/router'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'

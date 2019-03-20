@@ -8,7 +8,8 @@ expect.addSnapshotSerializer(jssSerializer)
 
 describe('The EditScenario component', () => {
   it('should render correctly', () => {
-    const tree = renderer.create(<EditScenario />).toJSON()
+    const config = { isAdmin: true }
+    const tree = renderer.create(<EditScenario config={config} />).toJSON()
     expect(tree).toMatchSnapshot()
   })
 })

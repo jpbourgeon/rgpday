@@ -2,7 +2,7 @@
 
 exports[`The Tile component should render correctly 1`] = `
 <div
-  className="item-6 12-45 6-67"
+  className="item-6 12-45 12-59 6-67"
 >
   <div
     className="root-103 elevation1-106 rounded-104 root-102 card-1"

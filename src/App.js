@@ -22,7 +22,9 @@ const styles = () => ({
   }
 })
 
-const routesWithBackButton = ['/dashboard/presentation', '/dashboard/serious-game/board']
+const minified = ['/dashboard/presentation', '/dashboard/serious-game/board']
+const sticky = ['/dashboard/serious-game/board']
+const faded = ['/dashboard/presentation']
 
 class App extends React.Component {
   componentDidMount () {
@@ -41,10 +43,11 @@ class App extends React.Component {
         <Location>
           {({ location }) => {
             return (
-              <Navigation minified={
-                routesWithBackButton.some(
-                  (item) => (location.pathname.includes(item)))
-              } />
+              <Navigation
+                minified={minified.some((item) => (location.pathname.includes(item)))}
+                sticky={sticky.some((item) => (location.pathname.includes(item)))}
+                faded={faded.some((item) => (location.pathname.includes(item)))}
+              />
             )
           }}
         </Location>

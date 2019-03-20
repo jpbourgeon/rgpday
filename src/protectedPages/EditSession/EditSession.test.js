@@ -8,7 +8,8 @@ expect.addSnapshotSerializer(jssSerializer)
 
 describe('The EditSession component', () => {
   it('should render correctly', () => {
-    const tree = renderer.create(<EditSession />).toJSON()
+    const config = { isAdmin: true }
+    const tree = renderer.create(<EditSession config={config} />).toJSON()
     expect(tree).toMatchSnapshot()
   })
 })

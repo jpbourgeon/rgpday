@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import logger from 'src/logger'
-import { withStyles } from '@material-ui/core/styles'
-import classNames from 'classnames'
+import { withStyles, withTheme } from '@material-ui/core/styles'
+import classnames from 'classnames'
 import AppBar from '@material-ui/core/AppBar'
 import { Link } from '@reach/router'
 import Toolbar from '@material-ui/core/Toolbar'
@@ -13,7 +13,7 @@ import Info from '@material-ui/icons/Info'
 import Email from '@material-ui/icons/Email'
 import Game from '@material-ui/icons/VideogameAsset'
 import SignOut from '@material-ui/icons/PowerSettingsNew'
-import ArrowBack from '@material-ui/icons/ArrowBack'
+import Home from '@material-ui/icons/Home'
 import Fab from '@material-ui/core/Fab'
 import Auth from '@aws-amplify/auth'
 import { Hub } from '@aws-amplify/core'
@@ -21,41 +21,41 @@ import config from 'src/aws-exports'
 
 Auth.configure(config)
 
-const styles = theme => ({
-  root: {
-    width: 'auto',
-    marginLeft: theme.spacing.unit * 3,
-    marginRight: theme.spacing.unit * 3,
-    [theme.breakpoints.up(1100 + theme.spacing.unit * 3 * 2)]: {
-      width: 1100,
-      marginLeft: 'auto',
-      marginRight: 'auto'
+const styles = theme => {
+  return ({
+    root: {
+      width: 'auto',
+      marginLeft: theme.spacing.unit * 3,
+      marginRight: theme.spacing.unit * 3,
+      [theme.breakpoints.up(1100 + theme.spacing.unit * 3 * 2)]: {
+        width: 1100,
+        marginLeft: 'auto',
+        marginRight: 'auto'
+      },
+      paddingBottom: theme.spacing.unit * 4
     },
-    paddingBottom: theme.spacing.unit * 4
-  },
-  grow: {
-    flexGrow: 1
-  },
-  menuLink: {
-    fontFamily: 'Roboto',
-    fontSize: 'bold',
-    color: theme.palette.common.white,
-    textDecoration: 'none',
-    margin: '0 0.5em',
-    cursor: 'pointer'
-  },
-  hide: {
-    display: 'none'
-  },
-  fab: {
-    position: 'fixed',
-    top: theme.spacing.unit,
-    left: theme.spacing.unit,
-    zIndex: 10
-
-  }
-})
-
+    grow: {
+      flexGrow: 1
+    },
+    menuLink: {
+      fontFamily: 'Roboto',
+      fontSize: 'bold',
+      color: theme.palette.common.white,
+      textDecoration: 'none',
+      margin: '0 0.5em',
+      cursor: 'pointer'
+    },
+    hide: {
+      display: 'none'
+    },
+    fab: {
+      position: 'fixed',
+      top: theme.spacing.unit,
+      left: theme.spacing.unit,
+      zIndex: 10
+    }
+  })
+}
 class AppBarComponent extends React.Component {
   constructor (props) {
     super(props)
@@ -64,6 +64,7 @@ class AppBarComponent extends React.Component {
       throw new Error('No Auth module found, please ensure @aws-amplify/auth is imported')
     }
     this.signOut = this.signOut.bind(this)
+    this.reload = this.reload.bind(this)
     this._timer = null
     this.state = {
       moved: false
@@ -73,6 +74,7 @@ class AppBarComponent extends React.Component {
 
   componentDidMount () {
     this._isMounted = true
+    window.addEventListener('resize', this.reload, false)
     this.findState()
     document.documentElement.onmousemove = () => {
       clearTimeout(this._timer)
@@ -88,6 +90,12 @@ class AppBarComponent extends React.Component {
   componentWillUnmount () {
     this._isMounted = false
     document.documentElement.onmousemove = () => {}
+    window.removeEventListener('resize', this.reload, false)
+  }
+
+  reload (event) {
+    event.preventDefault()
+    this.forceUpdate()
   }
 
   triggerAuthEvent (event) {
@@ -152,24 +160,11 @@ class AppBarComponent extends React.Component {
   }
 
   render () {
-    const { classes, minified } = this.props
+    const { classes, minified, sticky, faded, theme } = this.props
     const { moved } = this.state
     const authState = this.props.authState || this.state.authState
     const signedIn = (authState === 'signedIn')
-
-    if (minified) {
-      return (<React.Fragment>
-        <Fade in={moved}>
-          <Link to='/dashboard'>
-            <Fab color='primary' aria-label='Retour' className={classes.fab}>
-              <ArrowBack />
-            </Fab>
-          </Link>
-        </Fade>
-        <div className={classes.root} />
-      </React.Fragment>)
-    }
-    return (
+    const appbar = (
       <div className={classes.root}>
         <AppBar position='static'>
           <Toolbar>
@@ -191,7 +186,7 @@ class AppBarComponent extends React.Component {
               <Hidden smUp><Game /></Hidden>
               <Hidden xsDown>Session</Hidden>
             </Link>
-            <div onClick={this.signOut} className={classNames(classes.menuLink, !signedIn && classes.hide)}>
+            <div onClick={this.signOut} className={classnames(classes.menuLink, !signedIn && classes.hide)}>
               <Hidden smUp><SignOut /></Hidden>
               <Hidden xsDown>Déconnexion</Hidden>
             </div>
@@ -199,15 +194,55 @@ class AppBarComponent extends React.Component {
         </AppBar>
       </div>
     )
+    const paperHeight = window.innerHeight - theme.spacing.unit * 8
+    const maxSVGHeight = (window.innerWidth * 707 / 1042) - theme.spacing.unit * 8
+    const height = Math.min(paperHeight, maxSVGHeight)
+    const width = height * 1042 / 707
+    const marginLeft = (window.innerWidth - width) / 2 - theme.spacing.unit * 4
+    const fab = (
+      <div>
+        <Link to='/dashboard'>
+          <Fab
+            color='primary'
+            aria-label='Retour'
+            className={classes.fab}
+            // style={(sticky && window.innerWidth >= (1100 + theme.spacing.unit * 3 * 2)) ? {
+            style={(sticky) ? {
+              // marginLeft: `${(window.innerWidth - (1100 + theme.spacing.unit * 3 * 2)) / 2}px`,
+              marginLeft,
+              marginRight: 'auto'
+            } : null
+            }
+          >
+            <Home />
+          </Fab>
+        </Link>
+      </div>
+    )
+    if (minified && faded) return <Fade in={moved}>{fab}</Fade>
+    if (minified && !faded) {
+      return (
+        <React.Fragment>
+          {fab}
+          <div className={classes.root} />
+        </React.Fragment>
+      )
+    }
+    return appbar
   }
 }
 
 AppBarComponent.propTypes = {
   classes: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired,
+  sticky: PropTypes.bool,
+  faded: PropTypes.bool,
   minified: PropTypes.bool
 }
 AppBarComponent.defaultProps = {
-  minified: false
+  minified: false,
+  sticky: false,
+  faded: false
 }
 
-export default withStyles(styles)(AppBarComponent)
+export default withTheme()(withStyles(styles)(AppBarComponent))
