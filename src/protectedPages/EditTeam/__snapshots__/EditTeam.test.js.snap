@@ -241,7 +241,7 @@ exports[`The EditTeam component should render correctly 1`] = `
                   <p
                     className="root-254 contained-258"
                   >
-                    60 caractères restants
+                    60 caractères restants - pas de données personnelles
                   </p>
                 </div>
               </div>

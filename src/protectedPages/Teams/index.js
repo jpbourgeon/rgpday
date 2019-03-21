@@ -71,7 +71,6 @@ const styles = theme => {
       }
     },
     paper: {
-      backgroundSize: `100% 100%`,
       marginBottom: theme.spacing.unit * 4,
       padding: theme.spacing.unit * 4
     },

@@ -47,7 +47,6 @@ const styles = theme => {
       }
     },
     paper: {
-      backgroundSize: `100% 100%`,
       padding: theme.spacing.unit * 4,
       marginBottom: theme.spacing.unit * 8,
       [theme.breakpoints.down('sm')]: {
@@ -288,7 +287,7 @@ class Component extends React.Component {
                     <Grid item xs={12}>
                       <TextField
                         label='Nom *'
-                        helperText={`${60 - this.state.name.value.length} caractères restants`}
+                        helperText={`${60 - this.state.name.value.length} caractères restants - pas de données personnelles`}
                         fullWidth
                         margin='normal'
                         variant='outlined'

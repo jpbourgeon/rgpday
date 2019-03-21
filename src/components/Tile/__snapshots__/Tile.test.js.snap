@@ -15,7 +15,9 @@ exports[`The Tile component should render correctly 1`] = `
       >
         <h5
           className="root-131 h5-147"
-        />
+        >
+          Hello world
+        </h5>
         <p
           className="root-131 subtitle1-149 paragraph-159"
         >

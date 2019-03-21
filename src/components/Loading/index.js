@@ -5,14 +5,13 @@ import Grid from '@material-ui/core/Grid'
 import CircularProgress from '@material-ui/core/CircularProgress'
 
 const styles = theme => ({
-  layout: {
-    width: 'auto',
-    height: '100vh'
-  },
   container: {
-    height: '100%'
+    margin: 0,
+    padding: theme.spacing.unit * 4,
+    justifyContent: 'center',
+    AlignItems: 'stretch'
   },
-  item: {
+  row: {
     textAlign: 'center'
   }
 })
@@ -21,13 +20,11 @@ function Loading (props) {
   const { classes } = props
 
   return (
-    <div className={classes.layout}>
-      <Grid container alignContent='center' alignItems='center' className={classes.container}>
-        <Grid item xs={12} className={classes.item}>
-          <CircularProgress color='secondary' />
-        </Grid>
+    <Grid container className={classes.container}>
+      <Grid item xs={12} className={classes.row}>
+        <CircularProgress color='secondary' />
       </Grid>
-    </div>
+    </Grid>
   )
 }
 

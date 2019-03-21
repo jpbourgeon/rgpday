@@ -8,7 +8,7 @@ expect.addSnapshotSerializer(jssSerializer)
 
 describe('The Navigation component', () => {
   it('should render correctly', () => {
-    const tree = renderer.create(<Navigation />).toJSON()
+    const tree = renderer.create(<Navigation location={{ pathname: 'dashboard/serious-game' }} />).toJSON()
     expect(tree).toMatchSnapshot()
   })
 })

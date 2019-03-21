@@ -2,11 +2,6 @@
 
 exports[`The Rules component should render correctly 1`] = `
 <WithStyles(Board)
-  config={
-    Object {
-      "scenarioId": "2019-INGE-01",
-    }
-  }
   theme={
     Object {
       "breakpoints": Object {

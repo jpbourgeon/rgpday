@@ -22,8 +22,9 @@ const styles = () => ({
   }
 })
 
-const minified = ['/dashboard/presentation', '/dashboard/serious-game/board']
-const sticky = ['/dashboard/serious-game/board']
+const minified = ['/dashboard/presentation', '/dashboard/serious-game']
+const paper = ['/dashboard/serious-game']
+const board = ['/dashboard/serious-game/board']
 const faded = ['/dashboard/presentation']
 
 class App extends React.Component {
@@ -45,8 +46,10 @@ class App extends React.Component {
             return (
               <Navigation
                 minified={minified.some((item) => (location.pathname.includes(item)))}
-                sticky={sticky.some((item) => (location.pathname.includes(item)))}
+                board={board.some((item) => (location.pathname.includes(item)))}
+                paper={paper.some((item) => (location.pathname.includes(item)))}
                 faded={faded.some((item) => (location.pathname.includes(item)))}
+                location={location}
               />
             )
           }}

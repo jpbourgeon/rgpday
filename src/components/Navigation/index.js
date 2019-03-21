@@ -13,7 +13,7 @@ import Info from '@material-ui/icons/Info'
 import Email from '@material-ui/icons/Email'
 import Game from '@material-ui/icons/VideogameAsset'
 import SignOut from '@material-ui/icons/PowerSettingsNew'
-import Home from '@material-ui/icons/Home'
+import ArrowBack from '@material-ui/icons/ArrowBack'
 import Fab from '@material-ui/core/Fab'
 import Auth from '@aws-amplify/auth'
 import { Hub } from '@aws-amplify/core'
@@ -122,7 +122,7 @@ class AppBarComponent extends React.Component {
             stateFromStorage: true
           })
         })
-        .catch(err => logger.error('findState', err))
+        .catch(err => logger.info('findState', err))
     } else if (this.props.stateFromStorage) {
       this.setState({
         stateFromStorage: true
@@ -155,12 +155,12 @@ class AppBarComponent extends React.Component {
       throw new Error('No Auth module found, please ensure @aws-amplify/auth is imported')
     }
     await Auth.signOut()
-      .catch(err => logger.error('signOut', err))
+      .catch(err => logger.info('signOut', err))
     if (this._isMounted) this.changeState('signedOut')
   }
 
   render () {
-    const { classes, minified, sticky, faded, theme } = this.props
+    const { classes, minified, board, paper, faded, theme, location } = this.props
     const { moved } = this.state
     const authState = this.props.authState || this.state.authState
     const signedIn = (authState === 'signedIn')
@@ -194,27 +194,48 @@ class AppBarComponent extends React.Component {
         </AppBar>
       </div>
     )
-    const paperHeight = window.innerHeight - theme.spacing.unit * 8
-    const maxSVGHeight = (window.innerWidth * 707 / 1042) - theme.spacing.unit * 8
-    const height = Math.min(paperHeight, maxSVGHeight)
-    const width = height * 1042 / 707
-    const marginLeft = (window.innerWidth - width) / 2 - theme.spacing.unit * 4
+    // style={(sticky && window.innerWidth >= (1100 + theme.spacing.unit * 3 * 2)) ? {
+    // marginLeft: ``,
+    let marginLeft
+    if (paper) {
+      marginLeft = (window.innerWidth >= 1100 + theme.spacing.unit * 3 * 2)
+        ? (window.innerWidth - (1100 + theme.spacing.unit * 3 * 2)) / 2
+        : 0
+    }
+    if (board) {
+      const paperHeight = window.innerHeight - theme.spacing.unit * 8
+      const maxSVGHeight = (window.innerWidth * 707 / 1042) - theme.spacing.unit * 8
+      const height = Math.min(paperHeight, maxSVGHeight)
+      const width = height * 1042 / 707
+      marginLeft = (window.innerWidth - width) / 2 - theme.spacing.unit * 4
+    }
+
+    let fabTo
+    switch (true) {
+      case (location.pathname === '/dashboard/serious-game'):
+        fabTo = '/dashboard'
+        break
+      case location.pathname.startsWith('/dashboard/serious-game'):
+        fabTo = '/dashboard/serious-game'
+        break
+      default:
+        fabTo = '/dashboard'
+        break
+    }
     const fab = (
       <div>
-        <Link to='/dashboard'>
+        <Link to={fabTo}>
           <Fab
             color='primary'
             aria-label='Retour'
             className={classes.fab}
-            // style={(sticky && window.innerWidth >= (1100 + theme.spacing.unit * 3 * 2)) ? {
-            style={(sticky) ? {
-              // marginLeft: `${(window.innerWidth - (1100 + theme.spacing.unit * 3 * 2)) / 2}px`,
+            style={(board || paper) ? {
               marginLeft,
               marginRight: 'auto'
             } : null
             }
           >
-            <Home />
+            <ArrowBack />
           </Fab>
         </Link>
       </div>
@@ -235,13 +256,15 @@ class AppBarComponent extends React.Component {
 AppBarComponent.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
-  sticky: PropTypes.bool,
+  board: PropTypes.bool,
+  paper: PropTypes.bool,
   faded: PropTypes.bool,
   minified: PropTypes.bool
 }
 AppBarComponent.defaultProps = {
   minified: false,
-  sticky: false,
+  board: false,
+  paper: false,
   faded: false
 }
 

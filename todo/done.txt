@@ -117,3 +117,6 @@ x 2019-03-20 2019-03-17 Frontend: the Navigation component should have a prop to
 x 2019-03-20 2019-03-17 Frontend: the Navigation component should have a prop to choose if it sticks to the content or to the page
 x 2019-03-20 2019-03-17 Frontend SeriousGame: load the game configuration dynamically
 x 2019-03-20 2019-03-17 Frontend SeriousGame: load and display the board dynamically
+x 2019-03-21 2019-03-17 Frontend game: display the game's rules on game load
+x 2019-03-21 2019-03-17 Frontend game board: fade animations on service rollover
+x 2019-03-21 2019-03-17 Frontend game board: show the team's avatar

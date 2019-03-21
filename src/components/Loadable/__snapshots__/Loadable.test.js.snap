@@ -2,39 +2,35 @@
 
 exports[`The Loadable component should render correctly 1`] = `
 <div
-  className="layout-1"
+  className="container-3 container-1"
 >
   <div
-    className="container-4 center-12 center-16 container-2"
+    className="item-4 12-43 row-2"
   >
     <div
-      className="item-5 12-44 item-3"
-    >
-      <div
-        className="root-101 colorSecondary-105 indeterminate-103"
-        role="progressbar"
-        style={
-          Object {
-            "height": 40,
-            "width": 40,
-          }
+      className="root-100 colorSecondary-104 indeterminate-102"
+      role="progressbar"
+      style={
+        Object {
+          "height": 40,
+          "width": 40,
         }
+      }
+    >
+      <svg
+        className="svg-105"
+        viewBox="22 22 44 44"
       >
-        <svg
-          className="svg-106"
-          viewBox="22 22 44 44"
-        >
-          <circle
-            className="circle-107 circleIndeterminate-109"
-            cx={44}
-            cy={44}
-            fill="none"
-            r={20.2}
-            strokeWidth={3.6}
-            style={Object {}}
-          />
-        </svg>
-      </div>
+        <circle
+          className="circle-106 circleIndeterminate-108"
+          cx={44}
+          cy={44}
+          fill="none"
+          r={20.2}
+          strokeWidth={3.6}
+          style={Object {}}
+        />
+      </svg>
     </div>
   </div>
 </div>

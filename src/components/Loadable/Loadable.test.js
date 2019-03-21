@@ -8,7 +8,7 @@ expect.addSnapshotSerializer(jssSerializer)
 
 describe('The Loadable component', () => {
   it('should render correctly', () => {
-    const tree = renderer.create(<Loadable />).toJSON()
+    const tree = renderer.create(<Loadable loadablePath='pages/Default' />).toJSON()
     expect(tree).toMatchSnapshot()
   })
 })

@@ -8,7 +8,7 @@ expect.addSnapshotSerializer(jssSerializer)
 
 describe('The Tile component', () => {
   it('should render correctly', () => {
-    const tree = renderer.create(<Tile />).toJSON()
+    const tree = renderer.create(<Tile title='Hello world' />).toJSON()
     expect(tree).toMatchSnapshot()
   })
 })

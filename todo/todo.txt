@@ -1,4 +1,3 @@
-2019-03-20 2019-03-17 Frontend: display the game's rules on game load
 2019-02-09 write the game specs
 2019-02-09 write the conference specs
 2019-02-09 write the mind map specs <https://www.mindmup.com/>

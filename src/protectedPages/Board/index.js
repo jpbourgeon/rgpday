@@ -5,6 +5,20 @@ import { withStyles, withTheme } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
 import Loading from 'src/components/Loading'
+import Rules from './Rules'
+import logger from 'src/logger'
+import API, { graphqlOperation } from '@aws-amplify/api'
+import config from 'src/aws-exports'
+
+API.configure(config)
+const getTeam = `query GetTeam($id: ID!) {
+  getTeam(id: $id) {
+    id
+    name
+    initials
+  }
+}
+`
 
 const styles = theme => {
   return {
@@ -19,35 +33,63 @@ const styles = theme => {
     },
     board: {
       padding: 10
-    },
-    svg: {
-      // display: 'block'
     }
   }
 }
-// const AsyncScenario = loadable(props => (import(`../../scenarios/${props.scenarioId}`)))
-// const AsyncBoard = loadable(props => (import(`../../scenarios/${props.scenarioId}/Board`)))
 
 class Board extends React.Component {
   constructor (props) {
     super(props)
     this.state = {}
+    this.state.team = {
+      id: null,
+      name: null,
+      initials: null
+
+    }
+    this.state.ready = false
+    this.state.openRules = true
+    this.state.openRules = true
+    this.reload = this.reload.bind(this)
+    this.openRules = this.openRules.bind(this)
+    this.closeRules = this.closeRules.bind(this)
+
+    this._isMounted = false
+    this.Scenario = null
+    this.GameBoard = null
     this.scenarioRef = React.createRef()
     this.boardRef = React.createRef()
-    this.reload = this.reload.bind(this)
+    this.checkRefsReceivedTimer = null
+    this.checkRefsReceived = this.checkRefsReceived.bind(this)
   }
 
-  componentDidMount () {
+  async componentDidMount () {
+    this._isMounted = true
+    const { config } = this.props
     window.addEventListener('resize', this.reload, false)
-  }
-
-  componentDidUpdate () {
-    console.log(this.scenarioRef)
-    if (this.scenarioRef.current) console.log(this.scenarioRef.current.getArticle(1))
+    this.GameBoard = (config.scenarioId) ? loadable(() => (import(`../../scenarios/${config.scenarioId}/Board`))) : null
+    this.Scenario = (config.scenarioId) ? loadable.lib(() => (import(`../../scenarios/${config.scenarioId}`))) : null
+    this.checkRefsReceived()
+    await this.getTeam()
   }
 
   componentWillUnmount () {
+    this._isMounted = false
+    clearTimeout(this.checkRefsReceivedTimer)
     window.removeEventListener('resize', this.reload, false)
+  }
+
+  componentDidUpdate () {
+    if (!this.scenarioRef.current || !this.boardRef.current) {
+      this.checkRefsReceived()
+    }
+  }
+
+  checkRefsReceived () {
+    clearTimeout(this.checkRefsReceivedTimer)
+    this.checkRefsReceivedTimer = setTimeout(() => {
+      this.forceUpdate()
+    }, 300)
   }
 
   reload (event) {
@@ -55,17 +97,39 @@ class Board extends React.Component {
     this.forceUpdate()
   }
 
+  openRules () {
+    this.setState({ openRules: true })
+  }
+
+  closeRules () {
+    this.setState({ openRules: false })
+  }
+
+  async getTeam () {
+    // GraphQL
+    const result = await API.graphql(
+      graphqlOperation(getTeam, { id: this.props.teamId })
+    )
+    if (!result.errors && result.data.getTeam) {
+      const team = { ...result.data.getTeam }
+      if (this._isMounted) {
+        this.setState({ team })
+      }
+    } else {
+      logger.error('loadItems', result)
+    }
+  }
+
   render () {
-    const { classes, config, theme } = this.props
-    const Scenario = (config.scenarioId)
-      ? loadable.lib(() => (import(`../../scenarios/${config.scenarioId}`)))
-      : null
-    const GameBoard = (config.scenarioId)
-      ? loadable(props => (import(`../../scenarios/${config.scenarioId}/Board`)))
-      : null
+    const { classes, theme } = this.props
     const paperHeight = window.innerHeight - theme.spacing.unit * 8
     const maxSVGHeight = (window.innerWidth * 707 / 1042) - theme.spacing.unit * 8
     const height = Math.min(paperHeight, maxSVGHeight)
+    const Scenario = this.Scenario
+    const GameBoard = this.GameBoard
+    const rules = (this.scenarioRef.current)
+      ? this.scenarioRef.current.scenario.get('rules')
+      : [() => (<Loading />)]
     return (
       <div className={classes.layout} style={{ height, width: height * 1042 / 707 }}>
         {(Scenario) ? <Scenario ref={this.scenarioRef} /> : null }
@@ -73,10 +137,21 @@ class Board extends React.Component {
           <Paper elevation={8} style={{ height }}>
             <Grid container>
               <Grid item xs={12} className={classes.board}>
-                {(GameBoard) ? <GameBoard ref={this.boardRef} /> : <Loading />}
+                {(GameBoard && this.scenarioRef.current) ? <GameBoard
+                  ref={this.boardRef}
+                  team={this.state.team}
+                  openRules={this.openRules}
+                  services={this.scenarioRef.current.scenario.get('services')}
+                /> : <Loading />}
               </Grid>
             </Grid>
           </Paper>
+          <Rules
+            pages={rules}
+            open={this.state.openRules}
+            handleOpen={this.openRules}
+            handleClose={this.closeRules}
+          />
         </main>
       </div>
     )

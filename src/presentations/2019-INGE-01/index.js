@@ -11,9 +11,9 @@ import {
   Text
 } from 'spectacle'
 import createTheme from 'spectacle/lib/themes/default'
-import createHistory from 'history/createHashHistory'
+import { createHashHistory } from 'history'
 
-const history = createHistory()
+const history = createHashHistory()
 const theme = createTheme(
   {
     primary: 'white',
@@ -33,7 +33,7 @@ class Presentation extends React.Component {
     this._isMounted = false
   }
 
-  componentWillMount () {
+  componentDidMount () {
     this._isMounted = true
     const { target } = this.props
     if (target === '#/start') history.push('/')

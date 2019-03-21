@@ -12,10 +12,11 @@
     "aws-amplify": "^1.1.22",
     "aws-amplify-react": "^2.3.2",
     "classnames": "^2.2.6",
-    "history": "^4.7.2",
+    "history": "^4.9.0",
     "jss": "^9.8.7",
+    "markdown-to-jsx": "^6.9.3",
     "material-color-hash": "^0.1.6",
-    "normalize-diacritics": "^1.0.2",
+    "normalize-diacritics": "^2.0.1",
     "react": "^16.8.4",
     "react-app-polyfill": "^0.2.2",
     "react-dom": "^16.8.4",
@@ -35,7 +36,7 @@
     "react-test-renderer": "^16.8.4",
     "simple-git": "^1.107.0",
     "standard": "^12.0.1",
-    "typescript": "^3.3.3333"
+    "typescript": "^3.3.4000"
   },
   "scripts": {
     "build": "react-scripts build",
