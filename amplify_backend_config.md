@@ -52,6 +52,18 @@ Describes all the steps necessary to provision the backend resources in the clou
 
 ### Local configuration
 
+- Force the lambda runtime to v8.10. In ``amplify\backend\auth\rgpdayAuth\rgpdayAuth-cloudformation-template.yml``
+```yml
+  # Lambda which gets userpool app client config values
+  # Depends on UserPool for id
+  # Depends on UserPoolClientRole for role ARN
+    Type: 'AWS::Lambda::Function'
+    Properties:
+      ...
+      ...
+      ...
+      Runtime: nodejs8.10
+```
 - Force the frontend to use the AWS_IAM authorization type. In `./amplify/backend/backend-config.json` change the API security type into `AWS_IAM`
 
 ```json
@@ -219,7 +231,14 @@ Describes all the steps necessary to provision the backend resources in the clou
 
 ### Local configuration
 
-__/!\ This should be simpler in a future release of amplify-cli ([@function directive](https://github.com/aws-amplify/amplify-cli/issues/83))__
+- Since we are using AWS Cognito and IAM to manage unauthenticated users, do not create an API key associated to the API, to prevent amplify-cli errors on infrequent amplify pushes. In ``amplify/api/parameters.json``:
+```json
+```
+  - For more info on this topic, sze:
+    - <https://github.com/aws-amplify/amplify-cli/issues/808>
+    - <https://aws-amplify.github.io/docs/cli/graphql#apikeyexpirationepoch>
+
+__/!\ The following parameter should be simpler in a future release of amplify-cli ([@function directive](https://github.com/aws-amplify/amplify-cli/issues/83))__
 
 - connect the lambda rgpdayFuncSendMail to the graphQL Query sendMail: [Add a custom resolver that targets an aws lambda function](https://aws-amplify.github.io/docs/cli/graphql#add-a-custom-resolver-that-targets-an-aws-lambda-function)
 

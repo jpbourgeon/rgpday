@@ -113,10 +113,12 @@ x 2019-03-15 2019-03-15 Fixed: frontend - don't set state of unmounted component
 x 2019-03-15 2019-03-13 Changed: Secure admin Protected routes and pages
 x 2019-03-17 2019-03-09 Added: frontend SeriousGame page
 x 2019-03-17 2019-03-09 Added: frontend Teams : LED
-x 2019-03-20 2019-03-17 Frontend: the Navigation component should have a prop to choose if it fades or not when minified
-x 2019-03-20 2019-03-17 Frontend: the Navigation component should have a prop to choose if it sticks to the content or to the page
-x 2019-03-20 2019-03-17 Frontend SeriousGame: load the game configuration dynamically
-x 2019-03-20 2019-03-17 Frontend SeriousGame: load and display the board dynamically
-x 2019-03-21 2019-03-17 Frontend game: display the game's rules on game load
-x 2019-03-21 2019-03-17 Frontend game board: fade animations on service rollover
-x 2019-03-21 2019-03-17 Frontend game board: show the team's avatar
+x 2019-03-20 2019-03-17 Changed: Frontend-  the Navigation component should have a prop to choose if it fades or not when minified
+x 2019-03-20 2019-03-17 Changed: Frontend - the Navigation component should have a prop to choose if it sticks to the content or to the page
+x 2019-03-20 2019-03-17 Added: Frontend SeriousGame - load the game configuration dynamically
+x 2019-03-20 2019-03-17 Added: Frontend SeriousGame - load and display the board dynamically
+x 2019-03-21 2019-03-17 Added: Frontend game - display the game's rules on game load
+x 2019-03-21 2019-03-17 Added: Frontend game board - fade animations on service rollover
+x 2019-03-21 2019-03-17 Added: Frontend game board - show the team's avatar
+x 2019-03-21 2019-03-21 Fixed: frontend Navigation component, minified sticky display : calculate a consistent left margin wether we are on regular paper based pages or on the gameboard 
+x 2019-03-22 2019-03-22 Fixed: backend - prevent amplify-cli errors on infrequent amplify pushes

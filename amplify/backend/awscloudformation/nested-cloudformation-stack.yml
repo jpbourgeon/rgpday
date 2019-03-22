@@ -174,8 +174,9 @@
 							"Outputs.UserPoolId"
 						]
 					},
+					"APIKeyExpirationEpoch": -1,
 					"S3DeploymentBucket": "rgpday-20190305112118-deployment",
-					"S3DeploymentRootKey": "amplify-appsync-files/5b41c61486b969b85e8cded3450f514e7b5c1537",
+					"S3DeploymentRootKey": "amplify-appsync-files/650a2e97f8d153dac619ab9d68c5873795613ea5",
 					"env": "dev"
 				}
 			}
