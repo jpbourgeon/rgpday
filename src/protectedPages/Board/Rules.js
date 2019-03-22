@@ -6,14 +6,27 @@ import DialogActions from '@material-ui/core/DialogActions'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogContentText from '@material-ui/core/DialogContentText'
 import Button from '@material-ui/core/Button'
+import Hidden from '@material-ui/core/Hidden'
 import MobileStepper from '@material-ui/core/MobileStepper'
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft'
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight'
 
 const styles = theme => ({
-  root: {
-    maxWidth: 400,
-    flexGrow: 1
+  actions: {
+    textAlign: 'right',
+    [theme.breakpoints.down('xs')]: {
+      display: 'inline-block'
+    }
+  },
+  action: {
+    [theme.breakpoints.down('xs')]: {
+      display: 'inline-block'
+    }
+  },
+  closeButton: {
+    [theme.breakpoints.down('xs')]: {
+      marginTop: theme.spacing.unit
+    }
   }
 })
 
@@ -67,8 +80,8 @@ class Rules extends React.Component {
             <ActiveContent />
           </DialogContentText>
         </DialogContent>
-        <DialogActions>
-          <div className={classes.navigation}>
+        <DialogActions component='div' className={classes.actions}>
+          <div className={classes.action}>
             <MobileStepper
               steps={maxSteps}
               position='static'
@@ -76,20 +89,22 @@ class Rules extends React.Component {
               backButton={
                 <Button size='small' onClick={this.handleBack} disabled={activeStep <= 0}>
                   <KeyboardArrowLeft />
-                  Précédent
+                  <Hidden xsDown>Précédent</Hidden>
                 </Button>
               }
               nextButton={
                 <Button size='small' onClick={this.handleNext} disabled={activeStep >= maxSteps - 1}>
-                  Suivant
+                  <Hidden xsDown>Suivant</Hidden>
                   <KeyboardArrowRight />
                 </Button>
               }
             />
           </div>
-          <Button onClick={this.close} color='primary'>
+          <div className={classes.closeButton}>
+            <Button onClick={this.close} color='primary'>
               Fermer
-          </Button>
+            </Button>
+          </div>
         </DialogActions>
       </Dialog>
     )
