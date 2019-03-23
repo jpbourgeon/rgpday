@@ -1,12 +1,12 @@
 2019-03-22 Added: frontend Service page
-2019-03-22 Added: frontend Scores page
+2019-03-22 Added: frontend Score page
 2019-03-22 Added: game interview feature
 2019-03-22 Added: game quizz feature
 2019-03-22 Added: game consulting feature
 2019-03-22 Added: game file upload / download feature
 2019-03-22 Added: game timeline feature (money and time are spent when you (re)start an interview with a service)
-2019-02-09 write the conference specs
-2019-02-09 write the mind map specs <https://www.mindmup.com/>
+2019-02-09 write the conference
+2019-02-09 write the game scenario
 2019-03-09 cascade delete scenario
 2019-03-09 cascade delete session
 2019-03-09 cascade delete team

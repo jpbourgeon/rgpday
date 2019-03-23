@@ -1,0 +1,312 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The EditTeam protected page should render correctly 1`] = `
+<div
+  className="layout-1"
+>
+  <main>
+    <div
+      className="root-13 elevation2-17 rounded-14 paper-2"
+    >
+      <div
+        className="container-40"
+      >
+        <div
+          className="item-41 12-80 breadcrumb-3"
+        >
+          <nav
+            arial-label="Breadcrumb"
+            className="root-141 body1-150 colorTextSecondary-174 root-137"
+          >
+            <ol
+              className="ol-138"
+            >
+              <li
+                className="li-139"
+              >
+                <a
+                  aria-current="page"
+                  className="root-141 colorInherit-170 inline-176 root-177 underlineHover-179"
+                  href="/"
+                  onClick={[Function]}
+                >
+                  Accueil
+                </a>
+              </li>
+              <li
+                aria-hidden="true"
+                className="root-182 separator-140"
+              >
+                <svg
+                  aria-hidden="true"
+                  className="root-183 fontSizeSmall-190"
+                  focusable="false"
+                  role="presentation"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"
+                  />
+                  <path
+                    d="M0 0h24v24H0z"
+                    fill="none"
+                  />
+                </svg>
+              </li>
+              <li
+                className="li-139"
+              >
+                <a
+                  className="root-141 colorInherit-170 inline-176 root-177 underlineHover-179"
+                  href="/dashboard"
+                  onClick={[Function]}
+                >
+                  Tableau de bord
+                </a>
+              </li>
+              <li
+                aria-hidden="true"
+                className="root-182 separator-140"
+              >
+                <svg
+                  aria-hidden="true"
+                  className="root-183 fontSizeSmall-190"
+                  focusable="false"
+                  role="presentation"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"
+                  />
+                  <path
+                    d="M0 0h24v24H0z"
+                    fill="none"
+                  />
+                </svg>
+              </li>
+              <li
+                className="li-139"
+              >
+                <a
+                  className="root-141 colorInherit-170 inline-176 root-177 underlineHover-179"
+                  href="/dashboard/serious-game"
+                  onClick={[Function]}
+                >
+                  Equipes
+                </a>
+              </li>
+              <li
+                aria-hidden="true"
+                className="root-182 separator-140"
+              >
+                <svg
+                  aria-hidden="true"
+                  className="root-183 fontSizeSmall-190"
+                  focusable="false"
+                  role="presentation"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"
+                  />
+                  <path
+                    d="M0 0h24v24H0z"
+                    fill="none"
+                  />
+                </svg>
+              </li>
+              <li
+                className="li-139"
+              >
+                <a
+                  aria-current="page"
+                  className="root-141 colorInherit-170 inline-176 root-177 underlineHover-179"
+                  href="/"
+                  onClick={[Function]}
+                >
+                  <span>
+                    Ajouter une équipe
+                  </span>
+                </a>
+              </li>
+            </ol>
+          </nav>
+        </div>
+        <div
+          className="item-41 12-80 title-4"
+        >
+          <h4
+            className="root-141 h4-156 gutterBottom-168"
+          >
+            <svg
+              aria-hidden="true"
+              className="root-183 titleIcon-5"
+              focusable="false"
+              role="presentation"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34a.9959.9959 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"
+              />
+              <path
+                d="M0 0h24v24H0z"
+                fill="none"
+              />
+            </svg>
+             
+            <span>
+              Ajouter une équipe
+            </span>
+          </h4>
+          <hr
+            className="root-192"
+          />
+        </div>
+        <div
+          className="item-41 12-80 8-90 6-102 fieldsContainer-7"
+        >
+          <form
+            autoComplete="off"
+            className="formContainer-6"
+            noValidate={true}
+            onSubmit={[Function]}
+          >
+            <div
+              className="container-40"
+            >
+              <div
+                className="item-41 12-80 avatarContainer-11"
+              >
+                <div
+                  className="root-197 colorDefault-198 avatar-10"
+                  style={Object {}}
+                >
+                  ?
+                </div>
+              </div>
+              <div
+                className="item-41 12-80"
+              >
+                <div
+                  className="root-200 marginNormal-201 fullWidth-203"
+                >
+                  <label
+                    className="root-215 root-204 formControl-209 animated-212 outlined-214"
+                    data-shrink={false}
+                  >
+                    Nom *
+                  </label>
+                  <div
+                    className="root-235 root-222 fullWidth-244 formControl-236"
+                    onClick={[Function]}
+                  >
+                    <fieldset
+                      aria-hidden={true}
+                      className="root-252 notchedOutline-229"
+                      style={
+                        Object {
+                          "paddingLeft": 8,
+                        }
+                      }
+                    >
+                      <legend
+                        className="legend-253"
+                        style={
+                          Object {
+                            "width": 0.01,
+                          }
+                        }
+                      >
+                        <span
+                          dangerouslySetInnerHTML={
+                            Object {
+                              "__html": "&#8203;",
+                            }
+                          }
+                        />
+                      </legend>
+                    </fieldset>
+                    <input
+                      aria-invalid={false}
+                      className="input-245 input-230"
+                      disabled={false}
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onFocus={[Function]}
+                      required={false}
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                  <p
+                    className="root-254 contained-258"
+                  >
+                    60 caractères restants - pas de données personnelles
+                  </p>
+                </div>
+              </div>
+              <div
+                className="item-41 12-80 buttonContainer-12"
+              >
+                <button
+                  className="root-288 root-262 outlined-270 outlinedSecondary-272 button-8"
+                  disabled={false}
+                  onBlur={[Function]}
+                  onContextMenu={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  onKeyUp={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseLeave={[Function]}
+                  onMouseUp={[Function]}
+                  onTouchEnd={[Function]}
+                  onTouchMove={[Function]}
+                  onTouchStart={[Function]}
+                  tabIndex="0"
+                  type="submit"
+                >
+                  <span
+                    className="label-263"
+                  >
+                    Valider
+                  </span>
+                  <span
+                    className="root-298"
+                  />
+                </button>
+                <button
+                  className="root-288 root-262 outlined-270 button-8"
+                  disabled={false}
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onContextMenu={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  onKeyUp={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseLeave={[Function]}
+                  onMouseUp={[Function]}
+                  onTouchEnd={[Function]}
+                  onTouchMove={[Function]}
+                  onTouchStart={[Function]}
+                  tabIndex="0"
+                  type="button"
+                >
+                  <span
+                    className="label-263"
+                  >
+                    Annuler
+                  </span>
+                  <span
+                    className="root-298"
+                  />
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+`;

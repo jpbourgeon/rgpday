@@ -71,7 +71,7 @@ const styles = theme => {
   }
 }
 
-class Component extends React.Component {
+class EditPresentation extends React.Component {
   constructor (props) {
     super(props)
     this.defaultState = {
@@ -333,8 +333,8 @@ class Component extends React.Component {
   }
 }
 
-Component.propTypes = {
+EditPresentation.propTypes = {
   classes: PropTypes.object.isRequired
 }
 
-export default withStyles(styles)(Component)
+export default withStyles(styles)(EditPresentation)

@@ -49,7 +49,7 @@ const styles = theme => ({
   }
 })
 
-const DashboardComponent = (props) => {
+const Dashboard = (props) => {
   const { classes, config } = props
   const renderSession = (!config.sessionId) ? null : (
     <Grid container spacing={40}>
@@ -143,8 +143,8 @@ const DashboardComponent = (props) => {
   )
 }
 
-DashboardComponent.propTypes = {
+Dashboard.propTypes = {
   classes: PropTypes.object.isRequired
 }
 
-export default withStyles(styles)(DashboardComponent)
+export default withStyles(styles)(Dashboard)

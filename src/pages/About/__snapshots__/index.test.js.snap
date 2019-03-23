@@ -1,0 +1,155 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The About page should render correctly 1`] = `
+<div
+  className="layout-1"
+>
+  <main>
+    <div
+      className="root-9 elevation2-13 rounded-10 paper-2"
+    >
+      <div
+        className="container-36"
+      >
+        <div
+          className="item-37 12-76 title-3"
+        >
+          <h4
+            className="root-133 h4-148 gutterBottom-160"
+          >
+            <svg
+              aria-hidden="true"
+              className="root-169 titleIcon-4"
+              focusable="false"
+              role="presentation"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M0 0h24v24H0V0z"
+                fill="none"
+              />
+              <path
+                d="M11 7h2v2h-2zM11 11h2v6h-2z"
+              />
+              <path
+                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"
+              />
+            </svg>
+             À propos
+          </h4>
+          <hr
+            className="root-178"
+          />
+        </div>
+        <div
+          className="item-37 12-76 4-82 2-94 avatar-5"
+        >
+          <div
+            className="root-183 avatarIcon-6"
+          >
+            <img
+              alt="Jean-Philippe Bourgeon"
+              className="img-185"
+              src="avatar.jpg"
+            />
+          </div>
+        </div>
+        <div
+          className="item-37 12-76 12-90 6-98 post-7"
+        >
+          <p
+            className="root-133 body1-142 gutterBottom-160"
+          >
+            En qualité de 
+            <strong>
+              Responsable du pôle Systèmes d'information
+            </strong>
+            , gestion des données et des méthodes au Centre de gestion de la fonction publique territoriale de Saône-et-Loire, 
+            <strong>
+              je développe avec mon équipe
+            </strong>
+            , des solutions pour accompagner les collectivités territoriales du département dans la gestion quotidienne de leurs données. Bien sûr, un des premiers services que nous rendons est 
+            <strong>
+              la mutualisation du Délégué à la Protection des Données
+            </strong>
+             : nous accompagnons nos adhérents dans leur mise en conformité avec le RGPD.
+          </p>
+          <p
+            className="root-133 body1-142 gutterBottom-160"
+          >
+            Cette journée a été conçue pour répondre à un problème 
+            <strong>
+              simple et concret
+            </strong>
+            . Une fois renseigné et formé aux concepts de la protection des données à caractère personnel, 
+            <strong>
+              par où doit-on commencer la mise en conformité
+            </strong>
+             ? Comment cette démarche est-elle liée aux autres outils de gestion de l'information dans l'entreprise ?
+          </p>
+          <p
+            className="root-133 body1-142 gutterBottom-160"
+          >
+            Le 
+            <strong>
+              RGPDay
+            </strong>
+             s'adresse à 
+            <strong>
+              tous les organismes de formation
+            </strong>
+            , initiale ou continue, dans le domaine de la gestion de l'information, qui souhaitent proposer 
+            <strong>
+              une expérience du RGPD pratique et ludique
+            </strong>
+             à leurs étudiants, dans le prolongement de leur formation théorique.
+          </p>
+          <p
+            className="root-133 body1-142 gutterBottom-160"
+          >
+            --
+            <br />
+            Jean-Philippe Bourgeon
+            <br />
+            <a
+              className="root-133 colorPrimary-163 inline-168 root-186 underlineHover-188"
+              href="https://www.linkedin.com/in/jpbourgeon"
+            >
+              Profil LinkedIn
+            </a>
+          </p>
+        </div>
+        <div
+          className="item-37 12-76 8-86 4-96 cta-8"
+        >
+          <div
+            className="container-36 40-62 column-39 center-44"
+          >
+            <div
+              className="item-37 12-76 10-88 10-102"
+            >
+              <div
+                className="root-9 elevation1-12 rounded-10 cta-191"
+              >
+                <h6
+                  className="root-133 h6-150"
+                >
+                  <a
+                    className="root-133 colorSecondary-164 inline-168 root-186 underlineHover-188"
+                    href="/contact"
+                    onClick={[Function]}
+                  >
+                    Contactez-moi !
+                  </a>
+                  <br />
+                  pour organiser le RGPDay dans votre établissement
+                </h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+`;

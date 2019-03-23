@@ -48,7 +48,7 @@ const styles = theme => {
   }
 }
 
-const HomeComponent = props => {
+const Home = props => {
   const { classes } = props
   return (
     <div className={classes.layout}>
@@ -100,8 +100,8 @@ const HomeComponent = props => {
   )
 }
 
-HomeComponent.propTypes = {
+Home.propTypes = {
   classes: PropTypes.object.isRequired
 }
 
-export default withStyles(styles)(HomeComponent)
+export default withStyles(styles)(Home)

@@ -1,5 +1,7 @@
 ### Spécifications du SVG
 
+Le fichier du plateau de jeu est dans le sous-dossier ``assets``
+
 ## Optimisation de l'export SVG
 
 - Paramètre de l'export : ne pas inclure la map, fond transparent, exporter la sélection uniquement

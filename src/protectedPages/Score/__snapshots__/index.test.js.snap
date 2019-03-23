@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The Score protected page should render correctly 1`] = `
+<div
+  className="layout-1"
+>
+  <main>
+    <div
+      className="root-4 elevation2-8 rounded-5 mainFeaturedPost-2"
+    >
+      <div
+        className="container-31"
+      >
+        <div
+          className="item-32 6-93"
+        >
+          <div
+            className="mainFeaturedPostContent-3"
+          >
+            <h4
+              className="root-128 h4-143 colorInherit-157 gutterBottom-155"
+            >
+              Page des scores
+            </h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+`;

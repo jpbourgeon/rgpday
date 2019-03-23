@@ -159,7 +159,7 @@ const styles = theme => {
   }
 }
 
-class Component extends React.Component {
+class Teams extends React.Component {
   constructor (props) {
     super(props)
     this._isMounted = false
@@ -429,8 +429,8 @@ class Component extends React.Component {
   }
 }
 
-Component.propTypes = {
+Teams.propTypes = {
   classes: PropTypes.object.isRequired
 }
 
-export default withStyles(styles)(Component)
+export default withStyles(styles)(Teams)

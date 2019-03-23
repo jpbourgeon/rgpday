@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The Markdown component should render correctly 1`] = `
+<h4
+  className="root-1 h4-16 gutterBottom-28"
+  id="hello-world"
+>
+  Hello world
+</h4>
+`;

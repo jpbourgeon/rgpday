@@ -139,7 +139,7 @@ const styles = theme => {
   }
 }
 
-class Component extends React.Component {
+class Sessions extends React.Component {
   constructor (props) {
     super(props)
     this._isMounted = false
@@ -451,8 +451,8 @@ class Component extends React.Component {
   }
 }
 
-Component.propTypes = {
+Sessions.propTypes = {
   classes: PropTypes.object.isRequired
 }
 
-export default withStyles(styles)(Component)
+export default withStyles(styles)(Sessions)

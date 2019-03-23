@@ -56,7 +56,7 @@ const styles = theme => {
     }
   })
 }
-class AppBarComponent extends React.Component {
+class Navigation extends React.Component {
   constructor (props) {
     super(props)
 
@@ -253,7 +253,7 @@ class AppBarComponent extends React.Component {
   }
 }
 
-AppBarComponent.propTypes = {
+Navigation.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
   board: PropTypes.bool,
@@ -261,11 +261,11 @@ AppBarComponent.propTypes = {
   faded: PropTypes.bool,
   minified: PropTypes.bool
 }
-AppBarComponent.defaultProps = {
+Navigation.defaultProps = {
   minified: false,
   board: false,
   paper: false,
   faded: false
 }
 
-export default withTheme()(withStyles(styles)(AppBarComponent))
+export default withTheme()(withStyles(styles)(Navigation))

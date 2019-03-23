@@ -97,7 +97,7 @@ const styles = theme => {
   }
 }
 
-class Component extends React.Component {
+class EditTeam extends React.Component {
   constructor (props) {
     super(props)
     this.defaultState = {
@@ -352,8 +352,8 @@ class Component extends React.Component {
   }
 }
 
-Component.propTypes = {
+EditTeam.propTypes = {
   classes: PropTypes.object.isRequired
 }
 
-export default withStyles(styles)(Component)
+export default withStyles(styles)(EditTeam)

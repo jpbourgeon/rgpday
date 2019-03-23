@@ -124,3 +124,4 @@ x 2019-03-21 2019-03-21 Fixed: frontend Navigation component, minified sticky di
 x 2019-03-22 2019-03-22 Fixed: backend - prevent amplify-cli errors on infrequent amplify pushes
 x 2019-03-22 2019-03-22 Fixed: Rules component - better page nav display on small screen
 x 2019-03-22 2019-03-22 Changed: frontend Navigation component status (called in App.js) - Better pathname matching using regexp
+x 2019-03-23 2019-03-22 Fixed: frontend - refactor components and pages names and their respective snapshot test

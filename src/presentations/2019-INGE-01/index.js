@@ -27,7 +27,7 @@ const theme = createTheme(
   }
 )
 
-class Presentation extends React.Component {
+class PresentationComponent extends React.Component {
   constructor (props) {
     super(props)
     this._isMounted = false
@@ -104,4 +104,4 @@ class Presentation extends React.Component {
   }
 }
 
-export default Presentation
+export default PresentationComponent

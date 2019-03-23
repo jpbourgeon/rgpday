@@ -13,7 +13,7 @@ const styles = () => ({
 
 const AsyncPresentation = loadable(props => (import(`../../presentations/${props.presentationId}`)))
 
-const Presentation = (props) => {
+const PresentationPage = (props) => {
   const { location, config } = props
   if (config && config.presentationId) {
     return (
@@ -24,4 +24,4 @@ const Presentation = (props) => {
   }
 }
 
-export default withStyles(styles)(Presentation)
+export default withStyles(styles)(PresentationPage)

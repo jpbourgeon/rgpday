@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Link from 'src/components/Link'
 import { withStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
@@ -36,7 +35,7 @@ const styles = theme => {
   }
 }
 
-const Default = props => {
+const Score = props => {
   const { classes } = props
   return (
     <div className={classes.layout}>
@@ -47,10 +46,7 @@ const Default = props => {
             <Grid item md={6}>
               <div className={classes.mainFeaturedPostContent}>
                 <Typography variant='h4' color='inherit' gutterBottom>
-                    Ce contenu est indisponible.
-                </Typography>
-                <Typography variant='subtitle1' color='inherit' gutterBottom>
-                    Avez vous consulté la <Link to='/' color='secondary'>page d'accueil</Link> du site ?
+                    Page des scores
                 </Typography>
               </div>
             </Grid>
@@ -62,8 +58,8 @@ const Default = props => {
   )
 }
 
-Default.propTypes = {
+Score.propTypes = {
   classes: PropTypes.object.isRequired
 }
 
-export default withStyles(styles)(Default)
+export default withStyles(styles)(Score)

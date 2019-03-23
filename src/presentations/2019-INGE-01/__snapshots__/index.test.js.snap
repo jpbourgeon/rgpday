@@ -1,0 +1,814 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The 2019-INGE-01 Presentation component should render correctly 1`] = `
+<Deck
+  history={
+    Object {
+      "action": "POP",
+      "block": [Function],
+      "createHref": [Function],
+      "go": [Function],
+      "goBack": [Function],
+      "goForward": [Function],
+      "length": 1,
+      "listen": [Function],
+      "location": Object {
+        "hash": "",
+        "pathname": "/",
+        "search": "",
+        "state": undefined,
+      },
+      "push": [Function],
+      "replace": [Function],
+    }
+  }
+  onStateChange={[Function]}
+  showFullscreenControl={true}
+  theme={
+    Object {
+      "print": Object {
+        "colors": Object {
+          "primary": "black",
+          "quaternary": "black",
+          "secondary": "black",
+          "tertiary": "black",
+        },
+        "components": Object {
+          "blockquote": Object {
+            "display": "inline-block",
+            "position": "relative",
+            "textAlign": "left",
+          },
+          "cite": Object {
+            "clear": "left",
+            "color": "black",
+            "display": "block",
+            "fontSize": "2rem",
+            "marginTop": "1rem",
+          },
+          "code": Object {
+            "backgroundColor": "rgba(0,0,0,0.15)",
+            "borderRadius": 3,
+            "color": "black",
+            "fontFamily": "monospace",
+            "fontSize": "2.66rem",
+            "margin": "0.25rem auto",
+            "padding": "0 10px",
+          },
+          "codePane": Object {
+            "fontSize": "0.8rem",
+            "fontWeight": "normal",
+            "margin": "auto",
+            "maxWidth": 800,
+            "minWidth": "100%",
+          },
+          "content": Object {
+            "margin": "auto",
+            "textAlign": "center",
+          },
+          "heading": Object {
+            "h1": Object {
+              "color": "black",
+              "fontFamily": "Open Sans Condensed",
+              "fontSize": "7.05rem",
+              "fontWeight": "bold",
+              "lineHeight": 1,
+              "margin": 0,
+            },
+            "h2": Object {
+              "color": "black",
+              "fontFamily": "Open Sans Condensed",
+              "fontSize": "5.88rem",
+              "fontWeight": "bold",
+              "lineHeight": 1,
+              "margin": 0,
+            },
+            "h3": Object {
+              "color": "black",
+              "fontFamily": "Open Sans Condensed",
+              "fontSize": "4.9rem",
+              "fontWeight": "bold",
+              "lineHeight": 1,
+              "margin": "0.5rem auto",
+            },
+            "h4": Object {
+              "color": "black",
+              "fontFamily": "Open Sans Condensed",
+              "fontSize": "3.82rem",
+              "fontWeight": "bold",
+              "lineHeight": 1,
+              "margin": "0.5rem auto",
+            },
+            "h5": Object {
+              "color": "black",
+              "fontFamily": "Open Sans Condensed",
+              "fontSize": "3.19rem",
+              "fontWeight": "bold",
+              "lineHeight": 1,
+              "margin": "0.5rem auto",
+            },
+            "h6": Object {
+              "color": "black",
+              "fontFamily": "Open Sans Condensed",
+              "fontSize": "2.66rem",
+              "fontWeight": "bold",
+              "lineHeight": 1,
+              "margin": "0.5rem auto",
+            },
+          },
+          "image": Object {
+            "display": "block",
+            "margin": "0.5rem auto",
+          },
+          "link": Object {
+            "textDecoration": "none",
+          },
+          "list": Object {
+            "listStylePosition": "inside",
+            "padding": 0,
+            "textAlign": "left",
+          },
+          "listItem": Object {
+            "fontSize": "2.66rem",
+          },
+          "quote": Object {
+            "borderLeft": "1px solid black",
+            "color": "black",
+            "display": "block",
+            "fontSize": "4.9rem",
+            "fontWeight": "bold",
+            "lineHeight": 1,
+            "paddingLeft": 40,
+          },
+          "s": Object {
+            "strikethrough": Object {},
+          },
+          "syntax": Object {
+            "direction": "ltr",
+            "fontFamily": "monospace",
+            "fontSize": "inherit",
+            "hyphens": "none",
+            "lineHeight": 1.5,
+            "margin": 0,
+            "padding": "0.5rem",
+            "tabSize": 2,
+            "textAlign": "left",
+            "whiteSpace": "pre-wrap",
+            "wordBreak": "normal",
+            "wordSpacing": "normal",
+          },
+          "table": Object {
+            "width": "100%",
+          },
+          "tableHeaderItem": Object {
+            "fontSize": "2.66rem",
+            "fontWeight": "bold",
+          },
+          "tableItem": Object {
+            "fontSize": "2.66rem",
+          },
+          "text": Object {
+            "color": "black",
+            "fontFamily": "Open Sans Condensed",
+            "fontSize": "2.66rem",
+            "margin": "0.25rem auto",
+          },
+        },
+        "controls": Object {
+          "next": Object {
+            "background": "none",
+            "border": "none",
+            "outline": 0,
+            "position": "absolute",
+            "right": 20,
+            "top": "50%",
+            "transform": "translateY(-50%)",
+            "zIndex": 9999,
+          },
+          "nextIcon": Object {
+            "fill": "black",
+          },
+          "prev": Object {
+            "background": "none",
+            "border": "none",
+            "left": 20,
+            "outline": 0,
+            "position": "absolute",
+            "top": "50%",
+            "transform": "translateY(-50%)",
+            "zIndex": 9999,
+          },
+          "prevIcon": Object {
+            "fill": "black",
+          },
+        },
+        "fonts": Object {
+          "primary": "Open Sans Condensed",
+          "secondary": "Lobster Two",
+          "tertiary": "monospace",
+        },
+        "fullscreen": Object {
+          "fill": "black",
+        },
+        "global": Object {
+          ".hljs": Object {
+            "background": "white",
+            "color": "black",
+          },
+          ".hljs span": Object {
+            "color": "black !important",
+          },
+          "body": Object {
+            "background": "white",
+            "color": "black",
+            "fontFamily": "Open Sans Condensed",
+            "fontSize": "2em",
+            "fontWeight": "normal",
+            "overflow": "hidden",
+          },
+          "html, body": Object {
+            "height": "100%",
+            "margin": 0,
+            "padding": 0,
+            "width": "100%",
+          },
+        },
+        "prism": Object {
+          "dark": "css-10oln9y",
+          "light": "css-fa91qj",
+        },
+        "progress": Object {
+          "bar": Object {
+            "bar": Object {
+              "background": "black",
+              "height": "100%",
+              "transition": "all 0.3s ease-out",
+            },
+            "container": Object {
+              "bottom": 0,
+              "height": "10px",
+              "left": 0,
+              "position": "absolute",
+              "transition": "all 1s ease-in-out 0.2s",
+              "width": "100%",
+              "zIndex": 1000,
+            },
+          },
+          "number": Object {
+            "container": Object {
+              "bottom": 10,
+              "color": "black",
+              "position": "absolute",
+              "right": 10,
+              "zIndex": 1000,
+            },
+          },
+          "pacman": Object {
+            "container": Object {
+              "bottom": "5px",
+              "left": "50%",
+              "position": "absolute",
+              "transition": "all 1s ease-in-out 0.2s",
+              "zIndex": 1000,
+            },
+            "pacman": Object {
+              "height": "20px",
+              "position": "absolute",
+              "transform": "translate(-5px, -5px)",
+              "transition": "left 0.3s ease-in-out 0.2s",
+              "width": "20px",
+            },
+            "pacmanBottom": Object {
+              "background": "black",
+              "borderBottomLeftRadius": "10px",
+              "borderBottomRightRadius": "10px",
+              "content": " ",
+              "height": "10px",
+              "position": "absolute",
+              "top": "10px",
+              "width": "20px",
+            },
+            "pacmanTop": Object {
+              "background": "black",
+              "borderTopLeftRadius": "10px",
+              "borderTopRightRadius": "10px",
+              "content": " ",
+              "height": "10px",
+              "position": "absolute",
+              "width": "20px",
+            },
+            "point": Object {
+              "background": "transparent",
+              "borderColor": "black",
+              "borderRadius": "50%",
+              "borderStyle": "solid",
+              "borderWidth": 2,
+              "float": "left",
+              "height": "10px",
+              "position": "absolute",
+              "transition": "all 0.01s ease-out 0.4s",
+              "width": "10px",
+            },
+          },
+        },
+      },
+      "screen": Object {
+        "autoplay": Object {
+          "pause": Object {
+            "background": "none",
+            "border": "none",
+            "left": "50%",
+            "outline": 0,
+            "position": "absolute",
+            "right": "50%",
+            "top": 20,
+            "zIndex": 9999,
+          },
+          "pauseIcon": Object {
+            "fill": "#03A9FC",
+          },
+          "play": Object {
+            "background": "none",
+            "border": "none",
+            "left": "50%",
+            "outline": 0,
+            "position": "absolute",
+            "right": "50%",
+            "top": 20,
+            "zIndex": 9999,
+          },
+          "playIcon": Object {
+            "fill": "#03A9FC",
+          },
+        },
+        "colors": Object {
+          "primary": "white",
+          "quaternary": "#CECECE",
+          "secondary": "#1F2022",
+          "tertiary": "#03A9FC",
+        },
+        "components": Object {
+          "blockquote": Object {
+            "display": "inline-block",
+            "margin": 20,
+            "position": "relative",
+            "textAlign": "left",
+          },
+          "cite": Object {
+            "clear": "left",
+            "color": "#03A9FC",
+            "display": "block",
+            "fontSize": "2rem",
+            "marginTop": "1rem",
+          },
+          "code": Object {
+            "backgroundColor": "rgba(0,0,0,0.15)",
+            "borderRadius": 3,
+            "color": "black",
+            "fontFamily": "monospace",
+            "fontSize": "2.66rem",
+            "margin": "0.25rem auto",
+            "padding": "0 10px",
+          },
+          "codePane": Object {
+            "fontSize": "0.8rem",
+            "fontWeight": "normal",
+            "margin": "auto",
+            "maxWidth": 800,
+            "minWidth": "100%",
+          },
+          "content": Object {
+            "margin": "0 auto",
+            "textAlign": "center",
+          },
+          "goToAction": Object {
+            "&:hover": Object {
+              "background": "#03A9FC",
+              "color": "#000",
+            },
+            "background": "#000",
+            "border": "none",
+            "borderRadius": "6px",
+            "color": "#fff",
+            "fontFamily": "Roboto",
+            "padding": "0.25em 1em",
+          },
+          "heading": Object {
+            "h1": Object {
+              "color": "#03A9FC",
+              "fontFamily": "Roboto",
+              "fontSize": "7.05rem",
+              "fontWeight": "bold",
+              "lineHeight": 1,
+              "margin": 0,
+              "zoom": 1,
+            },
+            "h2": Object {
+              "color": "#1F2022",
+              "fontFamily": "Roboto",
+              "fontSize": "5.88rem",
+              "fontWeight": "bold",
+              "lineHeight": 1,
+              "margin": 0,
+            },
+            "h3": Object {
+              "color": "black",
+              "fontFamily": "Roboto",
+              "fontSize": "4.9rem",
+              "fontWeight": "bold",
+              "lineHeight": 1,
+              "margin": "0.5rem auto",
+            },
+            "h4": Object {
+              "color": "black",
+              "fontFamily": "Roboto",
+              "fontSize": "3.82rem",
+              "fontWeight": "bold",
+              "lineHeight": 1,
+              "margin": "0.5rem auto",
+            },
+            "h5": Object {
+              "color": "black",
+              "fontFamily": "Roboto",
+              "fontSize": "3.19rem",
+              "fontWeight": "bold",
+              "lineHeight": 1,
+              "margin": "0.5rem auto",
+            },
+            "h6": Object {
+              "color": "black",
+              "fontFamily": "Roboto",
+              "fontSize": "2.66rem",
+              "fontWeight": "bold",
+              "lineHeight": 1,
+              "margin": "0.5rem auto",
+            },
+          },
+          "image": Object {
+            "display": "block",
+            "margin": "0.5rem auto",
+          },
+          "link": Object {
+            "textDecoration": "none",
+          },
+          "list": Object {
+            "listStylePosition": "inside",
+            "padding": 0,
+            "textAlign": "left",
+          },
+          "listItem": Object {
+            "fontSize": "2.66rem",
+          },
+          "quote": Object {
+            "borderLeft": "1px solid white",
+            "color": "white",
+            "display": "block",
+            "fontSize": "4.9rem",
+            "fontWeight": "bold",
+            "lineHeight": 1,
+            "paddingLeft": 40,
+          },
+          "s": Object {
+            "strikethrough": Object {},
+          },
+          "syntax": Object {
+            "direction": "ltr",
+            "fontFamily": "monospace",
+            "fontSize": "inherit",
+            "hyphens": "none",
+            "lineHeight": 1.5,
+            "margin": 0,
+            "padding": "0.5rem",
+            "tabSize": 2,
+            "textAlign": "left",
+            "whiteSpace": "pre-wrap",
+            "wordBreak": "normal",
+            "wordSpacing": "normal",
+          },
+          "table": Object {
+            "width": "100%",
+          },
+          "tableHeaderItem": Object {
+            "fontSize": "2.66rem",
+            "fontWeight": "bold",
+          },
+          "tableItem": Object {
+            "fontSize": "2.66rem",
+          },
+          "text": Object {
+            "color": "black",
+            "fontFamily": "Roboto",
+            "fontSize": "2.66rem",
+            "margin": "0.25rem auto",
+          },
+        },
+        "controls": Object {
+          "next": Object {
+            "background": "none",
+            "border": "none",
+            "outline": 0,
+            "position": "absolute",
+            "right": 20,
+            "top": "50%",
+            "transform": "translateY(-50%)",
+            "zIndex": 9999,
+          },
+          "nextIcon": Object {
+            "fill": "#CECECE",
+            "transition": "fill 1s ease-in-out 0.2s",
+          },
+          "prev": Object {
+            "background": "none",
+            "border": "none",
+            "left": 20,
+            "outline": 0,
+            "position": "absolute",
+            "top": "50%",
+            "transform": "translateY(-50%)",
+            "zIndex": 9999,
+          },
+          "prevIcon": Object {
+            "fill": "#CECECE",
+            "transition": "fill 1s ease-in-out 0.2s",
+          },
+        },
+        "fonts": Object {
+          "primary": "Roboto",
+          "secondary": "Helvetica",
+          "tertiary": "monospace",
+        },
+        "fullscreen": Object {
+          "fill": "#CECECE",
+        },
+        "global": Object {
+          "*": Object {
+            "boxSizing": "border-box",
+          },
+          "_:-moz-tree-row(hover), .spectacle-deck": Object {
+            "perspective": "1000px",
+          },
+          "_:-moz-tree-row(hover), ul .appear": Object {
+            "display": "inline",
+          },
+          "body": Object {
+            "background": "white",
+            "color": "#1F2022",
+            "fontFamily": "Roboto",
+            "fontSize": "2em",
+            "fontWeight": "normal",
+            "overflow": "hidden",
+          },
+          "html, body": Object {
+            "height": "100%",
+            "margin": 0,
+            "padding": 0,
+            "width": "100%",
+          },
+        },
+        "googleFonts": Object {},
+        "prism": Object {
+          "dark": "css-10oln9y",
+          "light": "css-fa91qj",
+        },
+        "progress": Object {
+          "bar": Object {
+            "bar": Object {
+              "background": "#CECECE",
+              "height": "100%",
+              "transition": "all 0.3s ease-out",
+            },
+            "container": Object {
+              "bottom": 0,
+              "height": "10px",
+              "left": 0,
+              "position": "absolute",
+              "transition": "all 1s ease-in-out 0.2s",
+              "width": "100%",
+              "zIndex": 1000,
+            },
+          },
+          "number": Object {
+            "container": Object {
+              "bottom": 10,
+              "color": "#CECECE",
+              "position": "absolute",
+              "right": 10,
+              "transition": "all 0.3s ease-out",
+              "zIndex": 1000,
+            },
+          },
+          "pacman": Object {
+            "container": Object {
+              "bottom": "5px",
+              "left": "50%",
+              "position": "absolute",
+              "transition": "all 1s ease-in-out 0.2s",
+              "zIndex": 1000,
+            },
+            "pacman": Object {
+              "height": "20px",
+              "position": "absolute",
+              "transform": "translate(-5px, -5px)",
+              "transition": "left 0.3s ease-in-out 0.2s",
+              "width": "20px",
+            },
+            "pacmanBottom": Object {
+              "background": "#CECECE",
+              "borderBottomLeftRadius": "10px",
+              "borderBottomRightRadius": "10px",
+              "content": "",
+              "height": "10px",
+              "position": "absolute",
+              "top": "10px",
+              "transition": "all 0.3s ease-out",
+              "width": "20px",
+            },
+            "pacmanTop": Object {
+              "background": "#CECECE",
+              "borderTopLeftRadius": "10px",
+              "borderTopRightRadius": "10px",
+              "content": "",
+              "height": "10px",
+              "position": "absolute",
+              "transition": "all 0.3s ease-out",
+              "width": "20px",
+            },
+            "point": Object {
+              "background": "transparent",
+              "borderColor": "#CECECE",
+              "borderRadius": "50%",
+              "borderStyle": "solid",
+              "borderWidth": 2,
+              "float": "left",
+              "height": "10px",
+              "position": "absolute",
+              "transition": "all 0.3s ease-out",
+              "width": "10px",
+            },
+          },
+        },
+      },
+    }
+  }
+  transition={
+    Array [
+      "zoom",
+      "slide",
+    ]
+  }
+  transitionDuration={500}
+>
+  <Slide
+    align="center center"
+    bgColor="primary"
+    presenterStyle={Object {}}
+    style={Object {}}
+    transition={
+      Array [
+        "zoom",
+      ]
+    }
+    viewerScaleMode={false}
+  >
+    <Heading
+      caps={true}
+      fit={true}
+      lineHeight={1}
+      size={1}
+      textColor="secondary"
+    >
+      Spectacle Boilerplate
+    </Heading>
+    <Text
+      bold={true}
+      fit={true}
+      lineHeight={1}
+      margin="10px 0 0"
+      textColor="tertiary"
+    >
+      open the presentation/index.js file to get started
+    </Text>
+  </Slide>
+  <Slide
+    align="center center"
+    bgColor="tertiary"
+    presenterStyle={Object {}}
+    style={Object {}}
+    transition={
+      Array [
+        "fade",
+      ]
+    }
+    viewerScaleMode={false}
+  >
+    <Heading
+      caps={true}
+      lineHeight={1}
+      size={6}
+      textColor="primary"
+    >
+      Typography
+    </Heading>
+    <Heading
+      lineHeight={1}
+      size={1}
+      textColor="secondary"
+    >
+      Heading 1
+    </Heading>
+    <Heading
+      lineHeight={1}
+      size={2}
+      textColor="secondary"
+    >
+      Heading 2
+    </Heading>
+    <Heading
+      lineHeight={1}
+      size={3}
+      textColor="secondary"
+    >
+      Heading 3
+    </Heading>
+    <Heading
+      lineHeight={1}
+      size={4}
+      textColor="secondary"
+    >
+      Heading 4
+    </Heading>
+    <Heading
+      lineHeight={1}
+      size={5}
+      textColor="secondary"
+    >
+      Heading 5
+    </Heading>
+    <Text
+      lineHeight={1}
+      size={6}
+      textColor="secondary"
+    >
+      Standard text
+    </Text>
+  </Slide>
+  <Slide
+    align="center center"
+    bgColor="primary"
+    presenterStyle={Object {}}
+    style={Object {}}
+    textColor="tertiary"
+    viewerScaleMode={false}
+  >
+    <Heading
+      caps={true}
+      lineHeight={1}
+      size={6}
+      textColor="secondary"
+    >
+      Standard List
+    </Heading>
+    <List
+      ordered={false}
+      reversed={false}
+      start={1}
+      type="1"
+    >
+      <ListItem>
+        Item 1
+      </ListItem>
+      <ListItem>
+        Item 2
+      </ListItem>
+      <ListItem>
+        Item 3
+      </ListItem>
+      <ListItem>
+        Item 4
+      </ListItem>
+    </List>
+  </Slide>
+  <Slide
+    align="center center"
+    bgColor="secondary"
+    presenterStyle={Object {}}
+    style={Object {}}
+    textColor="primary"
+    transition={
+      Array [
+        "fade",
+      ]
+    }
+    viewerScaleMode={false}
+  >
+    <BlockQuote>
+      <Quote>
+        Example Quote
+      </Quote>
+      <Cite>
+        Author
+      </Cite>
+    </BlockQuote>
+  </Slide>
+</Deck>
+`;

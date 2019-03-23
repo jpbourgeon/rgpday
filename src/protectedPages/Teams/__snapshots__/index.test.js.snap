@@ -1,0 +1,396 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The Teams protected page should render correctly 1`] = `
+<div
+  className="layout-1"
+>
+  <main>
+    <div
+      className="root-23 elevation2-27 rounded-24 paper-2"
+    >
+      <div
+        className="container-50"
+      >
+        <div
+          className="item-51 12-90 breadcrumb-3"
+        >
+          <nav
+            arial-label="Breadcrumb"
+            className="root-151 body1-160 colorTextSecondary-184 root-147"
+          >
+            <ol
+              className="ol-148"
+            >
+              <li
+                className="li-149"
+              >
+                <a
+                  aria-current="page"
+                  className="root-151 colorInherit-180 inline-186 root-187 underlineHover-189"
+                  href="/"
+                  onClick={[Function]}
+                >
+                  Accueil
+                </a>
+              </li>
+              <li
+                aria-hidden="true"
+                className="root-192 separator-150"
+              >
+                <svg
+                  aria-hidden="true"
+                  className="root-193 fontSizeSmall-200"
+                  focusable="false"
+                  role="presentation"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"
+                  />
+                  <path
+                    d="M0 0h24v24H0z"
+                    fill="none"
+                  />
+                </svg>
+              </li>
+              <li
+                className="li-149"
+              >
+                <a
+                  aria-current="page"
+                  className="root-151 colorInherit-180 inline-186 root-187 underlineHover-189"
+                  href="/"
+                  onClick={[Function]}
+                >
+                  Tableau de bord
+                </a>
+              </li>
+              <li
+                aria-hidden="true"
+                className="root-192 separator-150"
+              >
+                <svg
+                  aria-hidden="true"
+                  className="root-193 fontSizeSmall-200"
+                  focusable="false"
+                  role="presentation"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"
+                  />
+                  <path
+                    d="M0 0h24v24H0z"
+                    fill="none"
+                  />
+                </svg>
+              </li>
+              <li
+                className="li-149"
+              >
+                <a
+                  aria-current="page"
+                  className="root-151 colorInherit-180 inline-186 root-187 underlineHover-189"
+                  href="/"
+                  onClick={[Function]}
+                >
+                  Serious Game : choix de l'équipe
+                </a>
+              </li>
+            </ol>
+          </nav>
+        </div>
+        <div
+          className="item-51 12-90 title-4"
+        >
+          <h4
+            className="root-151 h4-166 gutterBottom-178"
+          >
+            <svg
+              aria-hidden="true"
+              className="root-193 titleIcon-5"
+              focusable="false"
+              role="presentation"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M0 0h24v24H0V0z"
+                fill="none"
+              />
+              <g>
+                <path
+                  d="M21 6H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 10H3V8h18v8z"
+                />
+                <path
+                  d="M6 15h2v-2h2v-2H8V9H6v2H4v2h2z"
+                />
+                <circle
+                  cx="14.5"
+                  cy="13.5"
+                  r="1.5"
+                />
+                <circle
+                  cx="18.5"
+                  cy="10.5"
+                  r="1.5"
+                />
+              </g>
+            </svg>
+             Serious Game
+            <div
+              className="fab-6"
+            >
+              <a
+                className="root-151 colorPrimary-181 inline-186 root-187 underlineHover-189"
+                href="//add-team"
+                onClick={[Function]}
+              >
+                <button
+                  aria-label="Ajouter"
+                  className="root-212 root-202 primary-204"
+                  disabled={false}
+                  onBlur={[Function]}
+                  onContextMenu={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  onKeyUp={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseLeave={[Function]}
+                  onMouseUp={[Function]}
+                  onTouchEnd={[Function]}
+                  onTouchMove={[Function]}
+                  onTouchStart={[Function]}
+                  tabIndex="0"
+                  type="button"
+                >
+                  <span
+                    className="label-203"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      className="root-193"
+                      focusable="false"
+                      role="presentation"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"
+                      />
+                      <path
+                        d="M0 0h24v24H0z"
+                        fill="none"
+                      />
+                    </svg>
+                  </span>
+                  <span
+                    className="root-296"
+                  />
+                </button>
+              </a>
+            </div>
+          </h4>
+          <hr
+            className="root-215 title-4"
+          />
+          <h5
+            className="root-151 h5-167 gutterBottom-178"
+          >
+            Choisissez votre équipe ou créez-en une nouvelle
+          </h5>
+        </div>
+        <div
+          className="item-51 12-90"
+        >
+          <form
+            autoComplete="off"
+            className="formContainer-11"
+            noValidate={true}
+            onSubmit={[Function]}
+          >
+            <div
+              className="container-50"
+            >
+              <div
+                className="item-51 grow-7"
+              >
+                <div
+                  className="root-220 marginNormal-221 fullWidth-223"
+                >
+                  <label
+                    className="root-235 root-224 formControl-229 animated-232 outlined-234"
+                    data-shrink={false}
+                  >
+                    Filtrer
+                  </label>
+                  <div
+                    className="root-255 root-242 fullWidth-264 formControl-256"
+                    onClick={[Function]}
+                  >
+                    <fieldset
+                      aria-hidden={true}
+                      className="root-272 notchedOutline-249"
+                      style={
+                        Object {
+                          "paddingLeft": 8,
+                        }
+                      }
+                    >
+                      <legend
+                        className="legend-273"
+                        style={
+                          Object {
+                            "width": 0.01,
+                          }
+                        }
+                      >
+                        <span
+                          dangerouslySetInnerHTML={
+                            Object {
+                              "__html": "&#8203;",
+                            }
+                          }
+                        />
+                      </legend>
+                    </fieldset>
+                    <input
+                      aria-invalid={false}
+                      className="input-265 input-250"
+                      disabled={false}
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onFocus={[Function]}
+                      required={false}
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                className="item-51 filterButtonsContainer-12"
+              >
+                <div
+                  className="filterButtons-13"
+                >
+                  <button
+                    className="root-212 root-274"
+                    disabled={false}
+                    onBlur={[Function]}
+                    onContextMenu={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    onKeyUp={[Function]}
+                    onMouseDown={[Function]}
+                    onMouseLeave={[Function]}
+                    onMouseUp={[Function]}
+                    onTouchEnd={[Function]}
+                    onTouchMove={[Function]}
+                    onTouchStart={[Function]}
+                    tabIndex="0"
+                    type="submit"
+                  >
+                    <span
+                      className="label-279"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        className="root-193"
+                        focusable="false"
+                        role="presentation"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+                        />
+                        <path
+                          d="M0 0h24v24H0z"
+                          fill="none"
+                        />
+                      </svg>
+                    </span>
+                    <span
+                      className="root-296"
+                    />
+                  </button>
+                  <button
+                    className="root-212 root-274"
+                    disabled={false}
+                    onBlur={[Function]}
+                    onClick={[Function]}
+                    onContextMenu={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    onKeyUp={[Function]}
+                    onMouseDown={[Function]}
+                    onMouseLeave={[Function]}
+                    onMouseUp={[Function]}
+                    onTouchEnd={[Function]}
+                    onTouchMove={[Function]}
+                    onTouchStart={[Function]}
+                    tabIndex="0"
+                    type="button"
+                  >
+                    <span
+                      className="label-279"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        className="root-193"
+                        focusable="false"
+                        role="presentation"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                        />
+                        <path
+                          d="M0 0h24v24H0z"
+                          fill="none"
+                        />
+                      </svg>
+                    </span>
+                    <span
+                      className="root-296"
+                    />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div
+          className="item-51 12-90"
+        >
+          <div
+            className="container-50 40-76 baseline-61"
+          >
+            <div
+              className="item-51 12-90"
+            >
+              <p
+                className="root-151 body1-160 gutterBottom-178"
+              >
+                Il n'y a pas d'équipe à afficher
+              </p>
+            </div>
+            <div
+              className="item-51 12-90 hide-10"
+            >
+              <p
+                className="root-151 body1-160 gutterBottom-178 loadMoreItem-9"
+              >
+                <a
+                  className="root-151 colorPrimary-181 inline-186 root-187 underlineHover-189 loadMoreLink-8"
+                  onClick={[Function]}
+                >
+                  Afficher plus de résultats
+                </a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+`;

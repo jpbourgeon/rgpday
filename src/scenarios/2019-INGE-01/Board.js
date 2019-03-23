@@ -1,19 +1,23 @@
 import React from 'react'
-import { ReactComponent as BoardImage } from './board.svg'
+import { ReactComponent as BoardImage } from './assets/board.svg'
 import toMaterialStyle from 'material-color-hash'
 
-class Board extends React.Component {
+class BoardComponent extends React.Component {
   componentDidMount () {
     const { services, team } = this.props
     const avatarColors = toMaterialStyle(team.name)
     const avatarCircle = document.getElementById('2019-INGE-01-board-avatar-circle')
-    avatarCircle.setAttribute('fill', avatarColors.backgroundColor)
+    if (avatarCircle) avatarCircle.setAttribute('fill', avatarColors.backgroundColor)
     const avatarHtml = document.getElementById('2019-INGE-01-board-avatar-html')
-    avatarHtml.style.color = avatarColors.color
-    avatarHtml.innerHTML = team.initials
+    if (avatarHtml) {
+      avatarHtml.style.color = avatarColors.color
+      avatarHtml.innerHTML = team.initials
+    }
     const avatarText = document.getElementById('2019-INGE-01-board-avatar-text')
-    avatarText.setAttribute('color', avatarColors.color)
-    avatarText.innerHTML = team.initials
+    if (avatarText) {
+      avatarText.setAttribute('color', avatarColors.color)
+      avatarText.innerHTML = team.initials
+    }
     Object.keys(services).forEach((id) => {
       const item = document.getElementById(services[id].svgId)
       item.style.cursor = 'pointer'
@@ -53,4 +57,4 @@ class Board extends React.Component {
     )
   }
 }
-export default Board
+export default BoardComponent
