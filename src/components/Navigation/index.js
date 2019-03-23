@@ -194,8 +194,6 @@ class Navigation extends React.Component {
         </AppBar>
       </div>
     )
-    // style={(sticky && window.innerWidth >= (1100 + theme.spacing.unit * 3 * 2)) ? {
-    // marginLeft: ``,
     let marginLeft
     if (paper) {
       marginLeft = (window.innerWidth >= 1100 + theme.spacing.unit * 3 * 2)
@@ -215,8 +213,16 @@ class Navigation extends React.Component {
       case (location.pathname === '/dashboard/serious-game'):
         fabTo = '/dashboard'
         break
-      case location.pathname.startsWith('/dashboard/serious-game'):
-        fabTo = '/dashboard/serious-game'
+      case (location.pathname.startsWith('/dashboard/serious-game/board')):
+        const pathArray = location.pathname.split('/')
+        switch (pathArray.length) {
+          case 6:
+            fabTo = `/dashboard/serious-game/board/${pathArray[4]}`
+            break
+          default:
+            fabTo = '/dashboard/serious-game/board'
+            break
+        }
         break
       default:
         fabTo = '/dashboard'

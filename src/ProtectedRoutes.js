@@ -38,6 +38,8 @@ const Presentation = (props) => (<Loadable loadablePath='protectedPages/Presenta
 const Teams = (props) => (<Loadable loadablePath='protectedPages/Teams' {...props} />)
 const EditTeam = (props) => (<Loadable loadablePath='protectedPages/EditTeam' {...props} />)
 const Board = (props) => (<Loadable loadablePath='protectedPages/Board' {...props} />)
+const Service = (props) => (<Loadable loadablePath='protectedPages/Service' {...props} />)
+const Score = (props) => (<Loadable loadablePath='protectedPages/Score' {...props} />)
 
 const styles = {
   '@global': {
@@ -82,6 +84,8 @@ class MyRouter extends React.Component {
           <EditTeam path='/serious-game/update-team/:teamId' config={config} />
           <Redirect noThrow from='/serious-game/update-team' to='/dashboard' />
           <Board path='/serious-game/board/:teamId' config={config} />
+          <Service path='/serious-game/board/:teamId/:serviceId' config={config} />
+          <Score path='/serious-game/board/:teamId/score' config={config} />
         </Router>
       )
     }
