@@ -123,3 +123,4 @@ x 2019-03-21 2019-03-17 Added: Frontend game board - show the team's avatar
 x 2019-03-21 2019-03-21 Fixed: frontend Navigation component, minified sticky display : calculate a consistent left margin wether we are on regular paper based pages or on the gameboard 
 x 2019-03-22 2019-03-22 Fixed: backend - prevent amplify-cli errors on infrequent amplify pushes
 x 2019-03-22 2019-03-22 Fixed: Rules component - better page nav display on small screen
+x 2019-03-22 2019-03-22 Changed: frontend Navigation component status (called in App.js) - Better pathname matching using regexp

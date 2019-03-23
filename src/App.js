@@ -22,10 +22,10 @@ const styles = () => ({
   }
 })
 
-const minified = ['/dashboard/presentation', '/dashboard/serious-game']
-const paper = ['/dashboard/serious-game']
-const board = ['/dashboard/serious-game/board']
-const faded = ['/dashboard/presentation']
+const minified = [/\/dashboard\/presentation/, /\/dashboard\/serious-game/]
+const paper = [/\/dashboard\/serious-game/]
+const board = [/(\/dashboard\/serious-game\/board)(.*)/]
+const faded = [/\/dashboard\/presentation/]
 
 class App extends React.Component {
   componentDidMount () {
@@ -45,10 +45,10 @@ class App extends React.Component {
           {({ location }) => {
             return (
               <Navigation
-                minified={minified.some((item) => (location.pathname.includes(item)))}
-                board={board.some((item) => (location.pathname.includes(item)))}
-                paper={paper.some((item) => (location.pathname.includes(item)))}
-                faded={faded.some((item) => (location.pathname.includes(item)))}
+                minified={minified.some((item) => (location.pathname.match(item)))}
+                board={board.some((item) => (location.pathname.match(item)))}
+                paper={paper.some((item) => (location.pathname.match(item)))}
+                faded={faded.some((item) => (location.pathname.match(item)))}
                 location={location}
               />
             )

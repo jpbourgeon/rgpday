@@ -146,8 +146,12 @@ const styles = theme => {
       marginBottom: '-1em !important'
     },
     itemActionIcon: {
-      width: 25,
-      height: 25
+      width: 18,
+      height: 18
+    },
+    itemLargeActionIcon: {
+      width: 36,
+      height: 36
     },
     itemActionDivider: {
       marginBottom: '0.5em'
@@ -281,18 +285,22 @@ class Component extends React.Component {
         </Grid>
         <Grid item xs={12} component='span' className={classes.tileActions}>
           <Divider className={classes.itemActionDivider} />
-          <MUILink onClick={() => { navigate(`/dashboard/serious-game/board/${item.id}`) }}>
-            <IconButton><Play size='small' color='secondary' className={classes.itemActionIcon} /></IconButton>
-          </MUILink>
-          <Link to={`./update-team/${item.id}`}>
-            <IconButton><Edit className={classes.itemActionIcon} /></IconButton>
-          </Link>
-          <MUILink
-            onClick={() => { this.handleDeleteDialog(item.id, item.name, true) }}
-            className={(config.isAdmin) ? null : classes.hide}
-          >
-            <IconButton><Delete size='small' className={classes.itemActionIcon} /></IconButton>
-          </MUILink>
+          <div style={{ float: 'left' }}>
+            <MUILink onClick={() => { navigate(`/dashboard/serious-game/board/${item.id}`) }}>
+              <IconButton><Play color='secondary' className={classes.itemLargeActionIcon} /></IconButton>
+            </MUILink>
+          </div>
+          <div style={{ float: 'right', paddingTop: 9 }}>
+            <Link to={`./update-team/${item.id}`}>
+              <IconButton><Edit className={classes.itemActionIcon} /></IconButton>
+            </Link>
+            <MUILink
+              onClick={() => { this.handleDeleteDialog(item.id, item.name, true) }}
+              className={(config.isAdmin) ? null : classes.hide}
+            >
+              <IconButton><Delete className={classes.itemActionIcon} /></IconButton>
+            </MUILink>
+          </div>
         </Grid>
       </Grid>
     )
