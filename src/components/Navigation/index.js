@@ -1,10 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import logger from 'src/logger'
+import { navigate } from '@reach/router'
 import { withStyles, withTheme } from '@material-ui/core/styles'
 import classnames from 'classnames'
 import AppBar from '@material-ui/core/AppBar'
-import { Link } from '@reach/router'
+import Link from 'src/components/Link'
+import MUILink from '@material-ui/core/Link'
 import Toolbar from '@material-ui/core/Toolbar'
 import Fade from '@material-ui/core/Fade'
 import Typography from '@material-ui/core/Typography'
@@ -65,6 +67,7 @@ class Navigation extends React.Component {
     }
     this.signOut = this.signOut.bind(this)
     this.reload = this.reload.bind(this)
+    this.goTo = this.goTo.bind(this)
     this._timer = null
     this.state = {
       moved: false
@@ -159,6 +162,11 @@ class Navigation extends React.Component {
     if (this._isMounted) this.changeState('signedOut')
   }
 
+  goTo (fabTo, openRules) {
+    this.props.toggleRules(openRules)
+    navigate(fabTo)
+  }
+
   render () {
     const { classes, minified, board, paper, faded, theme, location } = this.props
     const { moved } = this.state
@@ -208,21 +216,26 @@ class Navigation extends React.Component {
       marginLeft = (window.innerWidth - width) / 2 - theme.spacing.unit * 4
     }
 
+    let openRules = true
     let fabTo
     switch (true) {
-      case (location.pathname === '/dashboard/serious-game'):
-        fabTo = '/dashboard'
-        break
       case (location.pathname.startsWith('/dashboard/serious-game/board')):
+        openRules = false
         const pathArray = location.pathname.split('/')
         switch (pathArray.length) {
           case 6:
             fabTo = `/dashboard/serious-game/board/${pathArray[4]}`
             break
           default:
-            fabTo = '/dashboard/serious-game/board'
+            fabTo = '/dashboard/serious-game'
             break
         }
+        break
+      case (location.pathname === ('/dashboard/serious-game')):
+        fabTo = '/dashboard'
+        break
+      case (location.pathname.startsWith('/dashboard/serious-game')):
+        fabTo = '/dashboard/serious-game'
         break
       default:
         fabTo = '/dashboard'
@@ -230,7 +243,7 @@ class Navigation extends React.Component {
     }
     const fab = (
       <div>
-        <Link to={fabTo}>
+        <MUILink onClick={() => this.goTo(fabTo, openRules)}>
           <Fab
             color='primary'
             aria-label='Retour'
@@ -243,7 +256,7 @@ class Navigation extends React.Component {
           >
             <ArrowBack />
           </Fab>
-        </Link>
+        </MUILink>
       </div>
     )
     if (minified && faded) return <Fade in={moved}>{fab}</Fade>

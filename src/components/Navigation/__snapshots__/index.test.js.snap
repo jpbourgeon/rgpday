@@ -15,7 +15,7 @@ exports[`The Navigation component should render correctly 1`] = `
       >
         <a
           aria-current="page"
-          className="menuLink-3"
+          className="root-46 colorPrimary-76 inline-81 root-82 underlineHover-84 menuLink-3"
           href="/"
           onClick={[Function]}
         >
@@ -23,21 +23,21 @@ exports[`The Navigation component should render correctly 1`] = `
         </a>
       </h6>
       <a
-        className="menuLink-3"
+        className="root-46 colorPrimary-76 inline-81 root-82 underlineHover-84 menuLink-3"
         href="/about"
         onClick={[Function]}
       >
         À propos
       </a>
       <a
-        className="menuLink-3"
+        className="root-46 colorPrimary-76 inline-81 root-82 underlineHover-84 menuLink-3"
         href="/contact"
         onClick={[Function]}
       >
         Contact
       </a>
       <a
-        className="menuLink-3"
+        className="root-46 colorPrimary-76 inline-81 root-82 underlineHover-84 menuLink-3"
         href="/dashboard"
         onClick={[Function]}
       >

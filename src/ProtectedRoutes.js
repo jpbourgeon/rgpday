@@ -83,9 +83,10 @@ class MyRouter extends React.Component {
           <EditTeam path='/serious-game/add-team' config={config} />
           <EditTeam path='/serious-game/update-team/:teamId' config={config} />
           <Redirect noThrow from='/serious-game/update-team' to='/dashboard' />
-          <Board path='/serious-game/board/:teamId' config={config} />
+          <Board path='/serious-game/board/:teamId' config={config} openRules={this.props.openRules} />
           <Service path='/serious-game/board/:teamId/:serviceId' config={config} />
           <Score path='/serious-game/board/:teamId/score' config={config} />
+          <Redirect noThrow from='/serious-game/board' to='/dashboard/serious-game' />
         </Router>
       )
     }
@@ -208,6 +209,7 @@ class ProtectedRoutes extends React.Component {
           <MyStyledRouter
             config={this.state.config}
             setConfig={this.setConfig}
+            openRules={this.props.openRules}
           />
         </Authenticator>
       </React.Fragment>

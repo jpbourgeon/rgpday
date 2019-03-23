@@ -45,22 +45,21 @@ class Board extends React.Component {
       id: null,
       name: null,
       initials: null
-
     }
     this.state.ready = false
-    this.state.openRules = true
-    this.state.openRules = true
-    this.reload = this.reload.bind(this)
-    this.openRules = this.openRules.bind(this)
-    this.closeRules = this.closeRules.bind(this)
-
+    this.state.openRules = props.openRules || typeof props.openRules === 'undefined'
     this._isMounted = false
     this.Scenario = null
     this.GameBoard = null
     this.scenarioRef = React.createRef()
     this.boardRef = React.createRef()
     this.checkRefsReceivedTimer = null
+
     this.checkRefsReceived = this.checkRefsReceived.bind(this)
+    this.reload = this.reload.bind(this)
+    this.openRules = this.openRules.bind(this)
+    this.goTo = this.goTo.bind(this)
+    this.closeRules = this.closeRules.bind(this)
   }
 
   async componentDidMount () {
@@ -101,6 +100,10 @@ class Board extends React.Component {
     this.setState({ openRules: true })
   }
 
+  goTo (to) {
+    this.props.navigate(to)
+  }
+
   closeRules () {
     this.setState({ openRules: false })
   }
@@ -121,7 +124,7 @@ class Board extends React.Component {
   }
 
   render () {
-    const { classes, theme } = this.props
+    const { classes, theme, location: { pathname } } = this.props
     const paperHeight = window.innerHeight - theme.spacing.unit * 8
     const maxSVGHeight = (window.innerWidth * 707 / 1042) - theme.spacing.unit * 8
     const height = Math.min(paperHeight, maxSVGHeight)
@@ -141,6 +144,8 @@ class Board extends React.Component {
                   ref={this.boardRef}
                   team={this.state.team}
                   openRules={this.openRules}
+                  navigate={this.goTo}
+                  pathname={pathname}
                   services={this.scenarioRef.current.scenario.get('services')}
                 /> : <Loading />}
               </Grid>

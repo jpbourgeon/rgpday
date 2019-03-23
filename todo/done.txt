@@ -127,3 +127,5 @@ x 2019-03-22 2019-03-22 Changed: frontend Navigation component status (called in
 x 2019-03-23 2019-03-22 Fixed: frontend - refactor components and pages names and their respective snapshot test
 x 2019-03-23 2019-03-22 Added: frontend empty Service protected page
 x 2019-03-23 2019-03-22 Added: frontend empty Score protected page
+x 2019-03-23 2019-03-22 Changed: frontend game - the rules open automatically only once
+x 2019-03-23 2019-03-23 Added: add the board design files to the repo

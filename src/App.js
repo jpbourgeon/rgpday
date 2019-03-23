@@ -28,11 +28,23 @@ const board = [/(\/dashboard\/serious-game\/board)(.*)/]
 const faded = [/\/dashboard\/presentation/]
 
 class App extends React.Component {
+  constructor () {
+    super()
+    this.state = {
+      openRules: false
+    }
+    this.toggleRules = this.toggleRules.bind(this)
+  }
+
   componentDidMount () {
     loadReCaptcha({
       key: '6LedLpMUAAAAAG8Ai4M4x9wTcIs4rPmvYV82a7Yh',
       id: 'rgpday.com'
     })
+  }
+
+  toggleRules (status) {
+    this.setState({ openRules: status })
   }
 
   render () {
@@ -50,6 +62,7 @@ class App extends React.Component {
                 paper={paper.some((item) => (location.pathname.match(item)))}
                 faded={faded.some((item) => (location.pathname.match(item)))}
                 location={location}
+                toggleRules={this.toggleRules}
               />
             )
           }}
@@ -60,7 +73,7 @@ class App extends React.Component {
           <Home path='/' />
           <About path='about' />
           <Contact path='/contact' />
-          <ProtectedRoutes path='/dashboard/*' />
+          <ProtectedRoutes path='/dashboard/*' openRules={this.state.openRules} />
           <ReCaptcha path='/recaptcha' />
         </Router>
 

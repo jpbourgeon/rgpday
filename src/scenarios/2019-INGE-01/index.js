@@ -21,28 +21,28 @@ scenario.set('services', {
     svgId: '2019-INGE-01-board-dir',
     primary: '#4db6ac',
     secondary: '#009688',
-    action: 'interview'
+    action: 'service'
   },
   'rhf': {
     name: 'RH / Finances',
     svgId: '2019-INGE-01-board-rhf',
     primary: '#ff8a80',
     secondary: '#f44336',
-    action: 'interview'
+    action: 'service'
   },
   'it': {
     name: 'Informatique',
     svgId: '2019-INGE-01-board-it',
     primary: '#82b1ff',
     secondary: '#2196f3',
-    action: 'interview'
+    action: 'service'
   },
   'dpo': {
     name: 'DPO',
     svgId: '2019-INGE-01-board-dpo',
     primary: '#ffd180',
     secondary: '#ff9800',
-    action: 'scores'
+    action: 'score'
   }
 })
 

@@ -22,27 +22,33 @@ class BoardComponent extends React.Component {
       const item = document.getElementById(services[id].svgId)
       item.style.cursor = 'pointer'
       item.style.transition = 'fill .175s ease-in'
-      this.addListeners(this.props.services[id])
+      this.addListeners(this.props.services[id], id)
     })
   }
 
   componentWillUnmount () {
     const { services } = this.props
-    Object.keys(services).forEach((service) => {
-      this.removeListeners(this.props.services[service])
+    Object.keys(services).forEach((id) => {
+      this.removeListeners(this.props.services[id], id)
     })
   }
 
-  addListeners (service) {
+  addListeners (service, id) {
+    const { pathname } = this.props
     const item = document.getElementById(service.svgId)
     if (service.action === 'rules') item.addEventListener('click', this.props.openRules)
+    if (service.action === 'service') item.addEventListener('click', () => (this.props.navigate(`${pathname}/${id}`)))
+    if (service.action === 'score') item.addEventListener('click', () => (this.props.navigate(`${pathname}/score`)))
     item.addEventListener('mouseover', () => this.fade(service.svgId, service.secondary))
     item.addEventListener('mouseleave', () => this.fade(service.svgId, service.primary))
   }
 
-  removeListeners (service) {
+  removeListeners (service, id) {
+    const { pathname } = this.props
     const item = document.getElementById(service.svgId)
-    item.removeEventListener('click', this.props.openRules)
+    if (service.action === 'rules') item.removeEventListener('click', this.props.openRules)
+    if (service.action === 'service') item.removeEventListener('click', () => (this.props.navigate(`${pathname}/${id}`)))
+    if (service.action === 'score') item.removeEventListener('click', () => (this.props.navigate(`${pathname}/score`)))
     item.removeEventListener('mouseover', () => this.fade(service.svgId, service.secondary))
     item.removeEventListener('mouseleave', () => this.fade(service.svgId, service.primary))
   }secondary

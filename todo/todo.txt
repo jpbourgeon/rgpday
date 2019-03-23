@@ -1,21 +1,23 @@
-2019-03-22 Added: game interview feature
-2019-03-22 Added: game quizz feature
-2019-03-22 Added: game consulting feature
-2019-03-22 Added: game file upload / download feature
-2019-03-22 Added: game timeline feature (money and time are spent when you (re)start an interview with a service)
+2019-03-22 Added: frontend game interview feature
+2019-03-22 Added: frontend game quizz feature
+2019-03-22 Added: frontend game consulting feature
+2019-03-22 Added: frontend game file upload / download feature
+2019-03-22 Added: frontend game time management feature (money and time are spent when you (re)start an interview with a service)
+2019-03-22 Fixed: admin restricted access to every protected pages and features (session / admin)
 2019-02-09 write the conference
 2019-02-09 write the game scenario
 2019-03-09 cascade delete scenario
 2019-03-09 cascade delete session
 2019-03-09 cascade delete team
+2019-03-09 DB and files compaction : delete orphan documents and files
 2019-03-18 use the service worker
-2019-03-13 Code quality: write better snapshots (test props, mock async)
-2019-03-13 Code quality: refactor spaghetti components and pages
-2019-03-13 Code quality: refactor methods with unit tests
 2019-02-09 "mentions legales" (Copyright) / RGPD page + [Cookie Consent](https://cookieconsent.insites.com/) <https://www.service-public.fr/professionnels-entreprises/vosdroits/F31228>
-2019-02-09 conditional robots.txt on CD, depending on the published branch
 2019-02-20 Home page : add reviews from CUCDB (Turrel / Aubrier)
+2019-02-09 conditional robots.txt on CD, depending on the published branch
 2019-02-26 meta => Title in Default page (in particular for 404.html)
 2019-02-10 SEO : start promoting the service => headers meta, sitemap, etc. Lighthouse, <https://varvy.com/>, <https://seositecheckup.com/>
 2019-03-01 Add analytics
-2019-03-01 Add a blog and a newsletter
+2019-03-01 Add a blog and/or a newsletter
+2019-03-13 Code quality: write better snapshots (test props, mock async), write tests
+2019-03-13 Code quality: refactor massive components and pages
+2019-03-13 Code quality: refactor every method includint unit testing
