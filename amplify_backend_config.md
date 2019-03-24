@@ -231,8 +231,17 @@ Describes all the steps necessary to provision the backend resources in the clou
 
 ### Local configuration
 
+- Since the app will be lightly used, change the DynamoDB Billing Mode to PAY_PER_REQUEST. In ``amplify/api/parameters.json``:
+```json
+{
+  "DynamoDBBillingMode": "PAY_PER_REQUEST"
+}
+```
 - Since we are using AWS Cognito and IAM to manage unauthenticated users, do not create an API key associated to the API, to prevent amplify-cli errors on infrequent amplify pushes. In ``amplify/api/parameters.json``:
 ```json
+{
+  "APIKeyExpirationEpoch": -1
+}
 ```
   - For more info on this topic, sze:
     - <https://github.com/aws-amplify/amplify-cli/issues/808>

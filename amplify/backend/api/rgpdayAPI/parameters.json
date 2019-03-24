@@ -1,5 +1,5 @@
 {
-    "DynamoDBBillingMode": "PROVISIONED",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST",
     "AppSyncApiName": "rgpdayAPI",
     "AuthCognitoUserPoolId": {
         "Fn::GetAtt": [

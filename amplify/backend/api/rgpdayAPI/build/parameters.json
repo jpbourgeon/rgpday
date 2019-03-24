@@ -1,5 +1,5 @@
 {
-    "DynamoDBBillingMode": "PROVISIONED",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST",
     "AppSyncApiName": "rgpdayAPI",
     "AuthCognitoUserPoolId": {
         "Fn::GetAtt": [
@@ -8,6 +8,6 @@
         ]
     },
     "APIKeyExpirationEpoch": -1,
-    "S3DeploymentBucket": "rgpday-20190305112118-deployment",
-    "S3DeploymentRootKey": "amplify-appsync-files/650a2e97f8d153dac619ab9d68c5873795613ea5"
+    "S3DeploymentBucket": "rgpday-20190302163236-deployment",
+    "S3DeploymentRootKey": "amplify-appsync-files/a6e9b0d743d147ce9d78ae81400f4ed64d3da786"
 }
