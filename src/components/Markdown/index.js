@@ -19,11 +19,11 @@ const options = {
     li: {
       component: withStyles(styles)(({ classes, ...props }) => (
         <li className={classes.listItem}>
-          <Typography component='span' {...props} />
+          <Typography component='span' variant='body1' {...props} />
         </li>
       ))
     },
-    a: { component: props => <Link {...props} /> }
+    a: { component: props => <Link variant='body1' {...props} /> }
   }
 }
 

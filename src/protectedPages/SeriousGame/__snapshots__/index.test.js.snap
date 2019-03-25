@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`The Rules component should render correctly 1`] = `
-<WithStyles(Board)
+<WithStyles(SeriousGame)
   config={
     Object {
       "scenarioId": "2019-INGE-01",

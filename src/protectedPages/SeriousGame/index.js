@@ -37,7 +37,7 @@ const styles = theme => {
   }
 }
 
-class Board extends React.Component {
+class SeriousGame extends React.Component {
   constructor (props) {
     super(props)
     this.state = {}
@@ -63,13 +63,21 @@ class Board extends React.Component {
   }
 
   async componentDidMount () {
-    this._isMounted = true
-    const { config } = this.props
-    window.addEventListener('resize', this.reload, false)
-    this.GameBoard = (config.scenarioId) ? loadable(() => (import(`../../scenarios/${config.scenarioId}/Board`))) : null
-    this.Scenario = (config.scenarioId) ? loadable.lib(() => (import(`../../scenarios/${config.scenarioId}`))) : null
-    this.checkRefsReceived()
-    await this.getTeam()
+    try {
+      this._isMounted = true
+      const { config } = this.props
+      window.addEventListener('resize', this.reload, false)
+      this.GameBoard = (config.scenarioId)
+        ? loadable(() => (import(`../../scenarios/${config.scenarioId}/Board`)))
+        : null
+      this.Scenario = (config.scenarioId)
+        ? loadable.lib(() => (import(`../../scenarios/${config.scenarioId}`)))
+        : null
+      await this.getTeam()
+      if (this._isMounted) this.forceUpdate()
+    } catch (error) {
+      logger.error(error)
+    }
   }
 
   componentWillUnmount () {
@@ -87,20 +95,25 @@ class Board extends React.Component {
   checkRefsReceived () {
     clearTimeout(this.checkRefsReceivedTimer)
     this.checkRefsReceivedTimer = setTimeout(() => {
-      this.forceUpdate()
-    }, 300)
+      if (this._isMounted) this.forceUpdate()
+    }, 100)
   }
 
   reload (event) {
     event.preventDefault()
-    this.forceUpdate()
+    if (this._isMounted) this.forceUpdate()
   }
 
   openRules () {
     this.setState({ openRules: true })
   }
 
-  goTo (to) {
+  goTo (to, id) {
+    const team = this.state.team
+    const service = (this.scenarioRef.current)
+      ? this.scenarioRef.current.scenario.services[id]
+      : null
+    this.props.setInterviewData({ service, team })
     this.props.navigate(to)
   }
 
@@ -109,17 +122,22 @@ class Board extends React.Component {
   }
 
   async getTeam () {
-    // GraphQL
-    const result = await API.graphql(
-      graphqlOperation(getTeam, { id: this.props.teamId })
-    )
-    if (!result.errors && result.data.getTeam) {
-      const team = { ...result.data.getTeam }
-      if (this._isMounted) {
-        this.setState({ team })
+    try {
+      // GraphQL
+      const result = await API.graphql(
+        graphqlOperation(getTeam, { id: this.props.teamId })
+      )
+      if (!result.errors && result.data.getTeam) {
+        const team = { ...result.data.getTeam }
+        if (this._isMounted) {
+          this.setState({ team })
+        }
+      } else {
+        logger.error('loadItems', result)
+        this.props.navigate('/dashboard')
       }
-    } else {
-      logger.error('loadItems', result)
+    } catch (error) {
+      logger.error(error)
     }
   }
 
@@ -131,11 +149,11 @@ class Board extends React.Component {
     const Scenario = this.Scenario
     const GameBoard = this.GameBoard
     const rules = (this.scenarioRef.current)
-      ? this.scenarioRef.current.scenario.get('rules')
+      ? this.scenarioRef.current.scenario.rules
       : [() => (<Loading />)]
     return (
       <div className={classes.layout} style={{ height, width: height * 1042 / 707 }}>
-        {(Scenario) ? <Scenario ref={this.scenarioRef} /> : null }
+        {(Scenario) ? <Scenario ref={this.scenarioRef} /> : null}
         <main>
           <Paper elevation={8} style={{ height }}>
             <Grid container>
@@ -146,7 +164,7 @@ class Board extends React.Component {
                   openRules={this.openRules}
                   navigate={this.goTo}
                   pathname={pathname}
-                  services={this.scenarioRef.current.scenario.get('services')}
+                  services={this.scenarioRef.current.scenario.services}
                 /> : <Loading />}
               </Grid>
             </Grid>
@@ -163,9 +181,9 @@ class Board extends React.Component {
   }
 }
 
-Board.propTypes = {
+SeriousGame.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired
 }
 
-export default withTheme()(withStyles(styles)(Board))
+export default withTheme()(withStyles(styles)(SeriousGame))

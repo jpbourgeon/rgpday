@@ -37,7 +37,7 @@ const EditPresentation = (props) => (<Loadable loadablePath='protectedPages/Edit
 const Presentation = (props) => (<Loadable loadablePath='protectedPages/Presentation' {...props} />)
 const Teams = (props) => (<Loadable loadablePath='protectedPages/Teams' {...props} />)
 const EditTeam = (props) => (<Loadable loadablePath='protectedPages/EditTeam' {...props} />)
-const Board = (props) => (<Loadable loadablePath='protectedPages/Board' {...props} />)
+const SeriousGame = (props) => (<Loadable loadablePath='protectedPages/SeriousGame' {...props} />)
 const Service = (props) => (<Loadable loadablePath='protectedPages/Service' {...props} />)
 const Score = (props) => (<Loadable loadablePath='protectedPages/Score' {...props} />)
 
@@ -83,8 +83,17 @@ class MyRouter extends React.Component {
           <EditTeam path='/serious-game/add-team' config={config} />
           <EditTeam path='/serious-game/update-team/:teamId' config={config} />
           <Redirect noThrow from='/serious-game/update-team' to='/dashboard' />
-          <Board path='/serious-game/board/:teamId' config={config} openRules={this.props.openRules} />
-          <Service path='/serious-game/board/:teamId/:serviceId' config={config} />
+          <SeriousGame
+            path='/serious-game/board/:teamId'
+            config={config}
+            openRules={this.props.openRules}
+            setInterviewData={this.props.setInterviewData}
+          />
+          <Service path='/serious-game/board/:teamId/:serviceId'
+            config={config}
+            openRules={this.props.openRules}
+            interviewData={this.props.interviewData}
+          />
           <Score path='/serious-game/board/:teamId/score' config={config} />
           <Redirect noThrow from='/serious-game/board' to='/dashboard/serious-game' />
         </Router>
@@ -104,11 +113,13 @@ class ProtectedRoutes extends React.Component {
         isAdmin: false,
         sessionId: null,
         scenarioId: null,
-        presentationId: null
+        presentationId: null,
+        interviewData: null
       }
     }
     this.setConfig = this.setConfig.bind(this)
     this.getConfig = this.getConfig.bind(this)
+    this.setInterviewData = this.setInterviewData.bind(this)
   }
 
   componentDidMount () {
@@ -197,6 +208,10 @@ class ProtectedRoutes extends React.Component {
     }
   }
 
+  setInterviewData (interviewData) {
+    this.setState({ interviewData })
+  }
+
   render () {
     return (
       <React.Fragment>
@@ -210,6 +225,8 @@ class ProtectedRoutes extends React.Component {
             config={this.state.config}
             setConfig={this.setConfig}
             openRules={this.props.openRules}
+            interviewData={this.state.interviewData}
+            setInterviewData={this.setInterviewData}
           />
         </Authenticator>
       </React.Fragment>

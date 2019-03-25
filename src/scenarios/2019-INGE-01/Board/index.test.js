@@ -1,7 +1,7 @@
 /* global describe, it, expect */
 import React from 'react'
 import renderer from 'react-test-renderer'
-import BoardComponent from './Board'
+import BoardComponent from './'
 import jssSerializer from 'src/utils/jssSnapshotSerializer'
 
 expect.addSnapshotSerializer(jssSerializer)

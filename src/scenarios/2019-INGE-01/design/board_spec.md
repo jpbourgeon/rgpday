@@ -20,10 +20,10 @@ A partir de l'export SVG issu de draw.io
 ## 2019-INGE-01 : identifiants et paramètres
 
 - Services: couleur primaire, couleur secondaire
-  - 2019-INGE-01-board-arc: #d7ccc8, #795548
-  - 2019-INGE-01-board-dir: #4db6ac, #009688
-  - 2019-INGE-01-board-rhf: #ff8a80, #f44336
-  - 2019-INGE-01-board-it:  #82b1ff, #2962ff
+  - 2019-INGE-01-board-archives-documentation: #d7ccc8, #795548
+  - 2019-INGE-01-board-direction: #4db6ac, #009688
+  - 2019-INGE-01-board-ressources-humaines-finances: #ff8a80, #f44336
+  - 2019-INGE-01-board-informatique:  #82b1ff, #2962ff
   - 2019-INGE-01-board-dpo: #ffd180, #ff9800
 - Avatar
   - 2019-INGE-01-board-avatar-circle

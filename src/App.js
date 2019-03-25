@@ -23,8 +23,8 @@ const styles = () => ({
 })
 
 const minified = [/\/dashboard\/presentation/, /\/dashboard\/serious-game/]
-const paper = [/\/dashboard\/serious-game/]
-const board = [/(\/dashboard\/serious-game\/board)(.*)/]
+const paper = [/\/dashboard\/serious-game/, /\/dashboard\/serious-game\/board\/\d+\/.*\/?$/]
+const board = [/\/dashboard\/serious-game\/board\/\d+\/?$/]
 const faded = [/\/dashboard\/presentation/]
 
 class App extends React.Component {
