@@ -32,6 +32,14 @@ type Team {
   initials: String
   searchable: String
   session: Session!
+  quizzes(filter: ModelQuizzFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelQuizzConnection
+}
+
+type Quizz {
+  id: ID!
+  service: String!
+  answers: AWSJSON!
+  team: Team!
 }
 
 type Config {
@@ -49,6 +57,8 @@ type Query {
   listSessions(filter: ModelSessionFilterInput, limit: Int, nextToken: String): ModelSessionConnection
   getTeam(id: ID!): Team
   listTeams(filter: ModelTeamFilterInput, limit: Int, nextToken: String): ModelTeamConnection
+  getQuizz(id: ID!): Quizz
+  listQuizzs(filter: ModelQuizzFilterInput, limit: Int, nextToken: String): ModelQuizzConnection
   getConfig(id: ID!): Config
   listConfigs(filter: ModelConfigFilterInput, limit: Int, nextToken: String): ModelConfigConnection
 }
@@ -156,6 +166,9 @@ type Mutation {
   createTeam(input: CreateTeamInput!): Team
   updateTeam(input: UpdateTeamInput!): Team
   deleteTeam(input: DeleteTeamInput!): Team
+  createQuizz(input: CreateQuizzInput!): Quizz
+  updateQuizz(input: UpdateQuizzInput!): Quizz
+  deleteQuizz(input: DeleteQuizzInput!): Quizz
   createConfig(input: CreateConfigInput!): Config
   updateConfig(input: UpdateConfigInput!): Config
   deleteConfig(input: DeleteConfigInput!): Config
@@ -174,6 +187,9 @@ type Subscription {
   onCreateTeam: Team @aws_subscribe(mutations: ["createTeam"])
   onUpdateTeam: Team @aws_subscribe(mutations: ["updateTeam"])
   onDeleteTeam: Team @aws_subscribe(mutations: ["deleteTeam"])
+  onCreateQuizz: Quizz @aws_subscribe(mutations: ["createQuizz"])
+  onUpdateQuizz: Quizz @aws_subscribe(mutations: ["updateQuizz"])
+  onDeleteQuizz: Quizz @aws_subscribe(mutations: ["deleteQuizz"])
   onCreateConfig: Config @aws_subscribe(mutations: ["createConfig"])
   onUpdateConfig: Config @aws_subscribe(mutations: ["updateConfig"])
   onDeleteConfig: Config @aws_subscribe(mutations: ["deleteConfig"])
@@ -290,6 +306,38 @@ input UpdateTeamInput {
 }
 
 input DeleteTeamInput {
+  id: ID
+}
+
+type ModelQuizzConnection {
+  items: [Quizz]
+  nextToken: String
+}
+
+input ModelQuizzFilterInput {
+  id: ModelIDFilterInput
+  service: ModelStringFilterInput
+  answers: ModelStringFilterInput
+  and: [ModelQuizzFilterInput]
+  or: [ModelQuizzFilterInput]
+  not: ModelQuizzFilterInput
+}
+
+input CreateQuizzInput {
+  id: ID
+  service: String!
+  answers: AWSJSON!
+  quizzTeamId: ID!
+}
+
+input UpdateQuizzInput {
+  id: ID!
+  service: String
+  answers: AWSJSON
+  quizzTeamId: ID
+}
+
+input DeleteQuizzInput {
   id: ID
 }
 

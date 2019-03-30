@@ -8,6 +8,6 @@
         ]
     },
     "APIKeyExpirationEpoch": -1,
-    "S3DeploymentBucket": "rgpday-20190302163236-deployment",
-    "S3DeploymentRootKey": "amplify-appsync-files/a6e9b0d743d147ce9d78ae81400f4ed64d3da786"
+    "S3DeploymentBucket": "rgpday-20190305112118-deployment",
+    "S3DeploymentRootKey": "amplify-appsync-files/0761369495e8f4ec391598592bf5c2aa53af682b"
 }

@@ -28,13 +28,24 @@ type Session @model {
 
 type Team @model {
   # the id is a hash of the JSON stringification of
-  # the session and name key value pairs to make 
+  # the session id and team name key value pairs to make 
   # the name unique for a particular session
   id:ID!
   name: String!
   initials: String
   searchable: String
   session: Session! @connection(name: "SessionTeams")
+  quizzes: [Quizz] @connection(name: "TeamQuizzes")
+}
+
+type Quizz @model {
+  # the id is a hash of the JSON stringification of
+  # the team id and service name key value pairs to make 
+  # the name unique for a particular Team
+  id:ID!
+  service: String!
+  answers: AWSJSON!
+  team: Team! @connection(name: "TeamQuizzes")
 }
 
 type Config @model {

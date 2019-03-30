@@ -7,6 +7,7 @@ exports[`The Service protected page should render correctly 1`] = `
       "avatarIcon": "Service-avatarIcon-3",
       "divider": "Service-divider-4",
       "layout": "Service-layout-1",
+      "mobileStepper": "Service-mobileStepper-6",
       "paper": "Service-paper-2",
       "question": "Service-question-5",
     }

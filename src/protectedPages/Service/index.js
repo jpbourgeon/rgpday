@@ -10,6 +10,17 @@ import Loading from 'src/components/Loading'
 import Link from '@material-ui/core/Link'
 import Avatar from '@material-ui/core/Avatar'
 import toMaterialStyle from 'material-color-hash'
+import stringHash from 'string-hash'
+import Button from '@material-ui/core/Button'
+import Hidden from '@material-ui/core/Hidden'
+import MobileStepper from '@material-ui/core/MobileStepper'
+import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft'
+import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight'
+import FormControl from '@material-ui/core/FormControl'
+import FormGroup from '@material-ui/core/FormGroup'
+import FormControlLabel from '@material-ui/core/FormControlLabel'
+import Checkbox from '@material-ui/core/Checkbox'
+
 import Markdown from 'src/components/Markdown'
 
 const styles = theme => {
@@ -43,6 +54,9 @@ const styles = theme => {
     },
     question: {
       clear: 'both'
+    },
+    mobileStepper: {
+      marginBottom: theme.spacing.unit * 3
     }
   }
 }
@@ -52,24 +66,34 @@ class Service extends React.Component {
     super(props)
     this._isMounted = false
     this.Interview = null
+    this.Quizz = null
     this.interviewRef = React.createRef()
+    this.quizzRef = React.createRef()
     this.checkRefsReceivedTimer = null
     this.defaultState = {
-      currentDialog: 0
+      currentDialog: 0,
+      currentQuestion: 0,
+      answers: null
     }
     this.state = this.defaultState
 
     this.checkRefsReceived = this.checkRefsReceived.bind(this)
     this.showDialog = this.showDialog.bind(this)
+    this.setCurrentQuestion = this.setCurrentQuestion.bind(this)
+    this.toggleAnswer = this.toggleAnswer.bind(this)
   }
 
   componentDidMount () {
     this._isMounted = true
+    this.setState(this.defaultState)
     const { config, serviceId } = this.props
     // const { config, serviceId, service, navigate } = this.props
     // if (!service) navigate('/dashboard')
     this.Interview = (config.scenarioId && serviceId)
       ? loadable.lib(() => (import(`../../scenarios/${config.scenarioId}/interviews/${serviceId}.js`)))
+      : null
+    this.Quizz = (config.scenarioId && serviceId)
+      ? loadable.lib(() => (import(`../../scenarios/${config.scenarioId}/quizzes/${serviceId}.js`)))
       : null
     if (this._isMounted) this.forceUpdate()
   }
@@ -80,8 +104,19 @@ class Service extends React.Component {
   }
 
   componentDidUpdate () {
-    if (!this.interviewRef.current) {
+    if (!this.interviewRef.current || !this.quizzRef.current) {
       this.checkRefsReceived()
+      return null
+    }
+    if (!this.state.answers) {
+      const answers = (this.quizzRef.current)
+        ? this.quizzRef.current.quizz.map((item) => {
+          return item.answers.map((item) => {
+            return { isChecked: false }
+          })
+        })
+        : null
+      this.setState({ answers })
     }
   }
 
@@ -100,9 +135,36 @@ class Service extends React.Component {
     }
   }
 
+  setCurrentQuestion (id) {
+    if (this.quizzRef.current) {
+      const quizz = this.quizzRef.current.quizz
+      let currentQuestion
+      switch (true) {
+        case (id < 0):
+          currentQuestion = 0
+          break
+        case (id > quizz.length):
+          currentQuestion = quizz.length
+          break
+        default:
+          currentQuestion = id
+          break
+      }
+      this.setState({ currentQuestion })
+    }
+  }
+
+  toggleAnswer (event, key) {
+    event.preventDefault()
+    const answers = this.state.answers
+    answers[this.state.currentQuestion][key].isChecked = !answers[this.state.currentQuestion][key].isChecked
+    this.setState(answers)
+  }
+
   render () {
-    const { classes, interviewData } = this.props
+    const { classes, interviewData, serviceId } = this.props
     const Interview = this.Interview
+    const Quizz = this.Quizz
     const renderInterview = () => {
       if (this.interviewRef.current) {
         const team = (interviewData) ? interviewData.team : { name: '???', initials: '???' }
@@ -135,7 +197,7 @@ class Service extends React.Component {
             {
               interview[this.state.currentDialog].questions.map((element, key) => (
                 <Typography
-                  key={key}
+                  key={stringHash(JSON.stringify([serviceId, element.label]))}
                   variant='body1'
                   gutterBottom
                   component='div'
@@ -162,23 +224,88 @@ class Service extends React.Component {
         return <Loading />
       }
     }
-    const quizz = null
     const renderQuizz = () => {
-      // if (quizz) {
-      return (
-        <Paper className={classes.paper}>
-          <Typography variant='h5' color='inherit' gutterBottom>Quizz</Typography>
-          <Typography variant='body1' gutterBottom component='div'><pre>{JSON.stringify(quizz)}</pre></Typography>
-        </Paper>
-      )
-      // } else {
-      // return <Loading />
-      // }
+      if (this.quizzRef.current) {
+        const quizz = this.quizzRef.current.quizz
+        const currentQuestion = quizz[this.state.currentQuestion]
+        const numberOfAnswers = (this.state.answers)
+          ? this.state.answers.filter((answer) => {
+            return answer.filter((item) => item.isChecked).length > 0
+          }).length
+          : 0
+        return (
+          <Paper className={classes.paper}>
+            <Typography variant='h4' color='inherit' gutterBottom>Quizz</Typography>
+            <Typography variant='body1' color='inherit' gutterBottom component='div'>
+              {numberOfAnswers} réponses / {quizz.length} questions
+            </Typography>
+            <MobileStepper
+              variant='progress'
+              steps={quizz.length}
+              position='static'
+              activeStep={this.state.currentQuestion}
+              backButton={
+                <Button
+                  size='small'
+                  onClick={() => this.setCurrentQuestion(this.state.currentQuestion - 1)}
+                  disabled={this.state.currentQuestion <= 0}
+                >
+                  <KeyboardArrowLeft />
+                  <Hidden xsDown>Précédente</Hidden>
+                </Button>
+              }
+              nextButton={
+                <Button
+                  size='small'
+                  onClick={() => this.setCurrentQuestion(this.state.currentQuestion + 1)}
+                  disabled={this.state.currentQuestion >= quizz.length - 1}
+                >
+                  <Hidden xsDown>Suivante</Hidden>
+                  <KeyboardArrowRight />
+                </Button>
+              }
+              className={classes.mobileStepper}
+            />
+            <Typography variant='subtitle1' color='inherit' gutterBottom>
+              <Markdown>{currentQuestion.question}</Markdown>
+            </Typography>
+            <FormControl component='fieldset'>
+              <FormGroup>
+                {currentQuestion.answers.map((answer, key) => {
+                  return (
+                    <FormControlLabel
+                      key={stringHash(JSON.stringify([serviceId, answer.label]))}
+                      value={answer.label}
+                      control={
+                        <Checkbox
+                          checked={(this.state.answers)
+                            ? this.state.answers[this.state.currentQuestion][key].isChecked
+                            : false
+                          }
+                          onClick={(event) => this.toggleAnswer(event, key)}
+                        />
+                      }
+                      label={answer.label}
+                    />
+                  )
+                })}
+              </FormGroup>
+            </FormControl>
+            <Divider className={classes.divider} />
+            <Typography variant='subtitle1' color='inherit' gutterBottom>
+              <Link color='secondary' href='#'>Demander l'avis du cabinet de consultants</Link>
+            </Typography>
+          </Paper>
+        )
+      } else {
+        return <Loading />
+      }
     }
     return (
       <div className={classes.layout}>
         <main>
           {(Interview) ? <Interview ref={this.interviewRef} /> : null}
+          {(Quizz) ? <Quizz ref={this.quizzRef} /> : null}
           <Grid container spacing={32}>
             <Grid item xs={12} md={6}>{renderInterview()}</Grid>
             <Grid item xs={12} md={6}>{renderQuizz()}</Grid>

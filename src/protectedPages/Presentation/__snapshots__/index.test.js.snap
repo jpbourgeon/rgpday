@@ -1,3 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`The Presentation protected page should render correctly 1`] = `null`;
+exports[`The 2019-INGE-01 Presentation component should render correctly 1`] = `
+<PresentationPage
+  classes={Object {}}
+  config={
+    Object {
+      "scenarioId": "2019-INGE-01",
+    }
+  }
+  location={
+    Object {
+      "hash": "#start",
+    }
+  }
+/>
+`;

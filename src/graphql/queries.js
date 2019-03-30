@@ -193,6 +193,14 @@ export const getTeam = `query GetTeam($id: ID!) {
         nextToken
       }
     }
+    quizzes {
+      items {
+        id
+        service
+        answers
+      }
+      nextToken
+    }
   }
 }
 `;
@@ -215,6 +223,57 @@ export const listTeams = `query ListTeams(
         RGPDay
         startDate
         endDate
+        searchable
+      }
+      quizzes {
+        nextToken
+      }
+    }
+    nextToken
+  }
+}
+`;
+export const getQuizz = `query GetQuizz($id: ID!) {
+  getQuizz(id: $id) {
+    id
+    service
+    answers
+    team {
+      id
+      name
+      initials
+      searchable
+      session {
+        id
+        description
+        contact
+        numberOfParticipants
+        RGPDay
+        startDate
+        endDate
+        searchable
+      }
+      quizzes {
+        nextToken
+      }
+    }
+  }
+}
+`;
+export const listQuizzs = `query ListQuizzs(
+  $filter: ModelQuizzFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listQuizzs(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      service
+      answers
+      team {
+        id
+        name
+        initials
         searchable
       }
     }

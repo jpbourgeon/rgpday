@@ -131,3 +131,5 @@ x 2019-03-23 2019-03-22 Changed: frontend game - the rules open automatically on
 x 2019-03-23 2019-03-23 Added: add the board design files to the repo
 x 2019-03-24 2019-03-24 Changed: switched dynamoDB billing to on demand (PAY_PER_REQUEST)
 x 2019-03-25 2019-03-22 Added: frontend game interview feature
+x 2019-03-26 2019-03-22 Added: frontend game quizz feature
+x 2019-03-30 2019-02-09 write the conference

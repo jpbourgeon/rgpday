@@ -270,6 +270,14 @@ export const onCreateTeam = `subscription OnCreateTeam {
         nextToken
       }
     }
+    quizzes {
+      items {
+        id
+        service
+        answers
+      }
+      nextToken
+    }
   }
 }
 `;
@@ -302,6 +310,14 @@ export const onUpdateTeam = `subscription OnUpdateTeam {
         nextToken
       }
     }
+    quizzes {
+      items {
+        id
+        service
+        answers
+      }
+      nextToken
+    }
   }
 }
 `;
@@ -331,6 +347,95 @@ export const onDeleteTeam = `subscription OnDeleteTeam {
         searchable
       }
       teams {
+        nextToken
+      }
+    }
+    quizzes {
+      items {
+        id
+        service
+        answers
+      }
+      nextToken
+    }
+  }
+}
+`;
+export const onCreateQuizz = `subscription OnCreateQuizz {
+  onCreateQuizz {
+    id
+    service
+    answers
+    team {
+      id
+      name
+      initials
+      searchable
+      session {
+        id
+        description
+        contact
+        numberOfParticipants
+        RGPDay
+        startDate
+        endDate
+        searchable
+      }
+      quizzes {
+        nextToken
+      }
+    }
+  }
+}
+`;
+export const onUpdateQuizz = `subscription OnUpdateQuizz {
+  onUpdateQuizz {
+    id
+    service
+    answers
+    team {
+      id
+      name
+      initials
+      searchable
+      session {
+        id
+        description
+        contact
+        numberOfParticipants
+        RGPDay
+        startDate
+        endDate
+        searchable
+      }
+      quizzes {
+        nextToken
+      }
+    }
+  }
+}
+`;
+export const onDeleteQuizz = `subscription OnDeleteQuizz {
+  onDeleteQuizz {
+    id
+    service
+    answers
+    team {
+      id
+      name
+      initials
+      searchable
+      session {
+        id
+        description
+        contact
+        numberOfParticipants
+        RGPDay
+        startDate
+        endDate
+        searchable
+      }
+      quizzes {
         nextToken
       }
     }

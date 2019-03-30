@@ -270,6 +270,14 @@ export const createTeam = `mutation CreateTeam($input: CreateTeamInput!) {
         nextToken
       }
     }
+    quizzes {
+      items {
+        id
+        service
+        answers
+      }
+      nextToken
+    }
   }
 }
 `;
@@ -302,6 +310,14 @@ export const updateTeam = `mutation UpdateTeam($input: UpdateTeamInput!) {
         nextToken
       }
     }
+    quizzes {
+      items {
+        id
+        service
+        answers
+      }
+      nextToken
+    }
   }
 }
 `;
@@ -331,6 +347,95 @@ export const deleteTeam = `mutation DeleteTeam($input: DeleteTeamInput!) {
         searchable
       }
       teams {
+        nextToken
+      }
+    }
+    quizzes {
+      items {
+        id
+        service
+        answers
+      }
+      nextToken
+    }
+  }
+}
+`;
+export const createQuizz = `mutation CreateQuizz($input: CreateQuizzInput!) {
+  createQuizz(input: $input) {
+    id
+    service
+    answers
+    team {
+      id
+      name
+      initials
+      searchable
+      session {
+        id
+        description
+        contact
+        numberOfParticipants
+        RGPDay
+        startDate
+        endDate
+        searchable
+      }
+      quizzes {
+        nextToken
+      }
+    }
+  }
+}
+`;
+export const updateQuizz = `mutation UpdateQuizz($input: UpdateQuizzInput!) {
+  updateQuizz(input: $input) {
+    id
+    service
+    answers
+    team {
+      id
+      name
+      initials
+      searchable
+      session {
+        id
+        description
+        contact
+        numberOfParticipants
+        RGPDay
+        startDate
+        endDate
+        searchable
+      }
+      quizzes {
+        nextToken
+      }
+    }
+  }
+}
+`;
+export const deleteQuizz = `mutation DeleteQuizz($input: DeleteQuizzInput!) {
+  deleteQuizz(input: $input) {
+    id
+    service
+    answers
+    team {
+      id
+      name
+      initials
+      searchable
+      session {
+        id
+        description
+        contact
+        numberOfParticipants
+        RGPDay
+        startDate
+        endDate
+        searchable
+      }
+      quizzes {
         nextToken
       }
     }

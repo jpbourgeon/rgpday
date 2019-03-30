@@ -83,18 +83,27 @@ class Rules extends React.Component {
         <DialogActions component='div' className={classes.actions}>
           <div className={classes.action}>
             <MobileStepper
+              variant='progress'
               steps={maxSteps}
               position='static'
               activeStep={activeStep}
               backButton={
-                <Button size='small' onClick={this.handleBack} disabled={activeStep <= 0}>
+                <Button
+                  size='small'
+                  onClick={this.handleBack}
+                  disabled={activeStep <= 0}
+                >
                   <KeyboardArrowLeft />
-                  <Hidden xsDown>Précédent</Hidden>
+                  <Hidden xsDown>Préc.</Hidden>
                 </Button>
               }
               nextButton={
-                <Button size='small' onClick={this.handleNext} disabled={activeStep >= maxSteps - 1}>
-                  <Hidden xsDown>Suivant</Hidden>
+                <Button
+                  size='small'
+                  onClick={this.handleNext}
+                  disabled={activeStep >= maxSteps - 1}
+                >
+                  <Hidden xsDown>Suiv.</Hidden>
                   <KeyboardArrowRight />
                 </Button>
               }

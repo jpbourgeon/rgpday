@@ -1,14 +1,19 @@
 /* global describe, it, expect */
 import React from 'react'
-import renderer from 'react-test-renderer'
+import ShallowRenderer from 'react-test-renderer/shallow'
 import Presentation from './'
 import jssSerializer from 'src/utils/jssSnapshotSerializer'
 
 expect.addSnapshotSerializer(jssSerializer)
 
-describe('The Presentation protected page', () => {
+describe('The 2019-INGE-01 Presentation component', () => {
   it('should render correctly', () => {
-    const tree = renderer.create(<Presentation config={{ scenarioId: '2019-INGE-01' }} />).toJSON()
+    const renderer = new ShallowRenderer()
+    renderer.render(<Presentation
+      config={{ scenarioId: '2019-INGE-01' }}
+      location={{ hash: '#start' }}
+    />)
+    const tree = renderer.getRenderOutput()
     expect(tree).toMatchSnapshot()
   })
 })
