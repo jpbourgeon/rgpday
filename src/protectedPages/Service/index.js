@@ -20,8 +20,23 @@ import FormControl from '@material-ui/core/FormControl'
 import FormGroup from '@material-ui/core/FormGroup'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Checkbox from '@material-ui/core/Checkbox'
-
 import Markdown from 'src/components/Markdown'
+import logger from 'src/logger'
+import API, { graphqlOperation } from '@aws-amplify/api'
+import { createQuizz, updateQuizz } from 'src/graphql/mutations'
+import config from 'src/aws-exports'
+
+API.configure(config)
+
+const mutations = { createQuizz, updateQuizz }
+
+const getQuizz = `query GetQuizz($id: ID!) {
+  getQuizz(id: $id) {
+    id
+    answers
+  }
+}
+`
 
 const styles = theme => {
   return {
@@ -71,16 +86,23 @@ class Service extends React.Component {
     this.quizzRef = React.createRef()
     this.checkRefsReceivedTimer = null
     this.defaultState = {
+      isDisabled: false,
       currentDialog: 0,
       currentQuestion: 0,
-      answers: null
+      quizz: {
+        id: null,
+        answers: null
+      }
     }
     this.state = this.defaultState
+    this.quizzMutation = 'createQuizz'
 
     this.checkRefsReceived = this.checkRefsReceived.bind(this)
     this.showDialog = this.showDialog.bind(this)
     this.setCurrentQuestion = this.setCurrentQuestion.bind(this)
     this.toggleAnswer = this.toggleAnswer.bind(this)
+    this.loadQuizz = this.loadQuizz.bind(this)
+    this.saveQuizz = this.saveQuizz.bind(this)
   }
 
   componentDidMount () {
@@ -98,25 +120,30 @@ class Service extends React.Component {
     if (this._isMounted) this.forceUpdate()
   }
 
-  componentWillUnmount () {
+  async componentWillUnmount () {
+    if (this._isMounted) await this.saveQuizz()
     this._isMounted = false
     clearTimeout(this.checkRefsReceivedTimer)
   }
 
-  componentDidUpdate () {
+  async componentDidUpdate () {
     if (!this.interviewRef.current || !this.quizzRef.current) {
       this.checkRefsReceived()
       return null
     }
-    if (!this.state.answers) {
-      const answers = (this.quizzRef.current)
-        ? this.quizzRef.current.quizz.map((item) => {
-          return item.answers.map((item) => {
-            return { isChecked: false }
+    if (!this.state.quizz.answers) {
+      let quizz = (this._isMounted) ? await this.loadQuizz() : null
+      if (!quizz) {
+        quizz = this.defaultState.quizz
+        quizz.answers = (this.quizzRef.current)
+          ? this.quizzRef.current.quizz.map((item) => {
+            return item.answers.map((item) => {
+              return false
+            })
           })
-        })
-        : null
-      this.setState({ answers })
+          : null
+      }
+      if (this._isMounted) this.setState({ quizz })
     }
   }
 
@@ -127,6 +154,53 @@ class Service extends React.Component {
     }, 100)
   }
 
+  async loadQuizz () {
+    // GraphQL
+    try {
+      const { teamId: team, serviceId: service } = this.props
+      const result = await API.graphql(
+        graphqlOperation(getQuizz, { id: stringHash(JSON.stringify({ team, service })) })
+      )
+      if (!result.errors && result.data.getQuizz) {
+        this.quizzMutation = 'updateQuizz'
+        const quizz = result.data.getQuizz
+        return { id: quizz.id, answers: JSON.parse(result.data.getQuizz.answers) }
+      }
+      if (result.errors) {
+        this.quizzMutation = 'createQuizz'
+        logger.error('loadQuizz', result)
+        return this.defaultState.quizz
+      }
+    } catch (error) {
+      this.quizzMutation = 'createQuizz'
+      logger.error('loadQuizz', error)
+      return this.defaultState.quizz
+    }
+  }
+
+  async saveQuizz () {
+    try {
+      const { teamId: team, serviceId: service } = this.props
+      const { answers } = this.state.quizz
+      if (team && service && answers) {
+        const input = {}
+        input.id = stringHash(JSON.stringify({ team, service }))
+        input.service = service
+        input.answers = JSON.stringify(this.state.quizz.answers)
+        input.quizzTeamId = team
+        // GraphQL
+        const result = await API.graphql(
+          graphqlOperation(mutations[this.quizzMutation], { input })
+        )
+        if (result.errors) {
+          logger.error('saveQuizz', result)
+        }
+      }
+    } catch (error) {
+      logger.error('saveQuizz', error)
+    }
+  }
+
   showDialog (id) {
     if (this.interviewRef.current) {
       const interview = this.interviewRef.current.interview
@@ -135,8 +209,10 @@ class Service extends React.Component {
     }
   }
 
-  setCurrentQuestion (id) {
+  async setCurrentQuestion (id) {
     if (this.quizzRef.current) {
+      await this.saveQuizz()
+      if (this._isMounted) this.setState({ isDisabled: true })
       const quizz = this.quizzRef.current.quizz
       let currentQuestion
       switch (true) {
@@ -150,15 +226,17 @@ class Service extends React.Component {
           currentQuestion = id
           break
       }
-      this.setState({ currentQuestion })
+      if (this._isMounted) this.setState({ currentQuestion, isDisabled: false })
     }
   }
 
   toggleAnswer (event, key) {
     event.preventDefault()
-    const answers = this.state.answers
-    answers[this.state.currentQuestion][key].isChecked = !answers[this.state.currentQuestion][key].isChecked
-    this.setState(answers)
+    const answers = this.state.quizz.answers
+    answers[this.state.currentQuestion][key] = !answers[this.state.currentQuestion][key]
+    const quizz = this.state.quizz
+    quizz.answers = answers
+    this.setState({ quizz })
   }
 
   render () {
@@ -228,9 +306,9 @@ class Service extends React.Component {
       if (this.quizzRef.current) {
         const quizz = this.quizzRef.current.quizz
         const currentQuestion = quizz[this.state.currentQuestion]
-        const numberOfAnswers = (this.state.answers)
-          ? this.state.answers.filter((answer) => {
-            return answer.filter((item) => item.isChecked).length > 0
+        const numberOfAnswers = (this.state.quizz.answers)
+          ? this.state.quizz.answers.filter((answer) => {
+            return answer.filter(field => field).length > 0
           }).length
           : 0
         return (
@@ -269,7 +347,7 @@ class Service extends React.Component {
             <Typography variant='subtitle1' color='inherit' gutterBottom>
               <Markdown>{currentQuestion.question}</Markdown>
             </Typography>
-            <FormControl component='fieldset'>
+            <FormControl component='fieldset' disabled={this.state.isDisabled}>
               <FormGroup>
                 {currentQuestion.answers.map((answer, key) => {
                   return (
@@ -278,8 +356,8 @@ class Service extends React.Component {
                       value={answer.label}
                       control={
                         <Checkbox
-                          checked={(this.state.answers)
-                            ? this.state.answers[this.state.currentQuestion][key].isChecked
+                          checked={(this.state.quizz.answers)
+                            ? this.state.quizz.answers[this.state.currentQuestion][key]
                             : false
                           }
                           onClick={(event) => this.toggleAnswer(event, key)}

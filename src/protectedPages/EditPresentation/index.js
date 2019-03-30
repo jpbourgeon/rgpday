@@ -138,7 +138,7 @@ class EditPresentation extends React.Component {
             })
           }
         } else {
-          logger.error(result.error)
+          logger.error('loadPresentations', result)
           if (this._isMounted) this.setState(this.defaultState)
         }
       } catch (error) {

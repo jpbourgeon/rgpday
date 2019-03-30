@@ -150,7 +150,7 @@ class EditTeam extends React.Component {
             this.setState(state)
           }
         } else {
-          logger.error(result.error)
+          logger.error('loadTeam', result)
           if (this._isMounted) this.setState(this.defaultState)
         }
       } catch (error) {

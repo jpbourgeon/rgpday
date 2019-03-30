@@ -133,3 +133,4 @@ x 2019-03-24 2019-03-24 Changed: switched dynamoDB billing to on demand (PAY_PER
 x 2019-03-25 2019-03-22 Added: frontend game interview feature
 x 2019-03-26 2019-03-22 Added: frontend game quizz feature
 x 2019-03-30 2019-02-09 write the conference
+x 2019-03-30 2019-03-22 Added: frontend / backend game quizz answers persistence when leaving a service and on quizz navigation

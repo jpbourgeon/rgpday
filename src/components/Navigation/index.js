@@ -72,7 +72,25 @@ class Navigation extends React.Component {
     this.state = {
       moved: false
     }
-    Hub.listen('auth', this)
+    Hub.listen('auth', (capsule) => {
+      if (this._isMounted) {
+        const { channel, payload } = capsule
+        if (channel === 'auth' && payload.event === 'signIn') {
+          this.setState({
+            authState: 'signedIn',
+            authData: payload.data
+          })
+        } else if (channel === 'auth' && payload.event === 'signOut' && (!this.props.authState)) {
+          this.setState({
+            authState: 'signIn'
+          })
+        }
+
+        if (channel === 'auth' && payload.event === 'signIn' && (!this.props.authState)) {
+          this.setState({ stateFromStorage: true })
+        }
+      }
+    })
   }
 
   componentDidMount () {
@@ -130,26 +148,6 @@ class Navigation extends React.Component {
       this.setState({
         stateFromStorage: true
       })
-    }
-  }
-
-  onHubCapsule (capsule) {
-    if (this._isMounted) {
-      const { channel, payload } = capsule
-      if (channel === 'auth' && payload.event === 'signIn') {
-        this.setState({
-          authState: 'signedIn',
-          authData: payload.data
-        })
-      } else if (channel === 'auth' && payload.event === 'signOut' && (!this.props.authState)) {
-        this.setState({
-          authState: 'signIn'
-        })
-      }
-
-      if (channel === 'auth' && payload.event === 'signIn' && (!this.props.authState)) {
-        this.setState({ stateFromStorage: true })
-      }
     }
   }
 
