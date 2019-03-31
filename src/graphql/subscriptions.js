@@ -159,6 +159,7 @@ export const onCreateSession = `subscription OnCreateSession {
         name
         initials
         searchable
+        numberOfInterviews
       }
       nextToken
     }
@@ -197,6 +198,7 @@ export const onUpdateSession = `subscription OnUpdateSession {
         name
         initials
         searchable
+        numberOfInterviews
       }
       nextToken
     }
@@ -235,6 +237,7 @@ export const onDeleteSession = `subscription OnDeleteSession {
         name
         initials
         searchable
+        numberOfInterviews
       }
       nextToken
     }
@@ -247,6 +250,7 @@ export const onCreateTeam = `subscription OnCreateTeam {
     name
     initials
     searchable
+    numberOfInterviews
     session {
       id
       description
@@ -275,6 +279,8 @@ export const onCreateTeam = `subscription OnCreateTeam {
         id
         service
         answers
+        correctAnswers
+        numberOfJokers
       }
       nextToken
     }
@@ -287,6 +293,7 @@ export const onUpdateTeam = `subscription OnUpdateTeam {
     name
     initials
     searchable
+    numberOfInterviews
     session {
       id
       description
@@ -315,6 +322,8 @@ export const onUpdateTeam = `subscription OnUpdateTeam {
         id
         service
         answers
+        correctAnswers
+        numberOfJokers
       }
       nextToken
     }
@@ -327,6 +336,7 @@ export const onDeleteTeam = `subscription OnDeleteTeam {
     name
     initials
     searchable
+    numberOfInterviews
     session {
       id
       description
@@ -355,6 +365,8 @@ export const onDeleteTeam = `subscription OnDeleteTeam {
         id
         service
         answers
+        correctAnswers
+        numberOfJokers
       }
       nextToken
     }
@@ -366,11 +378,14 @@ export const onCreateQuizz = `subscription OnCreateQuizz {
     id
     service
     answers
+    correctAnswers
+    numberOfJokers
     team {
       id
       name
       initials
       searchable
+      numberOfInterviews
       session {
         id
         description
@@ -393,11 +408,14 @@ export const onUpdateQuizz = `subscription OnUpdateQuizz {
     id
     service
     answers
+    correctAnswers
+    numberOfJokers
     team {
       id
       name
       initials
       searchable
+      numberOfInterviews
       session {
         id
         description
@@ -420,11 +438,14 @@ export const onDeleteQuizz = `subscription OnDeleteQuizz {
     id
     service
     answers
+    correctAnswers
+    numberOfJokers
     team {
       id
       name
       initials
       searchable
+      numberOfInterviews
       session {
         id
         description

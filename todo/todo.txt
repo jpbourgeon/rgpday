@@ -1,6 +1,5 @@
-2019-03-22 Added: frontend game consulting feature
 2019-03-22 Added: frontend game time management feature (money and time are spent when you (re)start an interview with a service)
-2019-03-22 Added: frontend game scores
+2019-03-22 Added: frontend game scores (a lambda compiles and returns the results)
 2019-03-22 Changed: access rights and redirects for all pages
 2019-03-22 Added: frontend game file upload feature
 2019-02-09 write the game scenario

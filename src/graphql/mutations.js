@@ -159,6 +159,7 @@ export const createSession = `mutation CreateSession($input: CreateSessionInput!
         name
         initials
         searchable
+        numberOfInterviews
       }
       nextToken
     }
@@ -197,6 +198,7 @@ export const updateSession = `mutation UpdateSession($input: UpdateSessionInput!
         name
         initials
         searchable
+        numberOfInterviews
       }
       nextToken
     }
@@ -235,6 +237,7 @@ export const deleteSession = `mutation DeleteSession($input: DeleteSessionInput!
         name
         initials
         searchable
+        numberOfInterviews
       }
       nextToken
     }
@@ -247,6 +250,7 @@ export const createTeam = `mutation CreateTeam($input: CreateTeamInput!) {
     name
     initials
     searchable
+    numberOfInterviews
     session {
       id
       description
@@ -275,6 +279,8 @@ export const createTeam = `mutation CreateTeam($input: CreateTeamInput!) {
         id
         service
         answers
+        correctAnswers
+        numberOfJokers
       }
       nextToken
     }
@@ -287,6 +293,7 @@ export const updateTeam = `mutation UpdateTeam($input: UpdateTeamInput!) {
     name
     initials
     searchable
+    numberOfInterviews
     session {
       id
       description
@@ -315,6 +322,8 @@ export const updateTeam = `mutation UpdateTeam($input: UpdateTeamInput!) {
         id
         service
         answers
+        correctAnswers
+        numberOfJokers
       }
       nextToken
     }
@@ -327,6 +336,7 @@ export const deleteTeam = `mutation DeleteTeam($input: DeleteTeamInput!) {
     name
     initials
     searchable
+    numberOfInterviews
     session {
       id
       description
@@ -355,6 +365,8 @@ export const deleteTeam = `mutation DeleteTeam($input: DeleteTeamInput!) {
         id
         service
         answers
+        correctAnswers
+        numberOfJokers
       }
       nextToken
     }
@@ -366,11 +378,14 @@ export const createQuizz = `mutation CreateQuizz($input: CreateQuizzInput!) {
     id
     service
     answers
+    correctAnswers
+    numberOfJokers
     team {
       id
       name
       initials
       searchable
+      numberOfInterviews
       session {
         id
         description
@@ -393,11 +408,14 @@ export const updateQuizz = `mutation UpdateQuizz($input: UpdateQuizzInput!) {
     id
     service
     answers
+    correctAnswers
+    numberOfJokers
     team {
       id
       name
       initials
       searchable
+      numberOfInterviews
       session {
         id
         description
@@ -420,11 +438,14 @@ export const deleteQuizz = `mutation DeleteQuizz($input: DeleteQuizzInput!) {
     id
     service
     answers
+    correctAnswers
+    numberOfJokers
     team {
       id
       name
       initials
       searchable
+      numberOfInterviews
       session {
         id
         description

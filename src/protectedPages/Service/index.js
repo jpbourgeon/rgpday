@@ -34,6 +34,8 @@ const getQuizz = `query GetQuizz($id: ID!) {
   getQuizz(id: $id) {
     id
     answers
+    correctAnswers
+    numberOfJokers
   }
 }
 `
@@ -72,6 +74,17 @@ const styles = theme => {
     },
     mobileStepper: {
       marginBottom: theme.spacing.unit * 3
+    },
+    joker: {
+      width: '100%',
+      textAlign: 'center',
+      paddingBottom: theme.spacing.unit * 2
+    },
+    hide: {
+      display: 'none'
+    },
+    incorrect: {
+      textDecoration: 'line-through'
     }
   }
 }
@@ -91,7 +104,9 @@ class Service extends React.Component {
       currentQuestion: 0,
       quizz: {
         id: null,
-        answers: null
+        answers: null,
+        correctAnswers: null,
+        numberOfJokers: 0
       }
     }
     this.state = this.defaultState
@@ -103,6 +118,7 @@ class Service extends React.Component {
     this.toggleAnswer = this.toggleAnswer.bind(this)
     this.loadQuizz = this.loadQuizz.bind(this)
     this.saveQuizz = this.saveQuizz.bind(this)
+    this.buyAJoker = this.buyAJoker.bind(this)
   }
 
   componentDidMount () {
@@ -131,14 +147,23 @@ class Service extends React.Component {
       this.checkRefsReceived()
       return null
     }
-    if (!this.state.quizz.answers) {
+    if (!this.state.quizz.answers || !this.state.quizz.correctAnswers) {
       let quizz = (this._isMounted) ? await this.loadQuizz() : null
-      if (!quizz) {
-        quizz = this.defaultState.quizz
+      if (!quizz) quizz = this.defaultState.quizz
+      if (!quizz.answers) {
         quizz.answers = (this.quizzRef.current)
           ? this.quizzRef.current.quizz.map((item) => {
             return item.answers.map((item) => {
               return false
+            })
+          })
+          : null
+      }
+      if (!quizz.correctAnswers) {
+        quizz.correctAnswers = (this.quizzRef.current)
+          ? this.quizzRef.current.quizz.map((item) => {
+            return item.answers.map((item) => {
+              return item.isCorrect
             })
           })
           : null
@@ -164,7 +189,12 @@ class Service extends React.Component {
       if (!result.errors && result.data.getQuizz) {
         this.quizzMutation = 'updateQuizz'
         const quizz = result.data.getQuizz
-        return { id: quizz.id, answers: JSON.parse(result.data.getQuizz.answers) }
+        return {
+          id: quizz.id,
+          answers: JSON.parse(result.data.getQuizz.answers),
+          correctAnswers: JSON.parse(result.data.getQuizz.correctAnswers),
+          numberOfJokers: quizz.numberOfJokers
+        }
       }
       if (result.errors) {
         this.quizzMutation = 'createQuizz'
@@ -181,12 +211,14 @@ class Service extends React.Component {
   async saveQuizz () {
     try {
       const { teamId: team, serviceId: service } = this.props
-      const { answers } = this.state.quizz
-      if (team && service && answers) {
+      const { answers, correctAnswers, numberOfJokers } = this.state.quizz
+      if (team && service && answers && correctAnswers && numberOfJokers) {
         const input = {}
         input.id = stringHash(JSON.stringify({ team, service }))
         input.service = service
-        input.answers = JSON.stringify(this.state.quizz.answers)
+        input.answers = JSON.stringify(answers)
+        input.correctAnswers = JSON.stringify(correctAnswers)
+        input.numberOfJokers = numberOfJokers
         input.quizzTeamId = team
         // GraphQL
         const result = await API.graphql(
@@ -196,6 +228,18 @@ class Service extends React.Component {
           logger.error('saveQuizz', result)
         }
       }
+    } catch (error) {
+      logger.error('saveQuizz', error)
+    }
+  }
+
+  async buyAJoker (event) {
+    event.preventDefault()
+    try {
+      const quizz = this.state.quizz
+      quizz.numberOfJokers = quizz.numberOfJokers + 1
+      await this.saveQuizz()
+      this.setState({ quizz })
     } catch (error) {
       logger.error('saveQuizz', error)
     }
@@ -270,7 +314,7 @@ class Service extends React.Component {
                 className={classes.avatarIcon}
                 style={toMaterialStyle(team.name)}
               >{team.initials}</Avatar>
-              Vous :
+              Equipe DPO
             </Typography>
             {
               interview[this.state.currentDialog].questions.map((element, key) => (
@@ -305,12 +349,18 @@ class Service extends React.Component {
     const renderQuizz = () => {
       if (this.quizzRef.current) {
         const quizz = this.quizzRef.current.quizz
+        const consultantAvatar = this.quizzRef.current.consultantAvatar
         const currentQuestion = quizz[this.state.currentQuestion]
         const numberOfAnswers = (this.state.quizz.answers)
           ? this.state.quizz.answers.filter((answer) => {
             return answer.filter(field => field).length > 0
           }).length
           : 0
+        const hints = quizz[this.state.currentQuestion].hints.filter(
+          hint => {
+            return hint.jokerNumber <= this.state.quizz.numberOfJokers
+          }
+        )
         return (
           <Paper className={classes.paper}>
             <Typography variant='h4' color='inherit' gutterBottom>Quizz</Typography>
@@ -361,18 +411,63 @@ class Service extends React.Component {
                             : false
                           }
                           onClick={(event) => this.toggleAnswer(event, key)}
+                          disabled={(quizz[this.state.currentQuestion].answers[key].jokerNumber <= this.state.quizz.numberOfJokers)}
                         />
                       }
-                      label={answer.label}
+                      label={<span
+                        className={(quizz[this.state.currentQuestion].answers[key].jokerNumber <= this.state.quizz.numberOfJokers) ? classes.incorrect : null}
+                      >
+                        {answer.label}
+                      </span>}
                     />
                   )
                 })}
               </FormGroup>
             </FormControl>
-            <Divider className={classes.divider} />
-            <Typography variant='subtitle1' color='inherit' gutterBottom>
-              <Link color='secondary' href='#'>Demander l'avis du cabinet de consultants</Link>
+            <Divider className={(quizz[this.state.currentQuestion].maxJokers > 0)
+              ? classes.divider
+              : classes.hide
+            } />
+            <Typography variant='subtitle1' color='inherit' gutterBottom component='div'>
+              <Link
+                color='secondary'
+                component='button'
+                onClick={(e) => this.buyAJoker(e)}
+                className={(quizz[this.state.currentQuestion].maxJokers > this.state.quizz.numberOfJokers)
+                  ? classes.joker
+                  : classes.hide
+                }
+              >
+                Demander l'avis du cabinet de consultants
+              </Link>
             </Typography>
+            <Typography
+              variant='h5'
+              color='inherit'
+              gutterBottom
+              component='div'
+              className={(hints.length <= 0) ? classes.hide : null}
+            >
+              <Avatar
+                alt='Consultant'
+                src={consultantAvatar}
+                className={classes.avatarIcon}
+              />
+              Emilie J. - RGPDay consulting
+            </Typography>
+            {
+              hints.map((element, key) => (
+                <Typography
+                  key={stringHash(JSON.stringify([element, key]))}
+                  variant='body1'
+                  gutterBottom
+                  component='div'
+                  className={classes.question}
+                >
+                  <Markdown>{element.label}</Markdown>
+                </Typography>
+              ))
+            }
           </Paper>
         )
       } else {

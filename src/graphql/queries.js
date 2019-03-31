@@ -125,6 +125,7 @@ export const getSession = `query GetSession($id: ID!) {
         name
         initials
         searchable
+        numberOfInterviews
       }
       nextToken
     }
@@ -170,6 +171,7 @@ export const getTeam = `query GetTeam($id: ID!) {
     name
     initials
     searchable
+    numberOfInterviews
     session {
       id
       description
@@ -198,6 +200,8 @@ export const getTeam = `query GetTeam($id: ID!) {
         id
         service
         answers
+        correctAnswers
+        numberOfJokers
       }
       nextToken
     }
@@ -215,6 +219,7 @@ export const listTeams = `query ListTeams(
       name
       initials
       searchable
+      numberOfInterviews
       session {
         id
         description
@@ -238,11 +243,14 @@ export const getQuizz = `query GetQuizz($id: ID!) {
     id
     service
     answers
+    correctAnswers
+    numberOfJokers
     team {
       id
       name
       initials
       searchable
+      numberOfInterviews
       session {
         id
         description
@@ -270,11 +278,14 @@ export const listQuizzs = `query ListQuizzs(
       id
       service
       answers
+      correctAnswers
+      numberOfJokers
       team {
         id
         name
         initials
         searchable
+        numberOfInterviews
       }
     }
     nextToken
