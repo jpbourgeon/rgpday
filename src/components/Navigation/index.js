@@ -208,7 +208,7 @@ class Navigation extends React.Component {
     }
     if (board) {
       const paperHeight = window.innerHeight - theme.spacing.unit * 8
-      const maxSVGHeight = (window.innerWidth * 707 / 1042) - theme.spacing.unit * 8
+      const maxSVGHeight = (Math.min(window.innerWidth, 1100) * 707 / 1042) - theme.spacing.unit * 8
       const height = Math.min(paperHeight, maxSVGHeight)
       const width = height * 1042 / 707
       marginLeft = (window.innerWidth - width) / 2 - theme.spacing.unit * 4

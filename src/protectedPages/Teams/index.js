@@ -145,6 +145,9 @@ const styles = theme => {
       padding: '0.5em !important',
       marginBottom: '-1em !important'
     },
+    itemPlayButton: {
+      marginTop: '1em'
+    },
     itemActionIcon: {
       width: 18,
       height: 18
@@ -286,9 +289,16 @@ class Teams extends React.Component {
         <Grid item xs={12} component='span' className={classes.tileActions}>
           <Divider className={classes.itemActionDivider} />
           <div style={{ float: 'left' }}>
-            <MUILink onClick={() => { navigate(`/dashboard/serious-game/board/${item.id}`) }}>
-              <IconButton><Play color='secondary' className={classes.itemLargeActionIcon} /></IconButton>
-            </MUILink>
+            {/* <MUILink onClick={() => { navigate(`/dashboard/serious-game/board/${item.id}`) }} component='div'> */}
+            {/* <IconButton><Play color='secondary' className={classes.itemLargeActionIcon} /></IconButton> */}
+            {/* </MUILink> */}
+            <Button
+              onClick={() => { navigate(`/dashboard/serious-game/board/${item.id}`) }}
+              color='secondary'
+              className={classes.itemPlayButton}
+            >
+              <Play />&nbsp;Jouer
+            </Button>
           </div>
           <div style={{ float: 'right', paddingTop: 9 }}>
             <Link to={`./update-team/${item.id}`}>

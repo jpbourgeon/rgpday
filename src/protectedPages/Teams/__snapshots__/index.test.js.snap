@@ -6,27 +6,27 @@ exports[`The Teams protected page should render correctly 1`] = `
 >
   <main>
     <div
-      className="root-23 elevation2-27 rounded-24 paper-2"
+      className="root-24 elevation2-28 rounded-25 paper-2"
     >
       <div
-        className="container-50"
+        className="container-51"
       >
         <div
-          className="item-51 12-90 breadcrumb-3"
+          className="item-52 12-91 breadcrumb-3"
         >
           <nav
             arial-label="Breadcrumb"
-            className="root-151 body1-160 colorTextSecondary-184 root-147"
+            className="root-152 body1-161 colorTextSecondary-185 root-148"
           >
             <ol
-              className="ol-148"
+              className="ol-149"
             >
               <li
-                className="li-149"
+                className="li-150"
               >
                 <a
                   aria-current="page"
-                  className="root-151 colorInherit-180 inline-186 root-187 underlineHover-189"
+                  className="root-152 colorInherit-181 inline-187 root-188 underlineHover-190"
                   href="/"
                   onClick={[Function]}
                 >
@@ -35,11 +35,11 @@ exports[`The Teams protected page should render correctly 1`] = `
               </li>
               <li
                 aria-hidden="true"
-                className="root-192 separator-150"
+                className="root-193 separator-151"
               >
                 <svg
                   aria-hidden="true"
-                  className="root-193 fontSizeSmall-200"
+                  className="root-194 fontSizeSmall-201"
                   focusable="false"
                   role="presentation"
                   viewBox="0 0 24 24"
@@ -54,11 +54,11 @@ exports[`The Teams protected page should render correctly 1`] = `
                 </svg>
               </li>
               <li
-                className="li-149"
+                className="li-150"
               >
                 <a
                   aria-current="page"
-                  className="root-151 colorInherit-180 inline-186 root-187 underlineHover-189"
+                  className="root-152 colorInherit-181 inline-187 root-188 underlineHover-190"
                   href="/"
                   onClick={[Function]}
                 >
@@ -67,11 +67,11 @@ exports[`The Teams protected page should render correctly 1`] = `
               </li>
               <li
                 aria-hidden="true"
-                className="root-192 separator-150"
+                className="root-193 separator-151"
               >
                 <svg
                   aria-hidden="true"
-                  className="root-193 fontSizeSmall-200"
+                  className="root-194 fontSizeSmall-201"
                   focusable="false"
                   role="presentation"
                   viewBox="0 0 24 24"
@@ -86,11 +86,11 @@ exports[`The Teams protected page should render correctly 1`] = `
                 </svg>
               </li>
               <li
-                className="li-149"
+                className="li-150"
               >
                 <a
                   aria-current="page"
-                  className="root-151 colorInherit-180 inline-186 root-187 underlineHover-189"
+                  className="root-152 colorInherit-181 inline-187 root-188 underlineHover-190"
                   href="/"
                   onClick={[Function]}
                 >
@@ -101,14 +101,14 @@ exports[`The Teams protected page should render correctly 1`] = `
           </nav>
         </div>
         <div
-          className="item-51 12-90 title-4"
+          className="item-52 12-91 title-4"
         >
           <h4
-            className="root-151 h4-166 gutterBottom-178"
+            className="root-152 h4-167 gutterBottom-179"
           >
             <svg
               aria-hidden="true"
-              className="root-193 titleIcon-5"
+              className="root-194 titleIcon-5"
               focusable="false"
               role="presentation"
               viewBox="0 0 24 24"
@@ -141,13 +141,13 @@ exports[`The Teams protected page should render correctly 1`] = `
               className="fab-6"
             >
               <a
-                className="root-151 colorPrimary-181 inline-186 root-187 underlineHover-189"
+                className="root-152 colorPrimary-182 inline-187 root-188 underlineHover-190"
                 href="//add-team"
                 onClick={[Function]}
               >
                 <button
                   aria-label="Ajouter"
-                  className="root-212 root-202 primary-204"
+                  className="root-213 root-203 primary-205"
                   disabled={false}
                   onBlur={[Function]}
                   onContextMenu={[Function]}
@@ -164,11 +164,11 @@ exports[`The Teams protected page should render correctly 1`] = `
                   type="button"
                 >
                   <span
-                    className="label-203"
+                    className="label-204"
                   >
                     <svg
                       aria-hidden="true"
-                      className="root-193"
+                      className="root-194"
                       focusable="false"
                       role="presentation"
                       viewBox="0 0 24 24"
@@ -183,23 +183,23 @@ exports[`The Teams protected page should render correctly 1`] = `
                     </svg>
                   </span>
                   <span
-                    className="root-296"
+                    className="root-297"
                   />
                 </button>
               </a>
             </div>
           </h4>
           <hr
-            className="root-215 title-4"
+            className="root-216 title-4"
           />
           <h5
-            className="root-151 h5-167 gutterBottom-178"
+            className="root-152 h5-168 gutterBottom-179"
           >
             Choisissez votre équipe ou créez-en une nouvelle
           </h5>
         </div>
         <div
-          className="item-51 12-90"
+          className="item-52 12-91"
         >
           <form
             autoComplete="off"
@@ -208,27 +208,27 @@ exports[`The Teams protected page should render correctly 1`] = `
             onSubmit={[Function]}
           >
             <div
-              className="container-50"
+              className="container-51"
             >
               <div
-                className="item-51 grow-7"
+                className="item-52 grow-7"
               >
                 <div
-                  className="root-220 marginNormal-221 fullWidth-223"
+                  className="root-221 marginNormal-222 fullWidth-224"
                 >
                   <label
-                    className="root-235 root-224 formControl-229 animated-232 outlined-234"
+                    className="root-236 root-225 formControl-230 animated-233 outlined-235"
                     data-shrink={false}
                   >
                     Filtrer
                   </label>
                   <div
-                    className="root-255 root-242 fullWidth-264 formControl-256"
+                    className="root-256 root-243 fullWidth-265 formControl-257"
                     onClick={[Function]}
                   >
                     <fieldset
                       aria-hidden={true}
-                      className="root-272 notchedOutline-249"
+                      className="root-273 notchedOutline-250"
                       style={
                         Object {
                           "paddingLeft": 8,
@@ -236,7 +236,7 @@ exports[`The Teams protected page should render correctly 1`] = `
                       }
                     >
                       <legend
-                        className="legend-273"
+                        className="legend-274"
                         style={
                           Object {
                             "width": 0.01,
@@ -254,7 +254,7 @@ exports[`The Teams protected page should render correctly 1`] = `
                     </fieldset>
                     <input
                       aria-invalid={false}
-                      className="input-265 input-250"
+                      className="input-266 input-251"
                       disabled={false}
                       onBlur={[Function]}
                       onChange={[Function]}
@@ -267,13 +267,13 @@ exports[`The Teams protected page should render correctly 1`] = `
                 </div>
               </div>
               <div
-                className="item-51 filterButtonsContainer-12"
+                className="item-52 filterButtonsContainer-12"
               >
                 <div
                   className="filterButtons-13"
                 >
                   <button
-                    className="root-212 root-274"
+                    className="root-213 root-275"
                     disabled={false}
                     onBlur={[Function]}
                     onContextMenu={[Function]}
@@ -290,11 +290,11 @@ exports[`The Teams protected page should render correctly 1`] = `
                     type="submit"
                   >
                     <span
-                      className="label-279"
+                      className="label-280"
                     >
                       <svg
                         aria-hidden="true"
-                        className="root-193"
+                        className="root-194"
                         focusable="false"
                         role="presentation"
                         viewBox="0 0 24 24"
@@ -309,11 +309,11 @@ exports[`The Teams protected page should render correctly 1`] = `
                       </svg>
                     </span>
                     <span
-                      className="root-296"
+                      className="root-297"
                     />
                   </button>
                   <button
-                    className="root-212 root-274"
+                    className="root-213 root-275"
                     disabled={false}
                     onBlur={[Function]}
                     onClick={[Function]}
@@ -331,11 +331,11 @@ exports[`The Teams protected page should render correctly 1`] = `
                     type="button"
                   >
                     <span
-                      className="label-279"
+                      className="label-280"
                     >
                       <svg
                         aria-hidden="true"
-                        className="root-193"
+                        className="root-194"
                         focusable="false"
                         role="presentation"
                         viewBox="0 0 24 24"
@@ -350,7 +350,7 @@ exports[`The Teams protected page should render correctly 1`] = `
                       </svg>
                     </span>
                     <span
-                      className="root-296"
+                      className="root-297"
                     />
                   </button>
                 </div>
@@ -359,28 +359,28 @@ exports[`The Teams protected page should render correctly 1`] = `
           </form>
         </div>
         <div
-          className="item-51 12-90"
+          className="item-52 12-91"
         >
           <div
-            className="container-50 40-76 baseline-61"
+            className="container-51 40-77 baseline-62"
           >
             <div
-              className="item-51 12-90"
+              className="item-52 12-91"
             >
               <p
-                className="root-151 body1-160 gutterBottom-178"
+                className="root-152 body1-161 gutterBottom-179"
               >
                 Il n'y a pas d'équipe à afficher
               </p>
             </div>
             <div
-              className="item-51 12-90 hide-10"
+              className="item-52 12-91 hide-10"
             >
               <p
-                className="root-151 body1-160 gutterBottom-178 loadMoreItem-9"
+                className="root-152 body1-161 gutterBottom-179 loadMoreItem-9"
               >
                 <a
-                  className="root-151 colorPrimary-181 inline-186 root-187 underlineHover-189 loadMoreLink-8"
+                  className="root-152 colorPrimary-182 inline-187 root-188 underlineHover-190 loadMoreLink-8"
                   onClick={[Function]}
                 >
                   Afficher plus de résultats

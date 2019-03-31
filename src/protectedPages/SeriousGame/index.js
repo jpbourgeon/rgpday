@@ -144,7 +144,7 @@ class SeriousGame extends React.Component {
   render () {
     const { classes, theme, location: { pathname } } = this.props
     const paperHeight = window.innerHeight - theme.spacing.unit * 8
-    const maxSVGHeight = (window.innerWidth * 707 / 1042) - theme.spacing.unit * 8
+    const maxSVGHeight = (Math.min(window.innerWidth, 1100) * 707 / 1042) - theme.spacing.unit * 8
     const height = Math.min(paperHeight, maxSVGHeight)
     const Scenario = this.Scenario
     const GameBoard = this.GameBoard
