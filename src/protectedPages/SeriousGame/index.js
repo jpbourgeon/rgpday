@@ -8,6 +8,7 @@ import Loading from 'src/components/Loading'
 import Rules from './Rules'
 import logger from 'src/logger'
 import API, { graphqlOperation } from '@aws-amplify/api'
+import { updateTeam } from 'src/graphql/mutations'
 import config from 'src/aws-exports'
 
 API.configure(config)
@@ -16,6 +17,7 @@ const getTeam = `query GetTeam($id: ID!) {
     id
     name
     initials
+    numberOfInterviews
   }
 }
 `
@@ -44,7 +46,8 @@ class SeriousGame extends React.Component {
     this.state.team = {
       id: null,
       name: null,
-      initials: null
+      initials: null,
+      numberOfInterviews: null
     }
     this.state.ready = false
     this.state.openRules = props.openRules || typeof props.openRules === 'undefined'
@@ -108,13 +111,26 @@ class SeriousGame extends React.Component {
     this.setState({ openRules: true })
   }
 
-  goTo (to, id) {
-    const team = this.state.team
-    const service = (this.scenarioRef.current)
-      ? this.scenarioRef.current.scenario.services[id]
-      : null
-    this.props.setInterviewData({ service, team })
-    this.props.navigate(to)
+  async goTo (to, id) {
+    try {
+      const service = (this.scenarioRef.current)
+        ? this.scenarioRef.current.scenario.services[id]
+        : null
+      const input = this.state.team
+      input.numberOfInterviews = (input.numberOfInterviews) ? input.numberOfInterviews + 1 : 1
+      // GraphQL
+      const result = await API.graphql(
+        graphqlOperation(updateTeam, { input })
+      )
+      if (result.errors) {
+        logger.error('goTo', result)
+      } else {
+        this.props.setInterviewData({ service, team: input })
+        this.props.navigate(to)
+      }
+    } catch (error) {
+      logger.error('goTo', error)
+    }
   }
 
   closeRules () {

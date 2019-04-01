@@ -106,6 +106,7 @@ class EditTeam extends React.Component {
         value: ''
       },
       initials: '',
+      numberOfInterviews: null,
       style: {},
       form: {
         isDisabled: false
@@ -146,6 +147,7 @@ class EditTeam extends React.Component {
             const state = this.state
             state.name.value = result.data.getTeam.name
             state.initials = result.data.getTeam.initials
+            state.numberOfInterviews = result.data.getTeam.numberOfInterviews
             state.style = (state.name.value) ? toMaterialStyle(state.name.value) : {}
             this.setState(state)
           }
@@ -191,6 +193,7 @@ class EditTeam extends React.Component {
     const initials = getInitials(name)
     const teamSessionId = config.sessionId
     const searchable = [name, initials].join(' ').toLowerCase()
+    const numberOfInterviews = state.numberOfInterviews
     if (!isEmpty(name) && !isEmpty(teamSessionId)) {
       state.form.isDisabled = true
       state.snackbar.message = `Sauvegarde en cours. Merci de patienter...`
@@ -198,7 +201,7 @@ class EditTeam extends React.Component {
       // GraphQL
       try {
         const action = (!teamId) ? createTeam : updateTeam
-        const input = { name, initials, searchable, teamSessionId }
+        const input = { name, initials, searchable, numberOfInterviews, teamSessionId }
         input.id = teamId || stringHash(JSON.stringify({ teamSessionId, name }))
         const result = await API.graphql(
           graphqlOperation(action, { input })

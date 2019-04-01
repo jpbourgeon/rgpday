@@ -1,8 +1,9 @@
-2019-03-22 Added: frontend game time management feature (money and time are spent when you (re)start an interview with a service)
-2019-03-22 Added: frontend game scores (a lambda compiles and returns the results)
-2019-03-22 Changed: access rights and redirects for all pages
+2019-03-22 Added: frontend game scores
+2019-03-22 Added: lock the game on gameover
 2019-03-22 Added: frontend game file upload feature
-2019-02-09 write the game scenario
+2019-03-22 Changed: access rights and redirects for all pages
+2019-02-09 Added: write the game scenario
+2019-03-22 Removed: session backend date fields - RGPDay is useless, startDate and endDate are not mandatory anymore and maybe useless too
 2019-03-09 cascade deletes scenario, session, team : could be a lambda / or make use of subscriptions client side
 2019-03-09 DB and files compaction : delete orphan documents and files
 2019-03-18 use the service workerf
@@ -15,4 +16,4 @@
 2019-03-01 Add a blog and/or a newsletter
 2019-03-13 Code quality: write better snapshots (test props, mock async), write tests
 2019-03-13 Code quality: refactor massive components and pages
-2019-03-13 Code quality: refactor every method includint unit testing
+2019-03-13 Code quality: refactor every method including unit testing

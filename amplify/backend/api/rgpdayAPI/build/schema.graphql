@@ -20,6 +20,11 @@ type Session {
   RGPDay: AWSDate!
   startDate: AWSDate!
   endDate: AWSDate!
+  gameOver: Boolean
+  interviewLength: Int
+  consultationLength: Int
+  DPODailyCost: Int
+  consultantDailyCost: Int
   searchable: String
   scenario: Scenario!
   presentation: Presentation!
@@ -241,6 +246,11 @@ input ModelSessionFilterInput {
   RGPDay: ModelStringFilterInput
   startDate: ModelStringFilterInput
   endDate: ModelStringFilterInput
+  gameOver: ModelBooleanFilterInput
+  interviewLength: ModelIntFilterInput
+  consultationLength: ModelIntFilterInput
+  DPODailyCost: ModelIntFilterInput
+  consultantDailyCost: ModelIntFilterInput
   searchable: ModelStringFilterInput
   and: [ModelSessionFilterInput]
   or: [ModelSessionFilterInput]
@@ -255,6 +265,11 @@ input CreateSessionInput {
   RGPDay: AWSDate!
   startDate: AWSDate!
   endDate: AWSDate!
+  gameOver: Boolean
+  interviewLength: Int
+  consultationLength: Int
+  DPODailyCost: Int
+  consultantDailyCost: Int
   searchable: String
   sessionScenarioId: ID!
   sessionPresentationId: ID!
@@ -268,6 +283,11 @@ input UpdateSessionInput {
   RGPDay: AWSDate
   startDate: AWSDate
   endDate: AWSDate
+  gameOver: Boolean
+  interviewLength: Int
+  consultationLength: Int
+  DPODailyCost: Int
+  consultantDailyCost: Int
   searchable: String
   sessionScenarioId: ID
   sessionPresentationId: ID

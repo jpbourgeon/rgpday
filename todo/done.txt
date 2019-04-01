@@ -137,3 +137,4 @@ x 2019-03-30 2019-03-22 Added: frontend / backend game quizz answers persistence
 x 2019-03-31 2019-03-31 Changed: better board display on large screens
 x 2019-03-31 2019-03-31 Changed: more explicit play button
 x 2019-03-31 2019-03-22 Added: frontend game consulting feature (jokers)
+x 2019-04-01 2019-03-22 Added: frontend game count the number of interviews (when you switch the interviewed service)

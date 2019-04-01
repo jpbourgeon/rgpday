@@ -15,6 +15,11 @@ export const onCreateScenario = `subscription OnCreateScenario {
         RGPDay
         startDate
         endDate
+        gameOver
+        interviewLength
+        consultationLength
+        DPODailyCost
+        consultantDailyCost
         searchable
       }
       nextToken
@@ -36,6 +41,11 @@ export const onUpdateScenario = `subscription OnUpdateScenario {
         RGPDay
         startDate
         endDate
+        gameOver
+        interviewLength
+        consultationLength
+        DPODailyCost
+        consultantDailyCost
         searchable
       }
       nextToken
@@ -57,6 +67,11 @@ export const onDeleteScenario = `subscription OnDeleteScenario {
         RGPDay
         startDate
         endDate
+        gameOver
+        interviewLength
+        consultationLength
+        DPODailyCost
+        consultantDailyCost
         searchable
       }
       nextToken
@@ -78,6 +93,11 @@ export const onCreatePresentation = `subscription OnCreatePresentation {
         RGPDay
         startDate
         endDate
+        gameOver
+        interviewLength
+        consultationLength
+        DPODailyCost
+        consultantDailyCost
         searchable
       }
       nextToken
@@ -99,6 +119,11 @@ export const onUpdatePresentation = `subscription OnUpdatePresentation {
         RGPDay
         startDate
         endDate
+        gameOver
+        interviewLength
+        consultationLength
+        DPODailyCost
+        consultantDailyCost
         searchable
       }
       nextToken
@@ -120,6 +145,11 @@ export const onDeletePresentation = `subscription OnDeletePresentation {
         RGPDay
         startDate
         endDate
+        gameOver
+        interviewLength
+        consultationLength
+        DPODailyCost
+        consultantDailyCost
         searchable
       }
       nextToken
@@ -136,6 +166,11 @@ export const onCreateSession = `subscription OnCreateSession {
     RGPDay
     startDate
     endDate
+    gameOver
+    interviewLength
+    consultationLength
+    DPODailyCost
+    consultantDailyCost
     searchable
     scenario {
       id
@@ -175,6 +210,11 @@ export const onUpdateSession = `subscription OnUpdateSession {
     RGPDay
     startDate
     endDate
+    gameOver
+    interviewLength
+    consultationLength
+    DPODailyCost
+    consultantDailyCost
     searchable
     scenario {
       id
@@ -214,6 +254,11 @@ export const onDeleteSession = `subscription OnDeleteSession {
     RGPDay
     startDate
     endDate
+    gameOver
+    interviewLength
+    consultationLength
+    DPODailyCost
+    consultantDailyCost
     searchable
     scenario {
       id
@@ -259,6 +304,11 @@ export const onCreateTeam = `subscription OnCreateTeam {
       RGPDay
       startDate
       endDate
+      gameOver
+      interviewLength
+      consultationLength
+      DPODailyCost
+      consultantDailyCost
       searchable
       scenario {
         id
@@ -302,6 +352,11 @@ export const onUpdateTeam = `subscription OnUpdateTeam {
       RGPDay
       startDate
       endDate
+      gameOver
+      interviewLength
+      consultationLength
+      DPODailyCost
+      consultantDailyCost
       searchable
       scenario {
         id
@@ -345,6 +400,11 @@ export const onDeleteTeam = `subscription OnDeleteTeam {
       RGPDay
       startDate
       endDate
+      gameOver
+      interviewLength
+      consultationLength
+      DPODailyCost
+      consultantDailyCost
       searchable
       scenario {
         id
@@ -394,6 +454,11 @@ export const onCreateQuizz = `subscription OnCreateQuizz {
         RGPDay
         startDate
         endDate
+        gameOver
+        interviewLength
+        consultationLength
+        DPODailyCost
+        consultantDailyCost
         searchable
       }
       quizzes {
@@ -424,6 +489,11 @@ export const onUpdateQuizz = `subscription OnUpdateQuizz {
         RGPDay
         startDate
         endDate
+        gameOver
+        interviewLength
+        consultationLength
+        DPODailyCost
+        consultantDailyCost
         searchable
       }
       quizzes {
@@ -454,6 +524,11 @@ export const onDeleteQuizz = `subscription OnDeleteQuizz {
         RGPDay
         startDate
         endDate
+        gameOver
+        interviewLength
+        consultationLength
+        DPODailyCost
+        consultantDailyCost
         searchable
       }
       quizzes {

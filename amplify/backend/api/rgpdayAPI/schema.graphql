@@ -20,6 +20,11 @@ type Session @model {
   RGPDay: AWSDate!
   startDate: AWSDate!
   endDate: AWSDate!
+  gameOver: Boolean
+  interviewLength: Int
+  consultationLength: Int
+  DPODailyCost: Int
+  consultantDailyCost: Int
   searchable: String
   scenario: Scenario! @connection(name: "ScenarioSessions")
   presentation: Presentation! @connection(name: "PresentationSessions")

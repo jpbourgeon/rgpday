@@ -15,6 +15,11 @@ export const createScenario = `mutation CreateScenario($input: CreateScenarioInp
         RGPDay
         startDate
         endDate
+        gameOver
+        interviewLength
+        consultationLength
+        DPODailyCost
+        consultantDailyCost
         searchable
       }
       nextToken
@@ -36,6 +41,11 @@ export const updateScenario = `mutation UpdateScenario($input: UpdateScenarioInp
         RGPDay
         startDate
         endDate
+        gameOver
+        interviewLength
+        consultationLength
+        DPODailyCost
+        consultantDailyCost
         searchable
       }
       nextToken
@@ -57,6 +67,11 @@ export const deleteScenario = `mutation DeleteScenario($input: DeleteScenarioInp
         RGPDay
         startDate
         endDate
+        gameOver
+        interviewLength
+        consultationLength
+        DPODailyCost
+        consultantDailyCost
         searchable
       }
       nextToken
@@ -78,6 +93,11 @@ export const createPresentation = `mutation CreatePresentation($input: CreatePre
         RGPDay
         startDate
         endDate
+        gameOver
+        interviewLength
+        consultationLength
+        DPODailyCost
+        consultantDailyCost
         searchable
       }
       nextToken
@@ -99,6 +119,11 @@ export const updatePresentation = `mutation UpdatePresentation($input: UpdatePre
         RGPDay
         startDate
         endDate
+        gameOver
+        interviewLength
+        consultationLength
+        DPODailyCost
+        consultantDailyCost
         searchable
       }
       nextToken
@@ -120,6 +145,11 @@ export const deletePresentation = `mutation DeletePresentation($input: DeletePre
         RGPDay
         startDate
         endDate
+        gameOver
+        interviewLength
+        consultationLength
+        DPODailyCost
+        consultantDailyCost
         searchable
       }
       nextToken
@@ -136,6 +166,11 @@ export const createSession = `mutation CreateSession($input: CreateSessionInput!
     RGPDay
     startDate
     endDate
+    gameOver
+    interviewLength
+    consultationLength
+    DPODailyCost
+    consultantDailyCost
     searchable
     scenario {
       id
@@ -175,6 +210,11 @@ export const updateSession = `mutation UpdateSession($input: UpdateSessionInput!
     RGPDay
     startDate
     endDate
+    gameOver
+    interviewLength
+    consultationLength
+    DPODailyCost
+    consultantDailyCost
     searchable
     scenario {
       id
@@ -214,6 +254,11 @@ export const deleteSession = `mutation DeleteSession($input: DeleteSessionInput!
     RGPDay
     startDate
     endDate
+    gameOver
+    interviewLength
+    consultationLength
+    DPODailyCost
+    consultantDailyCost
     searchable
     scenario {
       id
@@ -259,6 +304,11 @@ export const createTeam = `mutation CreateTeam($input: CreateTeamInput!) {
       RGPDay
       startDate
       endDate
+      gameOver
+      interviewLength
+      consultationLength
+      DPODailyCost
+      consultantDailyCost
       searchable
       scenario {
         id
@@ -302,6 +352,11 @@ export const updateTeam = `mutation UpdateTeam($input: UpdateTeamInput!) {
       RGPDay
       startDate
       endDate
+      gameOver
+      interviewLength
+      consultationLength
+      DPODailyCost
+      consultantDailyCost
       searchable
       scenario {
         id
@@ -345,6 +400,11 @@ export const deleteTeam = `mutation DeleteTeam($input: DeleteTeamInput!) {
       RGPDay
       startDate
       endDate
+      gameOver
+      interviewLength
+      consultationLength
+      DPODailyCost
+      consultantDailyCost
       searchable
       scenario {
         id
@@ -394,6 +454,11 @@ export const createQuizz = `mutation CreateQuizz($input: CreateQuizzInput!) {
         RGPDay
         startDate
         endDate
+        gameOver
+        interviewLength
+        consultationLength
+        DPODailyCost
+        consultantDailyCost
         searchable
       }
       quizzes {
@@ -424,6 +489,11 @@ export const updateQuizz = `mutation UpdateQuizz($input: UpdateQuizzInput!) {
         RGPDay
         startDate
         endDate
+        gameOver
+        interviewLength
+        consultationLength
+        DPODailyCost
+        consultantDailyCost
         searchable
       }
       quizzes {
@@ -454,6 +524,11 @@ export const deleteQuizz = `mutation DeleteQuizz($input: DeleteQuizzInput!) {
         RGPDay
         startDate
         endDate
+        gameOver
+        interviewLength
+        consultationLength
+        DPODailyCost
+        consultantDailyCost
         searchable
       }
       quizzes {

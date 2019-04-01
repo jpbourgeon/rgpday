@@ -29,6 +29,11 @@ export const getScenario = `query GetScenario($id: ID!) {
         RGPDay
         startDate
         endDate
+        gameOver
+        interviewLength
+        consultationLength
+        DPODailyCost
+        consultantDailyCost
         searchable
       }
       nextToken
@@ -68,6 +73,11 @@ export const getPresentation = `query GetPresentation($id: ID!) {
         RGPDay
         startDate
         endDate
+        gameOver
+        interviewLength
+        consultationLength
+        DPODailyCost
+        consultantDailyCost
         searchable
       }
       nextToken
@@ -102,6 +112,11 @@ export const getSession = `query GetSession($id: ID!) {
     RGPDay
     startDate
     endDate
+    gameOver
+    interviewLength
+    consultationLength
+    DPODailyCost
+    consultantDailyCost
     searchable
     scenario {
       id
@@ -146,6 +161,11 @@ export const listSessions = `query ListSessions(
       RGPDay
       startDate
       endDate
+      gameOver
+      interviewLength
+      consultationLength
+      DPODailyCost
+      consultantDailyCost
       searchable
       scenario {
         id
@@ -180,6 +200,11 @@ export const getTeam = `query GetTeam($id: ID!) {
       RGPDay
       startDate
       endDate
+      gameOver
+      interviewLength
+      consultationLength
+      DPODailyCost
+      consultantDailyCost
       searchable
       scenario {
         id
@@ -228,6 +253,11 @@ export const listTeams = `query ListTeams(
         RGPDay
         startDate
         endDate
+        gameOver
+        interviewLength
+        consultationLength
+        DPODailyCost
+        consultantDailyCost
         searchable
       }
       quizzes {
@@ -259,6 +289,11 @@ export const getQuizz = `query GetQuizz($id: ID!) {
         RGPDay
         startDate
         endDate
+        gameOver
+        interviewLength
+        consultationLength
+        DPODailyCost
+        consultantDailyCost
         searchable
       }
       quizzes {
