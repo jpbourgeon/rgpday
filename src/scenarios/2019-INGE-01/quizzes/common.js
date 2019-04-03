@@ -1,6 +1,6 @@
-const quizz = []
+const quiz = []
 
-quizz.push({
+quiz.push({
   question: `__Combien de traitements__ avez vous identifié dans ce service ?`,
   hints: [
     { label: `Premier indice`, jokerNumber: 1 },
@@ -17,7 +17,7 @@ quizz.push({
   maxJokers: 3
 })
 
-quizz.push({
+quiz.push({
   question: `Quelle sont __la ou les bases légales__ des traitements que vous avez identifiés ?`,
   hints: [],
   answers: [
@@ -31,7 +31,7 @@ quizz.push({
   maxJokers: 0
 })
 
-quizz.push({
+quiz.push({
   question: `Tous traitements confondus, quelles catégories de __données personnelles__ avez-vous identifiées ?`,
   hints: [],
   answers: [
@@ -45,7 +45,7 @@ quizz.push({
   maxJokers: 0
 })
 
-quizz.push({
+quiz.push({
   question: `Tous traitements confondus, quelles catégories de __données sensibles__ avez-vous identifiées ?`,
   hints: [],
   answers: [
@@ -65,4 +65,4 @@ quizz.push({
   maxJokers: 0
 })
 
-export { quizz }
+export { quiz }

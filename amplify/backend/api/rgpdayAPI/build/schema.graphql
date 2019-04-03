@@ -17,14 +17,9 @@ type Session {
   description: String
   contact: String
   numberOfParticipants: Int
-  RGPDay: AWSDate!
-  startDate: AWSDate!
-  endDate: AWSDate!
+  startDate: AWSDate
+  endDate: AWSDate
   gameOver: Boolean
-  interviewLength: Int
-  consultationLength: Int
-  DPODailyCost: Int
-  consultantDailyCost: Int
   searchable: String
   scenario: Scenario!
   presentation: Presentation!
@@ -38,14 +33,13 @@ type Team {
   searchable: String
   numberOfInterviews: Int
   session: Session!
-  quizzes(filter: ModelQuizzFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelQuizzConnection
+  quizzes(filter: ModelQuizFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelQuizConnection
 }
 
-type Quizz {
+type Quiz {
   id: ID!
   service: String!
   answers: AWSJSON!
-  correctAnswers: AWSJSON!
   numberOfJokers: Int!
   team: Team!
 }
@@ -65,8 +59,8 @@ type Query {
   listSessions(filter: ModelSessionFilterInput, limit: Int, nextToken: String): ModelSessionConnection
   getTeam(id: ID!): Team
   listTeams(filter: ModelTeamFilterInput, limit: Int, nextToken: String): ModelTeamConnection
-  getQuizz(id: ID!): Quizz
-  listQuizzs(filter: ModelQuizzFilterInput, limit: Int, nextToken: String): ModelQuizzConnection
+  getQuiz(id: ID!): Quiz
+  listQuizs(filter: ModelQuizFilterInput, limit: Int, nextToken: String): ModelQuizConnection
   getConfig(id: ID!): Config
   listConfigs(filter: ModelConfigFilterInput, limit: Int, nextToken: String): ModelConfigConnection
 }
@@ -174,9 +168,9 @@ type Mutation {
   createTeam(input: CreateTeamInput!): Team
   updateTeam(input: UpdateTeamInput!): Team
   deleteTeam(input: DeleteTeamInput!): Team
-  createQuizz(input: CreateQuizzInput!): Quizz
-  updateQuizz(input: UpdateQuizzInput!): Quizz
-  deleteQuizz(input: DeleteQuizzInput!): Quizz
+  createQuiz(input: CreateQuizInput!): Quiz
+  updateQuiz(input: UpdateQuizInput!): Quiz
+  deleteQuiz(input: DeleteQuizInput!): Quiz
   createConfig(input: CreateConfigInput!): Config
   updateConfig(input: UpdateConfigInput!): Config
   deleteConfig(input: DeleteConfigInput!): Config
@@ -195,9 +189,9 @@ type Subscription {
   onCreateTeam: Team @aws_subscribe(mutations: ["createTeam"])
   onUpdateTeam: Team @aws_subscribe(mutations: ["updateTeam"])
   onDeleteTeam: Team @aws_subscribe(mutations: ["deleteTeam"])
-  onCreateQuizz: Quizz @aws_subscribe(mutations: ["createQuizz"])
-  onUpdateQuizz: Quizz @aws_subscribe(mutations: ["updateQuizz"])
-  onDeleteQuizz: Quizz @aws_subscribe(mutations: ["deleteQuizz"])
+  onCreateQuiz: Quiz @aws_subscribe(mutations: ["createQuiz"])
+  onUpdateQuiz: Quiz @aws_subscribe(mutations: ["updateQuiz"])
+  onDeleteQuiz: Quiz @aws_subscribe(mutations: ["deleteQuiz"])
   onCreateConfig: Config @aws_subscribe(mutations: ["createConfig"])
   onUpdateConfig: Config @aws_subscribe(mutations: ["updateConfig"])
   onDeleteConfig: Config @aws_subscribe(mutations: ["deleteConfig"])
@@ -243,14 +237,9 @@ input ModelSessionFilterInput {
   description: ModelStringFilterInput
   contact: ModelStringFilterInput
   numberOfParticipants: ModelIntFilterInput
-  RGPDay: ModelStringFilterInput
   startDate: ModelStringFilterInput
   endDate: ModelStringFilterInput
   gameOver: ModelBooleanFilterInput
-  interviewLength: ModelIntFilterInput
-  consultationLength: ModelIntFilterInput
-  DPODailyCost: ModelIntFilterInput
-  consultantDailyCost: ModelIntFilterInput
   searchable: ModelStringFilterInput
   and: [ModelSessionFilterInput]
   or: [ModelSessionFilterInput]
@@ -262,14 +251,9 @@ input CreateSessionInput {
   description: String
   contact: String
   numberOfParticipants: Int
-  RGPDay: AWSDate!
-  startDate: AWSDate!
-  endDate: AWSDate!
+  startDate: AWSDate
+  endDate: AWSDate
   gameOver: Boolean
-  interviewLength: Int
-  consultationLength: Int
-  DPODailyCost: Int
-  consultantDailyCost: Int
   searchable: String
   sessionScenarioId: ID!
   sessionPresentationId: ID!
@@ -280,14 +264,9 @@ input UpdateSessionInput {
   description: String
   contact: String
   numberOfParticipants: Int
-  RGPDay: AWSDate
   startDate: AWSDate
   endDate: AWSDate
   gameOver: Boolean
-  interviewLength: Int
-  consultationLength: Int
-  DPODailyCost: Int
-  consultantDailyCost: Int
   searchable: String
   sessionScenarioId: ID
   sessionPresentationId: ID
@@ -335,41 +314,38 @@ input DeleteTeamInput {
   id: ID
 }
 
-type ModelQuizzConnection {
-  items: [Quizz]
+type ModelQuizConnection {
+  items: [Quiz]
   nextToken: String
 }
 
-input ModelQuizzFilterInput {
+input ModelQuizFilterInput {
   id: ModelIDFilterInput
   service: ModelStringFilterInput
   answers: ModelStringFilterInput
-  correctAnswers: ModelStringFilterInput
   numberOfJokers: ModelIntFilterInput
-  and: [ModelQuizzFilterInput]
-  or: [ModelQuizzFilterInput]
-  not: ModelQuizzFilterInput
+  and: [ModelQuizFilterInput]
+  or: [ModelQuizFilterInput]
+  not: ModelQuizFilterInput
 }
 
-input CreateQuizzInput {
+input CreateQuizInput {
   id: ID
   service: String!
   answers: AWSJSON!
-  correctAnswers: AWSJSON!
   numberOfJokers: Int!
-  quizzTeamId: ID!
+  quizTeamId: ID!
 }
 
-input UpdateQuizzInput {
+input UpdateQuizInput {
   id: ID!
   service: String
   answers: AWSJSON
-  correctAnswers: AWSJSON
   numberOfJokers: Int
-  quizzTeamId: ID
+  quizTeamId: ID
 }
 
-input DeleteQuizzInput {
+input DeleteQuizInput {
   id: ID
 }
 

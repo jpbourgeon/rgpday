@@ -310,7 +310,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "getQuizz",
+          "name" : "getQuiz",
           "description" : null,
           "args" : [ {
             "name" : "id",
@@ -328,20 +328,20 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "Quizz",
+            "name" : "Quiz",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "listQuizzs",
+          "name" : "listQuizs",
           "description" : null,
           "args" : [ {
             "name" : "filter",
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelQuizzFilterInput",
+              "name" : "ModelQuizFilterInput",
               "ofType" : null
             },
             "defaultValue" : null
@@ -366,7 +366,7 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "ModelQuizzConnection",
+            "name" : "ModelQuizConnection",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -646,32 +646,13 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "RGPDay",
-          "description" : null,
-          "args" : [ ],
-          "type" : {
-            "kind" : "NON_NULL",
-            "name" : null,
-            "ofType" : {
-              "kind" : "SCALAR",
-              "name" : "AWSDate",
-              "ofType" : null
-            }
-          },
-          "isDeprecated" : false,
-          "deprecationReason" : null
-        }, {
           "name" : "startDate",
           "description" : null,
           "args" : [ ],
           "type" : {
-            "kind" : "NON_NULL",
-            "name" : null,
-            "ofType" : {
-              "kind" : "SCALAR",
-              "name" : "AWSDate",
-              "ofType" : null
-            }
+            "kind" : "SCALAR",
+            "name" : "AWSDate",
+            "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
@@ -680,13 +661,9 @@
           "description" : null,
           "args" : [ ],
           "type" : {
-            "kind" : "NON_NULL",
-            "name" : null,
-            "ofType" : {
-              "kind" : "SCALAR",
-              "name" : "AWSDate",
-              "ofType" : null
-            }
+            "kind" : "SCALAR",
+            "name" : "AWSDate",
+            "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
@@ -697,50 +674,6 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "Boolean",
-            "ofType" : null
-          },
-          "isDeprecated" : false,
-          "deprecationReason" : null
-        }, {
-          "name" : "interviewLength",
-          "description" : null,
-          "args" : [ ],
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Int",
-            "ofType" : null
-          },
-          "isDeprecated" : false,
-          "deprecationReason" : null
-        }, {
-          "name" : "consultationLength",
-          "description" : null,
-          "args" : [ ],
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Int",
-            "ofType" : null
-          },
-          "isDeprecated" : false,
-          "deprecationReason" : null
-        }, {
-          "name" : "DPODailyCost",
-          "description" : null,
-          "args" : [ ],
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Int",
-            "ofType" : null
-          },
-          "isDeprecated" : false,
-          "deprecationReason" : null
-        }, {
-          "name" : "consultantDailyCost",
-          "description" : null,
-          "args" : [ ],
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Int",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -1000,15 +933,6 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "RGPDay",
-          "description" : null,
-          "type" : {
-            "kind" : "INPUT_OBJECT",
-            "name" : "ModelStringFilterInput",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
           "name" : "startDate",
           "description" : null,
           "type" : {
@@ -1032,42 +956,6 @@
           "type" : {
             "kind" : "INPUT_OBJECT",
             "name" : "ModelBooleanFilterInput",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "interviewLength",
-          "description" : null,
-          "type" : {
-            "kind" : "INPUT_OBJECT",
-            "name" : "ModelIntFilterInput",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "consultationLength",
-          "description" : null,
-          "type" : {
-            "kind" : "INPUT_OBJECT",
-            "name" : "ModelIntFilterInput",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "DPODailyCost",
-          "description" : null,
-          "type" : {
-            "kind" : "INPUT_OBJECT",
-            "name" : "ModelIntFilterInput",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "consultantDailyCost",
-          "description" : null,
-          "type" : {
-            "kind" : "INPUT_OBJECT",
-            "name" : "ModelIntFilterInput",
             "ofType" : null
           },
           "defaultValue" : null
@@ -1590,7 +1478,7 @@
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelQuizzFilterInput",
+              "name" : "ModelQuizFilterInput",
               "ofType" : null
             },
             "defaultValue" : null
@@ -1624,7 +1512,7 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "ModelQuizzConnection",
+            "name" : "ModelQuizConnection",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -1636,7 +1524,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "OBJECT",
-        "name" : "ModelQuizzConnection",
+        "name" : "ModelQuizConnection",
         "description" : null,
         "fields" : [ {
           "name" : "items",
@@ -1647,7 +1535,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "OBJECT",
-              "name" : "Quizz",
+              "name" : "Quiz",
               "ofType" : null
             }
           },
@@ -1671,7 +1559,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "OBJECT",
-        "name" : "Quizz",
+        "name" : "Quiz",
         "description" : null,
         "fields" : [ {
           "name" : "id",
@@ -1705,21 +1593,6 @@
           "deprecationReason" : null
         }, {
           "name" : "answers",
-          "description" : null,
-          "args" : [ ],
-          "type" : {
-            "kind" : "NON_NULL",
-            "name" : null,
-            "ofType" : {
-              "kind" : "SCALAR",
-              "name" : "AWSJSON",
-              "ofType" : null
-            }
-          },
-          "isDeprecated" : false,
-          "deprecationReason" : null
-        }, {
-          "name" : "correctAnswers",
           "description" : null,
           "args" : [ ],
           "type" : {
@@ -1770,7 +1643,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "ModelQuizzFilterInput",
+        "name" : "ModelQuizFilterInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -1801,15 +1674,6 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "correctAnswers",
-          "description" : null,
-          "type" : {
-            "kind" : "INPUT_OBJECT",
-            "name" : "ModelStringFilterInput",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
           "name" : "numberOfJokers",
           "description" : null,
           "type" : {
@@ -1826,7 +1690,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelQuizzFilterInput",
+              "name" : "ModelQuizFilterInput",
               "ofType" : null
             }
           },
@@ -1839,7 +1703,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelQuizzFilterInput",
+              "name" : "ModelQuizFilterInput",
               "ofType" : null
             }
           },
@@ -1849,7 +1713,7 @@
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
-            "name" : "ModelQuizzFilterInput",
+            "name" : "ModelQuizFilterInput",
             "ofType" : null
           },
           "defaultValue" : null
@@ -2583,7 +2447,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "createQuizz",
+          "name" : "createQuiz",
           "description" : null,
           "args" : [ {
             "name" : "input",
@@ -2593,7 +2457,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
-                "name" : "CreateQuizzInput",
+                "name" : "CreateQuizInput",
                 "ofType" : null
               }
             },
@@ -2601,13 +2465,13 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "Quizz",
+            "name" : "Quiz",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "updateQuizz",
+          "name" : "updateQuiz",
           "description" : null,
           "args" : [ {
             "name" : "input",
@@ -2617,7 +2481,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
-                "name" : "UpdateQuizzInput",
+                "name" : "UpdateQuizInput",
                 "ofType" : null
               }
             },
@@ -2625,13 +2489,13 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "Quizz",
+            "name" : "Quiz",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "deleteQuizz",
+          "name" : "deleteQuiz",
           "description" : null,
           "args" : [ {
             "name" : "input",
@@ -2641,7 +2505,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
-                "name" : "DeleteQuizzInput",
+                "name" : "DeleteQuizInput",
                 "ofType" : null
               }
             },
@@ -2649,7 +2513,7 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "Quizz",
+            "name" : "Quiz",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -2961,42 +2825,21 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "RGPDay",
-          "description" : null,
-          "type" : {
-            "kind" : "NON_NULL",
-            "name" : null,
-            "ofType" : {
-              "kind" : "SCALAR",
-              "name" : "AWSDate",
-              "ofType" : null
-            }
-          },
-          "defaultValue" : null
-        }, {
           "name" : "startDate",
           "description" : null,
           "type" : {
-            "kind" : "NON_NULL",
-            "name" : null,
-            "ofType" : {
-              "kind" : "SCALAR",
-              "name" : "AWSDate",
-              "ofType" : null
-            }
+            "kind" : "SCALAR",
+            "name" : "AWSDate",
+            "ofType" : null
           },
           "defaultValue" : null
         }, {
           "name" : "endDate",
           "description" : null,
           "type" : {
-            "kind" : "NON_NULL",
-            "name" : null,
-            "ofType" : {
-              "kind" : "SCALAR",
-              "name" : "AWSDate",
-              "ofType" : null
-            }
+            "kind" : "SCALAR",
+            "name" : "AWSDate",
+            "ofType" : null
           },
           "defaultValue" : null
         }, {
@@ -3005,42 +2848,6 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "Boolean",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "interviewLength",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Int",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "consultationLength",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Int",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "DPODailyCost",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Int",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "consultantDailyCost",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Int",
             "ofType" : null
           },
           "defaultValue" : null
@@ -3129,15 +2936,6 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "RGPDay",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "AWSDate",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
           "name" : "startDate",
           "description" : null,
           "type" : {
@@ -3161,42 +2959,6 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "Boolean",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "interviewLength",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Int",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "consultationLength",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Int",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "DPODailyCost",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Int",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "consultantDailyCost",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Int",
             "ofType" : null
           },
           "defaultValue" : null
@@ -3407,7 +3169,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "CreateQuizzInput",
+        "name" : "CreateQuizInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -3446,19 +3208,6 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "correctAnswers",
-          "description" : null,
-          "type" : {
-            "kind" : "NON_NULL",
-            "name" : null,
-            "ofType" : {
-              "kind" : "SCALAR",
-              "name" : "AWSJSON",
-              "ofType" : null
-            }
-          },
-          "defaultValue" : null
-        }, {
           "name" : "numberOfJokers",
           "description" : null,
           "type" : {
@@ -3472,7 +3221,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "quizzTeamId",
+          "name" : "quizTeamId",
           "description" : null,
           "type" : {
             "kind" : "NON_NULL",
@@ -3490,7 +3239,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "UpdateQuizzInput",
+        "name" : "UpdateQuizInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -3525,15 +3274,6 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "correctAnswers",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "AWSJSON",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
           "name" : "numberOfJokers",
           "description" : null,
           "type" : {
@@ -3543,7 +3283,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "quizzTeamId",
+          "name" : "quizTeamId",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -3557,7 +3297,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "DeleteQuizzInput",
+        "name" : "DeleteQuizInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -3786,34 +3526,34 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "onCreateQuizz",
+          "name" : "onCreateQuiz",
           "description" : null,
           "args" : [ ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "Quizz",
+            "name" : "Quiz",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "onUpdateQuizz",
+          "name" : "onUpdateQuiz",
           "description" : null,
           "args" : [ ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "Quizz",
+            "name" : "Quiz",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "onDeleteQuizz",
+          "name" : "onDeleteQuiz",
           "description" : null,
           "args" : [ ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "Quizz",
+            "name" : "Quiz",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -4743,18 +4483,22 @@
         "onFragment" : false,
         "onField" : true
       }, {
-        "name" : "deprecated",
-        "description" : null,
-        "locations" : [ "FIELD_DEFINITION", "ENUM_VALUE" ],
+        "name" : "aws_subscribe",
+        "description" : "Tells the service which mutation triggers this subscription.",
+        "locations" : [ "FIELD_DEFINITION" ],
         "args" : [ {
-          "name" : "reason",
-          "description" : null,
+          "name" : "mutations",
+          "description" : "List of mutations which will trigger this subscription when they are called.",
           "type" : {
-            "kind" : "SCALAR",
-            "name" : "String",
-            "ofType" : null
+            "kind" : "LIST",
+            "name" : null,
+            "ofType" : {
+              "kind" : "SCALAR",
+              "name" : "String",
+              "ofType" : null
+            }
           },
-          "defaultValue" : "\"No longer supported\""
+          "defaultValue" : null
         } ],
         "onOperation" : false,
         "onFragment" : false,
@@ -4781,33 +4525,29 @@
         "onFragment" : false,
         "onField" : false
       }, {
+        "name" : "deprecated",
+        "description" : null,
+        "locations" : [ "FIELD_DEFINITION", "ENUM_VALUE" ],
+        "args" : [ {
+          "name" : "reason",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "defaultValue" : "\"No longer supported\""
+        } ],
+        "onOperation" : false,
+        "onFragment" : false,
+        "onField" : false
+      }, {
         "name" : "aws_auth",
         "description" : "Directs the schema to enforce authorization on a field",
         "locations" : [ "FIELD_DEFINITION" ],
         "args" : [ {
           "name" : "cognito_groups",
           "description" : "List of cognito user pool groups which have access on this field",
-          "type" : {
-            "kind" : "LIST",
-            "name" : null,
-            "ofType" : {
-              "kind" : "SCALAR",
-              "name" : "String",
-              "ofType" : null
-            }
-          },
-          "defaultValue" : null
-        } ],
-        "onOperation" : false,
-        "onFragment" : false,
-        "onField" : false
-      }, {
-        "name" : "aws_subscribe",
-        "description" : "Tells the service which mutation triggers this subscription.",
-        "locations" : [ "FIELD_DEFINITION" ],
-        "args" : [ {
-          "name" : "mutations",
-          "description" : "List of mutations which will trigger this subscription when they are called.",
           "type" : {
             "kind" : "LIST",
             "name" : null,

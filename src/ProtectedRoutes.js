@@ -88,13 +88,17 @@ class MyRouter extends React.Component {
             config={config}
             openRules={this.props.openRules}
             setInterviewData={this.props.setInterviewData}
+            setGameScoringData={this.props.setGameScoringData}
           />
           <Service path='/serious-game/board/:teamId/:serviceId'
             config={config}
             openRules={this.props.openRules}
             interviewData={this.props.interviewData}
           />
-          <Score path='/serious-game/board/:teamId/score' config={config} />
+          <Score path='/serious-game/board/:teamId/score'
+            config={config}
+            gameScoringData={this.props.gameScoringData}
+          />
           <Redirect noThrow from='/serious-game/board' to='/dashboard/serious-game' />
         </Router>
       )
@@ -114,12 +118,14 @@ class ProtectedRoutes extends React.Component {
         sessionId: null,
         scenarioId: null,
         presentationId: null,
-        interviewData: null
+        interviewData: null,
+        gameScoringData: null
       }
     }
     this.setConfig = this.setConfig.bind(this)
     this.getConfig = this.getConfig.bind(this)
     this.setInterviewData = this.setInterviewData.bind(this)
+    this.setGameScoringData = this.setGameScoringData.bind(this)
   }
 
   componentDidMount () {
@@ -212,6 +218,10 @@ class ProtectedRoutes extends React.Component {
     this.setState({ interviewData })
   }
 
+  setGameScoringData (gameScoringData) {
+    this.setState({ gameScoringData })
+  }
+
   render () {
     return (
       <React.Fragment>
@@ -227,6 +237,8 @@ class ProtectedRoutes extends React.Component {
             openRules={this.props.openRules}
             interviewData={this.state.interviewData}
             setInterviewData={this.setInterviewData}
+            gameScoringData={this.state.gameScoringData}
+            setGameScoringData={this.setGameScoringData}
           />
         </Authenticator>
       </React.Fragment>

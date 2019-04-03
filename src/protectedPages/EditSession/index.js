@@ -9,6 +9,8 @@ import isIn from 'validator/lib/isIn'
 import { withStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
 import TextField from '@material-ui/core/TextField'
+import FormControlLabel from '@material-ui/core/FormControlLabel'
+import Switch from '@material-ui/core/Switch'
 import MenuItem from '@material-ui/core/MenuItem'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
@@ -107,54 +109,23 @@ class EditSession extends React.Component {
     super(props)
     this._isMounted = false
     this.defaultState = {
-      id: {
-        isDirty: false,
-        value: ''
-      },
-      description: {
-        isDirty: false,
-        value: ''
-      },
-      contact: {
-        isDirty: false,
-        value: ''
-      },
-      numberOfParticipants: {
-        isDirty: false,
-        value: '0'
-      },
-      RGPDay: {
-        isDirty: false,
-        value: ''
-      },
-      startDate: {
-        isDirty: false,
-        value: ''
-      },
-      endDate: {
-        isDirty: false,
-        value: ''
-      },
-      scenario: {
-        isDirty: false,
-        value: ''
-      },
+      id: { isDirty: false, value: '' },
+      gameOver: { isDirty: false, value: false },
+      description: { isDirty: false, value: '' },
+      contact: { isDirty: false, value: '' },
+      numberOfParticipants: { isDirty: false, value: '0' },
+      startDate: { isDirty: false, value: '' },
+      endDate: { isDirty: false, value: '' },
+      scenario: { isDirty: false, value: '' },
+      presentation: { isDirty: false, value: '' },
+      snackbar: { open: false, message: '' },
       scenarios: [],
-      form: {
-        isDisabled: false
-      },
-      presentation: {
-        isDirty: false,
-        value: ''
-      },
       presentations: [],
-      snackbar: {
-        open: false,
-        message: ''
-      }
+      form: { isDisabled: false }
     }
     this.state = this.defaultState
     this.handleChange = this.handleChange.bind(this)
+    this.handleCheck = this.handleCheck.bind(this)
     this.handleBlur = this.handleBlur.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleCancel = this.handleCancel.bind(this)
@@ -205,15 +176,16 @@ class EditSession extends React.Component {
         logger.error('presentations', presentations.error)
       }
       if (!session.errors && session.data.getSession) {
-        state.id.value = session.data.getSession.id
-        state.description.value = session.data.getSession.description
-        state.contact.value = session.data.getSession.contact
-        state.numberOfParticipants.value = session.data.getSession.numberOfParticipants.toString()
-        state.RGPDay.value = session.data.getSession.RGPDay
-        state.startDate.value = session.data.getSession.startDate
-        state.endDate.value = session.data.getSession.endDate
-        state.scenario.value = session.data.getSession.scenario.id
-        state.presentation.value = session.data.getSession.presentation.id
+        const data = session.data.getSession
+        state.id.value = data.id
+        state.gameOver.value = data.gameOver || false
+        state.description.value = data.description
+        state.contact.value = data.contact
+        state.numberOfParticipants.value = (data.numberOfParticipants) ? data.numberOfParticipants.toString() : '0'
+        state.startDate.value = data.startDate
+        state.endDate.value = data.endDate
+        state.scenario.value = data.scenario.id
+        state.presentation.value = data.presentation.id
       } else {
         logger.error('session', session.error)
       }
@@ -236,6 +208,15 @@ class EditSession extends React.Component {
     this.setState({ ...state })
   }
 
+  handleCheck (event, field) {
+    const state = {}
+    state[field] = {
+      isDirty: true,
+      value: event.target.checked
+    }
+    this.setState({ ...state })
+  }
+
   handleBlur (event, field) {
     const state = {}
     state[field] = {
@@ -254,6 +235,7 @@ class EditSession extends React.Component {
     const id = (isEmpty(state.id.value))
       ? null
       : state.id.value
+    const gameOver = state.gameOver.value
     const description = (isEmpty(state.description.value))
       ? null
       : state.description.value
@@ -263,18 +245,11 @@ class EditSession extends React.Component {
     const numberOfParticipants = (!isInt(this.state.numberOfParticipants.value))
       ? null
       : state.numberOfParticipants.value
-    const RGPDay = (isEmpty(this.state.RGPDay.value) ||
-        !isISO8601(this.state.RGPDay.value) ||
-        !isLength(this.state.RGPDay.value, { min: 10, max: 10 }))
-      ? null
-      : state.RGPDay.value
-    const startDate = (isEmpty(this.state.startDate.value) ||
-        !isISO8601(this.state.startDate.value) ||
+    const startDate = (!isISO8601(this.state.startDate.value) ||
         !isLength(this.state.startDate.value, { min: 10, max: 10 }))
       ? null
       : state.startDate.value
-    const endDate = (isEmpty(this.state.endDate.value) ||
-        !isISO8601(this.state.endDate.value) ||
+    const endDate = (!isISO8601(this.state.endDate.value) ||
         !isLength(this.state.endDate.value, { min: 10, max: 10 }))
       ? null
       : state.endDate.value
@@ -290,14 +265,12 @@ class EditSession extends React.Component {
       id,
       description,
       contact,
-      numberOfParticipants,
-      RGPDay,
       startDate,
       endDate,
       sessionScenarioId,
       sessionPresentationId
     ].join(' ').toLowerCase()
-    if (id && RGPDay && startDate && endDate && sessionScenarioId && sessionPresentationId) {
+    if (id && sessionScenarioId && sessionPresentationId) {
       state.form.isDisabled = true
       state.snackbar.message = `Sauvegarde en cours. Merci de patienter...`
       state.snackbar.open = true
@@ -308,10 +281,10 @@ class EditSession extends React.Component {
         const result = await API.graphql(
           graphqlOperation(action, { input: {
             id,
+            gameOver,
             description,
             contact,
             numberOfParticipants,
-            RGPDay,
             startDate,
             endDate,
             sessionScenarioId,
@@ -426,7 +399,7 @@ class EditSession extends React.Component {
                       <TextField
                         label='Description'
                         multiline
-                        rows='5'
+                        rows='8'
                         rowsMax='10'
                         fullWidth
                         margin='normal'
@@ -439,7 +412,7 @@ class EditSession extends React.Component {
                       <TextField
                         label='Contact'
                         multiline
-                        rows='5'
+                        rows='8'
                         rowsMax='10'
                         fullWidth
                         margin='normal'
@@ -449,6 +422,8 @@ class EditSession extends React.Component {
                         value={this.state.contact.value}
                         disabled={this.state.form.isDisabled}
                       />
+                    </Grid>
+                    <Grid item xs={12} md={6}>
                       <TextField
                         label='Nombre de participants'
                         helperText='Nombre entier'
@@ -462,27 +437,8 @@ class EditSession extends React.Component {
                           !isInt(this.state.numberOfParticipants.value))}
                         disabled={this.state.form.isDisabled}
                       />
-                    </Grid>
-                    <Grid item xs={12} md={6}>
                       <TextField
-                        label='Date de la session RGPDay *'
-                        helperText='Format ISO-8601'
-                        fullWidth
-                        margin='normal'
-                        variant='outlined'
-                        onChange={(e) => this.handleChange(e, 'RGPDay')}
-                        onBlur={(e) => this.handleBlur(e, 'RGPDay')}
-                        value={this.state.RGPDay.value}
-                        error={(this.state.RGPDay.isDirty &&
-                          (isEmpty(this.state.RGPDay.value) ||
-                            !isISO8601(this.state.RGPDay.value) ||
-                            !isLength(this.state.RGPDay.value, { min: 10, max: 10 })
-                          )
-                        )}
-                        disabled={this.state.form.isDisabled}
-                      />
-                      <TextField
-                        label={`Date d'ouverture du jeu *`}
+                        label={`Début de la session`}
                         helperText='Format ISO-8601'
                         fullWidth
                         margin='normal'
@@ -491,15 +447,14 @@ class EditSession extends React.Component {
                         onBlur={(e) => this.handleBlur(e, 'startDate')}
                         value={this.state.startDate.value}
                         error={(this.state.startDate.isDirty &&
-                          (isEmpty(this.state.startDate.value) ||
-                            !isISO8601(this.state.startDate.value) ||
+                          (!isISO8601(this.state.startDate.value) ||
                             !isLength(this.state.startDate.value, { min: 10, max: 10 })
                           )
                         )}
                         disabled={this.state.form.isDisabled}
                       />
                       <TextField
-                        label='Date de fermeture du jeu *'
+                        label='Fin de la session'
                         helperText='Format ISO-8601'
                         fullWidth
                         margin='normal'
@@ -508,8 +463,7 @@ class EditSession extends React.Component {
                         onBlur={(e) => this.handleBlur(e, 'endDate')}
                         value={this.state.endDate.value}
                         error={(this.state.endDate.isDirty &&
-                          (isEmpty(this.state.endDate.value) ||
-                            !isISO8601(this.state.endDate.value) ||
+                          (!isISO8601(this.state.endDate.value) ||
                             !isLength(this.state.endDate.value, { min: 10, max: 10 })
                           )
                         )}
@@ -561,6 +515,19 @@ class EditSession extends React.Component {
                       </TextField>
                     </Grid>
                     <Grid item xs={12} md={12}>
+                      <FormControlLabel
+                        control={
+                          <Switch
+                            checked={this.state.gameOver.value}
+                            onChange={(e) => this.handleCheck(e, 'gameOver')}
+                            disabled={this.state.form.isDisabled}
+                            value='Game over'
+                          />
+                        }
+                        label='La partie est terminée (game over)'
+                      />
+                    </Grid>
+                    <Grid item xs={12} md={12}>
                       <Button
                         variant='outlined'
                         color='secondary'
@@ -568,7 +535,7 @@ class EditSession extends React.Component {
                         type='submit'
                         disabled={this.state.form.isDisabled}
                       >
-                    Valider
+                        Valider
                       </Button>
                       <Button
                         variant='outlined'
@@ -576,7 +543,7 @@ class EditSession extends React.Component {
                         onClick={this.handleCancel}
                         disabled={this.state.form.isDisabled}
                       >
-                    Annuler
+                        Annuler
                       </Button>
                     </Grid>
                   </Grid>

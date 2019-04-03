@@ -12,14 +12,9 @@ export const onCreateScenario = `subscription OnCreateScenario {
         description
         contact
         numberOfParticipants
-        RGPDay
         startDate
         endDate
         gameOver
-        interviewLength
-        consultationLength
-        DPODailyCost
-        consultantDailyCost
         searchable
       }
       nextToken
@@ -38,14 +33,9 @@ export const onUpdateScenario = `subscription OnUpdateScenario {
         description
         contact
         numberOfParticipants
-        RGPDay
         startDate
         endDate
         gameOver
-        interviewLength
-        consultationLength
-        DPODailyCost
-        consultantDailyCost
         searchable
       }
       nextToken
@@ -64,14 +54,9 @@ export const onDeleteScenario = `subscription OnDeleteScenario {
         description
         contact
         numberOfParticipants
-        RGPDay
         startDate
         endDate
         gameOver
-        interviewLength
-        consultationLength
-        DPODailyCost
-        consultantDailyCost
         searchable
       }
       nextToken
@@ -90,14 +75,9 @@ export const onCreatePresentation = `subscription OnCreatePresentation {
         description
         contact
         numberOfParticipants
-        RGPDay
         startDate
         endDate
         gameOver
-        interviewLength
-        consultationLength
-        DPODailyCost
-        consultantDailyCost
         searchable
       }
       nextToken
@@ -116,14 +96,9 @@ export const onUpdatePresentation = `subscription OnUpdatePresentation {
         description
         contact
         numberOfParticipants
-        RGPDay
         startDate
         endDate
         gameOver
-        interviewLength
-        consultationLength
-        DPODailyCost
-        consultantDailyCost
         searchable
       }
       nextToken
@@ -142,14 +117,9 @@ export const onDeletePresentation = `subscription OnDeletePresentation {
         description
         contact
         numberOfParticipants
-        RGPDay
         startDate
         endDate
         gameOver
-        interviewLength
-        consultationLength
-        DPODailyCost
-        consultantDailyCost
         searchable
       }
       nextToken
@@ -163,14 +133,9 @@ export const onCreateSession = `subscription OnCreateSession {
     description
     contact
     numberOfParticipants
-    RGPDay
     startDate
     endDate
     gameOver
-    interviewLength
-    consultationLength
-    DPODailyCost
-    consultantDailyCost
     searchable
     scenario {
       id
@@ -207,14 +172,9 @@ export const onUpdateSession = `subscription OnUpdateSession {
     description
     contact
     numberOfParticipants
-    RGPDay
     startDate
     endDate
     gameOver
-    interviewLength
-    consultationLength
-    DPODailyCost
-    consultantDailyCost
     searchable
     scenario {
       id
@@ -251,14 +211,9 @@ export const onDeleteSession = `subscription OnDeleteSession {
     description
     contact
     numberOfParticipants
-    RGPDay
     startDate
     endDate
     gameOver
-    interviewLength
-    consultationLength
-    DPODailyCost
-    consultantDailyCost
     searchable
     scenario {
       id
@@ -301,14 +256,9 @@ export const onCreateTeam = `subscription OnCreateTeam {
       description
       contact
       numberOfParticipants
-      RGPDay
       startDate
       endDate
       gameOver
-      interviewLength
-      consultationLength
-      DPODailyCost
-      consultantDailyCost
       searchable
       scenario {
         id
@@ -329,7 +279,6 @@ export const onCreateTeam = `subscription OnCreateTeam {
         id
         service
         answers
-        correctAnswers
         numberOfJokers
       }
       nextToken
@@ -349,14 +298,9 @@ export const onUpdateTeam = `subscription OnUpdateTeam {
       description
       contact
       numberOfParticipants
-      RGPDay
       startDate
       endDate
       gameOver
-      interviewLength
-      consultationLength
-      DPODailyCost
-      consultantDailyCost
       searchable
       scenario {
         id
@@ -377,7 +321,6 @@ export const onUpdateTeam = `subscription OnUpdateTeam {
         id
         service
         answers
-        correctAnswers
         numberOfJokers
       }
       nextToken
@@ -397,14 +340,9 @@ export const onDeleteTeam = `subscription OnDeleteTeam {
       description
       contact
       numberOfParticipants
-      RGPDay
       startDate
       endDate
       gameOver
-      interviewLength
-      consultationLength
-      DPODailyCost
-      consultantDailyCost
       searchable
       scenario {
         id
@@ -425,7 +363,6 @@ export const onDeleteTeam = `subscription OnDeleteTeam {
         id
         service
         answers
-        correctAnswers
         numberOfJokers
       }
       nextToken
@@ -433,12 +370,11 @@ export const onDeleteTeam = `subscription OnDeleteTeam {
   }
 }
 `;
-export const onCreateQuizz = `subscription OnCreateQuizz {
-  onCreateQuizz {
+export const onCreateQuiz = `subscription OnCreateQuiz {
+  onCreateQuiz {
     id
     service
     answers
-    correctAnswers
     numberOfJokers
     team {
       id
@@ -451,14 +387,9 @@ export const onCreateQuizz = `subscription OnCreateQuizz {
         description
         contact
         numberOfParticipants
-        RGPDay
         startDate
         endDate
         gameOver
-        interviewLength
-        consultationLength
-        DPODailyCost
-        consultantDailyCost
         searchable
       }
       quizzes {
@@ -468,12 +399,11 @@ export const onCreateQuizz = `subscription OnCreateQuizz {
   }
 }
 `;
-export const onUpdateQuizz = `subscription OnUpdateQuizz {
-  onUpdateQuizz {
+export const onUpdateQuiz = `subscription OnUpdateQuiz {
+  onUpdateQuiz {
     id
     service
     answers
-    correctAnswers
     numberOfJokers
     team {
       id
@@ -486,14 +416,9 @@ export const onUpdateQuizz = `subscription OnUpdateQuizz {
         description
         contact
         numberOfParticipants
-        RGPDay
         startDate
         endDate
         gameOver
-        interviewLength
-        consultationLength
-        DPODailyCost
-        consultantDailyCost
         searchable
       }
       quizzes {
@@ -503,12 +428,11 @@ export const onUpdateQuizz = `subscription OnUpdateQuizz {
   }
 }
 `;
-export const onDeleteQuizz = `subscription OnDeleteQuizz {
-  onDeleteQuizz {
+export const onDeleteQuiz = `subscription OnDeleteQuiz {
+  onDeleteQuiz {
     id
     service
     answers
-    correctAnswers
     numberOfJokers
     team {
       id
@@ -521,14 +445,9 @@ export const onDeleteQuizz = `subscription OnDeleteQuizz {
         description
         contact
         numberOfParticipants
-        RGPDay
         startDate
         endDate
         gameOver
-        interviewLength
-        consultationLength
-        DPODailyCost
-        consultantDailyCost
         searchable
       }
       quizzes {

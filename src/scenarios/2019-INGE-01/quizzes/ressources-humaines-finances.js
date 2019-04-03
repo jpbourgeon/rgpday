@@ -1,8 +1,8 @@
 import consultantAvatar from './consultant.jpg'
-import { quizz as common } from './common'
-const quizz = [...common]
+import { quiz as common } from './common'
+const quiz = [...common]
 
-quizz.push({
+quiz.push({
   question: `Êtes-vous en couple ?`,
   hints: [],
   answers: [
@@ -11,4 +11,4 @@ quizz.push({
   ]
 })
 
-export { quizz, consultantAvatar }
+export { quiz, consultantAvatar }

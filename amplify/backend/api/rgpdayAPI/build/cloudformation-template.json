@@ -362,7 +362,7 @@
                         {
                             "Ref": "APIKeyExpirationEpoch"
                         },
-                        1554654834
+                        1554867598
                     ]
                 }
             },
@@ -664,7 +664,7 @@
                 "GraphQLSchema"
             ]
         },
-        "Quizz": {
+        "Quiz": {
             "Type": "AWS::CloudFormation::Stack",
             "Properties": {
                 "Parameters": {
@@ -723,7 +723,7 @@
                                 "Ref": "S3DeploymentRootKey"
                             },
                             "stacks",
-                            "Quizz.json"
+                            "Quiz.json"
                         ]
                     ]
                 }
@@ -870,7 +870,7 @@
                 "Scenario",
                 "Presentation",
                 "Team",
-                "Quizz"
+                "Quiz"
             ]
         },
         "sendMailStackjson": {
@@ -917,7 +917,7 @@
                 "Presentation",
                 "Session",
                 "Team",
-                "Quizz",
+                "Quiz",
                 "Config",
                 "ConnectionStack"
             ]

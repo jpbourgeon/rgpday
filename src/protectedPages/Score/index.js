@@ -1,9 +1,102 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { withStyles } from '@material-ui/core/styles'
+import { withStyles, createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles'
+import Avatar from '@material-ui/core/Avatar'
+import toMaterialStyle from 'material-color-hash'
 import Paper from '@material-ui/core/Paper'
-import Typography from '@material-ui/core/Typography'
+import MUIDataTable from 'mui-datatables'
 import Grid from '@material-ui/core/Grid'
+import logger from 'src/logger'
+import Loading from 'src/components/Loading'
+import isEqual from 'react-fast-compare'
+import API, { graphqlOperation } from '@aws-amplify/api'
+import PubSub from '@aws-amplify/pubsub'
+import Auth from '@aws-amplify/auth'
+import config from 'src/aws-exports'
+
+Auth.configure(config)
+PubSub.configure(config)
+API.configure(config)
+
+const getSession = `query GetSession($id: ID!) {
+  getSession(id: $id) {
+    id
+    teams {
+      items {
+        id
+        name
+        initials
+        numberOfInterviews
+        quizzes {
+          items {
+            id
+            service
+            answers
+            numberOfJokers
+          }
+          nextToken
+        }
+      }
+      nextToken
+    }
+  }
+}
+`
+
+const watchChanges = `subscription watchChanges {
+  onCreateSession { id }
+  onUpdateSession { id }
+  onDeleteSession { id }
+  onCreateTeam { id }
+  onUpdateTeam { id }
+  onDeleteTeam { id }
+  onCreateQuiz { id }
+  onUpdateQuiz { id }
+  onDeleteQuiz { id }
+}
+`
+
+const scoreTheQuizzes = (team, gameScoringData) => {
+  const { quizzes: { items: quizzes } } = team
+  const { quizzesCorrectAnswers: correctAnswers } = gameScoringData
+  const value = quizzes.reduce((result, quiz) => {
+    const answers = JSON.parse(quiz.answers)
+    const correction = correctAnswers[quiz.service]
+    if (!answers || !correction) {
+      return result
+    } else {
+      const score = answers.reduce((result, answer, index) => {
+        return (isEqual(answer, correction[index])) ? result + 1 : result
+      }, 0)
+      return result + score
+    }
+  }, 0)
+  const numberOfQuestions = Object.entries(correctAnswers).reduce((result, quiz) => (result + quiz[1].length), 0)
+  const score = value / numberOfQuestions
+  return { score, value, numberOfQuestions }
+}
+
+const scoreTheCosts = (team, gameScoringData, coeff) => {
+  const numberOfInterviews = team.numberOfInterviews || 0
+  const numberOfJokers = team.quizzes.items.reduce((result, quiz) => (result + quiz.numberOfJokers), 0)
+  const value = ((numberOfInterviews * gameScoringData.interviewLength * gameScoringData.DPODailyCost) +
+      (numberOfJokers * gameScoringData.consultationLength * gameScoringData.consultantDailyCost))
+  const score = (coeff)
+    ? (1 - Math.min(1, value / gameScoringData.consultantQuotation)) * coeff
+    : 0
+  return { score, value, numberOfJokers }
+}
+
+const scoreTheDuration = (team, gameScoringData, coeff) => {
+  const numberOfInterviews = team.numberOfInterviews || 0
+  const numberOfJokers = team.quizzes.items.reduce((result, quiz) => (result + quiz.numberOfJokers), 0)
+  const value = ((numberOfInterviews * gameScoringData.interviewLength) +
+    (numberOfJokers * gameScoringData.consultationLength))
+  const score = (coeff)
+    ? (1 - Math.min(1, value / gameScoringData.consultantEstimatedDuration)) * coeff
+    : 0
+  return { score, value }
+}
 
 const styles = theme => {
   return {
@@ -22,44 +115,210 @@ const styles = theme => {
         marginRight: 'auto'
       }
     },
-    mainFeaturedPost: {
-      backgroundSize: `100% 100%`,
-      marginBottom: theme.spacing.unit * 4
-    },
-    mainFeaturedPostContent: {
-      padding: `${theme.spacing.unit * 6}px`,
-      [theme.breakpoints.up('md')]: {
-        paddingRight: 0
-      }
+    avatarIcon: {
+      float: 'left',
+      margin: theme.spacing.unit,
+      width: 40,
+      height: 40,
+      fontSize: theme.typography.h6.fontSize
     }
   }
 }
 
-const Score = props => {
-  const { classes } = props
-  return (
-    <div className={classes.layout}>
-      <main>
-        {/* Hero */}
-        <Paper className={classes.mainFeaturedPost}>
-          <Grid container>
-            <Grid item md={6}>
-              <div className={classes.mainFeaturedPostContent}>
-                <Typography variant='h4' color='inherit' gutterBottom>
-                    Page des scores
-                </Typography>
-              </div>
+class Score extends React.Component {
+  constructor (props) {
+    super(props)
+    this.stub = { 'interviewLength': 3, 'consultationLength': 1, 'DPODailyCost': 500, 'consultantDailyCost': 1200, 'consultantQuotation': 24000, 'consultantEstimatedDuration': 20, 'quizzesCorrectAnswers': { 'direction': [ [ true, false ], [ false, true, false, true, false, false ], [ true, true, false, false, true, true ], [ true, true, true, true, true, true ], [ true, true, true, false, false, false, false, false, false, false, false, false ] ], 'ressources-humaines-finances': [ [ false, true, false, true, false, false ], [ true, true, false, false, true, true ], [ true, true, true, true, true, true ], [ true, true, true, false, false, false, false, false, false, false, false, false ], [ true, false ] ], 'informatique': [ [ false, true, false, true, false, false ], [ true, true, false, false, true, true ], [ true, true, true, true, true, true ], [ true, true, true, false, false, false, false, false, false, false, false, false ], [ true, false ] ] } }
+    this._isMounted = false
+    this.defaultState = { scores: null }
+    this.state = this.defaultState
+    this.subscription = null
+    this.loadScores = this.loadScores.bind(this)
+    this.getMuiTheme = this.getMuiTheme.bind(this)
+  }
+
+  async componentDidMount () {
+    this._isMounted = true
+    try {
+      if (this.props.config.sessionId) {
+        this.loadScores()
+        this.subscription = await API.graphql(graphqlOperation(watchChanges))
+          .subscribe({
+            next: this.loadScores
+          })
+      }
+    } catch (error) {
+      logger.error('componentDidMount', error)
+    }
+  }
+
+  async componentWillUnmount () {
+    if (this.subscription) this.subscription.unsubscribe()
+    this._isMounted = false
+  }
+
+  async loadScores () {
+    const { classes } = this.props
+    const gameScoringData = this.props.gameScoringData || this.stub
+    const data = await this.loadSession()
+    try {
+      if (data && gameScoringData) {
+        const scores = data.teams.items.map((team) => {
+          const avatar = (
+            <Avatar alt={team.name} className={classes.avatarIcon} style={toMaterialStyle(team.name)}>
+              {team.initials}
+            </Avatar>
+          )
+          const quality = scoreTheQuizzes(team, gameScoringData)
+          const cost = scoreTheCosts(team, gameScoringData, quality.score)
+          const duration = scoreTheDuration(team, gameScoringData, quality.score)
+          const average = (quality.score + cost.score + duration.score) / 3 || 0
+          return ([
+            avatar,
+            team.name,
+            `${cost.value.toFixed(2)} €`,
+            `${duration.value} jour(s)`,
+            `${quality.value}/${quality.numberOfQuestions} réponse(s)`,
+            `${(average * 100).toFixed(2)}/100`
+          ])
+        })
+        if (this._isMounted) this.setState({ scores })
+      }
+    } catch (error) {
+      logger.error('loadScores', error)
+    }
+  }
+
+  async loadSession () {
+    // GraphQL
+    try {
+      const { sessionId } = this.props.config
+      if (sessionId) {
+        const result = await API.graphql(
+          graphqlOperation(getSession, { id: sessionId })
+        )
+        if (!result.errors && result.data.getSession) {
+          return result.data.getSession
+        }
+        if (result.errors) {
+          logger.error('loadSession', result)
+          return {}
+        }
+      }
+    } catch (error) {
+      logger.error('loadSession', error)
+      return {}
+    }
+  }
+  getMuiTheme () {
+    const { theme } = this.props
+    return createMuiTheme({
+      typography: {
+        useNextVariants: true
+      },
+      overrides: {
+        MUIDataTableHeadCell: {
+          root: {
+            fontSize: theme.typography.body1.fontSize
+          }
+        },
+        MUIDataTableBodyCell: {
+          root: {
+            fontSize: theme.typography.body1.fontSize
+          }
+        },
+        MUIDataTableToolbar: {
+          root: {
+            paddingTop: theme.spacing.unit * 5
+          },
+          titleText: {
+            fontSize: theme.typography.h4.fontSize
+          }
+        }
+      }
+    })
+  }
+
+  render () {
+    const { classes } = this.props
+    const options = {
+      selectableRows: false,
+      elevation: 4,
+      responsive: 'scroll',
+      rowsPerPage: 20,
+      rowsPerPageOptions: [10, 20, 30],
+      print: false,
+      download: false,
+      filter: false,
+      textLabels: {
+        body: {
+          noMatch: `Désolé, aucune enregistrement correspondant n'a été trouvé`,
+          toolTip: 'Trier'
+        },
+        pagination: {
+          next: 'Page suivante',
+          previous: 'Page précédentes',
+          rowsPerPage: 'Lignes par page :',
+          displayRows: '/'
+        },
+        toolbar: {
+          search: 'Chercher',
+          viewColumns: 'Afficher les colonnes',
+          filterTable: 'Filtrer le tableau'
+        },
+        filter: {
+          all: 'Tout',
+          title: 'FILTRES',
+          reset: 'REINITIALISER'
+        },
+        viewColumns: {
+          title: 'Afficher les colonnes',
+          titleAria: 'Afficher/masquer les colonnes de tableau'
+        },
+        selectedRows: {
+          text: 'Ligne(s) sélectionnée(s)',
+          delete: 'Effacer',
+          deleteAria: 'Effacer les lignes sélectionnées'
+        }
+      }
+    }
+    const columns = [
+      { label: '', options: { sort: false, searchable: false } },
+      { label: 'Équipe', options: { sort: false, searchable: true } },
+      { label: 'Coût', options: { sort: true, searchable: false } },
+      { label: 'Délai', options: { sort: true, searchable: false } },
+      { label: 'Qualité', options: { sort: true, searchable: false } },
+      { label: 'Score', options: { sort: true, sortDirection: 'desc', searchable: false } }
+    ]
+    return (
+      <div className={classes.layout}>
+        <main>
+          <Grid container spacing={32}>
+            <Grid item xs={12}>
+              {
+                (this.state.scores)
+                  ? (
+                    <MuiThemeProvider theme={this.getMuiTheme()}>
+                      <MUIDataTable
+                        title='Scores'
+                        options={options}
+                        columns={columns}
+                        data={this.state.scores}
+                      />
+                    </MuiThemeProvider>
+                  )
+                  : <Paper><Loading /></Paper>
+              }
             </Grid>
           </Grid>
-        </Paper>
-        {/* End Hero */}
-      </main>
-    </div>
-  )
+        </main>
+      </div>
+    )
+  }
 }
 
 Score.propTypes = {
   classes: PropTypes.object.isRequired
 }
 
-export default withStyles(styles)(Score)
+export default withStyles(styles, { withTheme: true })(Score)

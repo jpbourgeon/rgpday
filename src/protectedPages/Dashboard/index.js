@@ -116,7 +116,7 @@ const Dashboard = (props) => {
         />
         <Tile
           title='Présentations'
-          description={`L'identifiant d'une présentation doit correspondre à un scénario disponible dans le code source.`}
+          description={`L'identifiant d'une présentation doit correspondre à une présentation disponible dans le code source.`}
         />
         <Tile
           title='Sessions'

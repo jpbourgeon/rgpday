@@ -44,8 +44,8 @@ const listSessions = `query ListSessions(
       id
       description
       contact
-      RGPDay
       startDate
+      endDate
       searchable
       scenario {
         id
@@ -302,10 +302,13 @@ class Sessions extends React.Component {
                       </span>
                     </React.Fragment>
                   )}
-                  {(!item.RGPDay) ? null : (
+                  {(!item.startDate || !item.endDate) ? null : (
                     <React.Fragment>
                       <span className={classes.tileContent}>
-                        <strong>Date : </strong>{item.RGPDay}
+                        <strong>Période : </strong>
+                        {(item.startDate && !item.endDate) ? `à partir du ${item.startDate}` : null}
+                        {(item.startDate && item.endDate) ? `du ${item.startDate} au ${item.endDate}` : null}
+                        {(!item.startDate && item.endDate) ? `jusqu'au ${item.endDate}` : null}
                       </span>
                     </React.Fragment>
                   )}

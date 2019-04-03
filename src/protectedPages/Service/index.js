@@ -23,18 +23,17 @@ import Checkbox from '@material-ui/core/Checkbox'
 import Markdown from 'src/components/Markdown'
 import logger from 'src/logger'
 import API, { graphqlOperation } from '@aws-amplify/api'
-import { createQuizz, updateQuizz } from 'src/graphql/mutations'
+import { createQuiz, updateQuiz } from 'src/graphql/mutations'
 import config from 'src/aws-exports'
 
 API.configure(config)
 
-const mutations = { createQuizz, updateQuizz }
+const mutations = { createQuiz, updateQuiz }
 
-const getQuizz = `query GetQuizz($id: ID!) {
-  getQuizz(id: $id) {
+const getQuiz = `query GetQuiz($id: ID!) {
+  getQuiz(id: $id) {
     id
     answers
-    correctAnswers
     numberOfJokers
   }
 }
@@ -94,30 +93,29 @@ class Service extends React.Component {
     super(props)
     this._isMounted = false
     this.Interview = null
-    this.Quizz = null
+    this.Quiz = null
     this.interviewRef = React.createRef()
-    this.quizzRef = React.createRef()
+    this.quizRef = React.createRef()
     this.checkRefsReceivedTimer = null
     this.defaultState = {
       isDisabled: false,
       currentDialog: 0,
       currentQuestion: 0,
-      quizz: {
+      quiz: {
         id: null,
         answers: null,
-        correctAnswers: null,
         numberOfJokers: 0
       }
     }
     this.state = this.defaultState
-    this.quizzMutation = 'createQuizz'
+    this.quizMutation = 'createQuiz'
 
     this.checkRefsReceived = this.checkRefsReceived.bind(this)
     this.showDialog = this.showDialog.bind(this)
     this.setCurrentQuestion = this.setCurrentQuestion.bind(this)
     this.toggleAnswer = this.toggleAnswer.bind(this)
-    this.loadQuizz = this.loadQuizz.bind(this)
-    this.saveQuizz = this.saveQuizz.bind(this)
+    this.loadQuiz = this.loadQuiz.bind(this)
+    this.saveQuiz = this.saveQuiz.bind(this)
     this.buyAJoker = this.buyAJoker.bind(this)
   }
 
@@ -130,45 +128,36 @@ class Service extends React.Component {
     this.Interview = (config.scenarioId && serviceId)
       ? loadable.lib(() => (import(`../../scenarios/${config.scenarioId}/interviews/${serviceId}.js`)))
       : null
-    this.Quizz = (config.scenarioId && serviceId)
+    this.Quiz = (config.scenarioId && serviceId)
       ? loadable.lib(() => (import(`../../scenarios/${config.scenarioId}/quizzes/${serviceId}.js`)))
       : null
     if (this._isMounted) this.forceUpdate()
   }
 
   async componentWillUnmount () {
-    if (this._isMounted) await this.saveQuizz()
+    await this.saveQuiz()
     this._isMounted = false
     clearTimeout(this.checkRefsReceivedTimer)
   }
 
   async componentDidUpdate () {
-    if (!this.interviewRef.current || !this.quizzRef.current) {
+    if (!this.interviewRef.current || !this.quizRef.current) {
       this.checkRefsReceived()
       return null
     }
-    if (!this.state.quizz.answers || !this.state.quizz.correctAnswers) {
-      let quizz = (this._isMounted) ? await this.loadQuizz() : null
-      if (!quizz) quizz = this.defaultState.quizz
-      if (!quizz.answers) {
-        quizz.answers = (this.quizzRef.current)
-          ? this.quizzRef.current.quizz.map((item) => {
+    if (!this.state.quiz.answers) {
+      let quiz = (this._isMounted) ? await this.loadQuiz() : null
+      if (!quiz) quiz = this.defaultState.quiz
+      if (!quiz.answers) {
+        quiz.answers = (this.quizRef.current)
+          ? this.quizRef.current.quiz.map((item) => {
             return item.answers.map((item) => {
               return false
             })
           })
           : null
       }
-      if (!quizz.correctAnswers) {
-        quizz.correctAnswers = (this.quizzRef.current)
-          ? this.quizzRef.current.quizz.map((item) => {
-            return item.answers.map((item) => {
-              return item.isCorrect
-            })
-          })
-          : null
-      }
-      if (this._isMounted) this.setState({ quizz })
+      if (this._isMounted) this.setState({ quiz })
     }
   }
 
@@ -179,69 +168,67 @@ class Service extends React.Component {
     }, 100)
   }
 
-  async loadQuizz () {
+  async loadQuiz () {
     // GraphQL
     try {
       const { teamId: team, serviceId: service } = this.props
       const result = await API.graphql(
-        graphqlOperation(getQuizz, { id: stringHash(JSON.stringify({ team, service })) })
+        graphqlOperation(getQuiz, { id: stringHash(JSON.stringify({ team, service })) })
       )
-      if (!result.errors && result.data.getQuizz) {
-        this.quizzMutation = 'updateQuizz'
-        const quizz = result.data.getQuizz
+      if (!result.errors && result.data.getQuiz) {
+        this.quizMutation = 'updateQuiz'
+        const quiz = result.data.getQuiz
         return {
-          id: quizz.id,
-          answers: JSON.parse(result.data.getQuizz.answers),
-          correctAnswers: JSON.parse(result.data.getQuizz.correctAnswers),
-          numberOfJokers: quizz.numberOfJokers
+          id: quiz.id,
+          answers: JSON.parse(result.data.getQuiz.answers),
+          numberOfJokers: quiz.numberOfJokers
         }
       }
       if (result.errors) {
-        this.quizzMutation = 'createQuizz'
-        logger.error('loadQuizz', result)
-        return this.defaultState.quizz
+        this.quizMutation = 'createQuiz'
+        logger.error('loadQuiz', result)
+        return this.defaultState.quiz
       }
     } catch (error) {
-      this.quizzMutation = 'createQuizz'
-      logger.error('loadQuizz', error)
-      return this.defaultState.quizz
+      this.quizMutation = 'createQuiz'
+      logger.error('loadQuiz', error)
+      return this.defaultState.quiz
     }
   }
 
-  async saveQuizz () {
+  async saveQuiz () {
     try {
       const { teamId: team, serviceId: service } = this.props
-      const { answers, correctAnswers, numberOfJokers } = this.state.quizz
-      if (team && service && answers && correctAnswers && numberOfJokers) {
+      const { answers, numberOfJokers } = this.state.quiz
+      if (team && service && answers) {
         const input = {}
         input.id = stringHash(JSON.stringify({ team, service }))
         input.service = service
         input.answers = JSON.stringify(answers)
-        input.correctAnswers = JSON.stringify(correctAnswers)
         input.numberOfJokers = numberOfJokers
-        input.quizzTeamId = team
+        input.quizTeamId = team
         // GraphQL
         const result = await API.graphql(
-          graphqlOperation(mutations[this.quizzMutation], { input })
+          graphqlOperation(mutations[this.quizMutation], { input })
         )
         if (result.errors) {
-          logger.error('saveQuizz', result)
+          logger.error('saveQuiz', result)
         }
       }
     } catch (error) {
-      logger.error('saveQuizz', error)
+      logger.error('saveQuiz', error)
     }
   }
 
   async buyAJoker (event) {
     event.preventDefault()
     try {
-      const quizz = this.state.quizz
-      quizz.numberOfJokers = quizz.numberOfJokers + 1
-      await this.saveQuizz()
-      this.setState({ quizz })
+      const quiz = this.state.quiz
+      quiz.numberOfJokers = quiz.numberOfJokers + 1
+      await this.saveQuiz()
+      if (this._isMounted) this.setState({ quiz })
     } catch (error) {
-      logger.error('saveQuizz', error)
+      logger.error('saveQuiz', error)
     }
   }
 
@@ -254,17 +241,17 @@ class Service extends React.Component {
   }
 
   async setCurrentQuestion (id) {
-    if (this.quizzRef.current) {
-      await this.saveQuizz()
+    if (this.quizRef.current) {
+      await this.saveQuiz()
       if (this._isMounted) this.setState({ isDisabled: true })
-      const quizz = this.quizzRef.current.quizz
+      const quiz = this.quizRef.current.quiz
       let currentQuestion
       switch (true) {
         case (id < 0):
           currentQuestion = 0
           break
-        case (id > quizz.length):
-          currentQuestion = quizz.length
+        case (id > quiz.length):
+          currentQuestion = quiz.length
           break
         default:
           currentQuestion = id
@@ -276,17 +263,17 @@ class Service extends React.Component {
 
   toggleAnswer (event, key) {
     event.preventDefault()
-    const answers = this.state.quizz.answers
+    const answers = this.state.quiz.answers
     answers[this.state.currentQuestion][key] = !answers[this.state.currentQuestion][key]
-    const quizz = this.state.quizz
-    quizz.answers = answers
-    this.setState({ quizz })
+    const quiz = this.state.quiz
+    quiz.answers = answers
+    this.setState({ quiz })
   }
 
   render () {
     const { classes, interviewData, serviceId } = this.props
     const Interview = this.Interview
-    const Quizz = this.Quizz
+    const Quiz = this.Quiz
     const renderInterview = () => {
       if (this.interviewRef.current) {
         const team = (interviewData) ? interviewData.team : { name: '???', initials: '???' }
@@ -314,7 +301,7 @@ class Service extends React.Component {
                 className={classes.avatarIcon}
                 style={toMaterialStyle(team.name)}
               >{team.initials}</Avatar>
-              Equipe DPO
+              {team.name}
             </Typography>
             {
               interview[this.state.currentDialog].questions.map((element, key) => (
@@ -346,30 +333,30 @@ class Service extends React.Component {
         return <Loading />
       }
     }
-    const renderQuizz = () => {
-      if (this.quizzRef.current) {
-        const quizz = this.quizzRef.current.quizz
-        const consultantAvatar = this.quizzRef.current.consultantAvatar
-        const currentQuestion = quizz[this.state.currentQuestion]
-        const numberOfAnswers = (this.state.quizz.answers)
-          ? this.state.quizz.answers.filter((answer) => {
+    const renderQuiz = () => {
+      if (this.quizRef.current) {
+        const quiz = this.quizRef.current.quiz
+        const consultantAvatar = this.quizRef.current.consultantAvatar
+        const currentQuestion = quiz[this.state.currentQuestion]
+        const numberOfAnswers = (this.state.quiz.answers)
+          ? this.state.quiz.answers.filter((answer) => {
             return answer.filter(field => field).length > 0
           }).length
           : 0
-        const hints = quizz[this.state.currentQuestion].hints.filter(
+        const hints = quiz[this.state.currentQuestion].hints.filter(
           hint => {
-            return hint.jokerNumber <= this.state.quizz.numberOfJokers
+            return hint.jokerNumber <= this.state.quiz.numberOfJokers
           }
         )
         return (
           <Paper className={classes.paper}>
-            <Typography variant='h4' color='inherit' gutterBottom>Quizz</Typography>
+            <Typography variant='h4' color='inherit' gutterBottom>Quiz</Typography>
             <Typography variant='body1' color='inherit' gutterBottom component='div'>
-              {numberOfAnswers} réponses / {quizz.length} questions
+              {numberOfAnswers} réponses / {quiz.length} questions
             </Typography>
             <MobileStepper
               variant='progress'
-              steps={quizz.length}
+              steps={quiz.length}
               position='static'
               activeStep={this.state.currentQuestion}
               backButton={
@@ -386,7 +373,7 @@ class Service extends React.Component {
                 <Button
                   size='small'
                   onClick={() => this.setCurrentQuestion(this.state.currentQuestion + 1)}
-                  disabled={this.state.currentQuestion >= quizz.length - 1}
+                  disabled={this.state.currentQuestion >= quiz.length - 1}
                 >
                   <Hidden xsDown>Suivante</Hidden>
                   <KeyboardArrowRight />
@@ -406,16 +393,16 @@ class Service extends React.Component {
                       value={answer.label}
                       control={
                         <Checkbox
-                          checked={(this.state.quizz.answers)
-                            ? this.state.quizz.answers[this.state.currentQuestion][key]
+                          checked={(this.state.quiz.answers)
+                            ? this.state.quiz.answers[this.state.currentQuestion][key]
                             : false
                           }
                           onClick={(event) => this.toggleAnswer(event, key)}
-                          disabled={(quizz[this.state.currentQuestion].answers[key].jokerNumber <= this.state.quizz.numberOfJokers)}
+                          disabled={(quiz[this.state.currentQuestion].answers[key].jokerNumber <= this.state.quiz.numberOfJokers && !this.state.quiz.answers[this.state.currentQuestion][key])}
                         />
                       }
                       label={<span
-                        className={(quizz[this.state.currentQuestion].answers[key].jokerNumber <= this.state.quizz.numberOfJokers) ? classes.incorrect : null}
+                        className={(quiz[this.state.currentQuestion].answers[key].jokerNumber <= this.state.quiz.numberOfJokers) ? classes.incorrect : null}
                       >
                         {answer.label}
                       </span>}
@@ -424,7 +411,7 @@ class Service extends React.Component {
                 })}
               </FormGroup>
             </FormControl>
-            <Divider className={(quizz[this.state.currentQuestion].maxJokers > 0)
+            <Divider className={(quiz[this.state.currentQuestion].maxJokers > 0)
               ? classes.divider
               : classes.hide
             } />
@@ -433,7 +420,7 @@ class Service extends React.Component {
                 color='secondary'
                 component='button'
                 onClick={(e) => this.buyAJoker(e)}
-                className={(quizz[this.state.currentQuestion].maxJokers > this.state.quizz.numberOfJokers)
+                className={(quiz[this.state.currentQuestion].maxJokers > this.state.quiz.numberOfJokers)
                   ? classes.joker
                   : classes.hide
                 }
@@ -478,10 +465,10 @@ class Service extends React.Component {
       <div className={classes.layout}>
         <main>
           {(Interview) ? <Interview ref={this.interviewRef} /> : null}
-          {(Quizz) ? <Quizz ref={this.quizzRef} /> : null}
+          {(Quiz) ? <Quiz ref={this.quizRef} /> : null}
           <Grid container spacing={32}>
             <Grid item xs={12} md={6}>{renderInterview()}</Grid>
-            <Grid item xs={12} md={6}>{renderQuizz()}</Grid>
+            <Grid item xs={12} md={6}>{renderQuiz()}</Grid>
           </Grid>
         </main>
       </div>

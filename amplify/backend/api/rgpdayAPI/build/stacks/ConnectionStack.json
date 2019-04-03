@@ -522,7 +522,7 @@
                                     "Ref": "AppSyncApiId"
                                 },
                                 "GetAtt",
-                                "QuizzDataSource",
+                                "QuizDataSource",
                                 "Name"
                             ]
                         ]
@@ -580,7 +580,7 @@
                 }
             }
         },
-        "QuizzteamResolver": {
+        "QuizteamResolver": {
             "Type": "AWS::AppSync::Resolver",
             "Properties": {
                 "ApiId": {
@@ -602,7 +602,7 @@
                     }
                 },
                 "FieldName": "team",
-                "TypeName": "Quizz",
+                "TypeName": "Quiz",
                 "RequestMappingTemplateS3Location": {
                     "Fn::Sub": [
                         "s3://${S3DeploymentBucket}/${S3DeploymentRootKey}/resolvers/${ResolverFileName}",
@@ -617,7 +617,7 @@
                                 "Fn::Join": [
                                     ".",
                                     [
-                                        "Quizz",
+                                        "Quiz",
                                         "team",
                                         "req",
                                         "vtl"
@@ -641,7 +641,7 @@
                                 "Fn::Join": [
                                     ".",
                                     [
-                                        "Quizz",
+                                        "Quiz",
                                         "team",
                                         "res",
                                         "vtl"

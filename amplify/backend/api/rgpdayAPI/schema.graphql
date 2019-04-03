@@ -17,14 +17,9 @@ type Session @model {
   description: String
   contact: String
   numberOfParticipants: Int
-  RGPDay: AWSDate!
-  startDate: AWSDate!
-  endDate: AWSDate!
+  startDate: AWSDate
+  endDate: AWSDate
   gameOver: Boolean
-  interviewLength: Int
-  consultationLength: Int
-  DPODailyCost: Int
-  consultantDailyCost: Int
   searchable: String
   scenario: Scenario! @connection(name: "ScenarioSessions")
   presentation: Presentation! @connection(name: "PresentationSessions")
@@ -41,17 +36,16 @@ type Team @model {
   searchable: String
   numberOfInterviews: Int
   session: Session! @connection(name: "SessionTeams")
-  quizzes: [Quizz] @connection(name: "TeamQuizzes")
+  quizzes: [Quiz] @connection(name: "TeamQuizzes")
 }
 
-type Quizz @model {
+type Quiz @model {
   # the id is a hash string of the JSON stringification of
   # the team id and service name key value pairs to make 
   # the name unique for a particular Team
   id:ID!
   service: String!
   answers: AWSJSON!
-  correctAnswers: AWSJSON!
   numberOfJokers: Int!
   team: Team! @connection(name: "TeamQuizzes")
 }

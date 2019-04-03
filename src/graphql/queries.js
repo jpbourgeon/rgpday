@@ -26,14 +26,9 @@ export const getScenario = `query GetScenario($id: ID!) {
         description
         contact
         numberOfParticipants
-        RGPDay
         startDate
         endDate
         gameOver
-        interviewLength
-        consultationLength
-        DPODailyCost
-        consultantDailyCost
         searchable
       }
       nextToken
@@ -70,14 +65,9 @@ export const getPresentation = `query GetPresentation($id: ID!) {
         description
         contact
         numberOfParticipants
-        RGPDay
         startDate
         endDate
         gameOver
-        interviewLength
-        consultationLength
-        DPODailyCost
-        consultantDailyCost
         searchable
       }
       nextToken
@@ -109,14 +99,9 @@ export const getSession = `query GetSession($id: ID!) {
     description
     contact
     numberOfParticipants
-    RGPDay
     startDate
     endDate
     gameOver
-    interviewLength
-    consultationLength
-    DPODailyCost
-    consultantDailyCost
     searchable
     scenario {
       id
@@ -158,14 +143,9 @@ export const listSessions = `query ListSessions(
       description
       contact
       numberOfParticipants
-      RGPDay
       startDate
       endDate
       gameOver
-      interviewLength
-      consultationLength
-      DPODailyCost
-      consultantDailyCost
       searchable
       scenario {
         id
@@ -197,14 +177,9 @@ export const getTeam = `query GetTeam($id: ID!) {
       description
       contact
       numberOfParticipants
-      RGPDay
       startDate
       endDate
       gameOver
-      interviewLength
-      consultationLength
-      DPODailyCost
-      consultantDailyCost
       searchable
       scenario {
         id
@@ -225,7 +200,6 @@ export const getTeam = `query GetTeam($id: ID!) {
         id
         service
         answers
-        correctAnswers
         numberOfJokers
       }
       nextToken
@@ -250,14 +224,9 @@ export const listTeams = `query ListTeams(
         description
         contact
         numberOfParticipants
-        RGPDay
         startDate
         endDate
         gameOver
-        interviewLength
-        consultationLength
-        DPODailyCost
-        consultantDailyCost
         searchable
       }
       quizzes {
@@ -268,12 +237,11 @@ export const listTeams = `query ListTeams(
   }
 }
 `;
-export const getQuizz = `query GetQuizz($id: ID!) {
-  getQuizz(id: $id) {
+export const getQuiz = `query GetQuiz($id: ID!) {
+  getQuiz(id: $id) {
     id
     service
     answers
-    correctAnswers
     numberOfJokers
     team {
       id
@@ -286,14 +254,9 @@ export const getQuizz = `query GetQuizz($id: ID!) {
         description
         contact
         numberOfParticipants
-        RGPDay
         startDate
         endDate
         gameOver
-        interviewLength
-        consultationLength
-        DPODailyCost
-        consultantDailyCost
         searchable
       }
       quizzes {
@@ -303,17 +266,16 @@ export const getQuizz = `query GetQuizz($id: ID!) {
   }
 }
 `;
-export const listQuizzs = `query ListQuizzs(
-  $filter: ModelQuizzFilterInput
+export const listQuizs = `query ListQuizs(
+  $filter: ModelQuizFilterInput
   $limit: Int
   $nextToken: String
 ) {
-  listQuizzs(filter: $filter, limit: $limit, nextToken: $nextToken) {
+  listQuizs(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
       service
       answers
-      correctAnswers
       numberOfJokers
       team {
         id

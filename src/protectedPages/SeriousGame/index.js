@@ -113,19 +113,27 @@ class SeriousGame extends React.Component {
 
   async goTo (to, id) {
     try {
-      const service = (this.scenarioRef.current)
-        ? this.scenarioRef.current.scenario.services[id]
-        : null
-      const input = this.state.team
-      input.numberOfInterviews = (input.numberOfInterviews) ? input.numberOfInterviews + 1 : 1
-      // GraphQL
-      const result = await API.graphql(
-        graphqlOperation(updateTeam, { input })
-      )
-      if (result.errors) {
-        logger.error('goTo', result)
+      if (!to.includes('score')) {
+        const service = (this.scenarioRef.current)
+          ? this.scenarioRef.current.scenario.services[id]
+          : null
+        const input = this.state.team
+        input.numberOfInterviews = (input.numberOfInterviews) ? input.numberOfInterviews + 1 : 1
+        // GraphQL
+        const result = await API.graphql(
+          graphqlOperation(updateTeam, { input })
+        )
+        if (result.errors) {
+          logger.error('goTo', result)
+        } else {
+          this.props.setInterviewData({ service, team: input })
+          this.props.navigate(to)
+        }
       } else {
-        this.props.setInterviewData({ service, team: input })
+        const gameScoringData = (this.scenarioRef.current)
+          ? this.scenarioRef.current.scenario.gameScoringData
+          : null
+        this.props.setGameScoringData(gameScoringData)
         this.props.navigate(to)
       }
     } catch (error) {

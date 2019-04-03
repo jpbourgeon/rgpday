@@ -279,7 +279,7 @@ exports[`The EditSession protected page should render correctly 1`] = `
                         aria-hidden="true"
                         className="textarea-249 shadow-250"
                         readOnly={true}
-                        rows="5"
+                        rows="8"
                         tabIndex={-1}
                         value=""
                       />
@@ -291,10 +291,10 @@ exports[`The EditSession protected page should render correctly 1`] = `
                         onChange={[Function]}
                         onFocus={[Function]}
                         required={false}
-                        rows="5"
+                        rows="8"
                         style={
                           Object {
-                            "height": 95,
+                            "height": 152,
                           }
                         }
                         value=""
@@ -356,7 +356,7 @@ exports[`The EditSession protected page should render correctly 1`] = `
                         aria-hidden="true"
                         className="textarea-249 shadow-250"
                         readOnly={true}
-                        rows="5"
+                        rows="8"
                         tabIndex={-1}
                         value=""
                       />
@@ -368,10 +368,10 @@ exports[`The EditSession protected page should render correctly 1`] = `
                         onChange={[Function]}
                         onFocus={[Function]}
                         required={false}
-                        rows="5"
+                        rows="8"
                         style={
                           Object {
-                            "height": 95,
+                            "height": 152,
                           }
                         }
                         value=""
@@ -379,6 +379,10 @@ exports[`The EditSession protected page should render correctly 1`] = `
                     </div>
                   </div>
                 </div>
+              </div>
+              <div
+                className="item-38 12-77 6-99"
+              >
                 <div
                   className="root-194 marginNormal-195 fullWidth-197"
                 >
@@ -436,10 +440,6 @@ exports[`The EditSession protected page should render correctly 1`] = `
                     Nombre entier
                   </p>
                 </div>
-              </div>
-              <div
-                className="item-38 12-77 6-99"
-              >
                 <div
                   className="root-194 marginNormal-195 fullWidth-197"
                 >
@@ -447,7 +447,7 @@ exports[`The EditSession protected page should render correctly 1`] = `
                     className="root-209 root-198 formControl-203 animated-206 outlined-208"
                     data-shrink={false}
                   >
-                    Date de la session RGPDay *
+                    Début de la session
                   </label>
                   <div
                     className="root-229 root-216 fullWidth-238 formControl-230"
@@ -504,64 +504,7 @@ exports[`The EditSession protected page should render correctly 1`] = `
                     className="root-209 root-198 formControl-203 animated-206 outlined-208"
                     data-shrink={false}
                   >
-                    Date d'ouverture du jeu *
-                  </label>
-                  <div
-                    className="root-229 root-216 fullWidth-238 formControl-230"
-                    onClick={[Function]}
-                  >
-                    <fieldset
-                      aria-hidden={true}
-                      className="root-246 notchedOutline-223"
-                      style={
-                        Object {
-                          "paddingLeft": 8,
-                        }
-                      }
-                    >
-                      <legend
-                        className="legend-247"
-                        style={
-                          Object {
-                            "width": 0.01,
-                          }
-                        }
-                      >
-                        <span
-                          dangerouslySetInnerHTML={
-                            Object {
-                              "__html": "&#8203;",
-                            }
-                          }
-                        />
-                      </legend>
-                    </fieldset>
-                    <input
-                      aria-invalid={false}
-                      className="input-239 input-224"
-                      disabled={false}
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onFocus={[Function]}
-                      required={false}
-                      type="text"
-                      value=""
-                    />
-                  </div>
-                  <p
-                    className="root-251 contained-255"
-                  >
-                    Format ISO-8601
-                  </p>
-                </div>
-                <div
-                  className="root-194 marginNormal-195 fullWidth-197"
-                >
-                  <label
-                    className="root-209 root-198 formControl-203 animated-206 outlined-208"
-                    data-shrink={false}
-                  >
-                    Date de fermeture du jeu *
+                    Fin de la session
                   </label>
                   <div
                     className="root-229 root-216 fullWidth-238 formControl-230"
@@ -773,8 +716,62 @@ exports[`The EditSession protected page should render correctly 1`] = `
               <div
                 className="item-38 12-77 12-105"
               >
+                <label
+                  className="root-270"
+                >
+                  <span
+                    className="root-276"
+                  >
+                    <span
+                      className="root-295 root-289 root-285 switchBase-279 colorSecondary-282"
+                      onBlur={[Function]}
+                      onContextMenu={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      onKeyUp={[Function]}
+                      onMouseDown={[Function]}
+                      onMouseLeave={[Function]}
+                      onMouseUp={[Function]}
+                      onTouchEnd={[Function]}
+                      onTouchMove={[Function]}
+                      onTouchStart={[Function]}
+                      tabIndex={null}
+                    >
+                      <span
+                        className="label-294"
+                      >
+                        <span
+                          className="icon-277"
+                        />
+                        <input
+                          checked={false}
+                          className="input-288"
+                          disabled={false}
+                          onChange={[Function]}
+                          type="checkbox"
+                          value="Game over"
+                        />
+                      </span>
+                      <span
+                        className="root-331"
+                      />
+                    </span>
+                    <span
+                      className="bar-284"
+                    />
+                  </span>
+                  <span
+                    className="root-138 body1-147 label-275"
+                  >
+                    La partie est terminée (game over)
+                  </span>
+                </label>
+              </div>
+              <div
+                className="item-38 12-77 12-105"
+              >
                 <button
-                  className="root-296 root-270 outlined-278 outlinedSecondary-280 button-7"
+                  className="root-295 root-298 outlined-306 outlinedSecondary-308 button-7"
                   disabled={false}
                   onBlur={[Function]}
                   onContextMenu={[Function]}
@@ -791,16 +788,16 @@ exports[`The EditSession protected page should render correctly 1`] = `
                   type="submit"
                 >
                   <span
-                    className="label-271"
+                    className="label-299"
                   >
                     Valider
                   </span>
                   <span
-                    className="root-306"
+                    className="root-331"
                   />
                 </button>
                 <button
-                  className="root-296 root-270 outlined-278 button-7"
+                  className="root-295 root-298 outlined-306 button-7"
                   disabled={false}
                   onBlur={[Function]}
                   onClick={[Function]}
@@ -818,12 +815,12 @@ exports[`The EditSession protected page should render correctly 1`] = `
                   type="button"
                 >
                   <span
-                    className="label-271"
+                    className="label-299"
                   >
                     Annuler
                   </span>
                   <span
-                    className="root-306"
+                    className="root-331"
                   />
                 </button>
               </div>

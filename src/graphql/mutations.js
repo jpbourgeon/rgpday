@@ -12,14 +12,9 @@ export const createScenario = `mutation CreateScenario($input: CreateScenarioInp
         description
         contact
         numberOfParticipants
-        RGPDay
         startDate
         endDate
         gameOver
-        interviewLength
-        consultationLength
-        DPODailyCost
-        consultantDailyCost
         searchable
       }
       nextToken
@@ -38,14 +33,9 @@ export const updateScenario = `mutation UpdateScenario($input: UpdateScenarioInp
         description
         contact
         numberOfParticipants
-        RGPDay
         startDate
         endDate
         gameOver
-        interviewLength
-        consultationLength
-        DPODailyCost
-        consultantDailyCost
         searchable
       }
       nextToken
@@ -64,14 +54,9 @@ export const deleteScenario = `mutation DeleteScenario($input: DeleteScenarioInp
         description
         contact
         numberOfParticipants
-        RGPDay
         startDate
         endDate
         gameOver
-        interviewLength
-        consultationLength
-        DPODailyCost
-        consultantDailyCost
         searchable
       }
       nextToken
@@ -90,14 +75,9 @@ export const createPresentation = `mutation CreatePresentation($input: CreatePre
         description
         contact
         numberOfParticipants
-        RGPDay
         startDate
         endDate
         gameOver
-        interviewLength
-        consultationLength
-        DPODailyCost
-        consultantDailyCost
         searchable
       }
       nextToken
@@ -116,14 +96,9 @@ export const updatePresentation = `mutation UpdatePresentation($input: UpdatePre
         description
         contact
         numberOfParticipants
-        RGPDay
         startDate
         endDate
         gameOver
-        interviewLength
-        consultationLength
-        DPODailyCost
-        consultantDailyCost
         searchable
       }
       nextToken
@@ -142,14 +117,9 @@ export const deletePresentation = `mutation DeletePresentation($input: DeletePre
         description
         contact
         numberOfParticipants
-        RGPDay
         startDate
         endDate
         gameOver
-        interviewLength
-        consultationLength
-        DPODailyCost
-        consultantDailyCost
         searchable
       }
       nextToken
@@ -163,14 +133,9 @@ export const createSession = `mutation CreateSession($input: CreateSessionInput!
     description
     contact
     numberOfParticipants
-    RGPDay
     startDate
     endDate
     gameOver
-    interviewLength
-    consultationLength
-    DPODailyCost
-    consultantDailyCost
     searchable
     scenario {
       id
@@ -207,14 +172,9 @@ export const updateSession = `mutation UpdateSession($input: UpdateSessionInput!
     description
     contact
     numberOfParticipants
-    RGPDay
     startDate
     endDate
     gameOver
-    interviewLength
-    consultationLength
-    DPODailyCost
-    consultantDailyCost
     searchable
     scenario {
       id
@@ -251,14 +211,9 @@ export const deleteSession = `mutation DeleteSession($input: DeleteSessionInput!
     description
     contact
     numberOfParticipants
-    RGPDay
     startDate
     endDate
     gameOver
-    interviewLength
-    consultationLength
-    DPODailyCost
-    consultantDailyCost
     searchable
     scenario {
       id
@@ -301,14 +256,9 @@ export const createTeam = `mutation CreateTeam($input: CreateTeamInput!) {
       description
       contact
       numberOfParticipants
-      RGPDay
       startDate
       endDate
       gameOver
-      interviewLength
-      consultationLength
-      DPODailyCost
-      consultantDailyCost
       searchable
       scenario {
         id
@@ -329,7 +279,6 @@ export const createTeam = `mutation CreateTeam($input: CreateTeamInput!) {
         id
         service
         answers
-        correctAnswers
         numberOfJokers
       }
       nextToken
@@ -349,14 +298,9 @@ export const updateTeam = `mutation UpdateTeam($input: UpdateTeamInput!) {
       description
       contact
       numberOfParticipants
-      RGPDay
       startDate
       endDate
       gameOver
-      interviewLength
-      consultationLength
-      DPODailyCost
-      consultantDailyCost
       searchable
       scenario {
         id
@@ -377,7 +321,6 @@ export const updateTeam = `mutation UpdateTeam($input: UpdateTeamInput!) {
         id
         service
         answers
-        correctAnswers
         numberOfJokers
       }
       nextToken
@@ -397,14 +340,9 @@ export const deleteTeam = `mutation DeleteTeam($input: DeleteTeamInput!) {
       description
       contact
       numberOfParticipants
-      RGPDay
       startDate
       endDate
       gameOver
-      interviewLength
-      consultationLength
-      DPODailyCost
-      consultantDailyCost
       searchable
       scenario {
         id
@@ -425,7 +363,6 @@ export const deleteTeam = `mutation DeleteTeam($input: DeleteTeamInput!) {
         id
         service
         answers
-        correctAnswers
         numberOfJokers
       }
       nextToken
@@ -433,12 +370,11 @@ export const deleteTeam = `mutation DeleteTeam($input: DeleteTeamInput!) {
   }
 }
 `;
-export const createQuizz = `mutation CreateQuizz($input: CreateQuizzInput!) {
-  createQuizz(input: $input) {
+export const createQuiz = `mutation CreateQuiz($input: CreateQuizInput!) {
+  createQuiz(input: $input) {
     id
     service
     answers
-    correctAnswers
     numberOfJokers
     team {
       id
@@ -451,14 +387,9 @@ export const createQuizz = `mutation CreateQuizz($input: CreateQuizzInput!) {
         description
         contact
         numberOfParticipants
-        RGPDay
         startDate
         endDate
         gameOver
-        interviewLength
-        consultationLength
-        DPODailyCost
-        consultantDailyCost
         searchable
       }
       quizzes {
@@ -468,12 +399,11 @@ export const createQuizz = `mutation CreateQuizz($input: CreateQuizzInput!) {
   }
 }
 `;
-export const updateQuizz = `mutation UpdateQuizz($input: UpdateQuizzInput!) {
-  updateQuizz(input: $input) {
+export const updateQuiz = `mutation UpdateQuiz($input: UpdateQuizInput!) {
+  updateQuiz(input: $input) {
     id
     service
     answers
-    correctAnswers
     numberOfJokers
     team {
       id
@@ -486,14 +416,9 @@ export const updateQuizz = `mutation UpdateQuizz($input: UpdateQuizzInput!) {
         description
         contact
         numberOfParticipants
-        RGPDay
         startDate
         endDate
         gameOver
-        interviewLength
-        consultationLength
-        DPODailyCost
-        consultantDailyCost
         searchable
       }
       quizzes {
@@ -503,12 +428,11 @@ export const updateQuizz = `mutation UpdateQuizz($input: UpdateQuizzInput!) {
   }
 }
 `;
-export const deleteQuizz = `mutation DeleteQuizz($input: DeleteQuizzInput!) {
-  deleteQuizz(input: $input) {
+export const deleteQuiz = `mutation DeleteQuiz($input: DeleteQuizInput!) {
+  deleteQuiz(input: $input) {
     id
     service
     answers
-    correctAnswers
     numberOfJokers
     team {
       id
@@ -521,14 +445,9 @@ export const deleteQuizz = `mutation DeleteQuizz($input: DeleteQuizzInput!) {
         description
         contact
         numberOfParticipants
-        RGPDay
         startDate
         endDate
         gameOver
-        interviewLength
-        consultationLength
-        DPODailyCost
-        consultantDailyCost
         searchable
       }
       quizzes {
