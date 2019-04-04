@@ -289,9 +289,6 @@ class Teams extends React.Component {
         <Grid item xs={12} component='span' className={classes.tileActions}>
           <Divider className={classes.itemActionDivider} />
           <div style={{ float: 'left' }}>
-            {/* <MUILink onClick={() => { navigate(`/dashboard/serious-game/board/${item.id}`) }} component='div'> */}
-            {/* <IconButton><Play color='secondary' className={classes.itemLargeActionIcon} /></IconButton> */}
-            {/* </MUILink> */}
             <Button
               onClick={() => { navigate(`/dashboard/serious-game/board/${item.id}`) }}
               color='secondary'
@@ -314,7 +311,10 @@ class Teams extends React.Component {
         </Grid>
       </Grid>
     )
-    const renderItems = (items) => {
+    const renderItems = (teams) => {
+      const items = (this.props.config.isAdmin)
+        ? teams
+        : teams.filter((value) => (value.name.toLowerCase() !== 'admin'))
       return (
         items.map((item) => {
           return (

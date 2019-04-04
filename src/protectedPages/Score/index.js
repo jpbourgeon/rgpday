@@ -311,6 +311,11 @@ class Score extends React.Component {
 
     const title = (config.gameOver) ? `Scores (la partie est terminée)` : 'Scores'
 
+    // Filter the admin team from the presented results
+    const data = (this.state.scores)
+      ? this.state.scores.filter((value) => (value[3].toLowerCase() !== 'admin'))
+      : []
+
     return (
       <div className={classes.layout}>
         <main>
@@ -324,7 +329,7 @@ class Score extends React.Component {
                         title={title}
                         options={options}
                         columns={columns}
-                        data={this.state.scores}
+                        data={data}
                       />
                     </MuiThemeProvider>
                   )
