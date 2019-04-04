@@ -16,6 +16,7 @@ import Hidden from '@material-ui/core/Hidden'
 import MobileStepper from '@material-ui/core/MobileStepper'
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft'
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight'
+import Check from '@material-ui/icons/CheckCircle'
 import FormControl from '@material-ui/core/FormControl'
 import FormGroup from '@material-ui/core/FormGroup'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
@@ -85,6 +86,12 @@ const styles = theme => {
     },
     incorrect: {
       textDecoration: 'line-through'
+    },
+    check: {
+      marginLeft: theme.spacing.unit,
+      marginBottom: `-${theme.spacing.unit * 0.5}px`,
+      width: theme.spacing.unit * 2,
+      height: theme.spacing.unit * 2
     }
   }
 }
@@ -408,14 +415,19 @@ class Service extends React.Component {
                       label={<span
                         className={(quiz[this.state.currentQuestion].answers[key].jokerNumber <= this.state.quiz.numberOfJokers) ? classes.incorrect : null}
                       >
-                        {answer.label}
+                        <Markdown>{answer.label}</Markdown>
+                        {(gameOver && quiz[this.state.currentQuestion].answers[key].isCorrect)
+                          ? <Check color='secondary' className={classes.check} />
+                          : null
+                        }
                       </span>}
                     />
                   )
                 })}
               </FormGroup>
             </FormControl>
-            <Divider className={(quiz[this.state.currentQuestion].maxJokers > 0 && !gameOver)
+            <Divider className={(quiz[this.state.currentQuestion].maxJokers > 0 ||
+              (quiz[this.state.currentQuestion].maxJokers > this.state.quiz.numberOfJokers && !gameOver))
               ? classes.divider
               : classes.hide
             } />

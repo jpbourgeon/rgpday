@@ -144,3 +144,5 @@ x 2019-04-04 2019-03-22 Added: frontend sortable and filterable game scores
 x 2019-04-04 2019-04-02 Added: frontend - better interview switching management : don't count the same service twice in a row
 x 2019-04-04 2019-03-22 Changed: frontend Score - show the number of interviews and consultations for each team
 x 2019-04-04 2019-03-22 Added: lock the game on gameover
+x 2019-04-04 2019-03-22 Added: access to the score from the team selection page (you can now create an admin team manually. It will not show to other users except for admins, in the team list or on the scores page)
+x 2019-04-04 2019-02-09 Added: on gameOver add a check mark to correct answers

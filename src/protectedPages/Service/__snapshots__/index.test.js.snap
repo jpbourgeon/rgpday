@@ -5,6 +5,7 @@ exports[`The Service protected page should render correctly 1`] = `
   classes={
     Object {
       "avatarIcon": "Service-avatarIcon-3",
+      "check": "Service-check-10",
       "divider": "Service-divider-4",
       "hide": "Service-hide-8",
       "incorrect": "Service-incorrect-9",
