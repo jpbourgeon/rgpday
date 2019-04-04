@@ -146,3 +146,4 @@ x 2019-04-04 2019-03-22 Changed: frontend Score - show the number of interviews 
 x 2019-04-04 2019-03-22 Added: lock the game on gameover
 x 2019-04-04 2019-03-22 Added: access to the score from the team selection page (you can now create an admin team manually. It will not show to other users except for admins, in the team list or on the scores page)
 x 2019-04-04 2019-02-09 Added: on gameOver add a check mark to correct answers
+x 2019-04-04 2019-04-04 Fixed: Error when the saved answers don't match the current scenario => drop the saved datas

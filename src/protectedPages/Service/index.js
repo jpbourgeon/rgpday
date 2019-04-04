@@ -155,7 +155,7 @@ class Service extends React.Component {
     }
     if (!isEqual(this.props.config, prevProps.config)) this.forceUpdate()
     if (!this.state.quiz.answers) {
-      let quiz = (this._isMounted) ? await this.loadQuiz() : null
+      let quiz = (this._isMounted) ? await this.loadQuiz(this.quizRef.current.length) : null
       if (!quiz) quiz = this.defaultState.quiz
       if (!quiz.answers) {
         quiz.answers = (this.quizRef.current)
@@ -177,7 +177,7 @@ class Service extends React.Component {
     }, 100)
   }
 
-  async loadQuiz () {
+  async loadQuiz (checkLength) {
     // GraphQL
     try {
       const { teamId: team, serviceId: service } = this.props
@@ -187,9 +187,10 @@ class Service extends React.Component {
       if (!result.errors && result.data.getQuiz) {
         this.quizMutation = 'updateQuiz'
         const quiz = result.data.getQuiz
+        const savedAnswers = JSON.parse(result.data.getQuiz.answers)
         return {
           id: quiz.id,
-          answers: JSON.parse(result.data.getQuiz.answers),
+          answers: (savedAnswers.length === checkLength) ? savedAnswers : null,
           numberOfJokers: quiz.numberOfJokers
         }
       }
