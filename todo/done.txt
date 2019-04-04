@@ -97,7 +97,7 @@ x 2019-03-12 2019-03-09 Added: frontend ProtectedRoutes - retrieve and share the
 x 2019-03-12 2019-03-09 Limit access to admin and features depending on the user's group
 x 2019-03-13 2019-03-13 Added: frontend Presentations and EditPresentation pages - protected routes
 x 2019-03-13 2019-03-13 Added: frontend Admin Presentations : add the link to the dashboard
-x 2019-03-13 Added: frontend presentations : LED
+x 2019-03-13 2019-03-13 Added: frontend presentations : LED
 x 2019-03-13 2019-03-13 Added: frontend presentation : extend the session management to include the presentation
 x 2019-03-13 2019-03-13 Added: frontend ProtectRoutes - manage the scenarioId and the presentationId
 x 2019-03-13 2019-03-13 Added: frontend Presentation page - protected route <Presentation path='dashboard/presentation' config={config} />
@@ -142,3 +142,4 @@ x 2019-04-02 2019-03-22 Changed: session backend date fields - RGPDay is useless
 x 2019-04-02 2019-03-22 Added: frontend EditSession protected page - add gameover 
 x 2019-04-04 2019-03-22 Added: frontend sortable and filterable game scores
 x 2019-04-04 2019-04-02 Added: frontend - better interview switching management : don't count the same service twice in a row
+x 2019-04-04 2019-03-22 Changed: frontend Score - show the number of interviews and consultations for each team

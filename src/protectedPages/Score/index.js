@@ -116,8 +116,7 @@ const styles = theme => {
       }
     },
     avatarIcon: {
-      float: 'left',
-      margin: theme.spacing.unit,
+      marginBottom: theme.spacing.unit,
       width: 40,
       height: 40,
       fontSize: theme.typography.h6.fontSize
@@ -175,6 +174,8 @@ class Score extends React.Component {
           const average = (quality.score + cost.score + duration.score) / 3 || 0
           return ([
             avatar,
+            team.numberOfInterviews,
+            cost.numberOfJokers,
             team.name,
             `${cost.value.toFixed(2)} €`,
             `${duration.value} jour(s)`,
@@ -282,14 +283,33 @@ class Score extends React.Component {
         }
       }
     }
+    const renderTeam = (value, tableMeta) => {
+      const avatar = tableMeta.rowData[0]
+      const numberOfInterviews = tableMeta.rowData[1]
+      const numberOfJokers = tableMeta.rowData[2]
+      return (
+        <Grid container>
+          <Grid item xs={12} md={3}>{avatar}</Grid>
+          <Grid item xs={12} md={9}>
+            <strong>{value}</strong><br />
+            {numberOfInterviews} interview(s)<br />
+            {numberOfJokers} joker(s)
+          </Grid>
+        </Grid>
+      )
+    }
+
     const columns = [
-      { label: '', options: { sort: false, searchable: false } },
-      { label: 'Équipe', options: { sort: false, searchable: true } },
+      { label: 'Avatar', options: { display: 'excluded', sort: false, searchable: false } },
+      { label: 'Nombre d\'interviews', options: { display: 'excluded', sort: false, searchable: false } },
+      { label: 'Nombre de consultations', options: { display: 'excluded', sort: false, searchable: false } },
+      { label: 'Équipe', options: { sort: true, searchable: true, customBodyRender: renderTeam } },
       { label: 'Coût', options: { sort: true, searchable: false } },
       { label: 'Délai', options: { sort: true, searchable: false } },
       { label: 'Qualité', options: { sort: true, searchable: false } },
       { label: 'Score', options: { sort: true, sortDirection: 'desc', searchable: false } }
     ]
+
     return (
       <div className={classes.layout}>
         <main>
