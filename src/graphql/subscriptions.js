@@ -160,6 +160,7 @@ export const onCreateSession = `subscription OnCreateSession {
         initials
         searchable
         numberOfInterviews
+        serviceBeingInterviewed
       }
       nextToken
     }
@@ -199,6 +200,7 @@ export const onUpdateSession = `subscription OnUpdateSession {
         initials
         searchable
         numberOfInterviews
+        serviceBeingInterviewed
       }
       nextToken
     }
@@ -238,6 +240,7 @@ export const onDeleteSession = `subscription OnDeleteSession {
         initials
         searchable
         numberOfInterviews
+        serviceBeingInterviewed
       }
       nextToken
     }
@@ -251,6 +254,7 @@ export const onCreateTeam = `subscription OnCreateTeam {
     initials
     searchable
     numberOfInterviews
+    serviceBeingInterviewed
     session {
       id
       description
@@ -293,6 +297,7 @@ export const onUpdateTeam = `subscription OnUpdateTeam {
     initials
     searchable
     numberOfInterviews
+    serviceBeingInterviewed
     session {
       id
       description
@@ -335,6 +340,7 @@ export const onDeleteTeam = `subscription OnDeleteTeam {
     initials
     searchable
     numberOfInterviews
+    serviceBeingInterviewed
     session {
       id
       description
@@ -382,6 +388,7 @@ export const onCreateQuiz = `subscription OnCreateQuiz {
       initials
       searchable
       numberOfInterviews
+      serviceBeingInterviewed
       session {
         id
         description
@@ -411,6 +418,7 @@ export const onUpdateQuiz = `subscription OnUpdateQuiz {
       initials
       searchable
       numberOfInterviews
+      serviceBeingInterviewed
       session {
         id
         description
@@ -440,6 +448,7 @@ export const onDeleteQuiz = `subscription OnDeleteQuiz {
       initials
       searchable
       numberOfInterviews
+      serviceBeingInterviewed
       session {
         id
         description

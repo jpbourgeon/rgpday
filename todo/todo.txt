@@ -1,9 +1,9 @@
 2019-03-22 Added: lock the game on gameover
-2019-03-22 Changed: access rights and redirects for all pages
 2019-02-09 Added: write the game scenario
+2019-03-22 Changed: check access rights and redirects for all pages
+2019-04-02 Added: frontend - better interview switching management : modal on interviewed service change
 2019-04-04 Added: frontend score page - put the players team forward : highlight and filter shortcut
 2019-03-22 Added: frontend game file upload feature
-2019-04-02 Added: frontend - better interview switching management (modal on effective change + don't count the same service twice in a row)
 2019-03-09 cascade deletes scenario, session, team : could be a lambda / or make use of subscriptions client side
 2019-03-09 DB and files compaction : delete orphan documents and files
 2019-03-18 use the service worker

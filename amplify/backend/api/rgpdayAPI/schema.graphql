@@ -35,6 +35,7 @@ type Team @model {
   initials: String
   searchable: String
   numberOfInterviews: Int
+  serviceBeingInterviewed: String
   session: Session! @connection(name: "SessionTeams")
   quizzes: [Quiz] @connection(name: "TeamQuizzes")
 }

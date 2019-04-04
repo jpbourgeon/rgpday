@@ -160,6 +160,7 @@ export const createSession = `mutation CreateSession($input: CreateSessionInput!
         initials
         searchable
         numberOfInterviews
+        serviceBeingInterviewed
       }
       nextToken
     }
@@ -199,6 +200,7 @@ export const updateSession = `mutation UpdateSession($input: UpdateSessionInput!
         initials
         searchable
         numberOfInterviews
+        serviceBeingInterviewed
       }
       nextToken
     }
@@ -238,6 +240,7 @@ export const deleteSession = `mutation DeleteSession($input: DeleteSessionInput!
         initials
         searchable
         numberOfInterviews
+        serviceBeingInterviewed
       }
       nextToken
     }
@@ -251,6 +254,7 @@ export const createTeam = `mutation CreateTeam($input: CreateTeamInput!) {
     initials
     searchable
     numberOfInterviews
+    serviceBeingInterviewed
     session {
       id
       description
@@ -293,6 +297,7 @@ export const updateTeam = `mutation UpdateTeam($input: UpdateTeamInput!) {
     initials
     searchable
     numberOfInterviews
+    serviceBeingInterviewed
     session {
       id
       description
@@ -335,6 +340,7 @@ export const deleteTeam = `mutation DeleteTeam($input: DeleteTeamInput!) {
     initials
     searchable
     numberOfInterviews
+    serviceBeingInterviewed
     session {
       id
       description
@@ -382,6 +388,7 @@ export const createQuiz = `mutation CreateQuiz($input: CreateQuizInput!) {
       initials
       searchable
       numberOfInterviews
+      serviceBeingInterviewed
       session {
         id
         description
@@ -411,6 +418,7 @@ export const updateQuiz = `mutation UpdateQuiz($input: UpdateQuizInput!) {
       initials
       searchable
       numberOfInterviews
+      serviceBeingInterviewed
       session {
         id
         description
@@ -440,6 +448,7 @@ export const deleteQuiz = `mutation DeleteQuiz($input: DeleteQuizInput!) {
       initials
       searchable
       numberOfInterviews
+      serviceBeingInterviewed
       session {
         id
         description

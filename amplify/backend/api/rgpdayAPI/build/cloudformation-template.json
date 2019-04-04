@@ -61,6 +61,42 @@
         }
     },
     "Resources": {
+        "GraphQLAPI": {
+            "Type": "AWS::AppSync::GraphQLApi",
+            "Properties": {
+                "Name": {
+                    "Fn::If": [
+                        "HasEnvironmentParameter",
+                        {
+                            "Fn::Join": [
+                                "-",
+                                [
+                                    {
+                                        "Ref": "AppSyncApiName"
+                                    },
+                                    {
+                                        "Ref": "env"
+                                    }
+                                ]
+                            ]
+                        },
+                        {
+                            "Ref": "AppSyncApiName"
+                        }
+                    ]
+                },
+                "AuthenticationType": "AMAZON_COGNITO_USER_POOLS",
+                "UserPoolConfig": {
+                    "UserPoolId": {
+                        "Ref": "AuthCognitoUserPoolId"
+                    },
+                    "AwsRegion": {
+                        "Ref": "AWS::Region"
+                    },
+                    "DefaultAction": "ALLOW"
+                }
+            }
+        },
         "SessionTable": {
             "Type": "AWS::DynamoDB::Table",
             "Properties": {
@@ -311,42 +347,6 @@
                 }
             }
         },
-        "GraphQLAPI": {
-            "Type": "AWS::AppSync::GraphQLApi",
-            "Properties": {
-                "Name": {
-                    "Fn::If": [
-                        "HasEnvironmentParameter",
-                        {
-                            "Fn::Join": [
-                                "-",
-                                [
-                                    {
-                                        "Ref": "AppSyncApiName"
-                                    },
-                                    {
-                                        "Ref": "env"
-                                    }
-                                ]
-                            ]
-                        },
-                        {
-                            "Ref": "AppSyncApiName"
-                        }
-                    ]
-                },
-                "AuthenticationType": "AMAZON_COGNITO_USER_POOLS",
-                "UserPoolConfig": {
-                    "UserPoolId": {
-                        "Ref": "AuthCognitoUserPoolId"
-                    },
-                    "AwsRegion": {
-                        "Ref": "AWS::Region"
-                    },
-                    "DefaultAction": "ALLOW"
-                }
-            }
-        },
         "GraphQLAPIKey": {
             "Type": "AWS::AppSync::ApiKey",
             "Properties": {
@@ -362,7 +362,7 @@
                         {
                             "Ref": "APIKeyExpirationEpoch"
                         },
-                        1554867598
+                        1554969446
                     ]
                 }
             },

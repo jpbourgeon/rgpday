@@ -18,6 +18,7 @@ const getTeam = `query GetTeam($id: ID!) {
     name
     initials
     numberOfInterviews
+    serviceBeingInterviewed
   }
 }
 `
@@ -47,7 +48,8 @@ class SeriousGame extends React.Component {
       id: null,
       name: null,
       initials: null,
-      numberOfInterviews: null
+      numberOfInterviews: null,
+      serviceBeingInterviewed: null
     }
     this.state.ready = false
     this.state.openRules = props.openRules || typeof props.openRules === 'undefined'
@@ -114,21 +116,24 @@ class SeriousGame extends React.Component {
   async goTo (to, id) {
     try {
       if (!to.includes('score')) {
-        const service = (this.scenarioRef.current)
-          ? this.scenarioRef.current.scenario.services[id]
-          : null
         const input = this.state.team
-        input.numberOfInterviews = (input.numberOfInterviews) ? input.numberOfInterviews + 1 : 1
-        // GraphQL
-        const result = await API.graphql(
-          graphqlOperation(updateTeam, { input })
-        )
-        if (result.errors) {
-          logger.error('goTo', result)
-        } else {
-          this.props.setInterviewData({ service, team: input })
-          this.props.navigate(to)
+        if (input.serviceBeingInterviewed !== id) {
+          input.numberOfInterviews = (input.numberOfInterviews) ? input.numberOfInterviews + 1 : 1
+          input.serviceBeingInterviewed = id
+          // GraphQL
+          const result = await API.graphql(
+            graphqlOperation(updateTeam, { input })
+          )
+          if (result.errors) {
+            logger.error('goTo', result)
+          } else {
+            const service = (this.scenarioRef.current)
+              ? this.scenarioRef.current.scenario.services[id]
+              : null
+            this.props.setInterviewData({ service, team: input })
+          }
         }
+        this.props.navigate(to)
       } else {
         const gameScoringData = (this.scenarioRef.current)
           ? this.scenarioRef.current.scenario.gameScoringData

@@ -141,3 +141,4 @@ x 2019-04-01 2019-03-22 Added: frontend game count the number of interviews (whe
 x 2019-04-02 2019-03-22 Changed: session backend date fields - RGPDay is useless, startDate and endDate are not mandatory anymore
 x 2019-04-02 2019-03-22 Added: frontend EditSession protected page - add gameover 
 x 2019-04-04 2019-03-22 Added: frontend sortable and filterable game scores
+x 2019-04-04 2019-04-02 Added: frontend - better interview switching management : don't count the same service twice in a row

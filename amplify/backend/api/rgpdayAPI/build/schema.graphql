@@ -32,6 +32,7 @@ type Team {
   initials: String
   searchable: String
   numberOfInterviews: Int
+  serviceBeingInterviewed: String
   session: Session!
   quizzes(filter: ModelQuizFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelQuizConnection
 }
@@ -287,6 +288,7 @@ input ModelTeamFilterInput {
   initials: ModelStringFilterInput
   searchable: ModelStringFilterInput
   numberOfInterviews: ModelIntFilterInput
+  serviceBeingInterviewed: ModelStringFilterInput
   and: [ModelTeamFilterInput]
   or: [ModelTeamFilterInput]
   not: ModelTeamFilterInput
@@ -298,6 +300,7 @@ input CreateTeamInput {
   initials: String
   searchable: String
   numberOfInterviews: Int
+  serviceBeingInterviewed: String
   teamSessionId: ID!
 }
 
@@ -307,6 +310,7 @@ input UpdateTeamInput {
   initials: String
   searchable: String
   numberOfInterviews: Int
+  serviceBeingInterviewed: String
   teamSessionId: ID
 }
 
