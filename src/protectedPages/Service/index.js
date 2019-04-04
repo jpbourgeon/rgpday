@@ -25,6 +25,7 @@ import logger from 'src/logger'
 import API, { graphqlOperation } from '@aws-amplify/api'
 import { createQuiz, updateQuiz } from 'src/graphql/mutations'
 import config from 'src/aws-exports'
+import isEqual from 'react-fast-compare'
 
 API.configure(config)
 
@@ -140,11 +141,12 @@ class Service extends React.Component {
     clearTimeout(this.checkRefsReceivedTimer)
   }
 
-  async componentDidUpdate () {
+  async componentDidUpdate (prevProps) {
     if (!this.interviewRef.current || !this.quizRef.current) {
       this.checkRefsReceived()
       return null
     }
+    if (!isEqual(this.props.config, prevProps.config)) this.forceUpdate()
     if (!this.state.quiz.answers) {
       let quiz = (this._isMounted) ? await this.loadQuiz() : null
       if (!quiz) quiz = this.defaultState.quiz
@@ -272,6 +274,7 @@ class Service extends React.Component {
 
   render () {
     const { classes, interviewData, serviceId } = this.props
+    const { gameOver } = this.props.config
     const Interview = this.Interview
     const Quiz = this.Quiz
     const renderInterview = () => {
@@ -338,6 +341,7 @@ class Service extends React.Component {
         const quiz = this.quizRef.current.quiz
         const consultantAvatar = this.quizRef.current.consultantAvatar
         const currentQuestion = quiz[this.state.currentQuestion]
+        const disabled = (this.state.isDisabled || gameOver)
         const numberOfAnswers = (this.state.quiz.answers)
           ? this.state.quiz.answers.filter((answer) => {
             return answer.filter(field => field).length > 0
@@ -384,7 +388,7 @@ class Service extends React.Component {
             <Typography variant='subtitle1' color='inherit' gutterBottom>
               <Markdown>{currentQuestion.question}</Markdown>
             </Typography>
-            <FormControl component='fieldset' disabled={this.state.isDisabled}>
+            <FormControl component='fieldset'>
               <FormGroup>
                 {currentQuestion.answers.map((answer, key) => {
                   return (
@@ -398,7 +402,7 @@ class Service extends React.Component {
                             : false
                           }
                           onClick={(event) => this.toggleAnswer(event, key)}
-                          disabled={(quiz[this.state.currentQuestion].answers[key].jokerNumber <= this.state.quiz.numberOfJokers && !this.state.quiz.answers[this.state.currentQuestion][key])}
+                          disabled={disabled || (quiz[this.state.currentQuestion].answers[key].jokerNumber <= this.state.quiz.numberOfJokers && !this.state.quiz.answers[this.state.currentQuestion][key])}
                         />
                       }
                       label={<span
@@ -411,7 +415,7 @@ class Service extends React.Component {
                 })}
               </FormGroup>
             </FormControl>
-            <Divider className={(quiz[this.state.currentQuestion].maxJokers > 0)
+            <Divider className={(quiz[this.state.currentQuestion].maxJokers > 0 && !gameOver)
               ? classes.divider
               : classes.hide
             } />
@@ -420,7 +424,7 @@ class Service extends React.Component {
                 color='secondary'
                 component='button'
                 onClick={(e) => this.buyAJoker(e)}
-                className={(quiz[this.state.currentQuestion].maxJokers > this.state.quiz.numberOfJokers)
+                className={(quiz[this.state.currentQuestion].maxJokers > this.state.quiz.numberOfJokers && !gameOver)
                   ? classes.joker
                   : classes.hide
                 }

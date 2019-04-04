@@ -10,6 +10,7 @@ import logger from 'src/logger'
 import API, { graphqlOperation } from '@aws-amplify/api'
 import { updateTeam } from 'src/graphql/mutations'
 import config from 'src/aws-exports'
+import isEqual from 'react-fast-compare'
 
 API.configure(config)
 const getTeam = `query GetTeam($id: ID!) {
@@ -91,10 +92,11 @@ class SeriousGame extends React.Component {
     window.removeEventListener('resize', this.reload, false)
   }
 
-  componentDidUpdate () {
+  componentDidUpdate (prevProps) {
     if (!this.scenarioRef.current || !this.boardRef.current) {
       this.checkRefsReceived()
     }
+    if (!isEqual(this.props.config, prevProps.config)) this.forceUpdate()
   }
 
   checkRefsReceived () {
@@ -116,23 +118,21 @@ class SeriousGame extends React.Component {
   async goTo (to, id) {
     try {
       if (!to.includes('score')) {
+        const { gameOver } = this.props.config
         const input = this.state.team
-        if (input.serviceBeingInterviewed !== id) {
+        if (!gameOver && input.serviceBeingInterviewed !== id) {
           input.numberOfInterviews = (input.numberOfInterviews) ? input.numberOfInterviews + 1 : 1
           input.serviceBeingInterviewed = id
           // GraphQL
           const result = await API.graphql(
             graphqlOperation(updateTeam, { input })
           )
-          if (result.errors) {
-            logger.error('goTo', result)
-          } else {
-            const service = (this.scenarioRef.current)
-              ? this.scenarioRef.current.scenario.services[id]
-              : null
-            this.props.setInterviewData({ service, team: input })
-          }
+          if (result.errors) logger.error('goTo', result)
         }
+        const service = (this.scenarioRef.current)
+          ? this.scenarioRef.current.scenario.services[id]
+          : null
+        this.props.setInterviewData({ service, team: input })
         this.props.navigate(to)
       } else {
         const gameScoringData = (this.scenarioRef.current)

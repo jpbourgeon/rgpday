@@ -11,10 +11,10 @@ import Loading from 'src/components/Loading'
 import isEqual from 'react-fast-compare'
 import API, { graphqlOperation } from '@aws-amplify/api'
 import PubSub from '@aws-amplify/pubsub'
-import Auth from '@aws-amplify/auth'
+// import Auth from '@aws-amplify/auth'
 import config from 'src/aws-exports'
 
-Auth.configure(config)
+// Auth.configure(config)
 PubSub.configure(config)
 API.configure(config)
 
@@ -127,7 +127,6 @@ const styles = theme => {
 class Score extends React.Component {
   constructor (props) {
     super(props)
-    this.stub = { 'interviewLength': 3, 'consultationLength': 1, 'DPODailyCost': 500, 'consultantDailyCost': 1200, 'consultantQuotation': 24000, 'consultantEstimatedDuration': 20, 'quizzesCorrectAnswers': { 'direction': [ [ true, false ], [ false, true, false, true, false, false ], [ true, true, false, false, true, true ], [ true, true, true, true, true, true ], [ true, true, true, false, false, false, false, false, false, false, false, false ] ], 'ressources-humaines-finances': [ [ false, true, false, true, false, false ], [ true, true, false, false, true, true ], [ true, true, true, true, true, true ], [ true, true, true, false, false, false, false, false, false, false, false, false ], [ true, false ] ], 'informatique': [ [ false, true, false, true, false, false ], [ true, true, false, false, true, true ], [ true, true, true, true, true, true ], [ true, true, true, false, false, false, false, false, false, false, false, false ], [ true, false ] ] } }
     this._isMounted = false
     this.defaultState = { scores: null }
     this.state = this.defaultState
@@ -158,7 +157,7 @@ class Score extends React.Component {
 
   async loadScores () {
     const { classes } = this.props
-    const gameScoringData = this.props.gameScoringData || this.stub
+    const gameScoringData = this.props.gameScoringData
     const data = await this.loadSession()
     try {
       if (data && gameScoringData) {
@@ -241,7 +240,7 @@ class Score extends React.Component {
   }
 
   render () {
-    const { classes } = this.props
+    const { classes, config } = this.props
     const options = {
       selectableRows: false,
       elevation: 4,
@@ -310,6 +309,8 @@ class Score extends React.Component {
       { label: 'Score', options: { sort: true, sortDirection: 'desc', searchable: false } }
     ]
 
+    const title = (config.gameOver) ? `Scores (la partie est terminée)` : 'Scores'
+
     return (
       <div className={classes.layout}>
         <main>
@@ -320,7 +321,7 @@ class Score extends React.Component {
                   ? (
                     <MuiThemeProvider theme={this.getMuiTheme()}>
                       <MUIDataTable
-                        title='Scores'
+                        title={title}
                         options={options}
                         columns={columns}
                         data={this.state.scores}

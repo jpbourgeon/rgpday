@@ -47,6 +47,7 @@ const listSessions = `query ListSessions(
       startDate
       endDate
       searchable
+      gameOver
       scenario {
         id
       }
@@ -341,6 +342,9 @@ class Sessions extends React.Component {
                       </span>
                     </React.Fragment>
                   )}
+                  <span className={classes.tileContent}>
+                    <strong>Serious Game : </strong>{(item.gameOver) ? 'Partie terminée' : 'Partie en cours'}
+                  </span>
                 </React.Fragment>
               )}
             />

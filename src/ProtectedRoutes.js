@@ -6,22 +6,33 @@ import Loadable from 'src/components/Loadable'
 import logger from 'src/logger'
 import Auth from '@aws-amplify/auth'
 import API, { graphqlOperation } from '@aws-amplify/api'
+import PubSub from '@aws-amplify/pubsub'
 import { Authenticator } from 'aws-amplify-react'
 import { getConfig as gqlGetConfig } from 'src/graphql/queries'
 import { createConfig as gqlCreateConfig, updateConfig as gqlUpdateConfig } from 'src/graphql/mutations'
 import config from 'src/aws-exports'
 
 Auth.configure(config)
+PubSub.configure(config)
 API.configure(config)
 const gqlGetSession = `query GetSession($id: ID!) {
   getSession(id: $id) {
     id
+    gameOver
     scenario {
       id
     }
     presentation {
       id
     }
+  }
+}
+`
+
+const onUpdateSession = `subscription onUpdateSession {
+  onUpdateSession { 
+    id
+    gameOver
   }
 }
 `
@@ -112,6 +123,7 @@ class ProtectedRoutes extends React.Component {
     super(props)
     this.state = {}
     this._isMounted = false
+    this.subscription = null
     this.state.config = (this.props.config) ? this.props.config : {
       config: {
         isAdmin: false,
@@ -119,18 +131,34 @@ class ProtectedRoutes extends React.Component {
         scenarioId: null,
         presentationId: null,
         interviewData: null,
-        gameScoringData: null
+        gameScoringData: null,
+        gameOver: null
       }
     }
     this.setConfig = this.setConfig.bind(this)
     this.getConfig = this.getConfig.bind(this)
     this.setInterviewData = this.setInterviewData.bind(this)
     this.setGameScoringData = this.setGameScoringData.bind(this)
+    this.setGameOver = this.setGameOver.bind(this)
   }
 
-  componentDidMount () {
+  async componentDidMount () {
     this._isMounted = true
-    this.getConfig()
+    try {
+      await this.getConfig()
+      if (this.state.config.sessionId) {
+        this.subscription = await API.graphql(graphqlOperation(onUpdateSession))
+          .subscribe({
+            next: (response) => {
+              const data = response.value.data.onUpdateSession
+              if (data.id === this.state.config.sessionId &&
+                data.gameOver !== this.state.config.gameOver) this.setConfig(data.id)
+            }
+          })
+      }
+    } catch (error) {
+      logger.error('componentDidMount', error)
+    }
   }
 
   componentWillUnmount () {
@@ -149,7 +177,8 @@ class ProtectedRoutes extends React.Component {
           config.isAdmin !== prevConfig.isAdmin ||
             config.sessionId !== prevConfig.sessionId ||
             config.scenarioId !== prevConfig.scenarioId ||
-            config.presentationId !== prevConfig.presentationId
+            config.presentationId !== prevConfig.presentationId ||
+            config.gameOver !== prevConfig.gameOver
         )) this.setState({ config })
       } else {
         logger.error('protectedRoutes.getConfig::result', result)
@@ -179,16 +208,15 @@ class ProtectedRoutes extends React.Component {
       if (group === 'sessions') {
         config.isAdmin = false
         config.sessionId = authData.username
-        config.scenarioId = null
-        config.presentationId = null
       } else if (group === 'admins') {
         config.isAdmin = true
         if (typeof id !== 'undefined') {
           config.sessionId = id
-          config.scenarioId = null
-          config.presentationId = null
         }
       }
+      config.scenarioId = null
+      config.presentationId = null
+      config.gameOver = null
       // GraphQL query Session
       if (config.sessionId !== null) {
         const getSession = await API.graphql(graphqlOperation(gqlGetSession, { id: config.sessionId }))
@@ -196,6 +224,7 @@ class ProtectedRoutes extends React.Component {
           const session = getSession.data.getSession
           config.scenarioId = session.scenario.id
           config.presentationId = session.presentation.id
+          config.gameOver = session.gameOver
         } else {
           logger.error('protectedRoutes.setConfig::getSession', { config, getSession })
         }
@@ -220,6 +249,12 @@ class ProtectedRoutes extends React.Component {
 
   setGameScoringData (gameScoringData) {
     this.setState({ gameScoringData })
+  }
+
+  setGameOver (gameOver) {
+    const { config } = this.state
+    config.gameOver = gameOver
+    this.setState({ config })
   }
 
   render () {

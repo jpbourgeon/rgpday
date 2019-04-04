@@ -1,6 +1,8 @@
-2019-03-22 Added: lock the game on gameover
-2019-02-09 Added: write the game scenario
+2019-03-22 Added: access to the score from the team selection page
 2019-03-22 Changed: check access rights and redirects for all pages
+2019-02-09 Added: write the game scenario
+2019-02-09 Added: on gameOver add a check mark to correct answers
+2019-02-09 Added: manage the avatar movement to show the service being interviewed
 2019-04-02 Added: frontend - better interview switching management : modal on interviewed service change
 2019-04-04 Added: frontend score page - put the players team forward : highlight and filter shortcut
 2019-03-22 Added: frontend game file upload feature
