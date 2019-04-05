@@ -1,4 +1,13 @@
 2019-02-09 Added: write the game scenario
+2019-02-09 Fixed: game score - scores sorting of 0 values
+2019-02-09 Changed: game scenario - add more context to the interviewed services
+2019-02-09 Changed: game scenario - add files samples to the interviews
+2019-02-09 Changed: game scenario - add custom questions to the services quizzes
+2019-02-09 Changed: game scenario - add more and better hints
+2019-02-09 Changed: game scenario - show the hints as a correction on game over.
+2019-02-09 Changed: conference - more examples from CDG71
+2019-02-09 Changed: conference - messagerie électronique
+2019-02-09 Changed: conference - sécurité : evaluation niveau SSI
 2019-03-22 Changed: check access rights and redirects for all pages
 2019-02-09 Added: on the game board, move the avatar to show what service is currently being interviewed
 2019-04-02 Added: frontend - better interview switching management : modal on interviewed service change

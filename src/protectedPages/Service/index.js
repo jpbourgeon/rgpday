@@ -1,32 +1,32 @@
-import React from 'react'
-import loadable from '@loadable/component'
-import PropTypes from 'prop-types'
-import { withStyles } from '@material-ui/core/styles'
-import Paper from '@material-ui/core/Paper'
-import Typography from '@material-ui/core/Typography'
-import Grid from '@material-ui/core/Grid'
-import Divider from '@material-ui/core/Divider'
-import Loading from 'src/components/Loading'
-import Link from '@material-ui/core/Link'
+import API, { graphqlOperation } from '@aws-amplify/api'
 import Avatar from '@material-ui/core/Avatar'
-import toMaterialStyle from 'material-color-hash'
-import stringHash from 'string-hash'
 import Button from '@material-ui/core/Button'
+import Check from '@material-ui/icons/CheckCircle'
+import Checkbox from '@material-ui/core/Checkbox'
+import Divider from '@material-ui/core/Divider'
+import FormControl from '@material-ui/core/FormControl'
+import FormControlLabel from '@material-ui/core/FormControlLabel'
+import FormGroup from '@material-ui/core/FormGroup'
+import Grid from '@material-ui/core/Grid'
 import Hidden from '@material-ui/core/Hidden'
-import MobileStepper from '@material-ui/core/MobileStepper'
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft'
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight'
-import Check from '@material-ui/icons/CheckCircle'
-import FormControl from '@material-ui/core/FormControl'
-import FormGroup from '@material-ui/core/FormGroup'
-import FormControlLabel from '@material-ui/core/FormControlLabel'
-import Checkbox from '@material-ui/core/Checkbox'
+import Link from '@material-ui/core/Link'
+import Loading from 'src/components/Loading'
 import Markdown from 'src/components/Markdown'
-import logger from 'src/logger'
-import API, { graphqlOperation } from '@aws-amplify/api'
-import { createQuiz, updateQuiz } from 'src/graphql/mutations'
+import MobileStepper from '@material-ui/core/MobileStepper'
+import Paper from '@material-ui/core/Paper'
+import PropTypes from 'prop-types'
+import React from 'react'
+import Typography from '@material-ui/core/Typography'
 import config from 'src/aws-exports'
 import isEqual from 'react-fast-compare'
+import loadable from '@loadable/component'
+import logger from 'src/logger'
+import stringHash from 'string-hash'
+import toMaterialStyle from 'material-color-hash'
+import { createQuiz, updateQuiz } from 'src/graphql/mutations'
+import { withStyles } from '@material-ui/core/styles'
 
 API.configure(config)
 
@@ -71,7 +71,9 @@ const styles = theme => {
       margin: `${theme.spacing.unit * 3}px 0`
     },
     question: {
-      clear: 'both'
+      width: '100%',
+      clear: 'both',
+      textAlign: 'left'
     },
     mobileStepper: {
       marginBottom: theme.spacing.unit * 3
@@ -112,7 +114,7 @@ class Service extends React.Component {
       quiz: {
         id: null,
         answers: null,
-        numberOfJokers: 0
+        numberOfJokers: null
       }
     }
     this.state = this.defaultState
@@ -155,7 +157,7 @@ class Service extends React.Component {
     }
     if (!isEqual(this.props.config, prevProps.config)) this.forceUpdate()
     if (!this.state.quiz.answers) {
-      let quiz = (this._isMounted) ? await this.loadQuiz(this.quizRef.current.length) : null
+      let quiz = (this._isMounted) ? await this.loadQuiz(this.quizRef.current.quiz.length) : null
       if (!quiz) quiz = this.defaultState.quiz
       if (!quiz.answers) {
         quiz.answers = (this.quizRef.current)
@@ -164,6 +166,11 @@ class Service extends React.Component {
               return false
             })
           })
+          : null
+      }
+      if (!quiz.numberOfJokers) {
+        quiz.numberOfJokers = (this.quizRef.current)
+          ? this.quizRef.current.quiz.map((item) => (0))
           : null
       }
       if (this._isMounted) this.setState({ quiz })
@@ -188,10 +195,11 @@ class Service extends React.Component {
         this.quizMutation = 'updateQuiz'
         const quiz = result.data.getQuiz
         const savedAnswers = JSON.parse(result.data.getQuiz.answers)
+        const savedJokers = JSON.parse(result.data.getQuiz.numberOfJokers)
         return {
           id: quiz.id,
           answers: (savedAnswers.length === checkLength) ? savedAnswers : null,
-          numberOfJokers: quiz.numberOfJokers
+          numberOfJokers: (savedJokers.length === checkLength) ? savedJokers : null
         }
       }
       if (result.errors) {
@@ -215,12 +223,13 @@ class Service extends React.Component {
         input.id = stringHash(JSON.stringify({ team, service }))
         input.service = service
         input.answers = JSON.stringify(answers)
-        input.numberOfJokers = numberOfJokers
+        input.numberOfJokers = JSON.stringify(numberOfJokers)
         input.quizTeamId = team
         // GraphQL
         const result = await API.graphql(
           graphqlOperation(mutations[this.quizMutation], { input })
         )
+        this.quizMutation = 'updateQuiz'
         if (result.errors) {
           logger.error('saveQuiz', result)
         }
@@ -230,11 +239,11 @@ class Service extends React.Component {
     }
   }
 
-  async buyAJoker (event) {
+  async buyAJoker (event, key) {
     event.preventDefault()
     try {
       const quiz = this.state.quiz
-      quiz.numberOfJokers = quiz.numberOfJokers + 1
+      quiz.numberOfJokers[key] = quiz.numberOfJokers[key] + 1
       await this.saveQuiz()
       if (this._isMounted) this.setState({ quiz })
     } catch (error) {
@@ -329,11 +338,12 @@ class Service extends React.Component {
                         variant='body1'
                         component='button'
                         color='secondary'
+                        style={{ textAlign: 'left' }}
                         onClick={() => this.showDialog(element.target)}
                       >
                         <Markdown>{element.label}</Markdown>
                       </Link>
-                      : element.label
+                      : <Markdown>{element.label}</Markdown>
                   }
                 </Typography>
               ))
@@ -355,9 +365,12 @@ class Service extends React.Component {
             return answer.filter(field => field).length > 0
           }).length
           : 0
+        const numberOfJokers = (this.state.quiz.numberOfJokers)
+          ? this.state.quiz.numberOfJokers[this.state.currentQuestion]
+          : 0
         const hints = quiz[this.state.currentQuestion].hints.filter(
           hint => {
-            return hint.jokerNumber <= this.state.quiz.numberOfJokers
+            return hint.jokerNumber <= numberOfJokers
           }
         )
         return (
@@ -401,7 +414,7 @@ class Service extends React.Component {
                 {currentQuestion.answers.map((answer, key) => {
                   return (
                     <FormControlLabel
-                      key={stringHash(JSON.stringify([serviceId, answer.label]))}
+                      key={stringHash(JSON.stringify([currentQuestion.question, serviceId, answer.label]))}
                       value={answer.label}
                       control={
                         <Checkbox
@@ -410,11 +423,11 @@ class Service extends React.Component {
                             : false
                           }
                           onClick={(event) => this.toggleAnswer(event, key)}
-                          disabled={disabled || (quiz[this.state.currentQuestion].answers[key].jokerNumber <= this.state.quiz.numberOfJokers && !this.state.quiz.answers[this.state.currentQuestion][key])}
+                          disabled={disabled || (quiz[this.state.currentQuestion].answers[key].jokerNumber <= numberOfJokers && !this.state.quiz.answers[this.state.currentQuestion][key])}
                         />
                       }
                       label={<span
-                        className={(quiz[this.state.currentQuestion].answers[key].jokerNumber <= this.state.quiz.numberOfJokers) ? classes.incorrect : null}
+                        className={(quiz[this.state.currentQuestion].answers[key].jokerNumber <= numberOfJokers) ? classes.incorrect : null}
                       >
                         <Markdown>{answer.label}</Markdown>
                         {(gameOver && quiz[this.state.currentQuestion].answers[key].isCorrect)
@@ -428,7 +441,7 @@ class Service extends React.Component {
               </FormGroup>
             </FormControl>
             <Divider className={(quiz[this.state.currentQuestion].maxJokers > 0 ||
-              (quiz[this.state.currentQuestion].maxJokers > this.state.quiz.numberOfJokers && !gameOver))
+              (quiz[this.state.currentQuestion].maxJokers > numberOfJokers && !gameOver))
               ? classes.divider
               : classes.hide
             } />
@@ -436,8 +449,8 @@ class Service extends React.Component {
               <Link
                 color='secondary'
                 component='button'
-                onClick={(e) => this.buyAJoker(e)}
-                className={(quiz[this.state.currentQuestion].maxJokers > this.state.quiz.numberOfJokers && !gameOver)
+                onClick={(e) => this.buyAJoker(e, this.state.currentQuestion)}
+                className={(quiz[this.state.currentQuestion].maxJokers > numberOfJokers && !gameOver)
                   ? classes.joker
                   : classes.hide
                 }

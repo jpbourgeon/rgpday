@@ -47,7 +47,7 @@ type Quiz @model {
   id:ID!
   service: String!
   answers: AWSJSON!
-  numberOfJokers: Int!
+  numberOfJokers: AWSJSON!
   team: Team! @connection(name: "TeamQuizzes")
 }
 

@@ -78,7 +78,10 @@ const scoreTheQuizzes = (team, gameScoringData) => {
 
 const scoreTheCosts = (team, gameScoringData, coeff) => {
   const numberOfInterviews = team.numberOfInterviews || 0
-  const numberOfJokers = team.quizzes.items.reduce((result, quiz) => (result + quiz.numberOfJokers), 0)
+  const numberOfJokers = team.quizzes.items.reduce((result, quiz) => {
+    const count = JSON.parse(quiz.numberOfJokers).reduce((result, nb) => (result + nb))
+    return result + count
+  }, 0)
   const value = ((numberOfInterviews * gameScoringData.interviewLength * gameScoringData.DPODailyCost) +
       (numberOfJokers * gameScoringData.consultationLength * gameScoringData.consultantDailyCost))
   const score = (coeff)
@@ -89,7 +92,10 @@ const scoreTheCosts = (team, gameScoringData, coeff) => {
 
 const scoreTheDuration = (team, gameScoringData, coeff) => {
   const numberOfInterviews = team.numberOfInterviews || 0
-  const numberOfJokers = team.quizzes.items.reduce((result, quiz) => (result + quiz.numberOfJokers), 0)
+  const numberOfJokers = team.quizzes.items.reduce((result, quiz) => {
+    const count = JSON.parse(quiz.numberOfJokers).reduce((result, nb) => (result + nb))
+    return result + count
+  }, 0)
   const value = ((numberOfInterviews * gameScoringData.interviewLength) +
     (numberOfJokers * gameScoringData.consultationLength))
   const score = (coeff)

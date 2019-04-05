@@ -1,10 +1,10 @@
 import React from 'react'
 import Markdown from 'src/components/Markdown'
 import Page1 from './rules/Page1.md.js'
-import Page2 from './rules/Page2.md.js'
+// import Page2 from './rules/Page2.md.js'
 import { quiz as quizDirection } from './quizzes/direction'
-import { quiz as quizRHF } from './quizzes/ressources-humaines-finances'
-import { quiz as quizInformatique } from './quizzes/informatique'
+// import { quiz as quizRHF } from './quizzes/ressources-humaines-finances'
+// import { quiz as quizInformatique } from './quizzes/informatique'
 
 const getCorrectAnswers = (quiz) => {
   return quiz.map((item) => {
@@ -16,8 +16,7 @@ const getCorrectAnswers = (quiz) => {
 
 const scenario = {
   rules: [
-    () => (<Markdown>{Page1}</Markdown>),
-    () => (<Markdown>{Page2}</Markdown>)
+    () => (<Markdown>{Page1}</Markdown>)
   ],
   gameScoringData: {
     interviewLength: 3,
@@ -25,11 +24,17 @@ const scenario = {
     DPODailyCost: 500,
     consultantDailyCost: 1200,
     consultantQuotation: 24000,
-    consultantEstimatedDuration: 20,
+    consultantEstimatedDuration: 10800,
+    // interviewLength: 3,
+    // consultationLength: 1,
+    // DPODailyCost: 500,
+    // consultantDailyCost: 1200,
+    // consultantQuotation: 24000,
+    // consultantEstimatedDuration: 20,
     quizzesCorrectAnswers: {
-      direction: getCorrectAnswers(quizDirection),
-      'ressources-humaines-finances': getCorrectAnswers(quizRHF),
-      informatique: getCorrectAnswers(quizInformatique)
+      direction: getCorrectAnswers(quizDirection)
+      // 'ressources-humaines-finances': getCorrectAnswers(quizRHF),
+      // informatique: getCorrectAnswers(quizInformatique)
     }
   },
   services: {
@@ -45,18 +50,18 @@ const scenario = {
       secondary: '#009688',
       action: 'service'
     },
-    'ressources-humaines-finances': {
-      name: 'RH / Finances',
-      primary: '#ff8a80',
-      secondary: '#f44336',
-      action: 'service'
-    },
-    informatique: {
-      name: 'Informatique',
-      primary: '#82b1ff',
-      secondary: '#2196f3',
-      action: 'service'
-    },
+    // 'ressources-humaines-finances': {
+    //   name: 'RH / Finances',
+    //   primary: '#ff8a80',
+    //   secondary: '#f44336',
+    //   action: 'service'
+    // },
+    // informatique: {
+    //   name: 'Informatique',
+    //   primary: '#82b1ff',
+    //   secondary: '#2196f3',
+    //   action: 'service'
+    // },
     dpo: {
       name: 'DPO',
       primary: '#ffd180',

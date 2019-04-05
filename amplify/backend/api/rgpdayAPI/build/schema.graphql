@@ -41,7 +41,7 @@ type Quiz {
   id: ID!
   service: String!
   answers: AWSJSON!
-  numberOfJokers: Int!
+  numberOfJokers: AWSJSON!
   team: Team!
 }
 
@@ -327,7 +327,7 @@ input ModelQuizFilterInput {
   id: ModelIDFilterInput
   service: ModelStringFilterInput
   answers: ModelStringFilterInput
-  numberOfJokers: ModelIntFilterInput
+  numberOfJokers: ModelStringFilterInput
   and: [ModelQuizFilterInput]
   or: [ModelQuizFilterInput]
   not: ModelQuizFilterInput
@@ -337,7 +337,7 @@ input CreateQuizInput {
   id: ID
   service: String!
   answers: AWSJSON!
-  numberOfJokers: Int!
+  numberOfJokers: AWSJSON!
   quizTeamId: ID!
 }
 
@@ -345,7 +345,7 @@ input UpdateQuizInput {
   id: ID!
   service: String
   answers: AWSJSON
-  numberOfJokers: Int
+  numberOfJokers: AWSJSON
   quizTeamId: ID
 }
 

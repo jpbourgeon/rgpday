@@ -59,8 +59,8 @@
 				"Runtime": "nodejs8.10",
 				"Timeout": "25",
 				"Code": {
-					"S3Bucket": "rgpday-20190305112118-deployment",
-					"S3Key": "amplify-builds/rgpdayFuncSendMail-1553413022-latest-build.zip"
+					"S3Bucket": "rgpday-20190302163236-deployment",
+					"S3Key": "amplify-builds/rgpdayFuncSendMail-1554439164-latest-build.zip"
 				}
 			}
 		},
